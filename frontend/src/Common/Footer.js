@@ -2,7 +2,7 @@ export function Footer() {
 
   const style = {
     width: "100%",
-    bottom: 0,
+    margin: 0,
     padding: "2rem 0",
     fontSize: "0.8rem",
     color: "gray",

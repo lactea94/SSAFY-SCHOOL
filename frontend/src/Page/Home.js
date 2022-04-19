@@ -11,14 +11,14 @@ export default function Home() {
           메타버스에서 만나는 광주 캠퍼스
         </h4>
       </header>
-      <content>
-        <section>
+      <section>
+        <div>
           SSAFY 광주 캠퍼스에 방문해 보지 못한 여러분들
-        </section>
-        <section>
+        </div>
+        <div>
           기능 소개
-        </section>
-      </content>
+        </div>
+      </section>
     </div>
   )
 };
