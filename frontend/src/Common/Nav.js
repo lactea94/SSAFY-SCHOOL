@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Nav() {
   return (
     <div>
-      <div style={{position: "fixed", height:"50px", width: "100%", backgroundColor: "white", display: "flex", justifyContent: "space-between", borderTop: "0px", borderLeft: "0px", borderRight: "0px", borderBottom: "1px", borderStyle: "solid"}}>
+      <div style={{position: "fixed", height:"50px", width: "100%", minWidth: "740px", backgroundColor: "white", display: "flex", justifyContent: "space-between", borderTop: "0px", borderLeft: "0px", borderRight: "0px", borderBottom: "1px", borderStyle: "solid"}}>
         <div style={{display: "inline-block",height:"100%"}}>
           <Link to="/">
             <img src="./image/logo.png" style={{height:"100%"}}></img>

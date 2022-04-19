@@ -19,7 +19,7 @@ export default function Login() {
   }
 
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: 'center', minHeight: "calc(100vh - 50px - 140px)"}}>
+    <div style={{display: "flex", flexDirection: "column", alignItems: 'center'}}>
       <h1>
         Login
       </h1>
