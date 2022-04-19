@@ -1,4 +1,4 @@
-export function Articles() {
+export default function Articles() {
   return (
     <div>Articles</div>
   )
