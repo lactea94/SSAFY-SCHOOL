@@ -7,8 +7,12 @@ export default function Articles() {
 
   const NavLinkStyle = {
     margin: "1rem",
-    backgroundColor: "black",
+    padding: "0.5rem",
+    borderRadius: "0.5rem",
+    backgroundColor: "#3396F4",
     fontSize: "1rem",
+    textDecoration: "none",
+    color: "white",
   }
 
   return (
