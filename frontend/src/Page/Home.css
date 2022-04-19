@@ -25,9 +25,14 @@ main {
 
 .features div {
   padding: 1rem;
-  border: 0.1rem solid black;
+  border: 0.1rem solid #3396F4;
   border-radius: 1rem;
   display: grid;
+}
+
+.features div:hover {
+  background:  #3396F4;
+  color: white;
 }
 
 .function {
