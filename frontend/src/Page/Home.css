@@ -36,6 +36,10 @@ main {
   padding: 4rem;
 }
 
+.home-title{
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;;
+}
+
 .features {
   margin: 1rem 0;
   padding: 1rem;

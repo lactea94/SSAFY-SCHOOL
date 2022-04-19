@@ -7,10 +7,10 @@ export default function Home() {
       <header style={{
         backgroundImage: `url("/image/banner.png")`
       }}>
-        <h1>
+        <h1 className='home-title'>
           SSAFY SCHOOL
         </h1>
-        <h2>
+        <h2 className='home-title'>
           메타버스에서 만나는 광주 캠퍼스
         </h2>
         <button>게임 하러가기</button>
