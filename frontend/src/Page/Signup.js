@@ -34,11 +34,11 @@ export default function Signup() {
   }
 
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: 'center'}}>
+    <div style={{display: "flex", flexDirection: "column", alignItems: 'center', minHeight: "calc(100vh - 50px - 100px)"}}>
       <h1>
         Sign Up
       </h1>
-      <form style={{display: "flex", flexDirection: "column", alignItems: "center"}}
+      <form style={{display: "flex", flexDirection: "column", alignItems: "center", margin: "1rem"}}
         method="post"
         onSubmit={signupSubmit}
       >
