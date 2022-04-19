@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { Footer } from "../Common/Footer";
 import Nav from "../Common/Nav"
 import Home from "../Page/Home";
 import Login from "../Page/Login";
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
+      <Footer/>
     </div>
   );
 }

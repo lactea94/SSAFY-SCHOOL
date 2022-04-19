@@ -1,3 +1,5 @@
+import "./Home.css";
+
 export default function Home() {
   return (
     <div>
@@ -9,22 +11,14 @@ export default function Home() {
           메타버스에서 만나는 광주 캠퍼스
         </h4>
       </header>
-      <content>
+      <section>
         <div>
-          프로젝트 소개
+          SSAFY 광주 캠퍼스에 방문해 보지 못한 여러분들
         </div>
         <div>
           기능 소개
         </div>
-      </content>
-      <footer>
-        <p>
-          © 삼성청년SW아카데미 6기 광주캠퍼스 2반 장자도에서 하룻밤 💋
-        </p>
-        <p>
-          김동유 | 김병완 | 김현송 | 박상훈 | 박주윤 | 유병재
-        </p>
-      </footer>
+      </section>
     </div>
   )
 };
