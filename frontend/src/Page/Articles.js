@@ -5,15 +5,16 @@ export default function Articles() {
 
   }
 
-  const NavLinkStyle = {
+  const NavLinkStyle = ({ isActive }) => ({
     margin: "1rem",
     padding: "0.5rem",
-    borderRadius: "0.5rem",
-    backgroundColor: "#3396F4",
+    border: isActive ? "none" : "1px solid #3396F4",
+    borderRadius: "0.3rem",
+    backgroundColor: isActive ? "#3396F4" : "white",
     fontSize: "1rem",
     textDecoration: "none",
-    color: "white",
-  }
+    color: isActive ? "white" : "#3396F4",
+  })
 
   return (
     <div style={{textAlign: "center"}}>
