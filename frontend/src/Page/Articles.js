@@ -6,7 +6,9 @@ export default function Articles() {
   }
 
   const NavLinkStyle = {
+    margin: "1rem",
     backgroundColor: "black",
+    fontSize: "1rem",
   }
 
   return (
