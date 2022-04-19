@@ -1,0 +1,29 @@
+header {
+  margin: 0;
+  padding: 10rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+content div {
+  margin-top: 1rem;
+  padding: 5rem;
+  background-color: blue;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 2em 0;
+  font-size: 0.8rem;
+  color: gray;
+  background-color: lightgray;
+}
