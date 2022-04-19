@@ -1,5 +1,7 @@
 export default function Notice() {
   return (
-    <div>공지사항</div>
+    <div>
+      <h2>공지 사항</h2>
+    </div>
   )
 }
