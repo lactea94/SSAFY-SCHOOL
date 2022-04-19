@@ -15,7 +15,7 @@ export default function Home() {
         </h4>
       </header>
       <main>
-        <div class="features">
+        <div className="features">
           <div>
             <img
               src="/image/metaverse.png"
@@ -50,7 +50,7 @@ export default function Home() {
             <p>마일리지를 쌓아 나만의 캐릭터를 꾸며봐요!</p>
           </div>
         </div>
-        <div class="function">
+        <div className="function">
           <div>
             기능 소개
           </div>

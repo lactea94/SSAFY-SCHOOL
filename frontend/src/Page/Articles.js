@@ -1,5 +1,7 @@
 export default function Articles() {
   return (
-    <div>Articles</div>
+    <div>
+      aldsjfklajslfkdsjalk
+    </div>
   )
 };
