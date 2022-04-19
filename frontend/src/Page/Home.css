@@ -12,8 +12,8 @@ content {
   flex-direction: column;
 }
 
-content div {
-  margin-top: 1rem;
+content section {
+  margin: 1rem 0;
   padding: 5rem;
   background-color: blue;
 }

@@ -12,12 +12,12 @@ export function Home() {
         </h4>
       </header>
       <content>
-        <div>
-          프로젝트 소개
-        </div>
-        <div>
+        <section>
+          SSAFY 광주 캠퍼스에 방문해 보지 못한 여러분들
+        </section>
+        <section>
           기능 소개
-        </div>
+        </section>
       </content>
     </div>
   )
