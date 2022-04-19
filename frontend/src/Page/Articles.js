@@ -1,12 +1,22 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 export default function Articles() {
+  const NavStyle = {
+
+  }
+
+  const NavLinkStyle = {
+    margin: "1rem",
+    backgroundColor: "black",
+    fontSize: "1rem",
+  }
+
   return (
-    <div>
+    <div style={{textAlign: "center"}}>
       <h1>게시판</h1>
-      <nav>
-        <NavLink to="notice">공지사항</NavLink>
-        <NavLink to="testbug">오류제보</NavLink>
+      <nav style={NavStyle}>
+        <NavLink style={NavLinkStyle} to="notice">공지 사항</NavLink>
+        <NavLink style={NavLinkStyle} to="testbug">오류 제보</NavLink>
       </nav>
       <Outlet />
     </div>
