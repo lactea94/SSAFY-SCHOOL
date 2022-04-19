@@ -10,16 +10,13 @@ function Nav() {
           </Link>
         </div>
         <div style={{display: "inline-block",height:"100%", fontSize: "20px", display: "flex", alignItems: "center"}}>
-          <Link to="/rank" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
-            랭킹
-          </Link>
           <Link to="/articles" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
             게시판
           </Link>
           <Link to="/profile" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
             마이페이지
           </Link>
-          <Link to="/" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
+          <Link to="/logout" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
             로그아웃
           </Link>
           <Link to="/login" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>

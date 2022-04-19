@@ -1,6 +1,10 @@
+<<<<<<< HEAD
+export default function Home() {
+=======
 import "./Home.css";
 
 export function Home() {
+>>>>>>> 3da845c65e2e4941e1b593350a00dcbb282a5704
   return (
     <div>
       <header>
