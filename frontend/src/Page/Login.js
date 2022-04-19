@@ -15,6 +15,7 @@ export default function Login() {
   function loginSubmit(e) {
     e.preventDefault();
     console.log(loginInfo)
+    // 로그인 로직 추가 예정
   }
 
   return (

@@ -3,6 +3,7 @@ import { Footer } from "../Common/Footer";
 import Nav from "../Common/Nav"
 import Home from "../Page/Home";
 import Login from "../Page/Login";
+import Logout from "../Page/Logout";
 import Signup from "../Page/Signup";
 import PageNotFound from "../Page/404";
 
@@ -15,7 +16,7 @@ function App() {
         <Route path="/articles" element={<Home />}></Route>
         <Route path="/profile" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/logout" element={<Home />}></Route>
+        <Route path="/logout" element={<Logout />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
