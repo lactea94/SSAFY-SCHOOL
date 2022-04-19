@@ -30,6 +30,7 @@ export default function Signup() {
   function signupSubmit(e) {
     e.preventDefault();
     console.log(signupInfo)
+    // 회원가입 로직 추가 예정
   }
 
   return (
