@@ -1,0 +1,26 @@
+.mainmain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.profile-picture{
+  width:100px;
+  height:100px;
+  background:gray;
+  border-radius:50%;
+  text-align:center;
+  line-height:500%;
+  font-size:20px;
+  font-weight:bold;
+  min-width: 100px;
+  min-height: 100px;
+}
+.profile-info{
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: bold;
+  text-align: center;
+}
