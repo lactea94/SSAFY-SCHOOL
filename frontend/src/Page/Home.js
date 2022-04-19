@@ -10,9 +10,10 @@ export default function Home() {
         <h1>
           SSAFY SCHOOL
         </h1>
-        <h4>
+        <h2>
           메타버스에서 만나는 광주 캠퍼스
-        </h4>
+        </h2>
+        <button>게임 하러가기</button>
       </header>
       <main>
         <div className="features">
