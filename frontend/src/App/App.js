@@ -9,6 +9,7 @@ import Signup from "../Page/Signup";
 import PageNotFound from "../Page/404";
 import Notice from "../Components/Articles/Notice";
 import TestBug from "../Components/Articles/TestBug";
+import Profile from "../Page/Profile";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path="notice" element={<Notice />}></Route>
           <Route path="testbug" element={<TestBug />}></Route>
         </Route>
-        <Route path="profile" element={<Home />}></Route>
+        <Route path="profile" element={<Profile />}></Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="logout" element={<Logout />}></Route>
         <Route path="signup" element={<Signup />}></Route>
