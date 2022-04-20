@@ -1,5 +1,18 @@
+import "./css/Pagination.css"
+
 export default function Pagination ({ total, limit, page, setPage, setLimit }) {
   const numPages = Math.ceil(total / limit);
+
+  const buttonStyle = {
+    display: "grid",
+    cursor: "pointer",
+    width: "100%",
+    fontSize: "0.8rem",
+    margin: "auto",
+    padding: 0,
+    borderRadius: "0.3rem",
+  }
+  
   function Page () {
     const array = () => {
       console.log(numPages)
@@ -17,16 +30,17 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
         return [page - 2, page - 1, page , page + 1]
       }
     }
-    console.log(array())
     return (
       <div
-        style={{
-          display: "grid",
-        }}
+        className="page-container"
       >
         <select
-        type="number"
-        value={limit}
+          type="number"
+          className="page-select"
+          value={limit}
+          style={{
+            display: "grid",
+        }}
         onChange={({ target: { value } }) => {
           setLimit(Number(value))
           setPage(1)
@@ -37,35 +51,40 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
           <option value="15">15</option>
           <option value="20">20</option>
         </select>
-        <button
+        <div
+          style={buttonStyle}
           onClick={() => setPage(1)} disabled={page === 1}
         >
-          first
-        </button>
-        <button
+          &lt;&lt;
+        </div>
+        <div
+          style={buttonStyle}
           onClick={() => setPage(page - 1)} disabled={page === 1}
         >
-          prev
-        </button>
+          &lt;
+        </div>
         {array().map(i => (
-          <button
-          key={i}
-          onClick={() => setPage(i)}
+          <div
+            style={buttonStyle}
+            key={i}
+            onClick={() => setPage(i)}
           // current={page === i ? 1 : 0}
           >
             {i}
-          </button>
+          </div>
         ))}  
-        <button
+        <div
+          style={buttonStyle}
           onClick={() => setPage(page + 1)} disabled={page === numPages}
         >
-          next
-        </button>
-        <button
+          &gt;
+        </div>
+        <div
+          style={buttonStyle}
           onClick={() => setPage(numPages)} disabled={page === numPages}
         >
-          last
-        </button>
+          &gt;&gt;
+        </div>
       </div>
     )
   }
