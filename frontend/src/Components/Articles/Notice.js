@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "./Pagination";
@@ -70,6 +70,7 @@ export default function Notice() {
 
   return (
     <div>
+      <Outlet/>
       <div className="article-container">
         <div className="index-row">
           <div>#</div>

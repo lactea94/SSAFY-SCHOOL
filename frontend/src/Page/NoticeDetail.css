@@ -30,4 +30,5 @@
   padding: 3rem 0;
   text-align: start;
   border-bottom: 1px solid lightgray;
+  white-space: pre-wrap;
 }
