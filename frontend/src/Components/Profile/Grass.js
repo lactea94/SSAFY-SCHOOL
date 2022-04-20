@@ -7,7 +7,7 @@ export default function Grass() {
 
   useEffect(()=>{
     //기수정보받아오기 - 상위 Profile컴포넌트에 있는 학번 앞 2개 Number형 변환 후 전달
-    setTh(9);
+    setTh(6);
   },[])
 
   useEffect(()=>{
