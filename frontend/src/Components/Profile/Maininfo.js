@@ -12,12 +12,14 @@ export default function Maininfo() {
   })
   useEffect(()=>{
     //학생정보 불러오기
-    let newData = {...data}
-    data.name='김동유'
-    data.schoolId='0615180'
-    data.id='ehddb2250'
-    data.region='장자도'
-    data.class='1'
+    let newData = {
+      ...data,
+      name: '김동유',
+      schoolId: '0615180',
+      id: "ehddb2252",
+      region: "광주",
+      class: "2"
+    }
     setData(newData)
   },[])
   return (
