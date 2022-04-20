@@ -1,4 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
+import DateFormat from "../Utils/DateFormat";
+import "./NoticeDetail.css";
 
 export default function NoticeDetail () {
   const { noticeId } = useParams();
@@ -6,11 +8,13 @@ export default function NoticeDetail () {
   console.log(noticeId)
   console.log(state)
   return (
-    <div>
-      <h1>{state.title}</h1>
-      <h4>{state.createdDate}</h4>
-      <h4>{state.updatedDate}</h4>
-      <h4>{state.content}</h4>
+    <div className="notice-container">
+      <div className="notice-title">{state.title}</div>
+      <div className="notice-date">
+        <div className="notice-created">{DateFormat(state.createdDate)}</div>
+        <div className="notice-updated">{DateFormat(state.updatedDate)}</div>
+      </div>
+      <div className="notice-content">{state.content}</div>
     </div>
   )
 };

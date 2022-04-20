@@ -1,0 +1,33 @@
+.notice-container{
+  margin: 5rem auto;
+  width: 50%;
+}
+
+.notice-title{
+  font-size: 2rem;
+  border-top: 2px solid black;
+  text-align: start;
+  padding-top: 1rem;
+}
+
+.notice-date{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid lightgray;
+  padding: 1rem 0;
+  color: gray;
+}
+
+.notice-created{
+  text-align: start;
+}
+
+.notice-updated{
+  text-align: end;
+}
+
+.notice-content{
+  padding: 3rem 0;
+  text-align: start;
+  border-bottom: 1px solid lightgray;
+}
