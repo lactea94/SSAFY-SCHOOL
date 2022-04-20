@@ -5,7 +5,6 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
   
   function Page () {
     const array = () => {
-      console.log(numPages)
       if (numPages < 5) {
         let tmp = []
         for (let p = 1; p < numPages + 1; p ++) {

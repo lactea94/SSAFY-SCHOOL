@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./css/Articles.css"
+import DateFormat from "./DateFormat";
 import Pagination from "./Pagination";
 
 export default function TestBug() {
@@ -27,11 +28,11 @@ export default function TestBug() {
     return (
       logs.slice(offset, offset + limit).map((log) => 
         (
-          <div className="article-row">
+          <div className="article-row" key={log.id}>
             <div>{log.id}</div>
             <div>{log.content}</div>
             <div>{log.userId}</div>
-            <div>{log.createDate}</div>
+            <div>{DateFormat(log.createDate)}</div>
           </div>
         )
       )
