@@ -50,6 +50,17 @@ export default function TestBug() {
         </div>
         {Log()}
       </div>
+      <div className="input-container">
+        <textarea
+          className="submit-textarea"
+          rows="3"
+        />
+        <div
+          className="submit-button"
+        >
+          작성
+        </div>
+      </div>
       <Pagination
         total={logs.length}
         limit={limit}
