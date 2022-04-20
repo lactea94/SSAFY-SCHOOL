@@ -2,16 +2,6 @@ import "./css/Pagination.css"
 
 export default function Pagination ({ total, limit, page, setPage, setLimit }) {
   const numPages = Math.ceil(total / limit);
-
-  const buttonStyle = {
-    display: "grid",
-    cursor: "pointer",
-    width: "100%",
-    fontSize: "0.8rem",
-    margin: "auto",
-    padding: 0,
-    borderRadius: "0.3rem",
-  }
   
   function Page () {
     const array = () => {
@@ -51,40 +41,44 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
           <option value="15">15</option>
           <option value="20">20</option>
         </select>
-        <div
-          style={buttonStyle}
-          onClick={() => setPage(1)} disabled={page === 1}
+        <button
+          className="page-button"
+          onClick={() => setPage(1)}
+          disabled={page === 1}
         >
           &lt;&lt;
-        </div>
-        <div
-          style={buttonStyle}
-          onClick={() => setPage(page - 1)} disabled={page === 1}
+        </button>
+        <button
+          className="page-button"
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
         >
           &lt;
-        </div>
+        </button>
         {array().map(i => (
-          <div
-            style={buttonStyle}
+          <button
+            className="page-button"
             key={i}
             onClick={() => setPage(i)}
-          // current={page === i ? 1 : 0}
+            disabled={page === i}
           >
             {i}
-          </div>
+          </button>
         ))}  
-        <div
-          style={buttonStyle}
-          onClick={() => setPage(page + 1)} disabled={page === numPages}
+        <button
+          className="page-button"
+          onClick={() => setPage(page + 1)}
+          disabled={page === numPages}
         >
           &gt;
-        </div>
-        <div
-          style={buttonStyle}
-          onClick={() => setPage(numPages)} disabled={page === numPages}
+        </button>
+        <button
+          className="page-button"
+          onClick={() => setPage(numPages)}
+          disabled={page === numPages}
         >
           &gt;&gt;
-        </div>
+        </button>
       </div>
     )
   }
