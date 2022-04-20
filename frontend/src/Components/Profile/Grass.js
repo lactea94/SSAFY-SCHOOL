@@ -56,10 +56,48 @@ export default function Grass() {
     </div>
   ))
 
+  useEffect(()=>{
+    //grassdata길이가 0이 아닐때 즉 있을때
+    if(grassdata.length!==0){
+      //잔디가 들어갈 컨테이너 선택
+      let container = document.querySelector('.grass-container');
+      //스타트 날짜 요일 고려(잔디 시작 위치 때문.)
+      //그걸 cnt로 해서 일요일(0)이면 0*(10px) 이런식으로 absolute포지션 잡을꺼임.
+      let cnt = new Date(`${start[0]}-${start[1]}-1`).getDay()
+
+      //left-absolute-position-stack
+      let leftposition = 0
+
+      //잔디 포문으로 생성
+      for(var i in grassdata){
+        //토요일 넘어가면 일요일로 초기화
+        if(cnt==7){
+          cnt = 0
+          leftposition += 20
+        }
+        let grass = document.createElement("div");
+        grass.id=i
+        grass.style.cssText = `
+        position:absolute;
+        width:19px; 
+        height:19px;
+        border:1px solid black;
+        margin:1px;
+        left:${leftposition + 5}px;
+        top:${(cnt*20) + 5}px;
+        `
+        container.appendChild(grass)
+        cnt += 1
+      }
+    }
+  },[grassdata])
+
   return (
     <div>
-      <div style={{display:'flex',flexWrap:'wrap'}}>
-        {grass}
+      <div 
+        className='grass-container'
+        style={{width:"70%",height:"180px",border:"1px solid gray",overflow:"hidden",position:'relative'}}
+      >
       </div>
     </div>
   )

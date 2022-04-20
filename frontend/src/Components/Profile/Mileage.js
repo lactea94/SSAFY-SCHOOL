@@ -24,15 +24,15 @@ export default function Mileage() {
         <hr/>
         <div className='available'>
           <h5>사용 가능한 마일리지</h5>
-          <div className='mileagenumber'>{mileage.avail}M</div>
+          <div className='mileagenumber'>{mileage.avail.toLocaleString("ko-KR")}M</div>
         </div>
         <div className='accumulated'>
           <h5>누적 마일리지</h5>
-          <div className='mileagenumber'>{mileage.accumulated}M</div>
+          <div className='mileagenumber'>{mileage.accumulated.toLocaleString("ko-KR")}M</div>
         </div>
         <div className='used'>
           <h5>사용한 마일리지</h5>
-          <div className='mileagenumber'>{mileage.used}M</div>
+          <div className='mileagenumber'>{mileage.used.toLocaleString("ko-KR")}M</div>
         </div>
       </div>
     </>
