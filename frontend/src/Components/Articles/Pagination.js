@@ -1,4 +1,4 @@
-import "./css/Pagination.css"
+import "./css/Pagination.css";
 
 export default function Pagination ({ total, limit, page, setPage, setLimit }) {
   const numPages = Math.ceil(total / limit);
@@ -18,7 +18,7 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
       } else {
         return [page - 2, page - 1, page , page + 1]
       }
-    }
+    };
     return (
       <div
         className="page-container"
@@ -80,10 +80,10 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
         </button>
       </div>
     )
-  }
+  };
   return (
     <div>
       {Page()}
     </div>
   )
-}
+};

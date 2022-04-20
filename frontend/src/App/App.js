@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Footer } from "../Common/Footer";
-import Nav from "../Common/Nav"
+import Nav from "../Common/Nav";
 import Home from "../Page/Home";
 import Articles from "../Page/Articles";
 import Login from "../Page/Login";
@@ -10,6 +10,7 @@ import PageNotFound from "../Page/404";
 import Notice from "../Components/Articles/Notice";
 import TestBug from "../Components/Articles/TestBug";
 import Profile from "../Page/Profile";
+import NoticeDetail from "../Page/NoticeDetail";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="articles" element={<Articles />}>
             <Route index element={<Notice />}></Route>
             <Route path="notice" element={<Notice />}></Route>
+            <Route path="notice/:noticeId" element={<NoticeDetail/>}></Route>
             <Route path="testbug" element={<TestBug />}></Route>
           </Route>
           <Route path="profile" element={<Profile />}></Route>

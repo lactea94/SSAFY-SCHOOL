@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 export default function Articles() {
   const NavStyle = {
     margin: "3rem",
-  }
+  };
 
   const NavLinkStyle = ({ isActive }) => ({
     margin: "1rem",
@@ -14,7 +14,7 @@ export default function Articles() {
     fontSize: "1rem",
     textDecoration: "none",
     color: isActive ? "white" : "#3396F4",
-  })
+  });
 
   return (
     <div style={{textAlign: "center"}}>
