@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./css/Notice.css"
+import "./css/Articles.css"
 import Pagination from "./Pagination";
 
 export default function Notice() {
@@ -27,11 +27,11 @@ export default function Notice() {
     return (
       notices.slice(offset, offset + limit).map((notice) => 
         (
-          <div className="row">
-            <div className="notice-id">{notice.id}</div>
-            <div className="notice-title">{notice.title}</div>
-            <div className="notice-created">{notice.createDate}</div>
-            <div className="notice-updated">{notice.updatedDate}</div>
+          <div className="article-row">
+            <div>{notice.id}</div>
+            <div>{notice.title}</div>
+            <div>{notice.createDate}</div>
+            <div>{notice.updatedDate}</div>
           </div>
         )
       )
@@ -39,14 +39,14 @@ export default function Notice() {
   }
 
   return (
-    <>
+    <div>
       <h2>공지 사항</h2>
-      <div className="container">
-        <div className="row">
-          <div className="notice-id">#</div>
-          <div className="notice-title">제목</div>
-          <div className="notice-created">작성일자</div>
-          <div className="notice-updated">수정일자</div>
+      <div className="article-container">
+        <div className="article-row">
+          <div>#</div>
+          <div>제목</div>
+          <div>작성일자</div>
+          <div>수정일자</div>
         </div>
         {Notice()}
       </div>
@@ -57,6 +57,6 @@ export default function Notice() {
         setPage={setPage}
         setLimit={setLimit}
       />
-    </>
+    </div>
   )
 }
