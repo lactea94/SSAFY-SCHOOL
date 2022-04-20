@@ -15,6 +15,12 @@ header h1 {
   font-size: 3rem;
 }
 
+.pjtIntro {
+  max-width: 1000px;
+  text-align: left;
+  margin-bottom: 0;
+}
+
 button {
   width: 400px;
   margin: 1rem;

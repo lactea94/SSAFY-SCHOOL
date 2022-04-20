@@ -50,7 +50,7 @@ export default function EachMonthAttendance() {
         animate
         labelPosition={0}
       />}
-      <h2 style={{display: "inline-block", marginTop: "0.5rem"}}>싸피월급 {parseInt(1000000 * attendance / weekdays).toLocaleString("ko-KR")}원</h2>
+      <h2 style={{display: "inline-block", marginTop: "0.5rem"}}>싸피 지원금 {parseInt(1000000 * attendance / weekdays).toLocaleString("ko-KR")}원</h2>
     </div>
   );
 }
