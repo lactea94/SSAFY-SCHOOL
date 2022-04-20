@@ -1,13 +1,20 @@
 .article-container {
   display: grid;
   background: lightgray;
+  border-radius: 1rem;
   width: 50%;
   margin: auto;
+}
+
+.index-row {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr;
+  padding: 1rem;
 }
 
 .article-row {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr 1fr;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
   padding: 1rem;
 }

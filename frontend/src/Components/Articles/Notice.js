@@ -56,9 +56,8 @@ export default function Notice() {
 
   return (
     <div>
-      <h2>공지 사항</h2>
       <div className="article-container">
-        <div className="article-row">
+        <div className="index-row">
           <div>#</div>
           <div>제목</div>
           <div>작성일자</div>

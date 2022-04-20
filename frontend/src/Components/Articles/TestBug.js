@@ -40,9 +40,8 @@ export default function TestBug() {
 
   return (
     <div>
-      <h2>오류 제보</h2>
       <div className="article-container">
-        <div className="article-row">
+        <div className="index-row">
           <div>#</div>
           <div>제보</div>
           <div>작성자</div>

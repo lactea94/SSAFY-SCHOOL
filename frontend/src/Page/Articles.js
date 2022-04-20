@@ -2,7 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 export default function Articles() {
   const NavStyle = {
-
+    margin: "3rem",
   }
 
   const NavLinkStyle = ({ isActive }) => ({
