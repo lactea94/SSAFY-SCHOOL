@@ -3,9 +3,9 @@ import './css/Mileage.css'
 
 export default function Mileage() {
   const [mileage,setMileage] = useState({
-    avail:null,//사용가능
-    accumulated:null,//누적마일리지
-    used:null,//사용한마일리지
+    avail:0,//사용가능
+    accumulated:0,//누적마일리지
+    used:0,//사용한마일리지
   })
   useEffect(()=>{
     //마일리지 불러오기
