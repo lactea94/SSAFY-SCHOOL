@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./css/Articles.css";
-import DateFormat from "./DateFormat";
+import DateFormat from "../../Utils/DateFormat";
 import Pagination from "./Pagination";
 
 export default function TestBug() {
