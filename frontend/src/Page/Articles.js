@@ -2,7 +2,10 @@ import { NavLink, Outlet } from "react-router-dom";
 
 export default function Articles() {
   const NavStyle = {
-    margin: "3rem",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    margin: "3rem auto 2rem",
+    width: "50%",
   };
 
   const NavLinkStyle = ({ isActive }) => ({
@@ -18,10 +21,25 @@ export default function Articles() {
 
   return (
     <div style={{textAlign: "center"}}>
-      <h1>게시판</h1>
       <nav style={NavStyle}>
-        <NavLink style={NavLinkStyle} to="notice">공지 사항</NavLink>
-        <NavLink style={NavLinkStyle} to="testbug">오류 제보</NavLink>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "2.5rem",
+            alignItems: "center",
+          }}
+        >
+          게시판
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <NavLink style={NavLinkStyle} to="notice">공지 사항</NavLink>
+          <NavLink style={NavLinkStyle} to="testbug">오류 제보</NavLink>
+        </div>
       </nav>
       <Outlet />
     </div>

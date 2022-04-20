@@ -48,6 +48,7 @@ export default function Notice() {
             <div>{notice.id}</div>
             <div>
               <Link
+                className="notice-link"
                 to={`${notice.id}`}
                 state={{
                   title: notice.title,
