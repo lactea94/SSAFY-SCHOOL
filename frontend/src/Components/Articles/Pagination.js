@@ -27,13 +27,10 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
           type="number"
           className="page-select"
           value={limit}
-          style={{
-            display: "grid",
-        }}
-        onChange={({ target: { value } }) => {
-          setLimit(Number(value))
-          setPage(1)
-        }}
+          onChange={({ target: { value } }) => {
+            setLimit(Number(value))
+            setPage(1)
+          }}
         >
           <option value="5">5</option>
           <option value="10">10</option>

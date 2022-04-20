@@ -2,12 +2,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0.1rem, auto));
   column-gap: 0.5rem;
-  margin: 1rem auto;
-  width: 30%;
+  margin: 1rem auto 5rem;
+  width: 20%;
 }
 
 .page-select {
-  width: 100%;
+  display: grid;
+  width: 3rem;
   margin: auto;
 }
 
@@ -15,7 +16,7 @@
   display: grid;
   cursor: pointer;
   width: 1.5rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: lighter;
   color: black;
   margin: auto;
