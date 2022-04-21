@@ -43,9 +43,13 @@ header button:hover {
   color: white;
 }
 
-.home-main {
-  margin: auto;
+
+main {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   padding: 0;
+  align-items: center;
 }
 
 .intro {
@@ -56,6 +60,7 @@ header button:hover {
   text-align: start;
   background: #3396F4;
   color: white;
+  margin: 5rem 0;
 }
 
 .intro div {
@@ -70,31 +75,17 @@ header button:hover {
   width: 100%;
 }
 
-main {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  padding: 0 4rem;
-  align-items: center;
-}
-
-.home-title{
-  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;;
-}
-
 .left-feature {
-  width: 80%;
-  margin: 1rem 0;
-  padding: 1rem;
+  width: 70%;
+  margin: 3rem;
   display: grid;
   column-gap: 1rem;
   grid-template-columns: 1fr 2fr;
 }
 
 .right-feature {
-  width: 80%;
-  margin: 1rem 0;
-  padding: 1rem;
+  width: 70%;
+  margin: 3rem;
   display: grid;
   column-gap: 1rem;
   grid-template-columns: 2fr 1fr;
@@ -112,11 +103,20 @@ main {
   grid-auto-columns: minmax(33%, auto);
 }
 
+.feature-card img {
+  width: 100%;
+}
+
+.feature-card h2 {
+  margin: 0.5rem;
+}
+
+.feature-card p {
+  margin: 0;
+}
+
 .feature-card:hover {
   background:  #3396F4;
   color: white;
 }
 
-.feature-card img {
-  width: 100%;
-}
