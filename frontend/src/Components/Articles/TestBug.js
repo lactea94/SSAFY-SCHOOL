@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "./Pagination";
+import { FaCommentMedical } from 'react-icons/fa';
 
 export default function TestBug() {
   const logs = [
@@ -53,12 +54,12 @@ export default function TestBug() {
       <div className="input-container">
         <textarea
           className="submit-textarea"
-          rows="3"
+          rows="2"
         />
         <div
           className="submit-button"
         >
-          작성
+          <FaCommentMedical />
         </div>
       </div>
       <Pagination
