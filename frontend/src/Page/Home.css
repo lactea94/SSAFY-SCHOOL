@@ -1,33 +1,30 @@
 header {
-  margin: 0;
-  background-size: cover;
-  /* padding: 10rem; */
-  height: 300px;
+  margin: 3rem 0;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: black;
+}
+
+header div {
+  margin: auto;
 }
 
 header h1 {
-  margin-bottom: 0;
+  margin: 0;
   font-size: 3rem;
 }
 
-.home-main {
+header p {
+  margin: 0.5rem 0;
+}
+
+header img {
   width: 80%;
   margin: auto;
 }
 
-.pjtIntro {
-  max-width: 1000px;
-  text-align: left;
-  margin-bottom: 0;
-}
-
-button {
-  width: 400px;
+header button {
   margin: 1rem;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
@@ -39,11 +36,38 @@ button {
   background-color: dodgerblue;
 }
 
-button:hover {
+header button:hover {
   cursor: pointer;
   border-color: #354aca;
   background: #354aca;
   color: white;
+}
+
+.home-main {
+  margin: auto;
+  padding: 0;
+}
+
+.intro {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  text-align: start;
+  background: #3396F4;
+  color: white;
+}
+
+.intro div {
+  margin: auto;
+}
+
+.intro p {
+  margin: 0.5rem auto;
+}
+
+.intro img {
+  width: 100%;
 }
 
 main {
@@ -89,18 +113,4 @@ main {
   padding: 1rem;
   border: 0.1rem solid black;
   display: grid;
-}
-
-@media screen and (min-width: 1280px) {
-  .home-main {
-    width: 60%;
-    padding: auto;
-  }
-}
-
-@media screen and (min-width: 1920px) {
-  .home-main {
-    width: 40%;
-    padding: auto;
-  }
 }

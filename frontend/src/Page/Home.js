@@ -1,16 +1,33 @@
-import './Home.css';
+import "./Home.css";
+import ssafyImg from "../asset/image/ssafy.jpg";
 
 export default function Home() {
-
   return (
     <div>
-      <header style={{
-        backgroundImage: `url("/image/banner.jpg")`,
-      }}>
+      <header>
+        <div>
+          <h1>
+            SSAFY SCHOOL
+          </h1>
+          <p>싸피 스쿨에서 즐거운 캠퍼스 라이프를 시작해 보세요!</p>
+          <button>시작하기</button>
+        </div>
+        {/* 캐러셀이나 동영상 */}
+        <img
+          src="/image/banner.jpg"
+          alt="banner"
+        />
       </header>
       <main className="home-main">
-        <p className="pjtIntro">우리는 싸피에서 "함께" 성장합니다. 하지만, 펜더믹 사태가 장기화되면서 대면수업의 가능성은 멀어지고, 아쉬움이 점점 커져만 가고 있습니다. 싸피스쿨은 이러한 아쉬움을 해결하고자, 실제 캠퍼스와 유사한 가상환경 속에서 캠퍼스를 간접적으로 체험하고, 타 교육생들과 자유롭게 만나고 소통할 수 있는 환경을 제공합니다.</p>
-        <button>다운로드</button>
+        <div className="intro">
+          <div>
+            <h2>우리는 싸피에서 "함께" 성장합니다.</h2>
+            <p>하지만, 대면수업을 하지 못해 아쉬움만 커져가고 있습니다.</p>
+            <p>SSAFY SCHOOL의 실제 캠퍼스와 유사한 가상환경 속에서</p>
+            <p>캠퍼스를 체험하고 자유롭게 소통해 보세요.</p> 
+          </div>
+          <img src={ssafyImg} alt="ssafy"/>
+        </div>
         <div className="features">
           <div>
             <img
