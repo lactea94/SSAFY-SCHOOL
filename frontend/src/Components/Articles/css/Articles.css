@@ -95,13 +95,31 @@
   background: #3396F4;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1280px) {
   .article-container {
     width: 50%;
   }
 
   .article-nav {
     width: 50%;
+  }
+
+  .index-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
+  }
+
+  .article-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .article-container {
+    width: 33%;
+  }
+
+  .article-nav {
+    width: 33%;
   }
 
   .index-row {
