@@ -20,20 +20,6 @@ header h1 {
   margin: auto;
 }
 
-@media screen and (min-width: 1280px) {
-  .home-main {
-    width: 60%;
-    padding: auto;
-  }
-}
-
-@media screen and (min-width: 1920px) {
-  .home-main {
-    width: 40%;
-    padding: auto;
-  }
-}
-
 .pjtIntro {
   max-width: 1000px;
   text-align: left;
@@ -103,4 +89,18 @@ main {
   padding: 1rem;
   border: 0.1rem solid black;
   display: grid;
+}
+
+@media screen and (min-width: 1280px) {
+  .home-main {
+    width: 60%;
+    padding: auto;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .home-main {
+    width: 40%;
+    padding: auto;
+  }
 }

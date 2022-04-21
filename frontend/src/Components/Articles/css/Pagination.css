@@ -6,24 +6,6 @@
   width: 50%;
 }
 
-@media screen and (min-width: 1280px) {
-  .page-container {
-    width: 30%;
-  }
-}
-
-@media screen and (min-width: 1600px) {
-  .page-container {
-    width: 25%;
-  }
-}
-
-@media screen and (min-width: 1920px) {
-  .page-container {
-    width: 20%;
-  }
-}
-
 .page-select {
   display: grid;
   width: 3rem;
@@ -52,3 +34,21 @@
   color: #3396F4;
   background: none;
 }
+  
+  @media screen and (min-width: 1280px) {
+    .page-container {
+      width: 30%;
+    }
+  }
+  
+  @media screen and (min-width: 1600px) {
+    .page-container {
+      width: 25%;
+    }
+  }
+  
+  @media screen and (min-width: 1920px) {
+    .page-container {
+      width: 20%;
+    }
+  }
