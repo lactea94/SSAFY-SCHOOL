@@ -24,23 +24,22 @@ header img {
   margin: auto;
 }
 
-header button {
+button {
   margin: 1rem;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   font-weight: bolder;
   color: white;
   background: none;
-  border: 1px solid dodgerblue;
+  border: 1px solid #3396F4;
   border-radius: 0.5rem;
-  background-color: dodgerblue;
+  background-color: #3396F4;
+  cursor: pointer;
 }
 
-header button:hover {
-  cursor: pointer;
+button:hover {
   border-color: #354aca;
   background: #354aca;
-  color: white;
 }
 
 
