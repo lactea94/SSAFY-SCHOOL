@@ -15,6 +15,25 @@ header h1 {
   font-size: 3rem;
 }
 
+.home-main {
+  width: 80%;
+  margin: auto;
+}
+
+@media screen and (min-width: 1280px) {
+  .home-main {
+    width: 60%;
+    padding: auto;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .home-main {
+    width: 40%;
+    padding: auto;
+  }
+}
+
 .pjtIntro {
   max-width: 1000px;
   text-align: left;

@@ -8,7 +8,7 @@ export default function Home() {
         backgroundImage: `url("/image/banner.jpg")`,
       }}>
       </header>
-      <main>
+      <main className="home-main">
         <p className="pjtIntro">우리는 싸피에서 "함께" 성장합니다. 하지만, 펜더믹 사태가 장기화되면서 대면수업의 가능성은 멀어지고, 아쉬움이 점점 커져만 가고 있습니다. 싸피스쿨은 이러한 아쉬움을 해결하고자, 실제 캠퍼스와 유사한 가상환경 속에서 캠퍼스를 간접적으로 체험하고, 타 교육생들과 자유롭게 만나고 소통할 수 있는 환경을 제공합니다.</p>
         <button>다운로드</button>
         <div className="features">
