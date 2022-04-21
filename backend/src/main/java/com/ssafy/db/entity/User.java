@@ -29,7 +29,7 @@ public class User extends BaseEntity{
     private String nickname;
 
     @Column(nullable = false)
-    private boolean gender;
+    private Boolean gender;
 
     @Column(nullable = false, length = 100)
     private String email;
@@ -39,8 +39,9 @@ public class User extends BaseEntity{
     @Column(nullable = false, length = 50)
     private String password;
 
+    // super : 0 / manager : 1 / normal : 2
     @Column(nullable = false)
-    private int isAdmin;
+    private int admin;
 
     @OneToOne(mappedBy = "user")
     private Status status;

@@ -1,10 +1,12 @@
 package com.ssafy.api.service;
 
+import com.ssafy.db.entity.Status;
+import com.ssafy.db.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.api.request.UserRegisterPostReq;
+import com.ssafy.api.request.user.UserRegisterPostReq;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
@@ -16,7 +18,10 @@ import com.ssafy.db.repository.UserRepositorySupport;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
-	
+
+	@Autowired
+	StatusRepository statusRepository;
+
 	@Autowired
 	UserRepositorySupport userRepositorySupport;
 	
@@ -29,6 +34,11 @@ public class UserServiceImpl implements UserService {
 		user.setUserId(userRegisterInfo.getId());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
 		user.setPassword(passwordEncoder.encode(userRegisterInfo.getPassword()));
+		user.setNickname(userRegisterInfo.getNickname());
+		user.setName(userRegisterInfo.getName());
+		user.setGender(userRegisterInfo.getGender());
+		user.setEmail(userRegisterInfo.getEmail());
+		user.setAdmin(2);
 		return userRepository.save(user);
 	}
 
@@ -37,5 +47,11 @@ public class UserServiceImpl implements UserService {
 		// 디비에 유저 정보 조회 (userId 를 통한 조회).
 		User user = userRepositorySupport.findUserByUserId(userId).get();
 		return user;
+	}
+
+	@Override
+	public Status getStatusByUserId(String userId) {
+		Status status = statusRepository.findByUserId(userId).get();
+		return status;
 	}
 }

@@ -1,4 +1,4 @@
-package com.ssafy.api.request;
+package com.ssafy.api.request.user;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,6 +14,7 @@ import lombok.Setter;
 public class UserLoginPostReq {
 	@ApiModelProperty(name="유저 ID", example="ssafy_web")
 	String id;
+
 	@ApiModelProperty(name="유저 Password", example="your_password")
 	String password;
 }

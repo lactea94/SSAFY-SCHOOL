@@ -18,7 +18,10 @@ public class Status extends BaseEntity {
     private String codi;
 
     @Column(nullable = false)
-    private int mileage;
+    private int totalMileage;
+
+    @Column(nullable = false)
+    private int remainMileage;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
