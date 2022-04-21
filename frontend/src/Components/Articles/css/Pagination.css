@@ -3,21 +3,26 @@
   grid-template-columns: repeat(auto-fit, minmax(0.1rem, auto));
   column-gap: 0.5rem;
   margin: 1rem auto 5rem;
-  width: 25%;
+  width: 50%;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .page-container {
-    width: 40%;
+    width: 30%;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1600px) {
   .page-container {
-    width: 50%;
+    width: 25%;
   }
 }
 
+@media screen and (min-width: 1920px) {
+  .page-container {
+    width: 20%;
+  }
+}
 
 .page-select {
   display: grid;
