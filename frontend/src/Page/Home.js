@@ -4,8 +4,15 @@ import metaverse_logo from "../asset/image/metaverse_logo.png";
 import remote_logo from "../asset/image/remote_logo.png";
 import mileage_logo from "../asset/image/mileage_logo.png";
 import metaverse_1 from "../asset/image/metaverse_1.png";
+import metaverse_2 from "../asset/image/metaverse_2.png";
+import metaverse_3 from "../asset/image/metaverse_3.png";
 import remote_1 from "../asset/image/remote_1.png";
+import remote_2 from "../asset/image/remote_2.png";
+import remote_3 from "../asset/image/remote_3.png";
 import mileage_1 from "../asset/image/mileage_1.png";
+import mileage_2 from "../asset/image/mileage_2.png";
+import mileage_3 from "../asset/image/mileage_3.png";
+import { Carousel } from "react-responsive-carousel";
 
 export default function Home() {
   return (
@@ -67,6 +74,11 @@ export default function Home() {
           </div>
           <img className="feature-img" src={mileage_1} alt="mileage_1"></img>
         </div>
+        <Carousel>
+          <div>
+            <img src={mileage_1} alt="mileage_1"></img>
+          </div>
+        </Carousel>
       </main>
     </div>
   )
