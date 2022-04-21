@@ -12,9 +12,14 @@ import remote_3 from "../asset/image/remote_3.png";
 import mileage_1 from "../asset/image/mileage_1.png";
 import mileage_2 from "../asset/image/mileage_2.png";
 import mileage_3 from "../asset/image/mileage_3.png";
+import { Swiper, SwiperSlide } from "swiper/react"; // basic
+import SwiperCore, { Navigation, Pagination } from "swiper";
+import "swiper/css"; //basic
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function Home() {
-
+  SwiperCore.use([Navigation, Pagination]);
   return (
     <div>
       <header>
@@ -29,7 +34,7 @@ export default function Home() {
         <img
           src="/image/banner.jpg"
           alt="banner"
-        />
+          />
       </header>
       <main className="home-main">
         <div className="intro">
@@ -46,14 +51,46 @@ export default function Home() {
             <img
               src={metaverse_logo}
               alt="metaverse_logo"
-            />
+              />
             <h2>메타버스</h2>
             <p>메타버스로 즐기는 즐거운 싸피 생활!</p>
           </div>
-          <img className="metaverse-img" src={metaverse_1} alt="metaverse"></img>
+          <Swiper
+            spaceBetween={50}
+            scrollbar={{ draggable: true }}
+            navigation
+            pagination={{ clickable: true }}
+            className="feature-carousel"
+          >
+            <SwiperSlide>
+              <img className="feature-img" src={metaverse_1} alt="metaverse"></img>
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="feature-img" src={metaverse_2} alt="metaverse"></img>
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="feature-img" src={metaverse_3} alt="metaverse"></img>
+            </SwiperSlide>
+          </Swiper>
         </div>
         <div className="right-feature">
-          <img className="feature-img" src={remote_1} alt="remote_1"></img>
+          <Swiper
+            spaceBetween={50}
+            scrollbar={{ draggable: true }}
+            navigation
+            pagination={{ clickable: true }}
+            className="feature-carousel"
+          >
+            <SwiperSlide>
+              <img className="feature-img" src={remote_1} alt="remote_1"></img>
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="feature-img" src={remote_2} alt="remote_2"></img>
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="feature-img" src={remote_3} alt="remote_3"></img>
+            </SwiperSlide>
+          </Swiper>
           <div className="feature-card">
             <img
               src={remote_logo}
@@ -72,7 +109,23 @@ export default function Home() {
             <h2>마일리지</h2>
             <p>마일리지를 쌓아 나만의 캐릭터를 꾸며봐요!</p>
           </div>
-          <img className="feature-img" src={mileage_1} alt="mileage_1"></img>
+          <Swiper
+            spaceBetween={50}
+            scrollbar={{ draggable: true }}
+            navigation
+            pagination={{ clickable: true }}
+            className="feature-carousel"
+          >
+            <SwiperSlide>
+              <img className="feature-img" src={mileage_1} alt="mileage_1"></img>
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="feature-img" src={mileage_2} alt="mileage_2"></img>
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="feature-img" src={mileage_3} alt="mileage_3"></img>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </main>
     </div>
