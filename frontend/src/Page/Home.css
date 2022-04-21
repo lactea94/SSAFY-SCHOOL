@@ -1,4 +1,4 @@
-header {
+/* header {
   margin: 3rem 0;
   text-align: center;
   display: grid;
@@ -91,10 +91,15 @@ main {
   grid-template-columns: 2fr 1fr;
 }
 
+.carousel {
+  width: 100%;
+}
+
 .feature-img {
   width: 100%;
   margin: auto;
 }
+
 .feature-card {
   padding: 1rem;
   border: 0.1rem solid #3396F4;
@@ -119,4 +124,4 @@ main {
   background:  #3396F4;
   color: white;
 }
-
+ */

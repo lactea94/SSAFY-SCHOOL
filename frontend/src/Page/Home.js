@@ -12,9 +12,9 @@ import remote_3 from "../asset/image/remote_3.png";
 import mileage_1 from "../asset/image/mileage_1.png";
 import mileage_2 from "../asset/image/mileage_2.png";
 import mileage_3 from "../asset/image/mileage_3.png";
-import { Carousel } from "react-responsive-carousel";
 
 export default function Home() {
+
   return (
     <div>
       <header>
@@ -50,7 +50,7 @@ export default function Home() {
             <h2>메타버스</h2>
             <p>메타버스로 즐기는 즐거운 싸피 생활!</p>
           </div>
-          <img className="feature-img" src={metaverse_1} alt="metaverse_1"></img>
+          <img className="metaverse-img" src={metaverse_1} alt="metaverse"></img>
         </div>
         <div className="right-feature">
           <img className="feature-img" src={remote_1} alt="remote_1"></img>
@@ -74,11 +74,6 @@ export default function Home() {
           </div>
           <img className="feature-img" src={mileage_1} alt="mileage_1"></img>
         </div>
-        <Carousel>
-          <div>
-            <img src={mileage_1} alt="mileage_1"></img>
-          </div>
-        </Carousel>
       </main>
     </div>
   )
