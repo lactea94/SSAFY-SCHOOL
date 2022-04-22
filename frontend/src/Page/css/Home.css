@@ -24,24 +24,21 @@ header img {
   margin: auto;
 }
 
-button {
-  margin: 1rem;
+.download {
+  display: inline-block;
   padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   font-size: 1.2rem;
   font-weight: bolder;
   color: white;
-  background: none;
-  border: 1px solid #3396F4;
-  border-radius: 0.5rem;
+  text-decoration: none;
   background-color: #3396F4;
   cursor: pointer;
 }
 
-button:hover {
-  border-color: #354aca;
-  background: #354aca;
+.download:hover {
+  background-color: #354aca;
 }
-
 
 main {
   text-align: center;
