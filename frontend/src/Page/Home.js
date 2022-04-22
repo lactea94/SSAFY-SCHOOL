@@ -28,16 +28,14 @@ export default function Home() {
             SSAFY SCHOOL
           </h1>
           <p>싸피 스쿨에서 즐거운 캠퍼스 라이프를 시작해 보세요!</p>
-          {/* <div className="download"> */}
-            <a
-              className="download"
-              href="/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              다운로드
-            </a>
-          {/* </div> */}
+          <a
+            className="download"
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            다운로드
+          </a>
         </div>
         {/* 캐러셀이나 동영상 */}
         <img
