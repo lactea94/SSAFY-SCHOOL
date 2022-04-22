@@ -1,7 +1,7 @@
 @font-face {
-  font-family: "Nanum Gothic";
+  font-family: "NanumBarunGothic";
   font-weight: 50;
-  src: url("./nanum_gothic.woff") format("woff");
+  src: url("./NanumBarunGothic.woff") format("woff");
 }
 
 @font-face {
