@@ -1,6 +1,6 @@
 .notice-container{
   margin: 5rem auto;
-  width: 50%;
+  width: 90%;
 }
 
 .notice-title{
@@ -31,4 +31,16 @@
   text-align: start;
   border-bottom: 1px solid lightgray;
   white-space: pre-wrap;
+}
+
+@media screen and (min-width: 1280px) {
+  .notice-container{
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .notice-container{
+    width: 33%;
+  }
 }

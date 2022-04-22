@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import DateFormat from "../Utils/DateFormat";
-import "./NoticeDetail.css";
+import "./css/NoticeDetail.css";
 
 export default function NoticeDetail () {
   const { state } = useLocation();

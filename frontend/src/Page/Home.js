@@ -1,4 +1,4 @@
-import "./Home.css";
+import "./css/Home.css";
 import ssafyImg from "../asset/image/ssafy.jpg";
 import metaverse_logo from "../asset/image/metaverse_logo.png";
 import remote_logo from "../asset/image/remote_logo.png";
