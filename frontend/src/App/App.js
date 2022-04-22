@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Footer } from "../Common/Footer";
+import "./App.css"
 import Nav from "../Common/Nav";
 import Home from "../Page/Home";
 import Articles from "../Page/Articles";
@@ -14,9 +15,9 @@ import NoticeDetail from "../Page/NoticeDetail";
 
 function App() {
   return (
-    <div className="App" style={{minWidth: "740px"}}>
+    <div className="App">
       <Nav/>
-      <div style={{minHeight: "calc(100vh - 50px - 140px)"}}>
+      <div style={{minHeight: "calc(100vh - 186px)"}}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="articles" element={<Articles />}>
