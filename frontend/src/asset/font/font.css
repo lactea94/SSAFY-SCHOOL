@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-weight: 50;
+  src: url("./NanumBarunGothic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "BMEULJIRO";
+  font-weight: 50;
+  src: url("./BMEULJIRO.woff") format("woff");
+}

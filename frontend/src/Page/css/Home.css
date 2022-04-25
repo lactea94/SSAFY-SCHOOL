@@ -1,0 +1,125 @@
+header {
+  margin: 3rem 0;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: black;
+}
+
+header div {
+  margin: auto;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+header p {
+  margin: 0.5rem 0;
+}
+
+header img {
+  width: 80%;
+  margin: auto;
+}
+
+.download {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: white;
+  text-decoration: none;
+  background-color: #3396F4;
+  cursor: pointer;
+}
+
+.download:hover {
+  background-color: #354aca;
+}
+
+main {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-items: center;
+}
+
+.intro {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  text-align: start;
+  background: #3396F4;
+  color: white;
+  margin: 5rem 0;
+}
+
+.intro div {
+  margin: auto;
+}
+
+.intro p {
+  margin: 0.5rem auto;
+}
+
+.intro img {
+  width: 100%;
+}
+
+.left-feature {
+  width: 70%;
+  margin: 3rem;
+  display: grid;
+  column-gap: 1rem;
+  grid-template-columns: 1fr 2fr;
+}
+
+.right-feature {
+  width: 70%;
+  margin: 3rem;
+  display: grid;
+  column-gap: 1rem;
+  grid-template-columns: 2fr 1fr;
+}
+
+.feature-carousel {
+  width: 100%;
+  margin: auto;
+}
+
+.feature-img {
+  width: 100%;
+}
+
+.feature-card {
+  padding: 1rem;
+  border: 0.1rem solid #3396F4;
+  border-radius: 1rem;
+  display: grid;
+  grid-auto-columns: minmax(33%, auto);
+}
+
+
+.feature-card img {
+  width: 100%;
+  margin: auto;
+}
+
+.feature-card h2 {
+  margin: 0.5rem;
+}
+
+.feature-card p {
+  margin: 0;
+}
+
+.feature-card:hover {
+  background:  #3396F4;
+  color: white;
+}
+

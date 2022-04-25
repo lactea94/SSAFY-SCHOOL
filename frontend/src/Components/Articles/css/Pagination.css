@@ -1,0 +1,55 @@
+.page-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0.1rem, auto));
+  column-gap: 0.5rem;
+  margin: auto;
+  padding: 2rem;
+  width: 50%;
+}
+
+.page-select {
+  display: grid;
+  width: 3rem;
+  margin: auto;
+}
+
+.page-button {
+  display: grid;
+  cursor: pointer;
+  width: 1.5rem;
+  font-size: 1rem;
+  font-weight: lighter;
+  color: black;
+  margin: auto;
+  padding: 0;
+  border-radius: 1rem;
+  background: none;
+  border: none;
+}
+
+.page-button:disabled {
+  color: lightgray;
+}
+
+.page-button:hover {
+  color: #3396F4;
+  background: none;
+}
+  
+  @media screen and (min-width: 1280px) {
+    .page-container {
+      width: 30%;
+    }
+  }
+  
+  @media screen and (min-width: 1600px) {
+    .page-container {
+      width: 25%;
+    }
+  }
+  
+  @media screen and (min-width: 1920px) {
+    .page-container {
+      width: 20%;
+    }
+  }
