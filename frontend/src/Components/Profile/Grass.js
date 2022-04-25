@@ -86,7 +86,7 @@ export default function Grass() {
           }
         }else{
           let days = holidays[start[0]][start[1] + i]
-          for(var j in days){
+          for(let j in days){
             let idx = Math.floor(
               (new Date(`${start[0]}-${start[1] + i}-${days[j]}`).getTime() - startdate) / (1000 * 3600 * 24)
             )
