@@ -14,9 +14,6 @@ public class Status extends BaseEntity {
     @Column(nullable = true, length = 100)
     private String location;
 
-    @Column(nullable = true, length = 100)
-    private String codi;
-
     @Column(nullable = false)
     private int totalMileage;
 

@@ -1,6 +1,6 @@
 package com.ssafy.api.controller;
 
-import com.ssafy.db.entity.Status;
+import com.ssafy.db.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -15,7 +15,6 @@ import com.ssafy.api.response.user.UserRes;
 import com.ssafy.api.service.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.db.entity.User;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -69,7 +68,10 @@ public class UserController {
 		String userId = userDetails.getUsername();
 		User user = userService.getUserByUserId(userId);
 		Status status = userService.getStatusByUserId(userId);
+		StudentStatus studentStatus = userService.getStudentStatusByUserId(userId);
+		CheckOut checkOut = userService.getCheckOutByUserId(userId);
+		CheckIn checkIn = userService.getCheckInByUserId(userId);
 		
-		return ResponseEntity.status(200).body(UserRes.of(user, status));
+		return ResponseEntity.status(200).body(UserRes.of(user, status, studentStatus, checkIn, checkOut));
 	}
 }

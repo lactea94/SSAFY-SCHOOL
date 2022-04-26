@@ -68,4 +68,8 @@ public class User extends BaseEntity{
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<BugReport> bugReports = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Inventory> inventories = new ArrayList<>();
 }
