@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "./Pagination";
+import CommunityCreate from "./CommunityCreate";
 
 export default function Community() {
   const communities_notice = [
@@ -84,8 +85,12 @@ export default function Community() {
       )
     )
   };
+
+  const [ createOpen, setCreateOpen ] = useState(false);
+
   return (
     <div>
+      {createOpen && <CommunityCreate setCreateOpen={setCreateOpen}/>}
       <Outlet/>
       <div className="article-container">
         <div className="index-row">
@@ -97,7 +102,15 @@ export default function Community() {
         {Notices()}
         {Communities()}
         <div className="community-row">
-          <Link className="community-create" to="create">새 글 작성</Link>
+          <div
+            className="community-create"
+            onClick={() => {
+              setCreateOpen(true);
+              window.scrollTo(0, 0);
+            }}
+          >
+            새 글 작성
+          </div>
         </div>
       </div>
       <Pagination

@@ -19,10 +19,6 @@ export default function CommunityDetail() {
     { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },
   ]
 
-  function handleClick() {
-    setUpdateOpen(true)
-  }
-
   return (
     <div className="community-container">
       {updateOpen ? (
@@ -43,7 +39,7 @@ export default function CommunityDetail() {
             <div className="community-update">
               <div
                 className="community-update-button"
-                onClick={handleClick}
+                onClick={() => setUpdateOpen(true)}
               >수정</div>
               <div className="community-delete-button">삭제</div>
             </div>
