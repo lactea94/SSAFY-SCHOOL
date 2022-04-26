@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(true);
+  // 슈퍼 0, 프로 1, 학생 2
   const [ isAdmin, setIsAdmin ] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem("accesstoken")) {
       setIsAuthenticated(true);
-      if (localStorage.getItem("admin")) {
+      if (localStorage.getItem("admin") !== 2) {
         setIsAdmin(true);
       }
     }
