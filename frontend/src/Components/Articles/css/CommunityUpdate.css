@@ -1,7 +1,7 @@
 .update-form {
   margin: 5rem auto;
   align-items: center;
-  width: 90%;
+  width: 100%;
   border-top: 2px solid black;
   border-bottom: 1px solid lightgray;
 }
@@ -49,16 +49,4 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background-color: yellow;
-}
-
-@media screen and (min-width: 1280px) {
-  .update-form {
-    width: 50%;
-  }
-}
-
-@media screen and (min-width: 1920px) {
-  .update-form {
-    width: 33%;
-  }
 }
