@@ -16,6 +16,9 @@ function Nav() {
           <Link to="profile" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
             마이페이지
           </Link>
+          <Link to="admin" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
+            관리
+          </Link>
           <Link to="logout" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
             로그아웃
           </Link>

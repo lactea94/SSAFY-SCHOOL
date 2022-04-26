@@ -11,6 +11,7 @@ import PageNotFound from "../Page/404";
 import Notice from "../Components/Articles/Notice";
 import TestBug from "../Components/Articles/TestBug";
 import Profile from "../Page/Profile";
+import Admin from "../Page/Admin";
 import NoticeDetail from "../Page/NoticeDetail";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="testbug" element={<TestBug />}></Route>
           </Route>
           <Route path="profile" element={<Profile />}></Route>
+          <Route path="admin" element={<Admin />}></Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="logout" element={<Logout />}></Route>
           <Route path="signup" element={<Signup />}></Route>
