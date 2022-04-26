@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import "./css/CommunityCreate.css"
 
@@ -17,9 +17,22 @@ export default function CommunityCreate({ setCreateOpen }) {
     setCreateOpen(false)
   }
 
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = '';
+      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+    };
+  }, []);
+  
   return (
-    <div className="create-modal">
-      <div className="create-form">
+    <div className="create-modal" onClick={handleCancel}>
+      <div className="create-form" onClick={e => e.stopPropagation()}>
         <div className="create-label">제목</div>
         <input
           className="create-title"
