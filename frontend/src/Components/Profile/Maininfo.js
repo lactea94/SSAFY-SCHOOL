@@ -3,13 +3,14 @@ import './css/Maininfo.css'
 
 export default function Maininfo() {
   const [data,setData] = useState({
-    name:null,//이름
-    schoolId:null,//학번
-    id:null,//아이디
-    region:null,//지역
-    class:null,//반
-    picture:null,//캐릭터사진
+    name: null,//이름
+    schoolId: null,//학번
+    id: null,//아이디
+    region: null,//지역
+    class: null,//반
+    picture: null,//캐릭터사진
   })
+
   useEffect(()=>{
     //학생정보 불러오기
     let newData = {
@@ -21,7 +22,8 @@ export default function Maininfo() {
       class: "2"
     }
     setData(newData)
-  },[])
+  },[data])
+
   return (
     <>
       <div className='mainmain'>

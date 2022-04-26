@@ -96,7 +96,7 @@ export default function Grass() {
       }
       setGrassdata(newGrassdata)
     }
-  },[start])
+  },[indata, outdata, start])
 
 
 
@@ -142,7 +142,7 @@ export default function Grass() {
           border-radius:30%;
           margin:1px;
           left:${leftposition + 5}px;
-          top:${(cnt*22) + 5}px;
+          top:${(cnt * 22) + 5}px;
         `
         if(i >= monthStartIdx && i <= monthEndIdx) {
           grass.style.backgroundColor='#dddfe0'
@@ -220,13 +220,21 @@ export default function Grass() {
       }
 
     }
-  },[grassdata])
+  },[grassdata, start])
 
   return (
-    <div>
+    <div
+      style={{ margin: "auto 0" }}
+    >
       <div 
         className='grass-container'
-        style={{width:"70%",height:"180px",border:"1px solid gray",overflow:"auto",position:'relative'}}
+        style={{
+          width:"100%",
+          height:"180px",
+          border:"1px solid gray",
+          overflow:"auto",
+          position:'relative'
+        }}
       >
       </div>
     </div>
