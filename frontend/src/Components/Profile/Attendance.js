@@ -10,4 +10,4 @@ export default function Attendance() {
       <Grass />
     </div>
   )
-}
+};
