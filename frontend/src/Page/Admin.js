@@ -8,7 +8,7 @@ export default function Admin() {
       name: '김싸피',
       gender: true,
       email: 'ssafy@ssafy.com'
-    }
+    },
   ]
   return (
     <div>
