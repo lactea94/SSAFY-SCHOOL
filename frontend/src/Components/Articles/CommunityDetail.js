@@ -33,6 +33,9 @@ export default function CommunityDetail() {
         <div className="notice-updated">{DateFormat(state.updatedDate)}</div>
       </div>
       <div className="notice-content">{state.content}</div>
+      <div className="comments-container">
+        {Comments()}
+      </div>
     </div>
   )
 };
