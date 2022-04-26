@@ -2,12 +2,16 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import "./css/CommunityUpdate.css"
 
-export default function CommunityUpdate({ title, content }) {
+export default function CommunityUpdate({ title, content, setUpdateOpen }) {
   const [ newTitle, setNewTitle ] = useState(title);
   const [ newcontent, setNewContent ] = useState(content);
   const navigate = useNavigate();
 
-  function handleClick() {
+  function handleCancel() {
+    setUpdateOpen(false)
+  }
+
+  function handleUpdate() {
     console.log(newTitle);
     console.log(newcontent);
     navigate(0)
@@ -31,7 +35,10 @@ export default function CommunityUpdate({ title, content }) {
         value={newcontent}
         onChange={(e) => {setNewContent(e.target.value)}}
       />
-      <div className="update-button" onClick={handleClick}>수정</div>
+      <div className="update-buttons">
+        <div className="update-button" onClick={handleUpdate}>수정</div>
+        <div className="update-cancel" onClick={handleCancel}>취소</div>
+      </div>
     </div>
   )
 }

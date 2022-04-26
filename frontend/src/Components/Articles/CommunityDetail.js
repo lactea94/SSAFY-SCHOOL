@@ -25,48 +25,52 @@ export default function CommunityDetail() {
 
   return (
     <div className="community-container">
-      {updateOpen && 
+      {updateOpen ? (
         <CommunityUpdate 
           title={state.title}
           content={state.content}
+          setUpdateOpen={setUpdateOpen}
         />
-      }
-      <div className="community-title">{state.title}</div>
-      <div className="community-date">
-        <div className="community-created">{DateFormat(state.createdDate)}</div>
-        <div className="community-updated">{DateFormat(state.updatedDate)}</div>
-      </div>
-      <div className="community-content">{state.content}</div>
-      {user.id === state.userId &&
-        <div className="community-update">
-          <div
-            className="community-update-button"
-            onClick={handleClick}
-          >수정</div>
-          <div className="community-delete-button">삭제</div>
-        </div>
-      }
-      <div className="comments-container">
-        <div className="comments-header">
-          댓글 {comments.length}
-        </div>
-        {comments.map((comment) => {
-          return (
-            <div
-              className="comment"
-              key={comment.id}
-            >
-              <div>{comment.userId}</div>
-              <div>{comment.content}</div>
-              <div>{DateFormat(comment.createdDate)}</div>
-              <div>{DateFormat(comment.updatedDate)}</div>
-              { user.id === comment.userId ? (
-                <div className="comment-button">삭제</div>
-              ) : (<div></div>)}
+      ) : (
+        <>
+          <div className="community-title">{state.title}</div>
+          <div className="community-date">
+            <div className="community-created">{DateFormat(state.createdDate)}</div>
+            <div className="community-updated">{DateFormat(state.updatedDate)}</div>
+          </div>
+          <div className="community-content">{state.content}</div>
+          {user.id === state.userId &&
+            <div className="community-update">
+              <div
+                className="community-update-button"
+                onClick={handleClick}
+              >수정</div>
+              <div className="community-delete-button">삭제</div>
             </div>
-          )
-        })}
-      </div>
+          }
+          <div className="comments-container">
+            <div className="comments-header">
+              댓글 {comments.length}
+            </div>
+            {comments.map((comment) => {
+              return (
+                <div
+                  className="comment"
+                  key={comment.id}
+                >
+                  <div>{comment.userId}</div>
+                  <div>{comment.content}</div>
+                  <div>{DateFormat(comment.createdDate)}</div>
+                  <div>{DateFormat(comment.updatedDate)}</div>
+                  { user.id === comment.userId ? (
+                    <div className="comment-button">삭제</div>
+                  ) : (<div></div>)}
+                </div>
+              )
+            })}
+          </div>
+        </>
+      )}
     </div>
   )
 };

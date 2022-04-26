@@ -1,7 +1,5 @@
 .update-form {
   margin: 5rem auto;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   width: 90%;
   border-top: 2px solid black;
@@ -11,13 +9,12 @@
 .update-label {
   align-items: start;
   font-size: 1.5rem;
-  margin: 0.5rem auto;
+  margin: 1rem auto;
   text-align: start;
   width: 100%;
 }
 
 .update-title {
-  margin: 0.5rem;
   width: 100%;
   font-size: 1.2rem;
   border: none;
@@ -26,7 +23,6 @@
 }
 
 .update-content {
-  margin: 0.5rem;
   width: 100%;
   font-size: 1rem;
   resize: none;
@@ -34,12 +30,25 @@
   border: 1px solid lightgray;
 }
 
+.update-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .update-button {
   cursor: pointer;
-  margin: 0.5rem;
+  margin: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background-color: #3396F4;
+}
+
+.update-cancel {
+  cursor: pointer;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: yellow;
 }
 
 @media screen and (min-width: 1280px) {
