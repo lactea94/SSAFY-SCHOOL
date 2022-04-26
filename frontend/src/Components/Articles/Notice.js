@@ -40,7 +40,7 @@ export default function Notice() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-  function Notice() {
+  function Notices() {
     return (
       notices.slice(offset, offset + limit).map((notice) => 
         (
@@ -78,7 +78,7 @@ export default function Notice() {
           <div>작성일자</div>
           <div>수정일자</div>
         </div>
-        {Notice()}
+        {Notices()}
       </div>
       <Pagination
         total={notices.length}

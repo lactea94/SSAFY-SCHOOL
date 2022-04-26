@@ -3,9 +3,16 @@ import { Link, Outlet } from "react-router-dom";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "./Pagination";
+import Notice from "./Notice";
 
 export default function Community() {
-  const communities = [
+  const communities_notice = [
+    { id: 0, title: "공지게시글1", content: "내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
+    { id: 1, title: "공지게시글2", content: "내용2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
+    { id: 2, title: "공지게시글3", content: "내용3", createdDate: "2022-04-17 15:30:00", updatedDate: "2022-04-18 15:30:30" },
+  ]
+
+  const communities_general = [
     { id: 0, title: "게시글1", content: "내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
     { id: 1, title: "게시글2", content: "내용2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
     { id: 2, title: "게시글3", content: "내용3", createdDate: "2022-04-17 15:30:00", updatedDate: "2022-04-18 15:30:30" },
@@ -17,12 +24,41 @@ export default function Community() {
     { id: 8, title: "게시글9", content: "내용9", createdDate: "2022-04-11 15:30:00", updatedDate: "2022-04-12 15:30:30" },
     { id: 9, title: "게시글10", content: "내용10", createdDate: "2022-04-10 15:30:00", updatedDate: "2022-04-11 15:30:30" },
   ];
+
+  function Notices() {
+    return (
+      communities_notice.map((community) => 
+        (
+          <div className="notice-row" key={community.id}>
+            <div>공지</div>
+            <div>
+              <Link
+                className="article-link"
+                to={`${community.id}`}
+                state={{
+                  title: community.title,
+                  content: community.content,
+                  createdDate: community.createdDate,
+                  updatedDate: community.updatedDate
+                }}
+              >
+                {community.title}
+              </Link>
+            </div>
+            <div>{DateFormat(community.createdDate)}</div>
+            <div>{DateFormat(community.updatedDate)}</div>
+          </div>
+        )
+      )
+    )
+  }
+
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-  function community() {
+  function Communities() {
     return (
-      communities.slice(offset, offset + limit).map((community) => 
+      communities_general.slice(offset, offset + limit).map((community) => 
         (
           <div className="article-row" key={community.id}>
             <div>{community.id}</div>
@@ -57,10 +93,11 @@ export default function Community() {
         <div>작성일자</div>
         <div>수정일자</div>
       </div>
-      {community()}
+      {Notices()}
+      {Communities()}
     </div>
     <Pagination
-      total={communities.length}
+      total={communities_general.length}
       limit={limit}
       page={page}
       setPage={setPage}

@@ -60,6 +60,20 @@
   font-weight: bold;
 }
 
+.notice-row {
+  display: grid;
+  grid-template-columns: 1fr 9fr 2fr 2fr;
+  border-bottom: 1px solid gray;
+  padding: 1rem;
+  font-size: 0.8rem;
+  background: #3396F4;
+}
+
+.notice-row:hover {
+  background: #354ACA;
+}
+
+
 .input-container {
   display: grid;
   grid-template-columns: 8fr 1fr;
