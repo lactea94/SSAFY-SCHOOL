@@ -17,13 +17,19 @@ export default function CommunityDetail() {
   ]
 
   return (
-    <div className="notice-container">
-      <div className="notice-title">{state.title}</div>
-      <div className="notice-date">
-        <div className="notice-created">{DateFormat(state.createdDate)}</div>
-        <div className="notice-updated">{DateFormat(state.updatedDate)}</div>
+    <div className="community-container">
+      <div className="community-title">{state.title}</div>
+      <div className="community-date">
+        <div className="community-created">{DateFormat(state.createdDate)}</div>
+        <div className="community-updated">{DateFormat(state.updatedDate)}</div>
       </div>
-      <div className="notice-content">{state.content}</div>
+      <div className="community-content">{state.content}</div>
+      {user.id === state.userId &&
+        <div className="community-update">
+          <div className="community-update-button">수정</div>
+          <div className="community-delete-button">삭제</div>
+        </div>
+      }
       <div className="comments-container">
         <div className="comments-header">
           댓글 {comments.length}
@@ -34,25 +40,13 @@ export default function CommunityDetail() {
               className="comment"
               key={comment.id}
             >
-              <div>
-                {comment.userId}
-              </div>
-              <div>
-                {comment.content}
-              </div>
-              <div>
-                {DateFormat(comment.createdDate)}
-              </div>
-              <div>
-                {DateFormat(comment.updatedDate)}
-              </div>
+              <div>{comment.userId}</div>
+              <div>{comment.content}</div>
+              <div>{DateFormat(comment.createdDate)}</div>
+              <div>{DateFormat(comment.updatedDate)}</div>
               { user.id === comment.userId ? (
-                <div>
-                  삭제
-                </div>
-              ) : (
-                <div></div>
-              )}
+                <div className="comment-button">삭제</div>
+              ) : (<div></div>)}
             </div>
           )
         })}

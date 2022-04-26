@@ -73,6 +73,19 @@
   background: #354ACA;
 }
 
+.community-row {
+  display: flex;
+  padding: 1rem 0;
+  justify-content: end;
+}
+
+.community-create {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  background-color: #3396F4;
+  border-radius: 0.5rem;
+}
 
 .input-container {
   display: grid;

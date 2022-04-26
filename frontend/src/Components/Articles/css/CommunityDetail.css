@@ -1,16 +1,16 @@
-.notice-container {
+.community-container {
   margin: 5rem auto;
   width: 90%;
 }
 
-.notice-title {
+.community-title {
   font-size: 2rem;
   border-top: 2px solid black;
   text-align: start;
   padding-top: 1rem;
 }
 
-.notice-date {
+.community-date {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid lightgray;
@@ -18,19 +18,40 @@
   color: gray;
 }
 
-.notice-created {
+.community-created {
   text-align: start;
 }
 
-.notice-updated {
+.community-updated {
   text-align: end;
 }
 
-.notice-content {
+.community-content {
   padding: 3rem 0;
   text-align: start;
   border-bottom: 1px solid lightgray;
   white-space: pre-wrap;
+}
+
+.community-update {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+.community-update-button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #3396F4;
+}
+
+.community-delete-button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgb(236, 55, 55);
 }
 
 .comments-container {
@@ -52,14 +73,20 @@
   padding: 0.6rem 0;
 }
 
+.comment-button {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 1280px) {
-  .notice-container {
+  .community-container {
     width: 50%;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  .notice-container {
+  .community-container {
     width: 33%;
   }
 }
