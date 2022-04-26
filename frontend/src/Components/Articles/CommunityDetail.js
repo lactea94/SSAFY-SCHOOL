@@ -6,7 +6,7 @@ import "./css/CommunityDetail.css"
 
 export default function CommunityDetail() {
   const { state } = useLocation();
-  const [ modalOpen, setModalOpen ] = useState(false);
+  const [ updateOpen, setUpdateOpen ] = useState(false);
   const user = {
     id: 0,
   }
@@ -20,12 +20,17 @@ export default function CommunityDetail() {
   ]
 
   function handleClick() {
-    setModalOpen(true)
+    setUpdateOpen(true)
   }
 
   return (
     <div className="community-container">
-      {modalOpen && <CommunityUpdate />}
+      {updateOpen && 
+        <CommunityUpdate 
+          title={state.title}
+          content={state.content}
+        />
+      }
       <div className="community-title">{state.title}</div>
       <div className="community-date">
         <div className="community-created">{DateFormat(state.createdDate)}</div>
