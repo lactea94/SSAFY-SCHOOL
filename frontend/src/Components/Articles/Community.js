@@ -97,7 +97,7 @@ export default function Community() {
       {Notices()}
       {Communities()}
       <div className="community-row">
-        <div className="community-create">새 글 작성</div>
+        <Link className="community-create" to="create">새 글 작성</Link>
       </div>
     </div>
     <Pagination

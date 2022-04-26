@@ -7,6 +7,7 @@ import Articles from "../Page/Articles";
 import Notice from "../Components/Articles/Notice";
 import NoticeDetail from "../Components/Articles/NoticeDetail";
 import Community from "../Components/Articles/Community";
+import CommunityCreate from "../Components/Articles/CommunityCreate";
 import CommunityDetail from "../Components/Articles/CommunityDetail";
 import TestBug from "../Components/Articles/TestBug";
 import Profile from "../Page/Profile";
@@ -30,6 +31,7 @@ function App() {
             </Route>
             <Route path="community" element={<Community />}>
               <Route path=":communityId" element={<CommunityDetail/>}></Route>
+              <Route path="create" element={<CommunityCreate/>}></Route>
             </Route>
             <Route path="testbug" element={<TestBug />}></Route>
           </Route>
