@@ -28,7 +28,7 @@ public class Community extends BaseEntity{
     private LocalDateTime updateDate;
 
     @Column(nullable = false)
-    private boolean isNotice;
+    private Boolean isNotice;
 
     @JsonIgnore
     @OneToMany(mappedBy = "community", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

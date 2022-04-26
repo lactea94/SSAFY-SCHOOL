@@ -32,19 +32,19 @@ public class UserRes{
 	String email;
 
 	@ApiModelProperty(name = "User Admin")
-	int admin;
+	Long admin;
 
 	@ApiModelProperty(name = "User Status Total Mileage")
-	int totalMileage;
+	Long totalMileage;
 
 	@ApiModelProperty(name = "User Status Remain Mileage")
-	int remainMileage;
+	Long remainMileage;
 
 	@ApiModelProperty(name = "User StudentStatus Student Id")
-	int studentId;
+	Long studentId;
 
 	@ApiModelProperty(name = "User StudentStatus Class Number")
-	int classNumber;
+	Long classNumber;
 
 	@ApiModelProperty(name = "User StudentStatus Team Code")
 	String teamCode;

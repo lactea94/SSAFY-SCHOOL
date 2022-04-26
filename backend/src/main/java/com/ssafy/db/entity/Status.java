@@ -15,10 +15,10 @@ public class Status extends BaseEntity {
     private String location;
 
     @Column(nullable = false)
-    private int totalMileage;
+    private Long totalMileage;
 
     @Column(nullable = false)
-    private int remainMileage;
+    private Long remainMileage;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)

@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 		user.setName(userRegisterInfo.getName());
 		user.setGender(userRegisterInfo.getGender());
 		user.setEmail(userRegisterInfo.getEmail());
-		user.setAdmin(2);
+		user.setAdmin(2L);
 		return userRepository.save(user);
 	}
 
