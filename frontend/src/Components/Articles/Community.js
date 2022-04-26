@@ -86,27 +86,27 @@ export default function Community() {
   };
   return (
     <div>
-    <Outlet/>
-    <div className="article-container">
-      <div className="index-row">
-        <div>작성자</div>
-        <div>제목</div>
-        <div>작성일자</div>
-        <div>수정일자</div>
+      <Outlet/>
+      <div className="article-container">
+        <div className="index-row">
+          <div>작성자</div>
+          <div>제목</div>
+          <div>작성일자</div>
+          <div>수정일자</div>
+        </div>
+        {Notices()}
+        {Communities()}
+        <div className="community-row">
+          <Link className="community-create" to="create">새 글 작성</Link>
+        </div>
       </div>
-      {Notices()}
-      {Communities()}
-      <div className="community-row">
-        <Link className="community-create" to="create">새 글 작성</Link>
-      </div>
+      <Pagination
+        total={communities_general.length}
+        limit={limit}
+        page={page}
+        setPage={setPage}
+        setLimit={setLimit}
+      />
     </div>
-    <Pagination
-      total={communities_general.length}
-      limit={limit}
-      page={page}
-      setPage={setPage}
-      setLimit={setLimit}
-    />
-  </div>
   )
 };
