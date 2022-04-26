@@ -112,14 +112,14 @@ export default function Community() {
             새 글 작성
           </div>
         </div>
+        <Pagination
+          total={communities_general.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+          setLimit={setLimit}
+        />
       </div>
-      <Pagination
-        total={communities_general.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-        setLimit={setLimit}
-      />
     </div>
   )
 };

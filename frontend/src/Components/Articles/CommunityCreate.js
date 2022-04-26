@@ -18,21 +18,23 @@ export default function CommunityCreate({ setCreateOpen }) {
   }
 
   return (
-    <div className="create-form">
-      <div className="create-label">제목</div>
-      <input
-        className="create-title"
-        onChange={(e) => {setTitle(e.target.value)}}
-      />
-      <div className="create-label">내용</div>
-      <textarea
-        className="create-content"
-        rows={20}
-        onChange={(e) => {setContent(e.target.value)}}
-      />
-      <div className="create-buttons">
-        <div className="create-button" onClick={handleCreate}>작성</div>
-        <div className="create-cancel" onClick={handleCancel}>취소</div>
+    <div className="create-modal">
+      <div className="create-form">
+        <div className="create-label">제목</div>
+        <input
+          className="create-title"
+          onChange={(e) => {setTitle(e.target.value)}}
+        />
+        <div className="create-label">내용</div>
+        <textarea
+          className="create-content"
+          rows={20}
+          onChange={(e) => {setContent(e.target.value)}}
+        />
+        <div className="create-buttons">
+          <div className="create-button" onClick={handleCreate}>작성</div>
+          <div className="create-cancel" onClick={handleCancel}>취소</div>
+        </div>
       </div>
     </div>
   )
