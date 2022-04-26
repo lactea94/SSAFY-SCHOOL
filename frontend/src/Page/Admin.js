@@ -1,4 +1,3 @@
-import { Admin as ReactAdmin } from "react-admin";
 
 export default function Admin() {
   const userList = [
@@ -12,6 +11,8 @@ export default function Admin() {
     }
   ]
   return (
-    <ReactAdmin></ReactAdmin>
+    <div>
+      admin
+    </div>
   )
 }
