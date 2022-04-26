@@ -3,7 +3,6 @@ import { Link, Outlet } from "react-router-dom";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "./Pagination";
-import Notice from "./Notice";
 
 export default function Community() {
   const communities_notice = [
