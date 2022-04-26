@@ -1,5 +1,7 @@
 .App {
   min-width: 768px;
+  min-height: 100vh;
   font-family: 'NanumBarunGothic';
   margin: 0;
+  position: relative;
 }

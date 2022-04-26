@@ -20,8 +20,8 @@ function App() {
   return (
     <div className="App">
       <Nav/>
-      <div style={{minHeight: "calc(100vh - 186px)"}}>
-        <Routes>
+      <div style={{paddingBottom: "8rem"}}>
+        <Routes >
           <Route path="/" element={<Home />}></Route>
           <Route path="articles" element={<Articles />}>
             <Route index element={<Notice />}></Route>
