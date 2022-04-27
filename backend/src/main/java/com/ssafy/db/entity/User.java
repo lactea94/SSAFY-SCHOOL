@@ -19,29 +19,29 @@ import java.util.List;
 @Table(name = "user")
 public class User extends BaseEntity{
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true)
     private String userId;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
     private String nickname;
 
     @Column(nullable = false)
     private Boolean gender;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String email;
 
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
     private String password;
 
     // super : 0 / manager : 1 / normal : 2
     @Column(nullable = false)
-    private int admin;
+    private Long admin;
 
     @OneToOne(mappedBy = "user")
     private Status status;
@@ -68,4 +68,8 @@ public class User extends BaseEntity{
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<BugReport> bugReports = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Inventory> inventories = new ArrayList<>();
 }
