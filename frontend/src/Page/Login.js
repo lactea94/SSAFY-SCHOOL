@@ -15,19 +15,15 @@ export default function Login() {
     setLoginInfo(newLoginInfo);
   }
 
-  function loginSubmit(e) {
-    e.preventDefault();
-    api.post('/auth/login', loginInfo)
-    .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem('accesstoken', response.data.accessToken)
-      }
+  const loginSubmit = async () => {
+    try {
+      const res = await api.post('/auth/login', loginInfo)
+      localStorage.setItem('accesstoken', res.data.accessToken)
       navigate('/');
       navigate(0);
-    }).catch((error) => {
-      console.log(error)
-    })
-    // 로그인 로직 추가 예정
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
