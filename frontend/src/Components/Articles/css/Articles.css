@@ -11,12 +11,12 @@
 
 .article-nav {
   display: grid;
-  grid-template-columns: 5fr 1fr 1fr;
+  grid-template-columns: 5fr 1fr 1fr 1fr;
   margin: 3rem auto 2rem;
   width: 90%;
 }
 
-.nav-title{
+.nav-title {
   border-bottom: 1px solid gray;
   width: 100%;
   font-size: 2rem;
@@ -54,10 +54,39 @@
   background: rgb(236, 236, 236);
 }
 
-.notice-link {
+.article-link {
   color: black;
   text-decoration: none;
   font-weight: bold;
+}
+
+.notice-row {
+  display: grid;
+  grid-template-columns: 1fr 9fr 2fr 2fr;
+  border-bottom: 1px solid gray;
+  padding: 1rem;
+  font-size: 0.8rem;
+  background: #3396F4;
+}
+
+.notice-row:hover {
+  background: #354ACA;
+}
+
+.community-row {
+  display: flex;
+  padding: 1rem 0;
+  justify-content: flex-end;
+}
+
+.community-create {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  background-color: #3396F4;
+  border-radius: 0.5rem;
+  color: white;
+  text-decoration: none;
 }
 
 .input-container {

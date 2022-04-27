@@ -15,6 +15,7 @@ export default function Articles() {
       <nav className="article-nav">
         <div className="nav-title">게시판</div>
         <NavLink className="nav-link" style={NavLinkStyle} to="notice">공지 사항</NavLink>
+        <NavLink className="nav-link" style={NavLinkStyle} to="community">자유 게시판</NavLink>
         <NavLink className="nav-link" style={NavLinkStyle} to="testbug">오류 제보</NavLink>
       </nav>
       <Outlet />

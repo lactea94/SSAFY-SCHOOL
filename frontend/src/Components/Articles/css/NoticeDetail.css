@@ -1,16 +1,16 @@
-.notice-container{
+.notice-container {
   margin: 5rem auto;
   width: 90%;
 }
 
-.notice-title{
+.notice-title {
   font-size: 2rem;
   border-top: 2px solid black;
   text-align: start;
   padding-top: 1rem;
 }
 
-.notice-date{
+.notice-date {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid lightgray;
@@ -18,15 +18,15 @@
   color: gray;
 }
 
-.notice-created{
+.notice-created {
   text-align: start;
 }
 
-.notice-updated{
+.notice-updated {
   text-align: end;
 }
 
-.notice-content{
+.notice-content {
   padding: 3rem 0;
   text-align: start;
   border-bottom: 1px solid lightgray;
@@ -34,13 +34,13 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .notice-container{
+  .notice-container {
     width: 50%;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  .notice-container{
+  .notice-container {
     width: 33%;
   }
 }

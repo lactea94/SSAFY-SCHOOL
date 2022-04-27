@@ -3,11 +3,13 @@ export function Footer() {
   const style = {
     width: "100%",
     margin: 0,
-    padding: "0.5rem 0",
+    height: "8rem",
     fontSize: "0.75rem",
     color: "gray",
     background: "lightgray",
     textAlign: "center",
+    position: "absolute",
+    bottom: 0,
   }
 
   return (
