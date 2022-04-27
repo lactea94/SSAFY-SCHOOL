@@ -15,10 +15,11 @@ export default function Login() {
     setLoginInfo(newLoginInfo);
   }
 
-  const loginSubmit = async () => {
+  const loginSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const res = await api.post('/auth/login', loginInfo)
-      localStorage.setItem('accesstoken', res.data.accessToken)
+      const res = await api.post('/auth/login', loginInfo);
+      localStorage.setItem('accesstoken', res.data.accessToken);
       navigate('/');
       navigate(0);
     } catch (error) {
