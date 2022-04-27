@@ -46,7 +46,7 @@ function Nav() {
           {isAuthenticated ? (
             <>
               {isAdmin !== 2 ? 
-                <Link to="admin" style={linkStyle}>
+                <Link to="admin/users" style={linkStyle}>
                   관리
                 </Link>
                : 

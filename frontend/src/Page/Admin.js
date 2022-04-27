@@ -1,26 +1,25 @@
+import "./css/Admin.css";
+import { NavLink, Outlet } from "react-router-dom";
 
 export default function Admin() {
-  const userList = [
-    {
-      id: 0,
-      userId: 'ssafy1',
-      nickname: '김싸피',
-      name: '김싸피',
-      gender: true,
-      email: 'ssafy@ssafy.com',
-      admin: 'ssafy@ssafy.com',
-      totalMileage: 'ssafy@ssafy.com',
-      studentId: 'ssafy@ssafy.com',
-      classNumber: 'ssafy@ssafy.com',
-      teamCode: 'ssafy@ssafy.com',
-      Local: 'ssafy@ssafy.com',
-      inCreatedDate: 'ssafy@ssafy.com',
-      outCreatedDate: 'ssafy@ssafy.com',
-    },
-  ]
+  const NavLinkStyle = ({ isActive }) => ({
+    borderTop: isActive ? "1px solid gray" : "none",
+    borderLeft: isActive ? "1px solid gray" : "none",
+    borderRight: isActive ? "1px solid gray" : "none",
+    borderBottom: isActive ? "none" : "1px solid gray",
+    color: isActive && "black",
+  });
+
   return (
-    <div>
-      admin
+    <div className="admin">
+      <nav className="admin-nav">
+        <div className="admin-title">게시판</div>
+        <NavLink className="admin-link" style={NavLinkStyle} to="users">사용자</NavLink>
+        <NavLink className="admin-link" style={NavLinkStyle} to="notice">공지사항</NavLink>
+        <NavLink className="admin-link" style={NavLinkStyle} to="community">자유 게시판</NavLink>
+        <NavLink className="admin-link" style={NavLinkStyle} to="testbug">오류 제보</NavLink>
+      </nav>
+      <Outlet />
     </div>
   )
 }

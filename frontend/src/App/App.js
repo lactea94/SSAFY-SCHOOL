@@ -15,6 +15,10 @@ import Login from "../Page/Login";
 import Logout from "../Page/Logout";
 import Signup from "../Page/Signup";
 import PageNotFound from "../Page/404";
+import { Users } from "../Components/Admin/Users";
+import { Notice as AdminNotice } from "../Components/Admin/Notice";
+import { Community as AdminCommunity } from "../Components/Admin/Community";
+import { TestBug as AdminTestBug } from "../Components/Admin/TestBug";
 
 function App() {
   return (
@@ -24,7 +28,6 @@ function App() {
         <Routes >
           <Route path="/" element={<Home />}></Route>
           <Route path="articles" element={<Articles />}>
-            <Route index element={<Notice />}></Route>
             <Route path="notice" element={<Notice />}>
               <Route path=":noticeId" element={<NoticeDetail/>}></Route>
             </Route>
@@ -34,7 +37,12 @@ function App() {
             <Route path="testbug" element={<TestBug />}></Route>
           </Route>
           <Route path="profile" element={<Profile />}></Route>
-          <Route path="admin" element={<Admin />}></Route>
+          <Route path="admin" element={<Admin />}>
+            <Route path="users" element={<Users />}></Route>
+            <Route path="notice" element={<AdminNotice />}></Route>
+            <Route path="community" element={<AdminCommunity />}></Route>
+            <Route path="testbug" element={<AdminTestBug />}></Route>
+          </Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="logout" element={<Logout />}></Route>
           <Route path="signup" element={<Signup />}></Route>
