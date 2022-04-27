@@ -23,7 +23,7 @@ export default function EachMonthAttendance() {
       const temp = new Date(newToday.year, newToday.month - 1, date);
       const tempDay = temp.getDay();
       const tempDate = temp.getDate();
-      if (tempDay != 0 && tempDay != 6) {
+      if (tempDay !== 0 && tempDay !== 6) {
         if (!(holidays[newToday.year][newToday.month].includes(tempDate))) {
           count += 1
         }
@@ -38,8 +38,20 @@ export default function EachMonthAttendance() {
   }, [])
 
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "400px", width: "300px"}}>
-      <h1 style={{display: "inline-block", margin: "1rem auto 0 1rem"}}>{today.month}월 출석</h1>
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      height: "400px",
+      width: "300px",
+      margin: "auto",
+    }}>
+      <h1 style={{
+        display: "inline-block",
+        margin: "1rem auto 0 1rem"}}
+      >
+        {today.month}월 출석
+      </h1>
       {chartdata&&<PieChart
         data={chartdata}
         reveal={parseInt((attendance * 100) / weekdays)}
