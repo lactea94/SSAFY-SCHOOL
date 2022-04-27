@@ -3,12 +3,6 @@
   margin-top: 5rem;
 }
 
-.article-container {
-  display: grid;
-  width: 90%;
-  margin: auto;
-}
-
 .article-nav {
   display: grid;
   grid-template-columns: 5fr 1fr 1fr 1fr;
@@ -36,20 +30,12 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .article-container {
-    width: 50%;
-  }
-
   .article-nav {
     width: 50%;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  .article-container {
-    width: 33%;
-  }
-
   .article-nav {
     width: 33%;
   }

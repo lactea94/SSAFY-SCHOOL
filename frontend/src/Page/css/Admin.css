@@ -3,12 +3,6 @@
   margin-top: 5rem;
 }
 
-.admin-container {
-  display: grid;
-  width: 90%;
-  margin: auto;
-}
-
 .admin-nav {
   display: grid;
   grid-template-columns: 5fr repeat(4, 1fr);
@@ -16,7 +10,7 @@
   width: 90%;
 }
 
-.admin-title {
+.admin-nav-title {
   border-bottom: 1px solid gray;
   width: 100%;
   font-size: 2rem;
@@ -24,13 +18,13 @@
   text-align: start;
 }
 
-.admin-link {
+.admin-nav-link {
   padding: 0.5rem 0;
   font-size: 1rem;
   text-decoration: none;
   color: gray;
 }
 
-.admin-link:hover {
+.admin-nav-link:hover {
   color: black;
 }

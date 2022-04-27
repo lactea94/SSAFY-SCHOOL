@@ -13,11 +13,11 @@ export default function Admin() {
   return (
     <div className="admin">
       <nav className="admin-nav">
-        <div className="admin-title">게시판</div>
-        <NavLink className="admin-link" style={NavLinkStyle} to="users">사용자</NavLink>
-        <NavLink className="admin-link" style={NavLinkStyle} to="notice">공지사항</NavLink>
-        <NavLink className="admin-link" style={NavLinkStyle} to="community">자유 게시판</NavLink>
-        <NavLink className="admin-link" style={NavLinkStyle} to="testbug">오류 제보</NavLink>
+        <div className="admin-nav-title">게시판</div>
+        <NavLink className="admin-nav-link" style={NavLinkStyle} to="users">사용자</NavLink>
+        <NavLink className="admin-nav-link" style={NavLinkStyle} to="notice">공지사항</NavLink>
+        <NavLink className="admin-nav-link" style={NavLinkStyle} to="community">자유 게시판</NavLink>
+        <NavLink className="admin-nav-link" style={NavLinkStyle} to="testbug">오류 제보</NavLink>
       </nav>
       <Outlet />
     </div>
