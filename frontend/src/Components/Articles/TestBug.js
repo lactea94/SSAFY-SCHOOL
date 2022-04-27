@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "./Pagination";
 import { FaCommentMedical } from 'react-icons/fa';
 
 export default function TestBug() {
+  const [ isAuthenticated, setIsAuthenticated] = useState(false);
+  
+  useEffect(() => {
+    if (localStorage.getItem('accesstoken'))
+      setIsAuthenticated(true)
+  }, [])
+
   const logs = [
     { id: 0, userId: 1, content: "내용1", createdDate: "2022-04-19 15:30:30" },
     { id: 1, userId: 7, content: "내용2", createdDate: "2022-04-18 15:30:30" },
@@ -51,17 +58,19 @@ export default function TestBug() {
         </div>
         {Log()}
       </div>
-      <div className="input-container">
-        <textarea
-          className="submit-textarea"
-          rows="2"
-        />
-        <div
-          className="submit-button"
-        >
-          <FaCommentMedical />
+      { isAuthenticated && 
+        <div className="input-container">
+          <textarea
+            className="submit-textarea"
+            rows="2"
+          />
+          <div
+            className="submit-button"
+          >
+            <FaCommentMedical />
+          </div>
         </div>
-      </div>
+      }
       <Pagination
         total={logs.length}
         limit={limit}

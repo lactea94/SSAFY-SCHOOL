@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
@@ -6,6 +6,13 @@ import Pagination from "./Pagination";
 import CommunityCreate from "./CommunityCreate";
 
 export default function Community() {
+  const [ isAuthenticated, setIsAuthenticated] = useState(false);
+  
+  useEffect(() => {
+    if (localStorage.getItem('accesstoken'))
+      setIsAuthenticated(true)
+  }, [])
+
   const communities_notice = [
     { id: 0, title: "공지게시글1", content: "내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
     { id: 1, title: "공지게시글2", content: "내용2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
@@ -101,17 +108,19 @@ export default function Community() {
         </div>
         {Notices()}
         {Communities()}
-        <div className="community-row">
-          <div
-            className="community-create"
-            onClick={() => {
-              setCreateOpen(true);
-              window.scrollTo(0, 0);
-            }}
-          >
-            새 글 작성
+        { isAuthenticated && 
+          <div className="community-row">
+            <div
+              className="community-create"
+              onClick={() => {
+                setCreateOpen(true);
+                window.scrollTo(0, 0);
+              }}
+            >
+              새 글 작성
+            </div>
           </div>
-        </div>
+        }
         <Pagination
           total={communities_general.length}
           limit={limit}

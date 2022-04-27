@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 export default function Articles() {
-
   const NavLinkStyle = ({ isActive }) => ({
     borderTop: isActive ? "1px solid gray" : "none",
     borderLeft: isActive ? "1px solid gray" : "none",
