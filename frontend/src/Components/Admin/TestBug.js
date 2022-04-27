@@ -33,6 +33,7 @@ export function TestBug() {
             <div>{log.content}</div>
             <div>{log.userId}</div>
             <div>{DateFormat(log.createdDate)}</div>
+            <div>삭제</div>
           </div>
         )
       )
@@ -47,6 +48,7 @@ export function TestBug() {
           <div>제보</div>
           <div>작성자</div>
           <div>작성일자</div>
+          <div>삭제</div>
         </div>
         {Log()}
       </div>

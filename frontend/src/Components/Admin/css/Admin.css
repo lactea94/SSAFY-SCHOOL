@@ -6,14 +6,14 @@
 
 .index-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
   border-bottom: 2px solid black;
   padding: 1rem;
 }
 
 .admin-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
@@ -98,11 +98,11 @@
   }
   
   .index-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 
   .admin-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 
   .input-container {
@@ -116,11 +116,11 @@
   }
 
   .index-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 
   .admin-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 
   .input-container {
