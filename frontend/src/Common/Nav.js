@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Nav() {
-  const [ isAuthenticated, setIsAuthenticated ] = useState(true);
+  const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   // 슈퍼 0, 프로 1, 학생 2
-  const [ isAdmin, setIsAdmin ] = useState(true);
+  const [ isAdmin, setIsAdmin ] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("accesstoken")) {

@@ -1,13 +1,12 @@
 import { useEffect } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function Logout() {
-  const router = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
-
-    // 로그아웃 로직 추가 예정
-
-    router("/");
-  }, [])
+    localStorage.removeItem('accesstoken')
+    navigate("/");
+    navigate(0);
+  }, [navigate])
   return null;
 }
