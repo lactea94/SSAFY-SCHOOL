@@ -12,8 +12,15 @@ export default function Signup() {
     email: "",
   });
   const [ passwordConfirm, setPasswordConfirm ] = useState("");
+  const [ checkPasswordConfirm, setCheckPasswordConfirm ] = useState(false);
   const api = userInstance();
   const navigate = useNavigate();
+
+  function validation() {
+    if (signupInfo.password === passwordConfirm) setCheckPasswordConfirm(true)
+    if (checkPasswordConfirm) return true
+    return false
+  }
 
   function signupInput({target: {id, value}}) {
     if(id === "gender") {
@@ -32,10 +39,15 @@ export default function Signup() {
 
   const signupSubmit = async (e) => {
     e.preventDefault();
-    if (passwordConfirm !== signupInfo.password) return
-    await api.post('/users/signup', signupInfo);
-    navigate('/');
-    navigate(0);
+    if (validation()) {
+      try {
+        await api.post('/users/signup', signupInfo);
+        navigate('/');
+        navigate(0);
+      } catch (error) {
+        console.log(error)
+      }
+    }
   };
 
   const inputStyle = {
@@ -57,27 +69,27 @@ export default function Signup() {
         <input type="text" id="id" style={inputStyle} required 
           value={signupInfo.id}
           onChange={signupInput}
-        /> <br/>
+        />
         <label htmlFor="password" style={{marginRight: "auto"}}>비밀번호</label>
         <input type="password" id="password" style={inputStyle} required 
           value={signupInfo.password}
           onChange={signupInput}
-        /> <br/>
+        />
         <label htmlFor="passwordConfirm" style={{marginRight: "auto"}}>비밀번호확인</label>
         <input type="password" id="passwordConfirm" style={inputStyle} required 
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}
-        /> <br/>
+        />
         <label htmlFor="nickname" style={{marginRight: "auto"}}>닉네임</label>
         <input type="text" id="nickname" style={inputStyle} required 
           value={signupInfo.nickname}
           onChange={signupInput}
-        /> <br/>
+        />
         <label htmlFor="name" style={{marginRight: "auto"}}>이름</label>
         <input type="text" id="name" style={inputStyle} required 
           value={signupInfo.name}
           onChange={signupInput}
-        /> <br/>
+        />
         <p style={{margin: "auto auto 0 0"}}>성별</p>
         <div style={{display: "flex", alignItems: "center", margin: "auto auto auto auto"}}>
           <label htmlFor="male">남</label>
@@ -94,11 +106,24 @@ export default function Signup() {
           />
         </div>
         <label htmlFor="email" style={{marginRight: "auto"}}>이메일</label>
-        <input type="email" id="email" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
+        <input type="email" id="email" style={inputStyle} required 
           value={signupInfo.email}
           onChange={signupInput}
-        /> <br/>
-        <button style={{width: "500px", height: "40px", fontSize: "20px", borderRadius: "10px", border: "0px", fontWeight: "bolder", backgroundColor: "dodgerblue", cursor: "pointer"}}>회원가입</button>
+        />
+        <button 
+          style={{
+            width: "500px",
+            height: "40px",
+            fontSize: "20px",
+            borderRadius: "10px",
+            border: "0px",
+            fontWeight: "bolder",
+            backgroundColor: "dodgerblue",
+            cursor: "pointer"
+          }}
+        >
+          회원가입
+        </button>
       </form>
     </div>
   )
