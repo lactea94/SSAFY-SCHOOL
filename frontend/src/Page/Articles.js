@@ -1,3 +1,4 @@
+import "./css/Articles.css";
 import { NavLink, Outlet } from "react-router-dom";
 
 export default function Articles() {

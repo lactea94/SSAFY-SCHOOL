@@ -1,0 +1,56 @@
+.article {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.article-container {
+  display: grid;
+  width: 90%;
+  margin: auto;
+}
+
+.article-nav {
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr 1fr;
+  margin: 3rem auto 2rem;
+  width: 90%;
+}
+
+.nav-title {
+  border-bottom: 1px solid gray;
+  width: 100%;
+  font-size: 2rem;
+  padding: auto;
+  text-align: start;
+}
+
+.nav-link {
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  text-decoration: none;
+  color: gray;
+}
+
+.nav-link:hover {
+  color: black;
+}
+
+@media screen and (min-width: 1280px) {
+  .article-container {
+    width: 50%;
+  }
+
+  .article-nav {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .article-container {
+    width: 33%;
+  }
+
+  .article-nav {
+    width: 33%;
+  }
+}
