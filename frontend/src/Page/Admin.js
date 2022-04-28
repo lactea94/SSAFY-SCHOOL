@@ -1,14 +1,12 @@
 import "./css/Admin.css";
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 export default function Admin() {
-  const { state } = useLocation();
   const navigate = useNavigate();
 
   if (!localStorage.getItem('accesstoken') | !localStorage.getItem('admin')) {
     navigate('/');
-  }
+  };
 
   const NavLinkStyle = ({ isActive }) => ({
     borderTop: isActive ? "1px solid gray" : "none",

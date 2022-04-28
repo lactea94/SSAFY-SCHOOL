@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { apiInstance } from "../../api";
 import Pagination from "../Pagination/Pagination";
 
 export function Users() {
@@ -37,14 +38,24 @@ export function Users() {
     },
   ];
 
-  // gender: true,
-  // totalMileage: 'ssafy@ssafy.com',
-  // studentId: 'ssafy@ssafy.com',
-  // classNumber: 'ssafy@ssafy.com',
-  // teamCode: 'ssafy@ssafy.com',
-  // Local: 'ssafy@ssafy.com',
-  // inCreatedDate: 'ssafy@ssafy.com',
-  // outCreatedDate: 'ssafy@ssafy.com',
+  // 모든 학생 입퇴실 기록 조회
+  // const [ checkIn, setCheckIn ] = useState();
+  // const [ checkOut, setCheckOut ] = useState();
+
+  // const saveCheckIn = async () => {
+  //   const res = await apiInstance().get('/check/in');
+  //   setCheckIn(res.data)
+  // };
+
+  // const saveCheckOut = async () => {
+  //   const res = await apiInstance().get('/check/in');
+  //   setCheckOut(res.data)
+  // };
+
+  // useEffect(() => {
+  //   saveCheckIn();
+  //   saveCheckOut();
+  // }, [])
 
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
@@ -62,7 +73,7 @@ export function Users() {
         )
       )
     )
-  }
+  };
 
   return (
     <div>

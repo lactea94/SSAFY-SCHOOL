@@ -55,9 +55,6 @@ function Nav() {
               {isAdmin !== 2 ? 
                 <Link to="admin/users"
                   style={linkStyle}
-                  state={{
-                    user: user
-                  }}
                 >
                   관리
                 </Link>
