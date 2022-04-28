@@ -11,6 +11,4 @@ public interface UserService {
 	User getUserByUserId(String userId);
 	Status getStatusByUserId(Long userId);
 	StudentStatus getStudentStatusByUserId(Long userId);
-	CheckOut getCheckOutByUserId(Long userId);
-	CheckIn getCheckInByUserId(Long userId);
 }

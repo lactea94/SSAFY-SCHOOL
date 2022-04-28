@@ -25,12 +25,6 @@ public class UserServiceImpl implements UserService {
 	StudentStatusRepository studentStatusRepository;
 
 	@Autowired
-	CheckOutRepository checkOutRepository;
-
-	@Autowired
-	CheckInRepository checkInRepository;
-
-	@Autowired
 	UserRepositorySupport userRepositorySupport;
 	
 	@Autowired
@@ -83,15 +77,4 @@ public class UserServiceImpl implements UserService {
 		return studentStatus;
 	}
 
-	@Override
-	public CheckOut getCheckOutByUserId(Long userId) {
-		CheckOut checkOut = checkOutRepository.findByUserId(userId).orElse(null);
-		return checkOut;
-	}
-
-	@Override
-	public CheckIn getCheckInByUserId(Long userId) {
-		CheckIn checkIn = checkInRepository.findByUserId(userId).orElse(null);
-		return checkIn;
-	}
 }
