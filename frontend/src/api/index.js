@@ -11,4 +11,17 @@ export function userInstance() {
     },
   })
   return instance
-}
+};
+
+export function apiInstance() {
+  const instance = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+      'Content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Credentials": true,
+      Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+    },
+  })
+  return instance
+};

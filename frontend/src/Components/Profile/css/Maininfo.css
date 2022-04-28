@@ -1,26 +1,40 @@
-.mainmain{
+.main-info {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
-.profile-picture{
-  width:100px;
-  height:100px;
-  background:gray;
-  border-radius:50%;
-  text-align:center;
-  line-height:500%;
-  font-size:20px;
-  font-weight:bold;
-  min-width: 100px;
-  min-height: 100px;
-}
-.profile-info{
-  margin-top: 10%;
+
+.profile-info {
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   font-weight: bold;
   text-align: center;
+}
+
+.mileage-info {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.mileage-number {
+  text-align: end;
+}
+
+.mileage-title {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.available-mileage {
+  background-color: aliceblue;
+}
+
+.accumulated-mileage {
+  background-color: white;
+}
+
+.used-mileage {
+  background-color: rgb(247, 200, 200);
 }

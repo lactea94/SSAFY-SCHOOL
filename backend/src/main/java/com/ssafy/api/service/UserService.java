@@ -8,6 +8,7 @@ import com.ssafy.db.entity.*;
  */
 public interface UserService {
 	User createUser(UserRegisterPostReq userRegisterInfo);
+	User getUserById(Long Id);
 	User getUserByUserId(String userId);
 	Status getStatusByUserId(Long userId);
 	StudentStatus getStudentStatusByUserId(Long userId);
