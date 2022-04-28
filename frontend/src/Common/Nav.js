@@ -1,25 +1,35 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { userInstance } from "../api";
+import { apiInstance } from "../api";
 
 function Nav() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   // 슈퍼 0, 프로 1, 학생 2
-  const [ isAdmin, setIsAdmin ] = useState(0);
-  const api = userInstance();
+  const [ isAdmin, setIsAdmin ] = useState(2);
+  const [ user, setUser ] = useState();
 
   useEffect(() => {
-    if (localStorage.getItem("accesstoken")) {
+    if (localStorage.getItem('accesstoken')) {
       setIsAuthenticated(true);
     }
   }, []);
 
-  // useEffect(() => {
-  //   api.get('/users/me')
-  //   .then(res => {
-  //     console.log(res)
-  //   })
-  // }, [])
+  const saveUser = async () => {
+    const res = await apiInstance().get('/users/me');
+    setUser(res.data)
+  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      saveUser();
+    }
+  }, [isAuthenticated])
+
+  useEffect(() => {
+    if (user) {
+      setIsAdmin(user.admin)
+    }
+  }, [user])
 
   const linkStyle = {
     textDecoration: "none",
@@ -40,7 +50,12 @@ function Nav() {
           {isAuthenticated ? (
             <>
               {isAdmin !== 2 ? 
-                <Link to="admin/users" style={linkStyle}>
+                <Link to="admin/users"
+                  style={linkStyle}
+                  state={{
+                    user: user
+                  }}
+                >
                   관리
                 </Link>
                : 
@@ -48,12 +63,18 @@ function Nav() {
                 <Link
                   to="articles/notice"
                   style={linkStyle}
+                  state={{
+                    user: user
+                  }}
                 >
                   게시판
                 </Link>
                 <Link
                   to="profile"
                   style={linkStyle}
+                  state={{
+                    user: user
+                  }}
                 >
                   마이페이지
                 </Link>
@@ -68,6 +89,9 @@ function Nav() {
               <Link
                 to="articles/notice"
                 style={linkStyle}
+                state={{
+                  user: user
+                }}
               >
                 게시판
               </Link>

@@ -53,7 +53,8 @@ export default function Signup() {
   const inputStyle = {
     width: "500px",
     height: "30px",
-    fontSize: "20px"
+    fontSize: "20px",
+    margin: "10px 0"
   };
   
   return (
