@@ -13,7 +13,7 @@ export default function Login() {
       [id]: value,
     };
     setLoginInfo(newLoginInfo);
-  }
+  };
 
   const loginSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ export default function Login() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: 'center'}}>
@@ -55,4 +55,4 @@ export default function Login() {
       </div>
     </div>
   )
-}
+};
