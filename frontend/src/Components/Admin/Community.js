@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 
 export function Community() {
-  const [ isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  useEffect(() => {
-    if (localStorage.getItem('accesstoken'))
-      setIsAuthenticated(true)
-  }, [])
 
   const communities_notice = [
     { id: 0, title: "공지게시글1", content: "내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
@@ -54,7 +48,7 @@ export function Community() {
             </div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
-            <div className="admin-delete-button">삭제</div>
+            <div className="admin-update-button">수정</div>
           </div>
         )
       )
@@ -87,14 +81,12 @@ export function Community() {
             </div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
-            <div className="admin-delete-button">삭제</div>
+            <div className="admin-update-button">수정</div>
           </div>
         )
       )
     )
   };
-
-  const [ createOpen, setCreateOpen ] = useState(false);
 
   return (
     <div>
@@ -105,23 +97,10 @@ export function Community() {
           <div>제목</div>
           <div>작성일자</div>
           <div>수정일자</div>
-          <div>삭제</div>
+          <div>수정</div>
         </div>
         {Notices()}
         {Communities()}
-        { isAuthenticated && 
-          <div className="admin-community-row">
-            <div
-              className="admin-community-create"
-              onClick={() => {
-                setCreateOpen(true);
-                window.scrollTo(0, 0);
-              }}
-            >
-              새 글 작성
-            </div>
-          </div>
-        }
         <Pagination
           total={communities_general.length}
           limit={limit}

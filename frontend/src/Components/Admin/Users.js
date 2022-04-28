@@ -99,7 +99,7 @@ export function Users() {
             <div>{user.email}</div>
             <div>{user.name}</div>
             <div>{user.nickname}</div>
-            <div className="admin-delete-button">삭제</div>
+            <div className="admin-update-button">수정</div>
           </div>
         )
       )
@@ -114,7 +114,7 @@ export function Users() {
           <div>이메일</div>
           <div>이름</div>
           <div>닉네임</div>
-          <div>삭제</div>
+          <div>수정</div>
         </div>
         {UserList()}
       </div>

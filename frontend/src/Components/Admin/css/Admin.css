@@ -92,8 +92,9 @@
   color: white;
 }
 
-.admin-delete-button {
+.admin-update-button {
   color: red;
+  font-weight: bold;
   cursor: pointer;
 }
 
