@@ -17,6 +17,9 @@ function Nav() {
   const saveUser = async () => {
     const res = await apiInstance().get('/users/me');
     setUser(res.data)
+    if (res.data.admin !== 2) {
+      localStorage.setItem('admin', true);
+    }
   }
 
   useEffect(() => {
