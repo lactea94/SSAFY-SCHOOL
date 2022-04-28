@@ -2,15 +2,17 @@ package com.ssafy.db.entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "checkOut")
 public class CheckOut extends BaseEntity {
 
@@ -20,16 +22,16 @@ public class CheckOut extends BaseEntity {
     private LocalDate createdDate;
 
     @Column(nullable = false)
-    private LocalDateTime createTime;
+    private LocalTime createdTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Builder
-    public CheckOut(LocalDate createdDate, LocalDateTime createTime, String content, User user) {
+    public CheckOut(LocalDate createdDate, LocalTime createdTime, User user) {
         this.createdDate = createdDate;
-        this.createTime = createTime;
+        this.createdTime = createdTime;
         this.user = user;
     }
 }
