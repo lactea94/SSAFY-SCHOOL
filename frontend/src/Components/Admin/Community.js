@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
+import { FaEdit } from 'react-icons/fa';
 
 export function Community() {
 
@@ -48,7 +49,7 @@ export function Community() {
             </div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
-            <div className="admin-update-button">수정</div>
+            <div className="admin-update-button"><FaEdit/></div>
           </div>
         )
       )
@@ -81,7 +82,7 @@ export function Community() {
             </div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
-            <div className="admin-update-button">수정</div>
+            <div className="admin-update-button"><FaEdit/></div>
           </div>
         )
       )
@@ -101,14 +102,14 @@ export function Community() {
         </div>
         {Notices()}
         {Communities()}
-        <Pagination
-          total={communities_general.length}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-          setLimit={setLimit}
-        />
       </div>
+      <Pagination
+        total={communities_general.length}
+        limit={limit}
+        page={page}
+        setPage={setPage}
+        setLimit={setLimit}
+      />
     </div>
   )
 };

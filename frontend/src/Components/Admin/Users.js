@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { apiInstance } from "../../api";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
+import { FaUserEdit } from 'react-icons/fa';
 
 export function Users() {
   const [ userList, setUserList ] = useState([])
@@ -99,7 +100,7 @@ export function Users() {
             <div>{user.email}</div>
             <div>{user.name}</div>
             <div>{user.nickname}</div>
-            <div className="admin-update-button">수정</div>
+            <div className="admin-update-button"><FaUserEdit/></div>
           </div>
         )
       )

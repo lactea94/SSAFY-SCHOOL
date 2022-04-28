@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
+import { FaEdit } from 'react-icons/fa';
 
 export function Notice() {
   const notices = [
@@ -62,7 +63,7 @@ export function Notice() {
             </div>
             <div>{DateFormat(notice.createdDate)}</div>
             <div>{DateFormat(notice.updatedDate)}</div>
-            <div className="admin-update-button">수정</div>
+            <div className="admin-update-button"><FaEdit/></div>
           </div>
         )
       )

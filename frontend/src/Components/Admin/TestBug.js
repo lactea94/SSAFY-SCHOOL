@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
+import { FaEdit } from 'react-icons/fa';
 
 export function TestBug() {
   const logs = [
@@ -33,7 +34,7 @@ export function TestBug() {
             <div>{log.content}</div>
             <div>{log.userId}</div>
             <div>{DateFormat(log.createdDate)}</div>
-            <div className="admin-update-button">수정</div>
+            <div className="admin-update-button"><FaEdit/></div>
           </div>
         )
       )
