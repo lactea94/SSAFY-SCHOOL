@@ -37,12 +37,6 @@ function Nav() {
           </Link>
         </div>
         <div style={{display: "flex", height:"100%", fontSize: "20px", alignItems: "center"}}>
-          <Link
-            to="articles/notice"
-            style={linkStyle}
-          >
-            게시판
-          </Link>
           {isAuthenticated ? (
             <>
               {isAdmin !== 2 ? 
@@ -50,21 +44,37 @@ function Nav() {
                   관리
                 </Link>
                : 
+               <>
+                <Link
+                  to="articles/notice"
+                  style={linkStyle}
+                >
+                  게시판
+                </Link>
                 <Link
                   to="profile"
                   style={linkStyle}
                 >
                   마이페이지
                 </Link>
+               </>
               }
               <Link to="logout" style={linkStyle}>
                 로그아웃
               </Link>
             </>
           ) : (
-            <Link to="login" style={linkStyle}>
-              로그인
-            </Link>
+            <>
+              <Link
+                to="articles/notice"
+                style={linkStyle}
+              >
+                게시판
+              </Link>
+              <Link to="login" style={linkStyle}>
+                로그인
+              </Link>
+            </>
           )}
         </div>
       </div>

@@ -28,3 +28,15 @@
 .admin-nav-link:hover {
   color: black;
 }
+
+@media screen and (min-width: 1280px) {
+  .admin-nav {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .admin-nav {
+    width: 33%;
+  }
+}
