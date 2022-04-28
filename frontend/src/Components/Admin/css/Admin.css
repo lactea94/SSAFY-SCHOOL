@@ -92,6 +92,11 @@
   color: white;
 }
 
+.admin-delete-button {
+  color: red;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1280px) {
   .admin-container {
     width: 50%;

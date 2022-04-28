@@ -54,7 +54,7 @@ export function Community() {
             </div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
-            <div>삭제</div>
+            <div className="admin-delete-button">삭제</div>
           </div>
         )
       )
@@ -87,7 +87,7 @@ export function Community() {
             </div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
-            <div>삭제</div>
+            <div className="admin-delete-button">삭제</div>
           </div>
         )
       )

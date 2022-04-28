@@ -33,7 +33,7 @@ export function TestBug() {
             <div>{log.content}</div>
             <div>{log.userId}</div>
             <div>{DateFormat(log.createdDate)}</div>
-            <div>삭제</div>
+            <div className="admin-delete-button">삭제</div>
           </div>
         )
       )
