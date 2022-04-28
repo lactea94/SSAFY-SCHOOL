@@ -1,5 +1,5 @@
-import React,{useState, useEffect} from 'react'
-import './css/Maininfo.css'
+import React,{useState, useEffect} from 'react';
+import './css/Maininfo.css';
 
 export default function Maininfo({ user }) {
   const [data, setData] = useState({
@@ -9,8 +9,8 @@ export default function Maininfo({ user }) {
     region: null, // 지역
     class: null, // 반
     picture: null, // 캐릭터사진
-  })
-  
+  });
+
   useEffect(() => {
     // 유저 정보 불러오기
     let newData = {
@@ -22,7 +22,7 @@ export default function Maininfo({ user }) {
       class: user.classNumber
     }
     setData(newData)
-  }, [data, user])
+  }, [data, user]);
 
   return (
     <>
@@ -37,4 +37,4 @@ export default function Maininfo({ user }) {
       </div>
     </>
   )
-}
+};
