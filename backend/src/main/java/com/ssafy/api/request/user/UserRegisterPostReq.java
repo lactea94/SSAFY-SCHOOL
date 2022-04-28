@@ -31,5 +31,5 @@ public class UserRegisterPostReq {
 	String email;
 
 	@ApiModelProperty(name = "유저 admin", example = "2")
-	int admin;
+	Long admin;
 }

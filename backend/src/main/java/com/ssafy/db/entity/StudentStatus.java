@@ -11,10 +11,10 @@ import javax.persistence.*;
 @Table(name = "studentStatus")
 public class StudentStatus extends BaseEntity {
     @Column(nullable = false)
-    private Long studentId;
+    private String studentId;
 
     @Column(nullable = false)
-    private Long classNumber;
+    private String classNumber;
 
     @Column(nullable = false, length = 10)
     private String teamCode;

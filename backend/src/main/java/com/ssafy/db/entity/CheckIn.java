@@ -14,9 +14,6 @@ import java.time.LocalDateTime;
 @Table(name = "checkIn")
 public class CheckIn extends BaseEntity {
 
-    @Column(nullable = false, length = 500)
-    private String content;
-
     // 이게 될까 의문중
     @Column(nullable = false)
     private LocalDate createdDate;
@@ -32,7 +29,6 @@ public class CheckIn extends BaseEntity {
     public CheckIn(LocalDate createdDate, LocalDateTime createTime, String content, User user) {
         this.createdDate = createdDate;
         this.createTime = createTime;
-        this.content = content;
         this.user = user;
     }
 
