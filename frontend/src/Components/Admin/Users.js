@@ -63,7 +63,7 @@ export function Users() {
   function UserList() {
     return (
       userList.slice(offset, offset + limit).map((user) => (
-          <div className="admin-row">
+          <div className="admin-row" key={user.id}>
             <div>{user.userId}</div>
             <div>{user.email}</div>
             <div>{user.name}</div>
