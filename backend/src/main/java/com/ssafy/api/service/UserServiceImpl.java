@@ -57,6 +57,12 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
+	@Override
+	public User getUserById(Long Id) {
+		User user = userRepository.findById(Id).orElse(null);
+		return user;
+	}
+
 
 	@Override
 	public User getUserByUserId(String userId) {
