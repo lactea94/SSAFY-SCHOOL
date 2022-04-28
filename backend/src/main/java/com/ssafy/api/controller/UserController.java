@@ -67,11 +67,8 @@ public class UserController {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		String userId = userDetails.getUsername();
 		User user = userService.getUserByUserId(userId);
-		Status status = userService.getStatusByUserId(userId);
-		StudentStatus studentStatus = userService.getStudentStatusByUserId(userId);
-		CheckOut checkOut = userService.getCheckOutByUserId(userId);
-		CheckIn checkIn = userService.getCheckInByUserId(userId);
-		
-		return ResponseEntity.status(200).body(UserRes.of(user, status, studentStatus, checkIn, checkOut));
+		Status status = userService.getStatusByUserId(user.getId());
+		StudentStatus studentStatus = userService.getStudentStatusByUserId(user.getId());
+		return ResponseEntity.status(200).body(UserRes.of(user, status, studentStatus));
 	}
 }

@@ -41,10 +41,10 @@ public class UserRes{
 	Long remainMileage;
 
 	@ApiModelProperty(name = "User StudentStatus Student Id")
-	Long studentId;
+	String studentId;
 
 	@ApiModelProperty(name = "User StudentStatus Class Number")
-	Long classNumber;
+	String classNumber;
 
 	@ApiModelProperty(name = "User StudentStatus Team Code")
 	String teamCode;
@@ -52,13 +52,7 @@ public class UserRes{
 	@ApiModelProperty(name = "User StudentStatus Local")
 	String local;
 
-	@ApiModelProperty(name = "User CheckIn date")
-	LocalDate inCreatedDate;
-
-	@ApiModelProperty(name = "User CheckOut date")
-	LocalDate outCreatedDate;
-
-	public static UserRes of(User user, Status status, StudentStatus studentStatus, CheckIn checkIn, CheckOut checkOut) {
+	public static UserRes of(User user, Status status, StudentStatus studentStatus) {
 		UserRes res = new UserRes();
 		res.setUserId(user.getUserId());
 		res.setNickname(user.getNickname());
@@ -72,8 +66,6 @@ public class UserRes{
 		res.setClassNumber(studentStatus.getClassNumber());
 		res.setTeamCode(studentStatus.getTeamCode());
 		res.setLocal(studentStatus.getLocal());
-		res.setInCreatedDate(checkIn.getCreatedDate());
-		res.setOutCreatedDate(checkOut.getCreatedDate());
 		return res;
 	}
 }

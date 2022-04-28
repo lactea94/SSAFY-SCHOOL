@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CheckInRepository extends JpaRepository<CheckIn, Long> {
     Optional<CheckIn> findById(Long id);
-    Optional<CheckIn> findByUserId(String userId);
+    Optional<CheckIn> findByUserId(Long userId);
 }
