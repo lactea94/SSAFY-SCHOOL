@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../Articles/Pagination";
+import Pagination from "../../Utils/Pagination";
 
 export function TestBug() {
   const logs = [
@@ -43,7 +43,7 @@ export function TestBug() {
   return (
     <div>
       <div className="article-container">
-        <div className="index-row">
+        <div className="admin-index-row">
           <div>#</div>
           <div>제보</div>
           <div>작성자</div>

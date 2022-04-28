@@ -97,6 +97,10 @@
     width: 50%;
   }
   
+  .notice-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
+  }
+
   .index-row {
     grid-template-columns: 1fr 6fr 2fr 2fr;
   }
@@ -114,15 +118,7 @@
   .article-container {
     width: 33%;
   }
-
-  .index-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
-  }
-
-  .article-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
-  }
-
+  
   .input-container {
     width: 33%;
   }
