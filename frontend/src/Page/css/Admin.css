@@ -1,0 +1,42 @@
+.admin {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.admin-nav {
+  display: grid;
+  grid-template-columns: 5fr repeat(4, 1fr);
+  margin: 3rem auto 2rem;
+  width: 90%;
+}
+
+.admin-nav-title {
+  border-bottom: 1px solid gray;
+  width: 100%;
+  font-size: 2rem;
+  padding: auto;
+  text-align: start;
+}
+
+.admin-nav-link {
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  text-decoration: none;
+  color: gray;
+}
+
+.admin-nav-link:hover {
+  color: black;
+}
+
+@media screen and (min-width: 1280px) {
+  .admin-nav {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .admin-nav {
+    width: 33%;
+  }
+}

@@ -1,54 +1,54 @@
-.article-container {
+.admin-container {
   display: grid;
   width: 90%;
   margin: auto;
 }
 
-.index-row {
+.admin-index-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
   border-bottom: 2px solid black;
   padding: 1rem;
 }
 
-.article-row {
+.admin-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
 }
 
-.article-row:hover {
+.admin-row:hover {
   background: rgb(236, 236, 236);
 }
 
-.article-link {
+.admin-link {
   color: black;
   text-decoration: none;
   font-weight: bold;
 }
 
-.notice-row {
+.admin-notice-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
   background: #3396F4;
 }
 
-.notice-row:hover {
+.admin-notice-row:hover {
   background: #354ACA;
 }
 
-.community-row {
+.admin-community-row {
   display: flex;
   padding: 1rem 0;
   justify-content: flex-end;
 }
 
-.community-create {
+.admin-community-create {
   cursor: pointer;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
@@ -58,7 +58,7 @@
   text-decoration: none;
 }
 
-.input-container {
+.admin-input-container {
   display: grid;
   grid-template-columns: 8fr 1fr;
   align-items: center;
@@ -68,7 +68,7 @@
   padding: 1rem;
 }
 
-.submit-textarea {
+.admin-submit-textarea {
   padding: 1rem;
   background: none;
   border: none;
@@ -76,11 +76,11 @@
   resize: none;
 }
 
-.submit-textarea:focus {
+.admin-submit-textarea:focus {
   outline: none;
 }
 
-.submit-button {
+.admin-submit-button {
   cursor: pointer;
   margin: auto;
   color: gray;
@@ -88,38 +88,43 @@
   font-size: 2rem;
 }
 
-.submit-button:hover {
+.admin-submit-button:hover {
   color: white;
 }
 
+.admin-delete-button {
+  color: red;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1280px) {
-  .article-container {
+  .admin-container {
     width: 50%;
   }
   
-  .notice-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+  .admin-notice-row {
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 
-  .index-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+  .admin-index-row {
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 
-  .article-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+  .admin-row {
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 
-  .input-container {
+  .admin-input-container {
     width: 50%;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  .article-container {
+  .admin-container {
     width: 33%;
   }
-  
-  .input-container {
+
+  .admin-input-container {
     width: 33%;
   }
 }

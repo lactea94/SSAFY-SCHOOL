@@ -1,19 +1,32 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { userInstance } from "../api";
 
 function Nav() {
-  const [ isAuthenticated, setIsAuthenticated ] = useState(true);
+  const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   // 슈퍼 0, 프로 1, 학생 2
-  const [ isAdmin, setIsAdmin ] = useState(true);
+  const [ isAdmin, setIsAdmin ] = useState(0);
+  const api = userInstance();
 
   useEffect(() => {
     if (localStorage.getItem("accesstoken")) {
       setIsAuthenticated(true);
-      if (localStorage.getItem("admin") !== 2) {
-        setIsAdmin(true);
-      }
     }
   }, []);
+
+  // useEffect(() => {
+  //   api.get('/users/me')
+  //   .then(res => {
+  //     console.log(res)
+  //   })
+  // }, [])
+
+  const linkStyle = {
+    textDecoration: "none",
+    color: "black",
+    fontWeight: "bold",
+    margin: "0 1rem"
+  }
 
   return (
     <div>
@@ -24,28 +37,44 @@ function Nav() {
           </Link>
         </div>
         <div style={{display: "flex", height:"100%", fontSize: "20px", alignItems: "center"}}>
-          <Link to="articles/notice" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
-            게시판
-          </Link>
           {isAuthenticated ? (
             <>
-              {isAdmin ? 
-                <Link to="admin" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
+              {isAdmin !== 2 ? 
+                <Link to="admin/users" style={linkStyle}>
                   관리
                 </Link>
                : 
-                <Link to="profile" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
+               <>
+                <Link
+                  to="articles/notice"
+                  style={linkStyle}
+                >
+                  게시판
+                </Link>
+                <Link
+                  to="profile"
+                  style={linkStyle}
+                >
                   마이페이지
                 </Link>
+               </>
               }
-              <Link to="logout" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
+              <Link to="logout" style={linkStyle}>
                 로그아웃
               </Link>
             </>
           ) : (
-            <Link to="login" style={{textDecoration: "none", color: "black", fontWeight: "bold", margin: "0 1rem"}}>
-              로그인
-            </Link>
+            <>
+              <Link
+                to="articles/notice"
+                style={linkStyle}
+              >
+                게시판
+              </Link>
+              <Link to="login" style={linkStyle}>
+                로그인
+              </Link>
+            </>
           )}
         </div>
       </div>

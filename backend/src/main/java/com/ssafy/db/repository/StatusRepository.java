@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface StatusRepository extends JpaRepository<Status, Long> {
     Optional<Status> findById(Long id);
-    Optional<Status> findByUserId(String userId);
+    Optional<Status> findByUserId(Long userId);
 }

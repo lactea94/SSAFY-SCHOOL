@@ -1,7 +1,13 @@
 package com.ssafy.api.controller;
 
+import com.ssafy.api.response.user.CheckInDateListRes;
+import com.ssafy.api.response.user.CheckOutDateListRes;
 import com.ssafy.db.entity.*;
+import com.ssafy.db.repository.CheckInRepository;
+import com.ssafy.db.repository.CheckOutRepository;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +22,11 @@ import com.ssafy.api.service.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 유저 관련 API 요청 처리를 위한 컨트롤러 정의.
@@ -33,6 +38,12 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	CheckInRepository checkInRepository;
+
+	@Autowired
+	CheckOutRepository checkOutRepository;
 
 	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와 패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
@@ -67,11 +78,56 @@ public class UserController {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		String userId = userDetails.getUsername();
 		User user = userService.getUserByUserId(userId);
-		Status status = userService.getStatusByUserId(userId);
-		StudentStatus studentStatus = userService.getStudentStatusByUserId(userId);
-		CheckOut checkOut = userService.getCheckOutByUserId(userId);
-		CheckIn checkIn = userService.getCheckInByUserId(userId);
-		
-		return ResponseEntity.status(200).body(UserRes.of(user, status, studentStatus, checkIn, checkOut));
+		Status status = userService.getStatusByUserId(user.getId());
+		StudentStatus studentStatus = userService.getStudentStatusByUserId(user.getId());
+		return ResponseEntity.status(200).body(UserRes.of(user, status, studentStatus));
+	}
+
+	@GetMapping("/check-indate")
+	@ApiOperation(value = "회원 입실 정보 조회", notes = "로그인한 회원 본인의 입실 정보를 응답한다")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity checkInDate(@ApiIgnore Authentication authentication) {
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		User user = userDetails.getUser();
+		Long userId = user.getId();
+		List<CheckInDateListRes> checkInDateList = new ArrayList<>();
+		List<CheckIn> list = checkInRepository.findAllByUserId(userId);
+
+		Collections.reverse(list);
+
+		for (CheckIn entity : list) {
+			checkInDateList.add(new CheckInDateListRes(entity));
+		}
+
+		return new ResponseEntity<>(checkInDateList, HttpStatus.OK);
+	}
+
+	@GetMapping("/check-outdate")
+	@ApiOperation(value = "회원 입실 정보 조회", notes = "로그인한 회원 본인의 입실 정보를 응답한다")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity checkOutDate(@ApiIgnore Authentication authentication) {
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		User user = userDetails.getUser();
+		Long userId = user.getId();
+		List<CheckOutDateListRes> checkOutDateList = new ArrayList<>();
+		List<CheckOut> list = checkOutRepository.findAllByUserId(userId);
+
+		Collections.reverse(list);
+
+		for (CheckOut entity : list) {
+			checkOutDateList.add(new CheckOutDateListRes(entity));
+		}
+
+		return new ResponseEntity<>(checkOutDateList, HttpStatus.OK);
 	}
 }

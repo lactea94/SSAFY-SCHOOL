@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "./css/Articles.css";
+import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 
-export default function Notice() {
+export function Notice() {
   const notices = [
     { id: 0, title: "공지1", content: "공지내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
     { id: 1, title: "공지2", content: "공지내용2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
@@ -44,11 +44,11 @@ export default function Notice() {
     return (
       notices.slice(offset, offset + limit).map((notice) => 
         (
-          <div className="article-row" key={notice.id}>
+          <div className="admin-row" key={notice.id}>
             <div>{notice.id}</div>
             <div>
               <Link
-                className="article-link"
+                className="admin-link"
                 to={`${notice.id}`}
                 state={{
                   title: notice.title,
@@ -62,6 +62,7 @@ export default function Notice() {
             </div>
             <div>{DateFormat(notice.createdDate)}</div>
             <div>{DateFormat(notice.updatedDate)}</div>
+            <div className="admin-delete-button">삭제</div>
           </div>
         )
       )
@@ -71,12 +72,13 @@ export default function Notice() {
   return (
     <div>
       <Outlet/>
-      <div className="article-container">
-        <div className="index-row">
+      <div className="admin-container">
+        <div className="admin-index-row">
           <div>#</div>
           <div>제목</div>
           <div>작성일자</div>
           <div>수정일자</div>
+          <div>삭제</div>
         </div>
         {Notices()}
       </div>

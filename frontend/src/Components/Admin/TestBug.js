@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
-import "./css/Articles.css";
+import { useState } from "react";
+import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
-import { FaCommentMedical } from 'react-icons/fa';
 
-export default function TestBug() {
-  const [ isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  useEffect(() => {
-    if (localStorage.getItem('accesstoken'))
-      setIsAuthenticated(true)
-  }, [])
-
+export function TestBug() {
   const logs = [
     { id: 0, userId: 1, content: "내용1", createdDate: "2022-04-19 15:30:30" },
     { id: 1, userId: 7, content: "내용2", createdDate: "2022-04-18 15:30:30" },
@@ -36,11 +28,12 @@ export default function TestBug() {
     return (
       logs.slice(offset, offset + limit).map((log) => 
         (
-          <div className="article-row" key={log.id}>
+          <div className="admin-row" key={log.id}>
             <div>{log.id}</div>
             <div>{log.content}</div>
             <div>{log.userId}</div>
             <div>{DateFormat(log.createdDate)}</div>
+            <div className="admin-delete-button">삭제</div>
           </div>
         )
       )
@@ -50,27 +43,15 @@ export default function TestBug() {
   return (
     <div>
       <div className="article-container">
-        <div className="index-row">
+        <div className="admin-index-row">
           <div>#</div>
           <div>제보</div>
           <div>작성자</div>
           <div>작성일자</div>
+          <div>삭제</div>
         </div>
         {Log()}
       </div>
-      { isAuthenticated && 
-        <div className="input-container">
-          <textarea
-            className="submit-textarea"
-            rows="2"
-          />
-          <div
-            className="submit-button"
-          >
-            <FaCommentMedical />
-          </div>
-        </div>
-      }
       <Pagination
         total={logs.length}
         limit={limit}
