@@ -1,19 +1,29 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { userInstance } from "../api";
 
 export default function Signup() {
   const [signupInfo, setSignupInfo] = useState({
-    signupId: "", 
-    signupPassword: "",
-    signupPassword2: "",
-    signupNickname: "",
-    signupName: "",
-    signupGender: true,
-    signupEmail: "",
+    id: "", 
+    password: "",
+    nickname: "",
+    name: "",
+    gender: true,
+    email: "",
   });
+  const [ passwordConfirm, setPasswordConfirm ] = useState("");
+  const [ checkPasswordConfirm, setCheckPasswordConfirm ] = useState(false);
+  const api = userInstance();
+  const navigate = useNavigate();
+
+  function validation() {
+    if (signupInfo.password === passwordConfirm) setCheckPasswordConfirm(true)
+    if (checkPasswordConfirm) return true
+    return false
+  }
 
   function signupInput({target: {id, value}}) {
-    if(id === "signupGender") {
+    if(id === "gender") {
       if(value === "false") {
         value = false;
       }else {
@@ -25,14 +35,27 @@ export default function Signup() {
       [id]: value,
     };
     setSignupInfo(newLoginInfo);
-  }
+  };
 
-  function signupSubmit(e) {
+  const signupSubmit = async (e) => {
     e.preventDefault();
-    console.log(signupInfo)
-    // 회원가입 로직 추가 예정
-  }
+    if (validation()) {
+      try {
+        await api.post('/users/signup', signupInfo);
+        navigate('/');
+        navigate(0);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  };
 
+  const inputStyle = {
+    width: "500px",
+    height: "30px",
+    fontSize: "20px"
+  };
+  
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: 'center'}}>
       <h1>
@@ -42,52 +65,65 @@ export default function Signup() {
         method="post"
         onSubmit={signupSubmit}
       >
-        <label htmlFor="signupId" style={{marginRight: "auto"}}>아이디</label>
-        <input type="text" id="signupId" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
-          value={signupInfo.signupId}
+        <label htmlFor="id" style={{marginRight: "auto"}}>아이디</label>
+        <input type="text" id="id" style={inputStyle} required 
+          value={signupInfo.id}
           onChange={signupInput}
-        /> <br/>
-        <label htmlFor="signupPassword" style={{marginRight: "auto"}}>비밀번호</label>
-        <input type="password" id="signupPassword" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
-          value={signupInfo.signupPassword}
+        />
+        <label htmlFor="password" style={{marginRight: "auto"}}>비밀번호</label>
+        <input type="password" id="password" style={inputStyle} required 
+          value={signupInfo.password}
           onChange={signupInput}
-        /> <br/>
-        <label htmlFor="signupPassword2" style={{marginRight: "auto"}}>비밀번호확인</label>
-        <input type="password" id="signupPassword2" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
-          value={signupInfo.signupPassword2}
+        />
+        <label htmlFor="passwordConfirm" style={{marginRight: "auto"}}>비밀번호확인</label>
+        <input type="password" id="passwordConfirm" style={inputStyle} required 
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+        />
+        <label htmlFor="nickname" style={{marginRight: "auto"}}>닉네임</label>
+        <input type="text" id="nickname" style={inputStyle} required 
+          value={signupInfo.nickname}
           onChange={signupInput}
-        /> <br/>
-        <label htmlFor="signupNickname" style={{marginRight: "auto"}}>닉네임</label>
-        <input type="text" id="signupNickname" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
-          value={signupInfo.signupNickname}
+        />
+        <label htmlFor="name" style={{marginRight: "auto"}}>이름</label>
+        <input type="text" id="name" style={inputStyle} required 
+          value={signupInfo.name}
           onChange={signupInput}
-        /> <br/>
-        <label htmlFor="signupName" style={{marginRight: "auto"}}>이름</label>
-        <input type="text" id="signupName" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
-          value={signupInfo.signupName}
-          onChange={signupInput}
-        /> <br/>
+        />
         <p style={{margin: "auto auto 0 0"}}>성별</p>
         <div style={{display: "flex", alignItems: "center", margin: "auto auto auto auto"}}>
           <label htmlFor="male">남</label>
-          <input type="radio" id="signupGender" style={{width: "50px", height: "30px", fontSize: "20px"}} required 
+          <input type="radio" id="gender" style={{width: "50px", height: "30px", fontSize: "20px"}} required 
             value={true}
             onChange={signupInput}
-            checked={signupInfo.signupGender}
+            checked={signupInfo.gender}
           />
           <label htmlFor="female">여</label>
-          <input type="radio" id="signupGender" style={{width: "50px", height: "30px", fontSize: "20px"}} required 
+          <input type="radio" id="gender" style={{width: "50px", height: "30px", fontSize: "20px"}} required 
             value={false}
             onChange={signupInput}
-            checked={!signupInfo.signupGender}
+            checked={!signupInfo.gender}
           />
         </div>
-        <label htmlFor="signupEmail" style={{marginRight: "auto"}}>이메일</label>
-        <input type="email" id="signupEmail" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
-          value={signupInfo.signupEmail}
+        <label htmlFor="email" style={{marginRight: "auto"}}>이메일</label>
+        <input type="email" id="email" style={inputStyle} required 
+          value={signupInfo.email}
           onChange={signupInput}
-        /> <br/>
-        <button style={{width: "500px", height: "40px", fontSize: "20px", borderRadius: "10px", border: "0px", fontWeight: "bolder", backgroundColor: "dodgerblue", cursor: "pointer"}}>회원가입</button>
+        />
+        <button 
+          style={{
+            width: "500px",
+            height: "40px",
+            fontSize: "20px",
+            borderRadius: "10px",
+            border: "0px",
+            fontWeight: "bolder",
+            backgroundColor: "dodgerblue",
+            cursor: "pointer"
+          }}
+        >
+          회원가입
+        </button>
       </form>
     </div>
   )

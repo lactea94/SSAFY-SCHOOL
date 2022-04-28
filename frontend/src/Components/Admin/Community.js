@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "./css/Articles.css";
+import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
-import CommunityCreate from "./CommunityCreate";
 
-export default function Community() {
+export function Community() {
   const [ isAuthenticated, setIsAuthenticated] = useState(false);
   
   useEffect(() => {
@@ -36,11 +35,11 @@ export default function Community() {
     return (
       communities_notice.map((community) => 
         (
-          <div className="notice-row" key={community.id}>
+          <div className="admin-notice-row" key={community.id}>
             <div>공지</div>
             <div>
               <Link
-                className="article-link"
+                className="admin-link"
                 to={`${community.id}`}
                 state={{
                   userId: community.uesrId,
@@ -55,6 +54,7 @@ export default function Community() {
             </div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
+            <div className="admin-delete-button">삭제</div>
           </div>
         )
       )
@@ -68,11 +68,11 @@ export default function Community() {
     return (
       communities_general.slice(offset, offset + limit).map((community) => 
         (
-          <div className="article-row" key={community.id}>
+          <div className="admin-row" key={community.id}>
             <div>{community.userId}</div>
             <div>
               <Link
-                className="article-link"
+                className="admin-link"
                 to={`${community.id}`}
                 state={{
                   userId: community.userId,
@@ -87,6 +87,7 @@ export default function Community() {
             </div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
+            <div className="admin-delete-button">삭제</div>
           </div>
         )
       )
@@ -97,21 +98,21 @@ export default function Community() {
 
   return (
     <div>
-      {createOpen && <CommunityCreate setCreateOpen={setCreateOpen}/>}
       <Outlet/>
-      <div className="article-container">
-        <div className="index-row">
+      <div className="admin-container">
+        <div className="admin-index-row">
           <div>작성자</div>
           <div>제목</div>
           <div>작성일자</div>
           <div>수정일자</div>
+          <div>삭제</div>
         </div>
         {Notices()}
         {Communities()}
         { isAuthenticated && 
-          <div className="community-row">
+          <div className="admin-community-row">
             <div
-              className="community-create"
+              className="admin-community-create"
               onClick={() => {
                 setCreateOpen(true);
                 window.scrollTo(0, 0);
