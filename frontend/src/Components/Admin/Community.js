@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../../Utils/Pagination";
+import Pagination from "../Pagination/Pagination";
 
 export function Community() {
   const [ isAuthenticated, setIsAuthenticated] = useState(false);

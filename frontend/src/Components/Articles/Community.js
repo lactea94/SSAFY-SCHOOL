@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../../Utils/Pagination";
+import Pagination from "../Pagination/Pagination";
 import CommunityCreate from "./CommunityCreate";
 
 export default function Community() {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../../Utils/Pagination";
+import Pagination from "../Pagination/Pagination";
 
 export function TestBug() {
   const logs = [

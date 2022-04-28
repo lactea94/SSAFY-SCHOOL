@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../../Utils/Pagination";
+import Pagination from "../Pagination/Pagination";
 
 export function Notice() {
   const notices = [

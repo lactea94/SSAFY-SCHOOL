@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Pagination from "../../Utils/Pagination";
+import Pagination from "../Pagination/Pagination";
 
 export function Users() {
   const userList = [
@@ -45,7 +45,7 @@ export function Users() {
   // Local: 'ssafy@ssafy.com',
   // inCreatedDate: 'ssafy@ssafy.com',
   // outCreatedDate: 'ssafy@ssafy.com',
-  
+
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;

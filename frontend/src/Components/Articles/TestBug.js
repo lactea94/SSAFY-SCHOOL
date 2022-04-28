@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../../Utils/Pagination";
+import Pagination from "../Pagination/Pagination";
 import { FaCommentMedical } from 'react-icons/fa';
 
 export default function TestBug() {
