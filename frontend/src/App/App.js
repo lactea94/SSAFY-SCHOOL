@@ -19,6 +19,7 @@ import { Users } from "../Components/Admin/Users";
 import { Notice as AdminNotice } from "../Components/Admin/Notice";
 import { Community as AdminCommunity } from "../Components/Admin/Community";
 import { TestBug as AdminTestBug } from "../Components/Admin/TestBug";
+import EditUser from "../Components/Admin/EditUser";
 
 function App() {
   return (
@@ -38,7 +39,9 @@ function App() {
           </Route>
           <Route path="profile" element={<Profile />}></Route>
           <Route path="admin" element={<Admin />}>
-            <Route path="users" element={<Users />}></Route>
+            <Route path="users" element={<Users />}>
+              <Route path=":userId" element={<EditUser/>}></Route>
+            </Route>
             <Route path="notice" element={<AdminNotice />}></Route>
             <Route path="community" element={<AdminCommunity />}></Route>
             <Route path="testbug" element={<AdminTestBug />}></Route>

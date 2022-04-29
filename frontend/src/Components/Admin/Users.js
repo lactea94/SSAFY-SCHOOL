@@ -3,6 +3,7 @@ import { apiInstance } from "../../api";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
 import { FaUserEdit } from 'react-icons/fa';
+import { Link, Outlet } from "react-router-dom";
 
 export function Users() {
   const [ userList, setUserList ] = useState([])
@@ -59,7 +60,11 @@ export function Users() {
             <div>{user.email}</div>
             <div>{user.name}</div>
             <div>{user.nickname}</div>
-            <div className="admin-update-button"><FaUserEdit/></div>
+            <Link to={`${user.id}`}
+              className="admin-update-button"
+            >
+              <FaUserEdit/>
+            </Link>
           </div>
         )
       )
@@ -68,6 +73,7 @@ export function Users() {
 
   return (
     <div>
+      <Outlet/>
       <div className="admin-container">
         <div className="admin-index-row">
           <div>아이디</div>
