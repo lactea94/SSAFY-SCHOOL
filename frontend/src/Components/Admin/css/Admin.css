@@ -35,27 +35,17 @@
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
-  background: #3396F4;
+  background: #FFE651;
 }
 
 .admin-notice-row:hover {
-  background: #354ACA;
+  background: #FAE98A;
 }
 
 .admin-community-row {
   display: flex;
   padding: 1rem 0;
   justify-content: flex-end;
-}
-
-.admin-community-create {
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  background-color: #3396F4;
-  border-radius: 0.5rem;
-  color: white;
-  text-decoration: none;
 }
 
 .admin-input-container {
@@ -92,8 +82,9 @@
   color: white;
 }
 
-.admin-delete-button {
-  color: red;
+.admin-update-button {
+  color: #3396F4;
+  font-weight: bold;
   cursor: pointer;
 }
 
