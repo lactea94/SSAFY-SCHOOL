@@ -44,7 +44,11 @@
 
 .admin-update-button {
   color: #3396F4;
-  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-delete-button {
+  color: red;
   cursor: pointer;
 }
 

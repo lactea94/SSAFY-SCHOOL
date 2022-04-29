@@ -60,7 +60,8 @@ export function Users() {
             <div>{user.email}</div>
             <div>{user.name}</div>
             <div>{user.nickname}</div>
-            <Link to={`${user.id}`}
+            <Link
+              to={`${user.id}`}
               className="admin-update-button"
               state={{
                 user: user

@@ -32,24 +32,22 @@ export function Community() {
         (
           <div className="admin-notice-row" key={community.id}>
             <div>공지</div>
-            <div>
-              <Link
-                className="admin-link"
-                to={`${community.id}`}
-                state={{
-                  userId: community.uesrId,
-                  title: community.title,
-                  content: community.content,
-                  createdDate: community.createdDate,
-                  updatedDate: community.updatedDate
-                }}
-              >
-                {community.title}
-              </Link>
-            </div>
+            <div>{community.title}</div>
             <div>{DateFormat(community.createdDate)}</div>
             <div>{DateFormat(community.updatedDate)}</div>
-            <div className="admin-update-button"><FaEdit/></div>
+            <Link
+              className="admin-update-button"
+              to={`${community.id}`}
+              state={{
+                userId: community.uesrId,
+                title: community.title,
+                content: community.content,
+                createdDate: community.createdDate,
+                updatedDate: community.updatedDate
+              }}
+            >
+              <FaEdit/>
+            </Link>
           </div>
         )
       )

@@ -47,23 +47,21 @@ export function Notice() {
         (
           <div className="admin-row" key={notice.id}>
             <div>{notice.id}</div>
-            <div>
-              <Link
-                className="admin-link"
-                to={`${notice.id}`}
-                state={{
-                  title: notice.title,
-                  content: notice.content,
-                  createdDate: notice.createdDate,
-                  updatedDate: notice.updatedDate
-                }}
-              >
-                {notice.title}
-              </Link>
-            </div>
+            <div>{notice.title}</div>
             <div>{DateFormat(notice.createdDate)}</div>
             <div>{DateFormat(notice.updatedDate)}</div>
-            <div className="admin-update-button"><FaEdit/></div>
+            <Link
+              to={`${notice.id}`}
+              className="admin-update-button"
+              state={{
+                title: notice.title,
+                content: notice.content,
+                createdDate: notice.createdDate,
+                updatedDate: notice.updatedDate
+              }}
+            >
+              <FaEdit/>
+            </Link>
           </div>
         )
       )
