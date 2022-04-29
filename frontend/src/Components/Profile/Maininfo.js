@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './css/Maininfo.css';
 import EachMonthAttendance from './EachMonthAttendance';
 
-export default function Maininfo({ user }) {
+export default function Maininfo({ user, checkInList, checkOutList }) {
   const [data, setData] = useState({
     name: null, // 이름
     schoolId: null, // 학번
@@ -68,7 +68,10 @@ export default function Maininfo({ user }) {
           <div className='mileage-number'>{(user.totalMileage - user.remainMileage).toLocaleString("ko-KR")}M</div>
         </div>
       </div>
-      <EachMonthAttendance />
+      <EachMonthAttendance
+        checkInList={checkInList}
+        checkOutList={checkOutList}
+      />
     </div>
   )
 };

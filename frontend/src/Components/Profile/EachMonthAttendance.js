@@ -2,12 +2,30 @@ import { useEffect, useState } from 'react';
 import {PieChart} from 'react-minimal-pie-chart'
 import holidays from './holidays';
 
-export default function EachMonthAttendance() {
-  const [today, setToday] = useState({year: 0, month:0, date: 0})
-  const [weekdays, setWeekdays] = useState(30);
-  const [chartdata,setChartdata] = useState(null);
-  const [attendance, setAttendance] = useState(0);
+export default function EachMonthAttendance({ checkInList, checkOutList }) {
+  const [ today, setToday ] = useState({year: 0, month:0, date: 0})
+  const [ weekdays, setWeekdays ] = useState(30);
+  const [ chartdata, setChartdata ] = useState(null);
+  const [ attendance, setAttendance ] = useState(0);
+  // const [ checkInList, setCheckInList ] = useState([]);
+  // const [ checkOutList, setCheckOutList ] = useState([]);
 
+  // useEffect(() => {
+  //   async function saveCheckIn() {
+  //     const res = await apiInstance().get(`/users/check-indate`)
+  //     setCheckInList(res.data.map(data => data.checkIndate))
+  //   };
+  
+  //   async function saveCheckOut() {
+  //     const res = await apiInstance().get(`/users/check-outdate`)
+  //     setCheckOutList(res.data.map(data => data.checkOutDate))
+  //   };
+
+  //   saveCheckIn();
+  //   saveCheckOut();
+  // }, [])
+
+  // 이번달 일 수 계산
   useEffect(() => {
     const todayInfo = new Date();
     const newToday = {
@@ -30,13 +48,21 @@ export default function EachMonthAttendance() {
       }
     }
     setWeekdays(count)
-
-    // 출석수 계산
-    let presents = 10;
-    setAttendance(presents);
-    setChartdata([{title:'',value: presents,color:'#F6CB44'}])
   }, [])
 
+  // 출석수 계산
+  useEffect(() => {
+    let presents = 0
+    for (let i = 0; i < checkInList.length; i ++) {
+      if (parseInt(checkInList[i].slice(5, 7)) === today.month){
+        if (checkOutList.includes(checkInList[i])) {
+          presents++
+        }
+      }
+    }
+    setAttendance(presents);
+    setChartdata([{title:'',value: presents,color:'#F6CB44'}])
+  }, [checkInList, checkOutList, today])
   return (
     <div style={{
       display: "flex",
