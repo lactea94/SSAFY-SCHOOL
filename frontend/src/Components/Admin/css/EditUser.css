@@ -1,0 +1,75 @@
+.edit-user {
+  display: grid;
+  margin: 5rem auto;
+  width: 90%;
+}
+
+.edit-user-id {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-name {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-nickname {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-email {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-gender {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-local {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-classNumber {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-studentId {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-teamCode {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-remainMileage {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-totalMileage {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-user-admin {
+  display: flex;
+  justify-content: center;
+}
+
+.check-in-row {
+  display: flex;
+  justify-content: center;
+}
+
+.check-out-row {
+  display: flex;
+  justify-content: center;
+}

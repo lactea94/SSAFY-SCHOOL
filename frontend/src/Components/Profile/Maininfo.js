@@ -19,10 +19,10 @@ export default function Maininfo({ user }) {
       return "서울"
     } else if (region === "Daejeon") {
       return "대전"
-    } else if (region === "Gumi") {
-      return "구미"
     } else if (region === "Gwangju") {
       return "광주"
+    } else if (region === "Gumi") {
+      return "구미"
     } else {
       return "부울경"
     }
