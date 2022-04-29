@@ -1,9 +1,11 @@
 .edit-user {
   display: grid;
   margin: 5rem auto;
+  padding: 3rem 0;
   width: 90%;
   text-align: start;
   border-top: 2px solid black;
+  border-bottom: 2px solid black;
   justify-content: center;
 }
 
@@ -78,31 +80,33 @@
 }
 
 .check-in-out {
-  
+  margin-top: 2rem;
 }
 
 .check-list {
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .check-title {
   display: flex;
   font-size: 1.5rem;
   justify-content: center;
+  padding: 1rem 0;
+  border-bottom: 2px solid black;
 }
 
 .check-index-row {
   display: flex;
   justify-content: space-between;
-  border-top: 2px solid black;
   font-size: 1.2rem;
   padding: 0.6rem 0;
+  border-bottom: 1px solid lightgray;
 }
 
 .check-row {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
   padding: 0.5rem 0;
 }
 
