@@ -2,74 +2,118 @@
   display: grid;
   margin: 5rem auto;
   width: 90%;
-}
-
-.edit-user-id {
-  display: flex;
+  text-align: start;
+  border-top: 2px solid black;
   justify-content: center;
 }
 
-.edit-user-name {
+.edit-user-row {
   display: flex;
+  margin: 1rem 0;
+}
+
+.edit-user .label{
+  font-size: 1.2rem;
+  width: 10rem;
+  margin: auto 0;
+}
+
+.edit-user-input {
+  margin: 0 1rem;
+  padding: 0.5rem;
+  width: 30%;
+  font-size: 1rem;
+  border: 1px solid gray;
+  outline: none;
+}
+
+.radio-container{
+  display: flex;
+}
+
+.edit-user-text {
+  width: 10rem;
+  margin: 0 1rem;
+}
+
+.radio-label {
+  display: flex;
+}
+
+.edit-user-radio {
+  margin: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.label-name {
+  margin: auto;
+}
+
+.add-mileage-button {
+  margin: 0 0.5rem;
+  background-color: gray;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.edit-user-confirm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.edit-user-button {
+  margin: 0 0.5rem;
+  background-color: gray;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.check-in-out {
+  
+}
+
+.check-list {
+  margin-top: 3rem;
+}
+
+.check-title {
+  display: flex;
+  font-size: 1.5rem;
   justify-content: center;
 }
 
-.edit-user-nickname {
+.check-index-row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  border-top: 2px solid black;
+  font-size: 1.2rem;
+  padding: 0.6rem 0;
 }
 
-.edit-user-email {
+.check-row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  border-top: 1px solid lightgray;
+  padding: 0.5rem 0;
 }
 
-.edit-user-gender {
-  display: flex;
-  justify-content: center;
+@media screen and (min-width: 1280px) {
+  .edit-user {
+    width: 50%;
+  }
 }
 
-.edit-user-local {
-  display: flex;
-  justify-content: center;
-}
-
-.edit-user-classNumber {
-  display: flex;
-  justify-content: center;
-}
-
-.edit-user-studentId {
-  display: flex;
-  justify-content: center;
-}
-
-.edit-user-teamCode {
-  display: flex;
-  justify-content: center;
-}
-
-.edit-user-remainMileage {
-  display: flex;
-  justify-content: center;
-}
-
-.edit-user-totalMileage {
-  display: flex;
-  justify-content: center;
-}
-
-.edit-user-admin {
-  display: flex;
-  justify-content: center;
-}
-
-.check-in-row {
-  display: flex;
-  justify-content: center;
-}
-
-.check-out-row {
-  display: flex;
-  justify-content: center;
+@media screen and (min-width: 1920px) {
+  .edit-user {
+    width: 33%;
+  }
 }
