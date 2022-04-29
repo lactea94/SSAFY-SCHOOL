@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './css/Search.css'
 
 
 export default function Search({ setSearchText, setSearchCategory, setPage, categories }) {
@@ -23,8 +24,9 @@ export default function Search({ setSearchText, setSearchCategory, setPage, cate
   }, [categories])
 
   return (
-    <div>
+    <div className="search-container">
       <select
+        className="search-select"
         onChange={e => {setCategory(e.target.value)}}
       >
         {categories.map((category) => {
@@ -39,12 +41,18 @@ export default function Search({ setSearchText, setSearchCategory, setPage, cate
         })}
       </select>
       <input
+        className="search-input"
         type="text"
         value={text}
         onChange={e => {setText(e.target.value)}}
         onKeyPress={handleKeyPress}
       />
-      <button onClick={handleClick}>검색</button>
+      <div
+        className="search-button"
+        onClick={handleClick}
+      >
+        검색
+      </div>
     </div>
   )
 }
