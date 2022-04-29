@@ -62,6 +62,9 @@ export function Users() {
             <div>{user.nickname}</div>
             <Link to={`${user.id}`}
               className="admin-update-button"
+              state={{
+                user: user
+              }}
             >
               <FaUserEdit/>
             </Link>
