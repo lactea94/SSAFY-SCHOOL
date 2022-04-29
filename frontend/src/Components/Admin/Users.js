@@ -19,45 +19,17 @@ export function Users() {
     { value: 'name', name: '이름'},
     { value: 'nickname', name: '닉네임'},
   ]
-
+  
   // 유저 리스트 호출
+  const saveUsers = async () => {
+    const res = await apiInstance().get('/users');
+    setUserList(res.data)
+  };
   useEffect(() => {
-    setUserList([
-      {
-        id: 0,
-        userId: 'ssafy1',
-        nickname: '김싸피',
-        name: '김싸피',
-        email: 'ssafy1@ssafy.com',
-        admin: '0',
-      },
-      {
-        id: 1,
-        userId: 'ssafy2',
-        nickname: '이싸피',
-        name: '이싸피',
-        email: 'ssafy2@ssafy.com',
-        admin: '1',
-      },
-      {
-        id: 2,
-        userId: 'ssafy3',
-        nickname: '박싸피',
-        name: '박싸피',
-        email: 'ssafy3@ssafy.com',
-        admin: '2',
-      },
-      {
-        id: 3,
-        userId: 'ssafy4',
-        nickname: '정싸피',
-        name: '정싸피',
-        email: 'ssafy4@ssafy.com',
-        admin: '2',
-      },
-    ])
+    saveUsers();
   }, [])
 
+  // 유저 검색 필터링
   useEffect(() => {
     if (searchCategory === 'userId') {
       setFilteredUserList(() => 
@@ -67,29 +39,16 @@ export function Users() {
       setFilteredUserList(() => 
         userList.filter((user) => 
           user.email.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'name') {
+      setFilteredUserList(() => 
+        userList.filter((user) => 
+          user.name.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'nickname') {
+      setFilteredUserList(() => 
+        userList.filter((user) => 
+          user.nickname.toLowerCase().includes(searchText.toLowerCase())
     ))}
   }, [searchCategory, searchText, userList])
-
-
-  // 모든 학생 입퇴실 기록 조회
-  // const [ checkIn, setCheckIn ] = useState();
-  // const [ checkOut, setCheckOut ] = useState();
-
-  // const saveCheckIn = async () => {
-  //   const res = await apiInstance().get('/check/in');
-  //   setCheckIn(res.data)
-  // };
-
-  // const saveCheckOut = async () => {
-  //   const res = await apiInstance().get('/check/in');
-  //   setCheckOut(res.data)
-  // };
-
-  // useEffect(() => {
-  //   saveCheckIn();
-  //   saveCheckOut();
-  // }, [])
-
 
   // 유저 리스트 
   function UserList() {
