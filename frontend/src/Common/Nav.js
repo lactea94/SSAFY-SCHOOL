@@ -17,6 +17,9 @@ function Nav() {
   const saveUser = async () => {
     const res = await apiInstance().get('/users/me');
     setUser(res.data)
+    if (res.data.admin !== 2) {
+      localStorage.setItem('admin', true);
+    }
   }
 
   useEffect(() => {
@@ -52,9 +55,6 @@ function Nav() {
               {isAdmin !== 2 ? 
                 <Link to="admin/users"
                   style={linkStyle}
-                  state={{
-                    user: user
-                  }}
                 >
                   관리
                 </Link>

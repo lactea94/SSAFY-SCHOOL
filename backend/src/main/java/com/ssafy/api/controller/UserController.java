@@ -2,9 +2,11 @@ package com.ssafy.api.controller;
 
 import com.ssafy.api.response.user.CheckInDateListRes;
 import com.ssafy.api.response.user.CheckOutDateListRes;
+import com.ssafy.api.response.user.UserInfoListRes;
 import com.ssafy.db.entity.*;
 import com.ssafy.db.repository.CheckInRepository;
 import com.ssafy.db.repository.CheckOutRepository;
+import com.ssafy.db.repository.UserRepository;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +40,9 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	UserRepository userRepository;
 
 	@Autowired
 	CheckInRepository checkInRepository;
@@ -91,7 +96,7 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity checkInDate(@ApiIgnore Authentication authentication) {
+	public ResponseEntity getInDate(@ApiIgnore Authentication authentication) {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		User user = userDetails.getUser();
 		Long userId = user.getId();
@@ -115,7 +120,7 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	public ResponseEntity checkOutDate(@ApiIgnore Authentication authentication) {
+	public ResponseEntity getOutDate(@ApiIgnore Authentication authentication) {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		User user = userDetails.getUser();
 		Long userId = user.getId();
@@ -129,5 +134,27 @@ public class UserController {
 		}
 
 		return new ResponseEntity<>(checkOutDateList, HttpStatus.OK);
+	}
+
+	@GetMapping()
+	@ApiOperation(value = "전체 사용자 정보 조회", notes = "권한 있는 사용자가 전체 사용자 정보를 조회한다.")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "조회 성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	public ResponseEntity getUserInfoList(@ApiIgnore Authentication authentication) {
+		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+		User user = userDetails.getUser();
+		if (user.getAdmin() == 2) {
+			return new ResponseEntity(HttpStatus.FORBIDDEN);
+		}
+		List<UserInfoListRes> userInfoList = new ArrayList<>();
+		List<User> list = userRepository.findUserList();
+
+		for (User entity : list) {
+			userInfoList.add(new UserInfoListRes(entity));
+		}
+		return new ResponseEntity<>(userInfoList, HttpStatus.OK);
 	}
 }
