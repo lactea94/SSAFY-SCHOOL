@@ -119,18 +119,18 @@ export function Users() {
         </div>
         {UserList()}
       </div>
-      <Search
-        setSearchText={setSearchText}
-        setSearchCategory={setSearchCategory}
-        setPage={setPage}
-        categories={categories}
-      />
       <Pagination
         total={userList.length}
         limit={limit}
         page={page}
         setPage={setPage}
         setLimit={setLimit}
+      />
+      <Search
+        setSearchText={setSearchText}
+        setSearchCategory={setSearchCategory}
+        setPage={setPage}
+        categories={categories}
       />
     </div>
   )
