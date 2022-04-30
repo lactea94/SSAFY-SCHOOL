@@ -4,14 +4,6 @@
   align-items: center;
 }
 
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-weight: bold;
-  text-align: center;
-}
-
 .mileage-info {
   display: flex;
   flex-direction: column;

@@ -1,41 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import Maininfo from '../Components/Profile/Maininfo';
 import './css/Profile.css';
-import { useLocation } from 'react-router-dom';
-import Grass from '../Components/Profile/Grass';
-import { apiInstance } from '../api';
+import { Outlet, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const { state } = useLocation();
-  const [ checkInList, setCheckInList ] = useState([]);
-  const [ checkOutList, setCheckOutList ] = useState([]);
-
-  useEffect(() => {
-    async function saveCheckIn() {
-      const res = await apiInstance().get(`/users/check-indate`)
-      setCheckInList(res.data.map(data => data.checkIndate))
-    };
-  
-    async function saveCheckOut() {
-      const res = await apiInstance().get(`/users/check-outdate`)
-      setCheckOutList(res.data.map(data => data.checkOutDate))
-    };
-
-    saveCheckIn();
-    saveCheckOut();
-  }, [])
 
   return (
     <div className='main'>
-      <Maininfo
-        user={state.user}
-        checkInList={checkInList}
-        checkOutList={checkOutList}
-      />
-      <Grass
-        checkInList={checkInList}
-        checkOutList={checkOutList}
-      />
+      <div className='profile-info'>
+        <div>{state.user.local} {state.user.classNumber}반 {state.user.name}</div>
+        <div>{state.user.studentId}</div>
+        <Link to="edit" state={{user: state.user}}>편집</Link>
+      </div>
+      <Outlet />
     </div>
   )
 };

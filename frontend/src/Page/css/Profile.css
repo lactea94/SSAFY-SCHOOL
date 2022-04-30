@@ -6,3 +6,11 @@
   margin-top: 50px;
   margin-bottom: 30px;
 }
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+}

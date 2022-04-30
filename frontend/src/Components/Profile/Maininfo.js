@@ -47,10 +47,6 @@ export default function Maininfo({ user, checkInList, checkOutList }) {
   return (
     <div className='main-info'>
       <div className='mileage-info'>
-        <div className='profile-info'>
-          <div>{data.region} {data.class}반 {data.name}</div>
-          <div>{data.schoolId}</div>
-        </div>
         <div className='mileage-title'>
           나의 마일리지
         </div>
