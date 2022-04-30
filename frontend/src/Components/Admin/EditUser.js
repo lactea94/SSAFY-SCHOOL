@@ -76,7 +76,7 @@ export default function EditUser() {
   }
 
   async function handleSubmit() {
-    await apiInstance().post(`/users/update/${userId}`, {
+    await apiInstance().put(`/users/update/${userId}`, {
       nickname: user.nickname,
       name : user.name,
       gender : user.gender,
