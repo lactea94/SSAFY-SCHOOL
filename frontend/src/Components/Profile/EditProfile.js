@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { apiInstance } from "../../api";
 import { FaCheck } from 'react-icons/fa';
-import './css/EditProfile.css'
+import './css/EditProfile.css';
 
 export default function EditProfile() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [ name, setName ] = useState('');
   const [ nickname, setNickName ] = useState('');
+  const [ checkNickname, setCheckNickName ] = useState(false);
   const [ user, setUser ] = useState({
     id: '',
     userId: '',
@@ -31,15 +32,20 @@ export default function EditProfile() {
     setNickName(state.user.nickname);
   }, [state])
 
-  async function checkNickname() {
+  async function handlecheckNickname() {
     try {
-      await apiInstance().post('/api/v1/users/duplicate-check-nickname', { nickname: nickname })
+      await apiInstance().post('/api/v1/users/duplicate-check-nickname', { nickname: nickname });
+      setCheckNickName(true);
     } catch (error) {
       console.log(error)
     }
   }
 
   async function handleSubmit() {
+    if (!checkNickname) {
+      alert('닉네임 중복확인 하세요')
+      return
+    }
     try {
       await apiInstance().put(`/users/update/${user.id}`, {
         nickname: nickname,
@@ -78,9 +84,10 @@ export default function EditProfile() {
         />
         <div
           className="profile-edit-check"
-          onClick={checkNickname}
+          onClick={handlecheckNickname}
         >
           <FaCheck />
+          {`${checkNickname}`}
         </div>
       </div>
       <div className="profile-edit-row">비밀번호 수정</div>
