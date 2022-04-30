@@ -8,7 +8,7 @@ import { Link, Outlet } from "react-router-dom";
 export function Users() {
   const [ userList, setUserList ] = useState([])
   const [ searchCategory, setSearchCategory ] = useState('userId');
-  const [ searchText, setSearchText ] = useState("");
+  const [ searchText, setSearchText ] = useState('');
   const [ filteredUserList, setFilteredUserList ] = useState([]);
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
