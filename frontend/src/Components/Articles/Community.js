@@ -12,8 +12,8 @@ export default function Community() {
   const [ searchText, setSearchText ] = useState('');
   const [ communityList, setCommunityList ] = useState([]);
   const [ filteredCommunityList, setFilteredCommunityList ] = useState([]);
-  const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(1);
+  const [ limit, setLimit ] = useState(10);
+  const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
 
   const categories = [
