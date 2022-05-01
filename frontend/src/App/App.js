@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { Footer } from "../Common/Footer";
-import "./App.css"
 import Nav from "../Common/Nav";
 import Home from "../Page/Home";
 import Articles from "../Page/Articles";
@@ -10,18 +9,21 @@ import Community from "../Components/Articles/Community";
 import CommunityDetail from "../Components/Articles/CommunityDetail";
 import TestBug from "../Components/Articles/TestBug";
 import Profile from "../Page/Profile";
+import ProfileInfo from "../Components/Profile/ProfileInfo";
+import EditProfile from "../Components/Profile/EditProfile";
 import Admin from "../Page/Admin";
-import Login from "../Page/Login";
-import Logout from "../Page/Logout";
-import Signup from "../Page/Signup";
-import PageNotFound from "../Page/404";
 import { Users } from "../Components/Admin/Users";
 import { Notice as AdminNotice } from "../Components/Admin/Notice";
 import { Community as AdminCommunity } from "../Components/Admin/Community";
 import { TestBug as AdminTestBug } from "../Components/Admin/TestBug";
 import EditUser from "../Components/Admin/EditUser";
-import ProfileInfo from "../Components/Profile/ProfileInfo";
-import EditProfile from "../Components/Profile/EditProfile";
+import EditNotice from "../Components/Admin/EditNotice";
+import EditCommunity from "../Components/Admin/EditCommunity";
+import Login from "../Page/Login";
+import Logout from "../Page/Logout";
+import Signup from "../Page/Signup";
+import PageNotFound from "../Page/404";
+import "./App.css";
 
 function App() {
   return (
@@ -48,8 +50,12 @@ function App() {
             <Route path="users" element={<Users />}>
               <Route path=":userId" element={<EditUser/>} />
             </Route>
-            <Route path="notice" element={<AdminNotice />} />
-            <Route path="community" element={<AdminCommunity />} />
+            <Route path="notice" element={<AdminNotice />}>
+              <Route path=":noticeId" element={<EditNotice/>} />
+            </Route>
+            <Route path="community" element={<AdminCommunity />}>
+              <Route path=":communityId" element={<EditCommunity/>} />
+            </Route>
             <Route path="testbug" element={<AdminTestBug />} />
           </Route>
           <Route path="login" element={<Login />} />
