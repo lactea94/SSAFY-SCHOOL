@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
+import "./css/Articles.css";
 
 export default function Notice() {
   const [ searchCategory, setSearchCategory ] = useState('title');
@@ -17,7 +17,7 @@ export default function Notice() {
   const categories = [
     { value: 'title', name: '제목'},
     { value: 'content', name: '내용'},
-  ]
+  ];
 
   useEffect(() => {
     setNoticeList([
@@ -51,7 +51,7 @@ export default function Notice() {
       { id: 27, title: "공지28", content: "공지내용28", createdDate: "2022-04-08 15:30:00", updatedDate: "2022-04-09 15:30:30" },
       { id: 28, title: "공지29", content: "공지내용29", createdDate: "2022-04-07 15:30:00", updatedDate: "2022-04-08 15:30:30" },
     ])
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (searchCategory === 'title') {
@@ -63,7 +63,7 @@ export default function Notice() {
         noticeList.filter((notice) => 
           notice.content.toLowerCase().includes(searchText.toLowerCase())
     ))}
-  }, [searchCategory, searchText, noticeList])
+  }, [searchCategory, searchText, noticeList]);
 
 
   function Notices() {

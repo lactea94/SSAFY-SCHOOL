@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
-import { FaCommentMedical } from 'react-icons/fa';
+import { FaCommentMedical } from "react-icons/fa";
 import Search from "../Search/Search";
 
 export default function TestBug() {
@@ -17,12 +17,12 @@ export default function TestBug() {
 
   const categories = [
     { value: 'content', name: '내용'},
-  ]
+  ];
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken'))
       setIsAuthenticated(true)
-  }, [])
+  }, []);
 
   useEffect(() => {
     setLogs([
@@ -40,7 +40,7 @@ export default function TestBug() {
       { id: 11, userId: 3, content: "내용12", createdDate: "2022-04-08 15:30:30" },
       { id: 12, userId: 1, content: "내용13", createdDate: "2022-04-07 15:30:30" },
     ])
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (searchCategory === 'content') {
@@ -48,7 +48,7 @@ export default function TestBug() {
         logs.filter((log) => 
           log.content.toLowerCase().includes(searchText.toLowerCase())
     ))}
-  }, [searchCategory, searchText, logs])
+  }, [searchCategory, searchText, logs]);
 
   function Log() {
     return (
