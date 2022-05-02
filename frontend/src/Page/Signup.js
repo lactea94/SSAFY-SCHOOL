@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userInstance } from "../api";
 import { AiFillCheckCircle } from "react-icons/ai";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import './css/Signup.css'
 
 export default function Signup() {
@@ -17,50 +19,100 @@ export default function Signup() {
   const [ checkId, setCheckId ] = useState(false);
   const [ checkNickname, setCheckNickname ] = useState(false);
   const [ checkEmail, setCheckEmail ] = useState(false);
+  const [ checkIdText, setCheckIdText ] = useState("아이디");
+  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
+  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
+  const checkPasswordText = "비밀번호";
   const userAPI = userInstance();
   const navigate = useNavigate();
-
+  const MySwal = withReactContent(Swal)
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
   async function duplicateId() {
     if (!signupInfo.id) {
-      alert("아이디를 입력하세요.");
+      Toast.fire({
+        icon: "question",
+        title: "아이디를 입력하세요."
+      });
       return
     };
     try {
       await userAPI.post('users/duplicate-check-id', { id: signupInfo.id});
       setCheckId(true);
+      setCheckIdText("");
+      Toast.fire({
+        icon: "success",
+        title: "사용 가능한 아이디 입니다."
+      });
     } catch (error) {
       if (error.response.status === 409) {
-        alert("이미 존재하는 아이디 입니다.");
+        Toast.fire({
+          icon: "error",
+          title: "이미 존재하는 아이디 입니다."
+        });
+        return
       }
     };
   };
   
   async function duplicateNickname() {
     if (!signupInfo.nickname) {
-      alert("닉네임을 입력하세요.");
+      Toast.fire({
+        icon: "question",
+        title: "닉네임을 입력하세요."
+      });
       return
     };
     try {
       await userAPI.post('users/duplicate-check-nickname', { nickname: signupInfo.nickname});
       setCheckNickname(true);
+      setCheckNicknameText("");
+      Toast.fire({
+        icon: "success",
+        title: "사용 가능한 닉네임 입니다."
+      });
     } catch (error) {
       if (error.response.status === 409) {
-        alert("이미 존재하는 닉네임 입니다.");
+        Toast.fire({
+          icon: "error",
+          title: "이미 존재하는 닉네임 입니다."
+        });
       }
     };
   };
 
   async function duplicateEmail() {
     if (!signupInfo.email) {
-      alert("이메일을 입력하세요.");
+      Toast.fire({
+        icon: "question",
+        title: "이메일을 입력하세요."
+      });
       return
     };
     try {
       await userAPI.post('users/duplicate-check-email', { email: signupInfo.email});
       setCheckEmail(true);
+      setCheckEmailText("");
+      Toast.fire({
+        icon: "success",
+        title: "사용 가능한 이메일 입니다."
+      });
     } catch (error) {
       if (error.response.status === 409) {
-        alert("이미 존재하는 이메일 입니다.");
+        Toast.fire({
+          icon: "error",
+          title: "이미 존재하는 이메일 입니다."
+        });
       }
     };
   };
@@ -96,24 +148,25 @@ export default function Signup() {
     if (validation()) {
       try {
         await userAPI.post('/users/signup', signupInfo);
-        navigate('/');
-        navigate(0);
+        await MySwal.fire({
+          icon: "success",
+          title: "회원가입 성공!",
+        }).then(function() {navigate('/')})
       } catch (error) {
-        console.log(error);
+        MySwal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "오류가 발생하였습니다.",
+        });
       }
     } else {
-      if (!checkId) {
-        alert("아이디 중복확인 하세요.")
-      }
-      if (signupInfo.password !== passwordConfirm) {
-        alert("비밀번호를 확인 하세요.")
-      }
-      if (!checkNickname) {
-        alert("닉네임 중복확인 하세요.")
-      }
-      if (!checkEmail) {
-        alert("이메일 중복확인 하세요.")
-      }
+      MySwal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: `${
+          [checkIdText, checkPasswordText, checkEmailText, checkNicknameText].filter(text => text.length > 0).join(', ')
+        }을(를) 확인하세요`,
+      });
     }
   };
   
