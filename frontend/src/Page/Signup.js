@@ -91,6 +91,12 @@ export default function Signup() {
     };
   };
 
+  // 이메일 체크 함수
+  function checkEmailForm(str) {
+    var email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    return email.test(str)
+  };
+
   async function duplicateEmail() {
     if (!signupInfo.email) {
       Toast.fire({
@@ -99,6 +105,15 @@ export default function Signup() {
       });
       return
     };
+
+    if (!checkEmailForm(signupInfo.email)) {
+      Toast.fire({
+        icon: "error",
+        title: "올바른 이메일 형식을 입력하세요."
+      });
+      return
+    };
+
     try {
       await userAPI.post('users/duplicate-check-email', { email: signupInfo.email});
       setCheckEmail(true);
