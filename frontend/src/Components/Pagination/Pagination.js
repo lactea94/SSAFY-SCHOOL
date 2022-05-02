@@ -1,4 +1,10 @@
 import "./css/Pagination.css";
+import {
+  FaAngleLeft,
+  FaAngleRight,
+  FaAngleDoubleLeft,
+  FaAngleDoubleRight
+} from 'react-icons/fa';
 
 export default function Pagination ({ total, limit, page, setPage, setLimit }) {
   const numPages = Math.ceil(total / limit);
@@ -37,20 +43,22 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
           <option value="15">15</option>
           <option value="20">20</option>
         </select>
-        <button
-          className="page-button"
-          onClick={() => setPage(1)}
-          disabled={page === 1}
-        >
-          &lt;&lt;
-        </button>
-        <button
-          className="page-button"
-          onClick={() => setPage(page - 1)}
-          disabled={page === 1}
-        >
-          &lt;
-        </button>
+        <div className="page-move-container">
+          <button
+            className="page-move-button"
+            onClick={() => setPage(1)}
+            disabled={page === 1}
+          >
+            <FaAngleDoubleLeft/>
+          </button>
+          <button
+            className="page-move-button"
+            onClick={() => setPage(page - 1)}
+            disabled={page === 1}
+          >
+            <FaAngleLeft/>
+          </button>
+        </div>
         {array().map(i => (
           <button
             className="page-button"
@@ -60,21 +68,23 @@ export default function Pagination ({ total, limit, page, setPage, setLimit }) {
           >
             {i}
           </button>
-        ))}  
-        <button
-          className="page-button"
-          onClick={() => setPage(page + 1)}
-          disabled={page === numPages}
-        >
-          &gt;
-        </button>
-        <button
-          className="page-button"
-          onClick={() => setPage(numPages)}
-          disabled={page === numPages}
-        >
-          &gt;&gt;
-        </button>
+        ))}
+        <div className="page-move-container">
+          <button
+            className="page-move-button"
+            onClick={() => setPage(page + 1)}
+            disabled={page === numPages}
+          >
+            <FaAngleRight/>
+          </button>
+          <button
+            className="page-move-button"
+            onClick={() => setPage(numPages)}
+            disabled={page === numPages}
+          >
+            <FaAngleDoubleRight/>
+          </button>
+        </div>
       </div>
     )
   };

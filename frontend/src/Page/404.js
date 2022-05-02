@@ -1,7 +1,13 @@
+import './css/404.css'
+
 export default function PageNotFound() {
   return (
-    <div style={{width: "100%", height: "600px", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center"}}>
-      <img src="./image/pigeon.gif" style={{height: "100%", marginTop: "100px"}}/>
+    <div className="not-found-container ">
+      <img
+        className="not-found-image"
+        src="/image/pigeon.gif"
+        alt="notfound"
+      />
       <h1>Page Not Found</h1>
     </div>
   )

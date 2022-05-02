@@ -1,0 +1,54 @@
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  width: 50%;
+}
+
+.signup-input-label {
+  text-align: start;
+  width: 100%;
+}
+
+.signup-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.signup-input {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.signup-check {
+  margin: auto 1rem;
+}
+
+.signup-radio {
+  width: 2rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
+
+.signup-button {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.8rem;
+  border: none;
+  font-weight: bold;
+  background-color: dodgerblue;
+  cursor: pointer;
+  margin: 1rem 0;
+}

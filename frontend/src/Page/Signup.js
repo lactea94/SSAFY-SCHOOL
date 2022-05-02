@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userInstance } from "../api";
+import { FaCheck } from 'react-icons/fa';
+import './css/Signup.css'
 
 export default function Signup() {
   const [signupInfo, setSignupInfo] = useState({
@@ -49,80 +51,91 @@ export default function Signup() {
       }
     }
   };
-
-  const inputStyle = {
-    width: "500px",
-    height: "30px",
-    fontSize: "20px",
-    margin: "10px 0"
-  };
   
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: 'center'}}>
+    <div className="signup-container">
       <h1>
         Sign Up
       </h1>
-      <form style={{display: "flex", flexDirection: "column", alignItems: "center", margin: "1rem"}}
+      <form className="signup-form"
         method="post"
         onSubmit={signupSubmit}
       >
-        <label htmlFor="id" style={{marginRight: "auto"}}>아이디</label>
-        <input type="text" id="id" style={inputStyle} required 
-          value={signupInfo.id}
-          onChange={signupInput}
-        />
-        <label htmlFor="password" style={{marginRight: "auto"}}>비밀번호</label>
-        <input type="password" id="password" style={inputStyle} required 
-          value={signupInfo.password}
-          onChange={signupInput}
-        />
-        <label htmlFor="passwordConfirm" style={{marginRight: "auto"}}>비밀번호확인</label>
-        <input type="password" id="passwordConfirm" style={inputStyle} required 
-          value={passwordConfirm}
-          onChange={(e) => setPasswordConfirm(e.target.value)}
-        />
-        <label htmlFor="nickname" style={{marginRight: "auto"}}>닉네임</label>
-        <input type="text" id="nickname" style={inputStyle} required 
-          value={signupInfo.nickname}
-          onChange={signupInput}
-        />
-        <label htmlFor="name" style={{marginRight: "auto"}}>이름</label>
-        <input type="text" id="name" style={inputStyle} required 
-          value={signupInfo.name}
-          onChange={signupInput}
-        />
+        <label className="signup-input-label" htmlFor="id">아이디</label>
+        <div className="signup-row">
+          <input className="signup-input" type="text" id="id" required 
+            value={signupInfo.id}
+            onChange={signupInput}
+          />
+          <div className="signup-check">
+            <FaCheck />
+          </div>
+        </div>
+        <label className="signup-input-label" htmlFor="password">비밀번호</label>
+        <div className="signup-row">
+          <input className="signup-input" type="password" id="password" required 
+            value={signupInfo.password}
+            onChange={signupInput}
+          />
+        </div>
+        <label className="signup-input-label" htmlFor="passwordConfirm">비밀번호확인</label>
+        <div className="signup-row">
+          <input className="signup-input" type="password" id="passwordConfirm" required 
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+          />
+        </div>
+        <label className="signup-input-label" htmlFor="nickname">닉네임</label>
+        <div className="signup-row">
+          <input className="signup-input" type="text" id="nickname" required 
+            value={signupInfo.nickname}
+            onChange={signupInput}
+          />
+          <div className="signup-check">
+            <FaCheck />
+          </div>
+        </div>
+        <label className="signup-input-label" htmlFor="name">이름</label>
+        <div className="signup-row">
+          <input className="signup-input" type="text" id="name" required 
+            value={signupInfo.name}
+            onChange={signupInput}
+          />
+        </div>
         <p style={{margin: "auto auto 0 0"}}>성별</p>
-        <div style={{display: "flex", alignItems: "center", margin: "auto auto auto auto"}}>
+        <div style={{display: "flex", alignItems: "center", margin: "auto"}}>
           <label htmlFor="male">남</label>
-          <input type="radio" id="gender" style={{width: "50px", height: "30px", fontSize: "20px"}} required 
+          <input
+            className="signup-radio"
+            type="radio"
+            id="gender"
             value={true}
             onChange={signupInput}
             checked={signupInfo.gender}
+            required 
           />
           <label htmlFor="female">여</label>
-          <input type="radio" id="gender" style={{width: "50px", height: "30px", fontSize: "20px"}} required 
+          <input
+            className="signup-radio"
+            type="radio"
+            id="gender"
             value={false}
             onChange={signupInput}
             checked={!signupInfo.gender}
+            required 
           />
         </div>
-        <label htmlFor="email" style={{marginRight: "auto"}}>이메일</label>
-        <input type="email" id="email" style={inputStyle} required 
-          value={signupInfo.email}
-          onChange={signupInput}
-        />
-        <button 
-          style={{
-            width: "500px",
-            height: "40px",
-            fontSize: "20px",
-            borderRadius: "10px",
-            border: "0px",
-            fontWeight: "bolder",
-            backgroundColor: "dodgerblue",
-            cursor: "pointer"
-          }}
-        >
+        <label className="signup-input-label" htmlFor="email">이메일</label>
+        <div className="signup-row">
+          <input className="signup-input" type="email" id="email" required 
+            value={signupInfo.email}
+            onChange={signupInput}
+          />
+          <div className="signup-check">
+            <FaCheck />
+          </div>
+        </div>
+        <button className="signup-button">
           회원가입
         </button>
       </form>

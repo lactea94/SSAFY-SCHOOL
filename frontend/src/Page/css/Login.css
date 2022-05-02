@@ -1,0 +1,32 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  width: 50%;
+}
+
+.login-input {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.login-button {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.8rem;
+  border: none;
+  font-weight: bold;
+  background-color: dodgerblue;
+  cursor: pointer;
+  margin: 1rem 0;
+}

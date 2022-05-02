@@ -2,12 +2,31 @@ import { useEffect, useState } from 'react';
 import {PieChart} from 'react-minimal-pie-chart'
 import holidays from './holidays';
 
-export default function EachMonthAttendance() {
-  const [today, setToday] = useState({year: 0, month:0, date: 0})
-  const [weekdays, setWeekdays] = useState(30);
-  const [chartdata,setChartdata] = useState(null);
-  const [attendance, setAttendance] = useState(0);
+export default function EachMonthAttendance({ checkInList, checkOutList }) {
+  const [ today, setToday ] = useState({year: 0, month:0, date: 0})
+  const [ weekdays, setWeekdays ] = useState(30);
+  const [ chartdata, setChartdata ] = useState(null);
+  const [ attendance, setAttendance ] = useState(0);
+  const [ tardy, setTardy ] = useState(0);
+  // const [ checkInList, setCheckInList ] = useState([]);
+  // const [ checkOutList, setCheckOutList ] = useState([]);
 
+  // useEffect(() => {
+  //   async function saveCheckIn() {
+  //     const res = await apiInstance().get(`/users/check-indate`)
+  //     setCheckInList(res.data.map(data => data.checkIndate))
+  //   };
+  
+  //   async function saveCheckOut() {
+  //     const res = await apiInstance().get(`/users/check-outdate`)
+  //     setCheckOutList(res.data.map(data => data.checkOutDate))
+  //   };
+
+  //   saveCheckIn();
+  //   saveCheckOut();
+  // }, [])
+
+  // 이번달 일 수 계산
   useEffect(() => {
     const todayInfo = new Date();
     const newToday = {
@@ -30,13 +49,27 @@ export default function EachMonthAttendance() {
       }
     }
     setWeekdays(count)
-
-    // 출석수 계산
-    let presents = 10;
-    setAttendance(presents);
-    setChartdata([{title:'',value: presents,color:'#F6CB44'}])
   }, [])
 
+  // 출석수 계산
+  useEffect(() => {
+    let presents = 0
+    let tardys = 0
+    
+    for (let i = 0; i < checkOutList.length; i ++) {
+      if (parseInt(checkOutList[i].slice(5, 7)) === today.month){
+        if (checkInList.includes(checkOutList[i])) {
+          presents++
+        } else {
+          tardys++
+        }
+      }
+    }
+    presents -= Math.floor(tardys / 3)
+    setAttendance(presents);
+    setTardy(tardys);
+    setChartdata([{title:'',value: presents,color:'#F6CB44'}])
+  }, [checkInList, checkOutList, today])
   return (
     <div style={{
       display: "flex",
@@ -56,13 +89,14 @@ export default function EachMonthAttendance() {
         data={chartdata}
         reveal={parseInt((attendance * 100) / weekdays)}
         lineWidth={10}
-        label={() => `${attendance} / ${weekdays}`}
+        label={() => `${Math.round(attendance / weekdays * 100)}%`}
         background='#f3f3f3'
         rounded
         animate
         labelPosition={0}
       />}
       <h2 style={{display: "inline-block", marginTop: "0.5rem"}}>싸피 지원금 {parseInt(1000000 * attendance / weekdays).toLocaleString("ko-KR")}원</h2>
+      <p>지각/조퇴/외출 : {tardy}</p>
     </div>
   );
 }

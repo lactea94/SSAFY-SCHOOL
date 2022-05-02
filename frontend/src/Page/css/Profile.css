@@ -6,3 +6,24 @@
   margin-top: 50px;
   margin-bottom: 30px;
 }
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.profile-info-row {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-info-row div {
+  margin: 0.5rem 1rem;
+}
+
+.profile-edit-link {
+  color: #3396F4;
+}
