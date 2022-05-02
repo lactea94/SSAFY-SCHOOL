@@ -7,10 +7,13 @@ import "./css/CommunityDetail.css"
 export default function CommunityDetail() {
   const { state } = useLocation();
   const [ updateOpen, setUpdateOpen ] = useState(false);
+
+  // 내 유저 정보
   const user = {
     id: 0,
   }
 
+  // 댓글 정보 호출
   const comments = [
     { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
     { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },

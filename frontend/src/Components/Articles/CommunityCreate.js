@@ -7,16 +7,19 @@ export default function CommunityCreate({ setCreateOpen }) {
   const [ content, setContent ] = useState();
   const navigate = useNavigate();
 
+  // 게시글 생성
   function handleCreate() {
     console.log(title);
     console.log(content);
     navigate('/articles/community')
   }
 
+  // 모달 닫기
   function handleCancel() {
     setCreateOpen(false)
   }
 
+  // 모달 위치 제어
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed; 

@@ -35,12 +35,12 @@ export default function EditNotice() {
     setNotice(newNotice);
   };
 
-  // 수정
+  // 공지사항 수정
   function handleSubmit() {
     console.log(notice)
   }
 
-  // 삭제
+  // 공지사항 삭제
   function handleClick() {
 
   }

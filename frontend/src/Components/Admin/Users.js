@@ -13,7 +13,6 @@ export function Users() {
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
-
   const categories = [
     { value: 'userId', name: '아이디'},
     { value: 'email', name: '이메일'},

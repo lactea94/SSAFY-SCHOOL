@@ -7,16 +7,19 @@ export default function CommunityUpdate({ title, content, setUpdateOpen }) {
   const [ newcontent, setNewContent ] = useState(content);
   const navigate = useNavigate();
 
+  // 게시글 수정
   function handleUpdate() {
     console.log(newTitle);
     console.log(newcontent);
     navigate(0)
   }
   
+  // 모달 닫기
   function handleCancel() {
     setUpdateOpen(false)
   }
 
+  // 모달 위치 제어
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed; 

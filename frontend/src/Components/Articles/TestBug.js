@@ -14,16 +14,17 @@ export default function TestBug() {
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
-
   const categories = [
     { value: 'content', name: '내용'},
   ];
 
+  // 로그인 사용자 확인
   useEffect(() => {
     if (localStorage.getItem('accesstoken'))
       setIsAuthenticated(true)
   }, []);
 
+  // 버그 리포트 호출
   useEffect(() => {
     setLogs([
       { id: 0, userId: 1, content: "내용1", createdDate: "2022-04-19 15:30:30" },

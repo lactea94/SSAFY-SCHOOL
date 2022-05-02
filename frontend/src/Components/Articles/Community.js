@@ -17,17 +17,19 @@ export default function Community() {
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
-
   const categories = [
     { value: 'title', name: '제목'},
     { value: 'content', name: '내용'},
   ];
   
+  // 로그인 사용자 확인
   useEffect(() => {
     if (localStorage.getItem('accesstoken'))
       setIsAuthenticated(true)
   }, []);
 
+
+  // 공지사항 및 게시글 정보 호출
   useEffect(() => {
     setNoticeList([
       { id: 0, title: "공지게시글1", content: "내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
@@ -48,6 +50,7 @@ export default function Community() {
     ]);
   }, []);
 
+  // 검색 필터링
   useEffect(() => {
     if (searchCategory === 'title') {
       setFilteredCommunityList(() => 
@@ -60,6 +63,7 @@ export default function Community() {
     ))}
   }, [searchCategory, searchText, communityList]);
 
+  // 공지사항
   function Notices() {
     return (
       noticeList.map((notice) => (

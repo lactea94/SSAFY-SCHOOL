@@ -13,11 +13,11 @@ export function TestBug() {
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
-
   const categories = [
     { value: 'content', name: '내용'},
   ];
 
+  // 버그 리포트 호출
   useEffect(() => {
     setLogs([
       { id: 0, userId: 1, content: "내용1", createdDate: "2022-04-19 15:30:30" },
@@ -36,6 +36,7 @@ export function TestBug() {
     ])
   }, []);
 
+  // 검색 필터링
   useEffect(() => {
     if (searchCategory === 'content') {
       setFilteredLogs(() => 
@@ -44,6 +45,7 @@ export function TestBug() {
     ))}
   }, [searchCategory, searchText, logs]);
 
+  // 버그 리포트
   function Log() {
     return (
       filteredLogs.slice(offset, offset + limit).map((log) => 

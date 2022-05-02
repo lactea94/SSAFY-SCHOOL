@@ -28,6 +28,7 @@ export default function EditUser() {
   const [ addMileage, setAddMileage ] = useState(0);
   
   
+  // 유저 정보 호출
   useEffect(() => {
     async function saveUser() {
       const res = await apiInstance().get(`users/${userId}`);
@@ -36,11 +37,13 @@ export default function EditUser() {
     saveUser();
   }, [userId]);
 
+  // 마일리지 정보 저장
   useEffect(() => {
     setTotalMileage(user.totalMileage);
     setRemainMileage(user.remainMileage);
   }, [user]);
 
+  // 출석 정보 호출
   useEffect(() => {
     async function saveCheckIn() {
       const res = await apiInstance().get(`/check/in/${userId}`)
@@ -56,6 +59,7 @@ export default function EditUser() {
     saveCheckOut();
   }, [userId]);
 
+  // 유저 정보 변경
   function handleChange({target: {id, value}}) {
     if (id === "admin") {
       value = parseInt(value)
@@ -74,6 +78,8 @@ export default function EditUser() {
     setUser(newUser);
   };
 
+
+  // 마일리지 추가
   function plusMileage() {
     if (addMileage) {
       setTotalMileage(totalMileage + parseInt(addMileage));
@@ -82,6 +88,7 @@ export default function EditUser() {
     }
   };
 
+  // 유저 정보 저장
   async function handleSubmit() {
     try {
       await apiInstance().put(`/users/${userId}`, {
@@ -102,6 +109,7 @@ export default function EditUser() {
     }
   }
 
+  // 라디오 컨테이너
   function radioContainer(lst) {
     return (
       lst.map((data) => (
