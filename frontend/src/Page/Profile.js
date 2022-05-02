@@ -1,7 +1,7 @@
 import './css/Profile.css';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { FaUserEdit } from 'react-icons/fa';
+import { RiLockPasswordFill } from "react-icons/ri";
 
 export default function Profile() {
   const { state } = useLocation();
@@ -24,7 +24,7 @@ export default function Profile() {
                 user: state.user
               }}
             >
-              <FaUserEdit />
+              <RiLockPasswordFill />
             </Link>
           </div>
         </div>
