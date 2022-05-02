@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
-import { FaTrash } from "react-icons/fa";
 import Search from "../Search/Search";
 
 export function TestBug() {
@@ -50,12 +49,11 @@ export function TestBug() {
     return (
       filteredLogs.slice(offset, offset + limit).map((log) => 
         (
-          <div className="admin-row" key={log.id}>
+          <div className="admin-bugs-row" key={log.id}>
             <div>{log.id}</div>
             <div>{log.content}</div>
             <div>{log.userId}</div>
             <div>{DateFormat(log.createdDate)}</div>
-            <div className="admin-delete-button"><FaTrash/></div>
           </div>
         )
       )
@@ -65,12 +63,11 @@ export function TestBug() {
   return (
     <div>
       <div className="article-container">
-        <div className="admin-index-row">
+        <div className="admin-bugs-index-row">
           <div>#</div>
           <div>제보</div>
           <div>작성자</div>
           <div>작성일자</div>
-          <div>삭제</div>
         </div>
         {Log()}
       </div>
