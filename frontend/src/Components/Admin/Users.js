@@ -63,9 +63,6 @@ export function Users() {
             <Link
               to={`${user.id}`}
               className="admin-update-button"
-              state={{
-                user: user
-              }}
             >
               <FaUserEdit/>
             </Link>

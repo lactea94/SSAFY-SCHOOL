@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { apiInstance } from "../../api";
 import './css/EditUser.css'
 
 export default function EditUser() {
   const { userId } = useParams();
-  const { state } = useLocation();
   const navigate = useNavigate();
   const [ user, setUser ] = useState({
     id: '',
@@ -28,11 +27,19 @@ export default function EditUser() {
   const [ checkOutList, setCheckOutList ] = useState([]);
   const [ addMileage, setAddMileage ] = useState(0);
   
+  
   useEffect(() => {
-    setUser(state.user);
-    setTotalMileage(state.user.totalMileage);
-    setRemainMileage(state.user.remainMileage);
-  }, [state])
+    async function saveUser() {
+      const res = await apiInstance().get(`users/${userId}`);
+      setUser(res.data);
+    };
+    saveUser();
+  }, [userId]);
+
+  useEffect(() => {
+    setTotalMileage(user.totalMileage);
+    setRemainMileage(user.remainMileage);
+  }, [user]);
 
   useEffect(() => {
     async function saveCheckIn() {
@@ -47,7 +54,7 @@ export default function EditUser() {
 
     saveCheckIn();
     saveCheckOut();
-  }, [userId])
+  }, [userId]);
 
   function handleChange({target: {id, value}}) {
     if (id === "admin") {
@@ -73,22 +80,26 @@ export default function EditUser() {
       setRemainMileage(remainMileage + parseInt(addMileage));
       setAddMileage(0);
     }
-  }
+  };
 
   async function handleSubmit() {
-    await apiInstance().put(`/users/update/${userId}`, {
-      nickname: user.nickname,
-      name : user.name,
-      gender : user.gender,
-      admin : user.admin,
-      totalMileage : totalMileage,
-      remainMileage : remainMileage,
-      studentId : user.studentId,
-      classNumber : user.classNumber,
-      teamCode : user.teamCode,
-      local : user.local
-    });
-    navigate(0);
+    try {
+      await apiInstance().put(`/users/${userId}`, {
+        nickname: user.nickname,
+        name : user.name,
+        gender : user.gender,
+        admin : user.admin,
+        totalMileage : totalMileage,
+        remainMileage : remainMileage,
+        studentId : user.studentId,
+        classNumber : user.classNumber,
+        teamCode : user.teamCode,
+        local : user.local
+      });
+      navigate(0);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   function radioContainer(lst) {
@@ -117,7 +128,12 @@ export default function EditUser() {
       </div>
       <div className="edit-user-row">
         <div className="label">닉네임</div>
-        <div className="edit-user-text">{user.nickname}</div>
+        <input
+          className="edit-user-input"
+          id="nickname"
+          value={user.nickname}
+          onChange={handleChange}
+        />
       </div>
       <div className="edit-user-row">
         <div className="label">이메일</div>
