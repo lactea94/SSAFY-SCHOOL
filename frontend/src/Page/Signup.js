@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userInstance } from "../api";
-import { FaCheck } from 'react-icons/fa';
+import { AiFillCheckCircle } from "react-icons/ai";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import './css/Signup.css'
 
 export default function Signup() {
@@ -14,21 +16,138 @@ export default function Signup() {
     email: "",
   });
   const [ passwordConfirm, setPasswordConfirm ] = useState("");
-  const [ checkPasswordConfirm, setCheckPasswordConfirm ] = useState(false);
-  const api = userInstance();
+  const [ checkId, setCheckId ] = useState(false);
+  const [ checkNickname, setCheckNickname ] = useState(false);
+  const [ checkEmail, setCheckEmail ] = useState(false);
+  const [ checkIdText, setCheckIdText ] = useState("아이디");
+  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
+  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
+  const checkPasswordText = "비밀번호";
+  const userAPI = userInstance();
   const navigate = useNavigate();
+  const MySwal = withReactContent(Swal)
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  async function duplicateId() {
+    if (!signupInfo.id) {
+      Toast.fire({
+        icon: "question",
+        title: "아이디를 입력하세요."
+      });
+      return
+    };
+    try {
+      await userAPI.post('users/duplicate-check-id', { id: signupInfo.id});
+      setCheckId(true);
+      setCheckIdText("");
+      Toast.fire({
+        icon: "success",
+        title: "사용 가능한 아이디 입니다."
+      });
+    } catch (error) {
+      if (error.response.status === 409) {
+        Toast.fire({
+          icon: "error",
+          title: "이미 존재하는 아이디 입니다."
+        });
+        return
+      }
+    };
+  };
+  
+  async function duplicateNickname() {
+    if (!signupInfo.nickname) {
+      Toast.fire({
+        icon: "question",
+        title: "닉네임을 입력하세요."
+      });
+      return
+    };
+    try {
+      await userAPI.post('users/duplicate-check-nickname', { nickname: signupInfo.nickname});
+      setCheckNickname(true);
+      setCheckNicknameText("");
+      Toast.fire({
+        icon: "success",
+        title: "사용 가능한 닉네임 입니다."
+      });
+    } catch (error) {
+      if (error.response.status === 409) {
+        Toast.fire({
+          icon: "error",
+          title: "이미 존재하는 닉네임 입니다."
+        });
+      }
+    };
+  };
+
+  // 이메일 체크 함수
+  function checkEmailForm(str) {
+    var email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    return email.test(str)
+  };
+
+  async function duplicateEmail() {
+    if (!signupInfo.email) {
+      Toast.fire({
+        icon: "question",
+        title: "이메일을 입력하세요."
+      });
+      return
+    };
+
+    if (!checkEmailForm(signupInfo.email)) {
+      Toast.fire({
+        icon: "error",
+        title: "올바른 이메일 형식을 입력하세요."
+      });
+      return
+    };
+
+    try {
+      await userAPI.post('users/duplicate-check-email', { email: signupInfo.email});
+      setCheckEmail(true);
+      setCheckEmailText("");
+      Toast.fire({
+        icon: "success",
+        title: "사용 가능한 이메일 입니다."
+      });
+    } catch (error) {
+      if (error.response.status === 409) {
+        Toast.fire({
+          icon: "error",
+          title: "이미 존재하는 이메일 입니다."
+        });
+      }
+    };
+  };
 
   function validation() {
-    if (signupInfo.password === passwordConfirm) setCheckPasswordConfirm(true)
-    if (checkPasswordConfirm) return true
+    if ( signupInfo.password === passwordConfirm && checkId && checkEmail && checkNickname ) return true
     return false
-  }
+  };
 
   function signupInput({target: {id, value}}) {
-    if(id === "gender") {
-      if(value === "false") {
+    if (id === "id") {
+      setCheckId(false);
+    } else if (id === "nickname"){
+      setCheckNickname(false);
+    } else if (id === "email"){
+      setCheckEmail(false);
+    } else if(id === "gender") {
+      if (value === "false") {
         value = false;
-      }else {
+      } else {
         value = true;
       }
     }
@@ -39,16 +158,30 @@ export default function Signup() {
     setSignupInfo(newLoginInfo);
   };
 
-  const signupSubmit = async (e) => {
+  async function signupSubmit(e) {
     e.preventDefault();
     if (validation()) {
       try {
-        await api.post('/users/signup', signupInfo);
-        navigate('/');
-        navigate(0);
+        await userAPI.post('/users/signup', signupInfo);
+        await MySwal.fire({
+          icon: "success",
+          title: "회원가입 성공!",
+        }).then(function() {navigate('/')})
       } catch (error) {
-        console.log(error)
+        MySwal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "오류가 발생하였습니다.",
+        });
       }
+    } else {
+      MySwal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: `${
+          [checkIdText, checkPasswordText, checkEmailText, checkNicknameText].filter(text => text.length > 0).join(', ')
+        }을(를) 확인하세요`,
+      });
     }
   };
   
@@ -67,9 +200,20 @@ export default function Signup() {
             value={signupInfo.id}
             onChange={signupInput}
           />
-          <div className="signup-check">
-            <FaCheck />
-          </div>
+          {checkId ? (
+            <div
+              className="signup-check-confirm"
+            >
+              <AiFillCheckCircle/>
+            </div>
+          ) : (
+            <div
+              className="signup-check"
+              onClick={duplicateId}
+            >
+              중복확인
+            </div>
+          )}
         </div>
         <label className="signup-input-label" htmlFor="password">비밀번호</label>
         <div className="signup-row">
@@ -91,9 +235,20 @@ export default function Signup() {
             value={signupInfo.nickname}
             onChange={signupInput}
           />
-          <div className="signup-check">
-            <FaCheck />
-          </div>
+          {checkNickname ? (
+            <div
+              className="signup-check-confirm"
+            >
+              <AiFillCheckCircle/>
+            </div>
+          ) : (
+            <div
+              className="signup-check"
+              onClick={duplicateNickname}
+            >
+              중복확인
+            </div>
+          )}
         </div>
         <label className="signup-input-label" htmlFor="name">이름</label>
         <div className="signup-row">
@@ -131,9 +286,20 @@ export default function Signup() {
             value={signupInfo.email}
             onChange={signupInput}
           />
-          <div className="signup-check">
-            <FaCheck />
-          </div>
+          {checkEmail ? (
+            <div
+              className="signup-check-confirm"
+            >
+              <AiFillCheckCircle/>
+            </div>
+          ) : (
+            <div
+              className="signup-check"
+              onClick={duplicateEmail}
+            >
+              중복확인
+            </div>
+          )}
         </div>
         <button className="signup-button">
           회원가입

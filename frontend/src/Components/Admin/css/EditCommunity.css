@@ -1,0 +1,126 @@
+.admin-community-container {
+  margin: 5rem auto;
+  width: 90%;
+}
+
+.admin-community-title {
+  font-size: 2rem;
+  border: none;
+  border-top: 2px solid black;
+  border-bottom: 1px solid lightgray;
+  outline: none;
+  width: 100%;
+  text-align: start;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.admin-community-title:focus {
+  background-color: lightgray;
+}
+
+.is-admin {
+  display: flex;
+  justify-content: start;
+  margin: 1rem;
+}
+
+.is-admin-label {
+  font-size: 1.2rem;
+}
+
+.is-admin-toggle {
+  margin: auto 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.admin-community-date {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid lightgray;
+  padding: 1rem 0;
+  color: gray;
+}
+
+.admin-community-created {
+  text-align: start;
+}
+
+.admin-community-updated {
+  text-align: end;
+}
+
+.admin-community-content {
+  text-align: start;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  outline: none;
+  resize: none;
+  font-size: 1rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.admin-community-content:focus {
+  background-color: lightgray;
+}
+
+.admin-community-update {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+.admin-community-update-button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #3396F4;
+}
+
+.admin-community-delete-button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgb(236, 55, 55);
+}
+
+.admin-comments-container {
+  margin-top: 3rem;
+}
+
+.admin-comments-header {
+  border-bottom: 2px solid black;
+  font-size: 1.2rem;
+  text-align: start;
+  padding: 1rem 0;
+}
+
+.admin-comment {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  border-bottom: 1px solid lightgray;
+  font-size: 0.8rem;
+  padding: 0.6rem 0;
+}
+
+.admin-comment-button {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1280px) {
+  .admin-community-container {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .admin-community-container {
+    width: 33%;
+  }
+}

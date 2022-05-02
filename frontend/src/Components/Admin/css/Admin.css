@@ -26,14 +26,14 @@
 .admin-notice-row {
   display: grid;
   grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
-  border-bottom: 1px solid gra;
+  border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
-  background: #FFE651;
+  background: #3396F4;
 }
 
 .admin-notice-row:hover {
-  background: #FAE98A;
+  background: #354ACA;
 }
 
 .admin-community-row {
@@ -43,13 +43,23 @@
 }
 
 .admin-update-button {
-  color: #3396F4;
+  color: #FFE651;
   cursor: pointer;
 }
 
-.admin-delete-button {
-  color: red;
-  cursor: pointer;
+.admin-bugs-index-row {
+  display: grid;
+  grid-template-columns: 1fr 9fr 2fr 2fr;
+  border-bottom: 2px solid black;
+  padding: 1rem;
+}
+
+.admin-bugs-row {
+  display: grid;
+  grid-template-columns: 1fr 9fr 2fr 2fr;
+  border-bottom: 1px solid gray;
+  padding: 1rem;
+  font-size: 0.8rem;
 }
 
 @media screen and (min-width: 1280px) {
@@ -67,6 +77,14 @@
 
   .admin-row {
     grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
+  }
+
+  .admin-bugs-index-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
+  }
+
+  .admin-bugs-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
   }
 }
 

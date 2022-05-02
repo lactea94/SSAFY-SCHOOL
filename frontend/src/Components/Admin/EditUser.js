@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { apiInstance } from "../../api";
 import './css/EditUser.css'
 
 export default function EditUser() {
   const { userId } = useParams();
-  const { state } = useLocation();
   const navigate = useNavigate();
   const [ user, setUser ] = useState({
     id: '',
@@ -28,12 +27,23 @@ export default function EditUser() {
   const [ checkOutList, setCheckOutList ] = useState([]);
   const [ addMileage, setAddMileage ] = useState(0);
   
+  
+  // 유저 정보 호출
   useEffect(() => {
-    setUser(state.user);
-    setTotalMileage(state.user.totalMileage);
-    setRemainMileage(state.user.remainMileage);
-  }, [state])
+    async function saveUser() {
+      const res = await apiInstance().get(`users/${userId}`);
+      setUser(res.data);
+    };
+    saveUser();
+  }, [userId]);
 
+  // 마일리지 정보 저장
+  useEffect(() => {
+    setTotalMileage(user.totalMileage);
+    setRemainMileage(user.remainMileage);
+  }, [user]);
+
+  // 출석 정보 호출
   useEffect(() => {
     async function saveCheckIn() {
       const res = await apiInstance().get(`/check/in/${userId}`)
@@ -47,8 +57,9 @@ export default function EditUser() {
 
     saveCheckIn();
     saveCheckOut();
-  }, [userId])
+  }, [userId]);
 
+  // 유저 정보 변경
   function handleChange({target: {id, value}}) {
     if (id === "admin") {
       value = parseInt(value)
@@ -67,30 +78,38 @@ export default function EditUser() {
     setUser(newUser);
   };
 
+
+  // 마일리지 추가
   function plusMileage() {
     if (addMileage) {
       setTotalMileage(totalMileage + parseInt(addMileage));
       setRemainMileage(remainMileage + parseInt(addMileage));
       setAddMileage(0);
     }
-  }
+  };
 
+  // 유저 정보 저장
   async function handleSubmit() {
-    await apiInstance().put(`/users/update/${userId}`, {
-      nickname: user.nickname,
-      name : user.name,
-      gender : user.gender,
-      admin : user.admin,
-      totalMileage : totalMileage,
-      remainMileage : remainMileage,
-      studentId : user.studentId,
-      classNumber : user.classNumber,
-      teamCode : user.teamCode,
-      local : user.local
-    });
-    navigate(0);
+    try {
+      await apiInstance().put(`/users/${userId}`, {
+        nickname: user.nickname,
+        name : user.name,
+        gender : user.gender,
+        admin : user.admin,
+        totalMileage : totalMileage,
+        remainMileage : remainMileage,
+        studentId : user.studentId,
+        classNumber : user.classNumber,
+        teamCode : user.teamCode,
+        local : user.local
+      });
+      navigate(0);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
+  // 라디오 컨테이너
   function radioContainer(lst) {
     return (
       lst.map((data) => (
@@ -117,7 +136,12 @@ export default function EditUser() {
       </div>
       <div className="edit-user-row">
         <div className="label">닉네임</div>
-        <div className="edit-user-text">{user.nickname}</div>
+        <input
+          className="edit-user-input"
+          id="nickname"
+          value={user.nickname}
+          onChange={handleChange}
+        />
       </div>
       <div className="edit-user-row">
         <div className="label">이메일</div>

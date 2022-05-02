@@ -13,7 +13,6 @@ export function Users() {
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
-
   const categories = [
     { value: 'userId', name: '아이디'},
     { value: 'email', name: '이메일'},
@@ -22,7 +21,7 @@ export function Users() {
   ]
   
   // 유저 리스트 호출
-  const saveUsers = async () => {
+  async function saveUsers() {
     const res = await apiInstance().get('/users');
     setUserList(res.data)
   };
@@ -63,9 +62,6 @@ export function Users() {
             <Link
               to={`${user.id}`}
               className="admin-update-button"
-              state={{
-                user: user
-              }}
             >
               <FaUserEdit/>
             </Link>

@@ -30,8 +30,24 @@
   margin: 1rem 0;
 }
 
-.signup-check {
+.signup-check-confirm {
   margin: auto 1rem;
+  padding: 0.5rem;
+  width: 5rem;
+  color: rgb(7, 252, 19);
+  font-size: 2rem;
+  text-align: center;
+  line-height: 0;
+}
+
+.signup-check {
+  cursor: pointer;
+  margin: auto 1rem;
+  padding: 0.5rem;
+  width: 5rem;
+  background-color: gray;
+  color: white;
+  text-align: center;
 }
 
 .signup-radio {

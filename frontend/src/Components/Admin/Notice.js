@@ -5,21 +5,23 @@ import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
 import { FaEdit } from "react-icons/fa";
 import "./css/Admin.css";
+import NoticeCreate from "./NoticeCreate";
 
 export function Notice() {
   const [ searchCategory, setSearchCategory ] = useState('title');
   const [ searchText, setSearchText ] = useState('');
   const [ noticeList, setNoticeList ] = useState([]);
   const [ filteredNoticeList, setFilterdNoticeList ] = useState([]);
+  const [ createOpen, setCreateOpen ] = useState(false);
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
-
   const categories = [
     { value: 'title', name: '제목'},
     { value: 'content', name: '내용'},
   ]
 
+  // 공시사항 목록 호출
   useEffect(() => {
     setNoticeList([
       { id: 0, title: "공지1", content: "공지내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
@@ -54,6 +56,7 @@ export function Notice() {
     ]);
   }, []);
 
+  // 검색 필터링
   useEffect(() => {
     if (searchCategory === 'title') {
       setFilterdNoticeList(() => 
@@ -66,6 +69,7 @@ export function Notice() {
     ))}
   }, [searchCategory, searchText, noticeList]);
 
+  // 공지사항
   function Notices() {
     return (
       filteredNoticeList.slice(offset, offset + limit).map((notice) => 
@@ -78,12 +82,6 @@ export function Notice() {
             <Link
               to={`${notice.id}`}
               className="admin-update-button"
-              state={{
-                title: notice.title,
-                content: notice.content,
-                createdDate: notice.createdDate,
-                updatedDate: notice.updatedDate
-              }}
             >
               <FaEdit/>
             </Link>
@@ -95,6 +93,7 @@ export function Notice() {
 
   return (
     <div>
+      {createOpen && <NoticeCreate setCreateOpen={setCreateOpen}/>}
       <Outlet/>
       <div className="admin-container">
         <div className="admin-index-row">
@@ -105,6 +104,17 @@ export function Notice() {
           <div>수정</div>
         </div>
         {Notices()}
+        <div className="community-row">
+          <div
+            className="community-create"
+            onClick={() => {
+              setCreateOpen(true);
+              window.scrollTo(0, 0);
+            }}
+          >
+            공지사항 작성
+          </div>
+        </div>
       </div>
       <Pagination
         total={filteredNoticeList.length}

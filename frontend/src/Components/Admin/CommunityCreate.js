@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import "./css/CommunityCreate.css"
+import "./css/Create.css"
 
 export default function CommunityCreate({ setCreateOpen }) {
-  const [ title, setTitle ] = useState();
-  const [ content, setContent ] = useState();
+  const [ title, setTitle ] = useState("");
+  const [ content, setContent ] = useState("");
+  const [ isAdmin, setIsAdmin ] = useState(false);
   const navigate = useNavigate();
 
   // 게시글 생성
   function handleSubmit() {
     console.log(title);
     console.log(content);
-    navigate('/articles/community')
+    console.log(isAdmin);
+    navigate('/admin/community')
   }
 
   // 모달 닫기
@@ -43,14 +45,24 @@ export default function CommunityCreate({ setCreateOpen }) {
         <div className="create-label">제목</div>
         <input
           className="create-title"
-          onChange={(e) => {setTitle(e.target.value)}}
+          onChange={e => setTitle(e.target.value)}
           required
         />
+        <div className="create-label">
+          <label>공지</label>
+          <input
+            className="admin-toggle"
+            type="checkbox"
+            id="isAdmin"
+            checked={isAdmin}
+            onChange={e => setIsAdmin(e.target.checked)}
+          />
+        </div>
         <div className="create-label">내용</div>
         <textarea
           className="create-content"
           rows={20}
-          onChange={(e) => {setContent(e.target.value)}}
+          onChange={e => setContent(e.target.value)}
           required
         />
         <div className="create-buttons">
