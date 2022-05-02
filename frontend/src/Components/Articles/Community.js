@@ -28,7 +28,6 @@ export default function Community() {
       setIsAuthenticated(true)
   }, []);
 
-
   // 공지사항 및 게시글 정보 호출
   useEffect(() => {
     setNoticeList([

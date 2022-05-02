@@ -14,7 +14,7 @@ function Nav() {
     }
   }, []);
 
-  const saveUser = async () => {
+  async function saveUser() {
     const res = await apiInstance().get('/users/me');
     setUser(res.data);
     if (res.data.admin !== 2) {
@@ -89,9 +89,6 @@ function Nav() {
               <Link
                 to="articles/notice"
                 style={linkStyle}
-                state={{
-                  user: user
-                }}
               >
                 게시판
               </Link>

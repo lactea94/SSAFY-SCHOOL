@@ -21,7 +21,7 @@ export function Users() {
   ]
   
   // 유저 리스트 호출
-  const saveUsers = async () => {
+  async function saveUsers() {
     const res = await apiInstance().get('/users');
     setUserList(res.data)
   };
