@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { apiInstance } from "../../api";
 import './css/EditProfile.css';
 
 export default function EditProfile() {
   const { state } = useLocation();
-  const navigate = useNavigate();
   const [ name, setName ] = useState('');
   const [ nickname, setNickName ] = useState('');
   const [ checkNickname, setCheckNickName ] = useState(false);
@@ -63,9 +62,8 @@ export default function EditProfile() {
         teamCode : user.teamCode,
         totalMileage : user.totalMileage,
       });
-      navigate(0);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
