@@ -5,15 +5,24 @@
 
 .admin-notice-title {
   font-size: 2rem;
+  border: none;
   border-top: 2px solid black;
+  border-bottom: 1px solid lightgray;
+  outline: none;
+  width: 100%;
   text-align: start;
-  padding-top: 1rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.admin-notice-title:focus {
+  background-color: lightgray;
 }
 
 .admin-notice-date {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   border-bottom: 1px solid lightgray;
+  justify-content: space-between;
   padding: 1rem 0;
   color: gray;
 }
@@ -27,10 +36,40 @@
 }
 
 .admin-notice-content {
-  padding: 3rem 0;
   text-align: start;
+  width: 100%;
+  border: none;
   border-bottom: 1px solid lightgray;
-  white-space: pre-wrap;
+  outline: none;
+  resize: none;
+  font-size: 1rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.admin-notice-content:focus {
+  background-color: lightgray;
+}
+
+.admin-notice-update {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+.admin-notice-update-button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #3396F4;
+}
+
+.admin-notice-delete-button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgb(236, 55, 55);
 }
 
 @media screen and (min-width: 1280px) {

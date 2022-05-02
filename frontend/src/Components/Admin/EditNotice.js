@@ -14,6 +14,7 @@ export default function EditNotice() {
     updatedDate: "",
   }); 
 
+  // 공시사항 호출
   useEffect(() => {
     setNotice({
       id: noticeId,
@@ -25,14 +26,58 @@ export default function EditNotice() {
     });
   }, [noticeId]);
 
+  // 내용 변경
+  function handleChange({target: {id, value}}) {
+    const newNotice = {
+      ...notice,
+      [id]: value,
+    };
+    setNotice(newNotice);
+  };
+
+  // 수정
+  function handleSubmit() {
+    console.log(notice)
+  }
+
+  // 삭제
+  function handleClick() {
+
+  }
+
   return (
     <div className="admin-notice-container">
-      <div className="admin-notice-title">{notice.title}</div>
+      <input
+        className="admin-notice-title"
+        id="title"
+        value={notice.title}
+        onChange={handleChange}
+      />
       <div className="admin-notice-date">
         <div className="admin-notice-created">{DateFormat(notice.createdDate)}</div>
         <div className="admin-notice-updated">{DateFormat(notice.updatedDate)}</div>
       </div>
-      <div className="admin-notice-content">{notice.content}</div>
+      <textarea
+        className="admin-notice-content"
+        id="content"
+        value={notice.content}
+        onChange={handleChange}
+        rows={20}
+      />
+      <div className="admin-notice-update">
+        <div
+          className="admin-notice-update-button"
+          onClick={handleSubmit}
+        >
+          수정
+        </div>
+        <div 
+          className="admin-notice-delete-button"
+          onClick={handleClick}
+        >
+          삭제
+        </div>
+      </div>
     </div>
   )
 };
