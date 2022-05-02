@@ -1,18 +1,18 @@
 import React,{useState,useEffect} from 'react'
 import holidays from './holidays';
 
-export default function Grass() {
-  const [th,setTh] = useState(null);
-  const [grassdata,setGrassdata] = useState([]);
-  const [start,setStart] = useState(null);
-  const [indata,setIndata] = useState(null);
-  const [outdata,setOutdata] = useState(null);
+export default function Grass({ checkInList, checkOutList }) {
+  const [ th, setTh ] = useState(null);
+  const [ grassdata, setGrassdata ] = useState([]);
+  const [ start, setStart ] = useState(null);
+  const [ indata, setIndata ] = useState(null);
+  const [ outdata, setOutdata ] = useState(null);
 
   useEffect(()=>{
     //입퇴실 정보 받아오기
-    setIndata(["2022-03-21","2022-03-22","2022-03-23","2022-03-24", "2022-04-19", "2022-04-18", "2022-04-21"]);
-    setOutdata(["2022-03-21","2022-03-22","2022-03-23","2022-03-25", "2022-04-19", "2022-04-20", "2022-04-21"]);
-  },[])
+    setIndata(checkInList);
+    setOutdata(checkOutList);
+  },[checkInList, checkOutList])
 
   useEffect(()=>{
     if(indata !== null && outdata !== null){

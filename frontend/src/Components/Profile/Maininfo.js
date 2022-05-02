@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './css/Maininfo.css';
 import EachMonthAttendance from './EachMonthAttendance';
 
-export default function Maininfo({ user }) {
+export default function Maininfo({ user, checkInList, checkOutList }) {
   const [data, setData] = useState({
     name: null, // 이름
     schoolId: null, // 학번
@@ -19,10 +19,10 @@ export default function Maininfo({ user }) {
       return "서울"
     } else if (region === "Daejeon") {
       return "대전"
-    } else if (region === "Gumi") {
-      return "구미"
     } else if (region === "Gwangju") {
       return "광주"
+    } else if (region === "Gumi") {
+      return "구미"
     } else {
       return "부울경"
     }
@@ -47,10 +47,6 @@ export default function Maininfo({ user }) {
   return (
     <div className='main-info'>
       <div className='mileage-info'>
-        <div className='profile-info'>
-          <div>{data.region} {data.class}반 {data.name}</div>
-          <div>{data.schoolId}</div>
-        </div>
         <div className='mileage-title'>
           나의 마일리지
         </div>
@@ -68,7 +64,10 @@ export default function Maininfo({ user }) {
           <div className='mileage-number'>{(user.totalMileage - user.remainMileage).toLocaleString("ko-KR")}M</div>
         </div>
       </div>
-      <EachMonthAttendance />
+      <EachMonthAttendance
+        checkInList={checkInList}
+        checkOutList={checkOutList}
+      />
     </div>
   )
 };

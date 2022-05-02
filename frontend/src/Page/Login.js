@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userInstance } from "../api";
+import './css/Login.css'
 
 export default function Login() {
   const [loginInfo, setLoginInfo] = useState({id: "", password: ""});
@@ -28,23 +29,34 @@ export default function Login() {
   };
 
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: 'center'}}>
+    <div className="login-container">
       <h1>
         Login
       </h1>
-      <form style={{display: "flex", flexDirection: "column", alignItems: "center"}}
+      <form
+        className="login-form"
         method="post"
         onSubmit={loginSubmit}
       >
-        <input type="text" id="id" placeholder="아이디" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
+        <input
+          className="login-input"
+          type="text"
+          id="id"
+          placeholder="아이디"
           value={loginInfo.id}
           onChange={loginInput}
-        /> <br/>
-        <input type="password" id="password" placeholder="비밀번호" style={{width: "500px", height: "30px", fontSize: "20px"}} required 
+          required 
+        />
+        <input
+          className="login-input"
+          type="password"
+          id="password"
+          placeholder="비밀번호"
           value={loginInfo.password}
           onChange={loginInput}
+          required 
         /> <br/>
-        <button style={{width: "500px", height: "40px", fontSize: "20px", borderRadius: "10px", border: "0px", fontWeight: "bolder", backgroundColor: "dodgerblue", cursor: "pointer"}}>로그인</button>
+        <button className="login-button">로그인</button>
       </form>
       <div>
         <h3 style={{display: "inline-block", cursor: "not-allowed"}}>ID/PW 찾기</h3>
