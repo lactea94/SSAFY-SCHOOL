@@ -19,7 +19,7 @@ export default function Profile() {
           <div>
             <Link
               className='profile-edit-link'
-              to="edit"
+              to="edit-password"
               state={{
                 user: state.user
               }}
