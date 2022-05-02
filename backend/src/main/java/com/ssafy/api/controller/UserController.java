@@ -237,6 +237,33 @@ public class UserController {
 		return new ResponseEntity<>(userInfoList, HttpStatus.OK);
 	}
 
+	@ApiOperation(value = "사용자 정보 조회", notes = "권한 있는 사용자가 사용자 정보를 조회한다.")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "조회 성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 403, message = "권한 없음"),
+			@ApiResponse(code = 404, message = "사용자 없음"),
+			@ApiResponse(code = 500, message = "서버 오류")
+	})
+	@ApiImplicitParam(name = "userId", value = "사용자 seq", required = true)
+	@GetMapping("/{userId}")
+	public ResponseEntity<UserRes> getUserInfo(@ApiIgnore Authentication authentication, @PathVariable Long userId) {
+		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+		User admin = userDetails.getUser();
+		if (admin.getAdmin() == 2) {
+			return new ResponseEntity(HttpStatus.FORBIDDEN);
+		}
+
+		User user = userService.getUserById(userId);
+		if (user == null) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+		Status status = userService.getStatusByUserId(userId);
+		StudentStatus studentStatus = userService.getStudentStatusByUserId(userId);
+		return ResponseEntity.status(200).body(UserRes.of(user, status, studentStatus));
+
+	}
+
 	@ApiOperation(value = "사용자 정보 변경", notes = "권한 있는 사용자가 사용자 정보를 수정한다.")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "성공"),
@@ -246,7 +273,7 @@ public class UserController {
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
 	@ApiImplicitParam(name = "userId", value = "사용자 seq", required = true)
-	@PutMapping("/update/{userId}")
+	@PutMapping("/{userId}")
 	public ResponseEntity updateUserInfo(@ApiIgnore Authentication authentication, @PathVariable Long userId, @RequestBody @ApiParam(value = "회원정보 수정 데이터", required = true) UserInfoUpdatePostReq userInfoUpdatePostReq) {
 		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
 		User admin = userDetails.getUser();
