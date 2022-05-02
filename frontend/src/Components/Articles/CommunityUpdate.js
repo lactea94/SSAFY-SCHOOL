@@ -8,10 +8,10 @@ export default function CommunityUpdate({ title, content, setUpdateOpen }) {
   const navigate = useNavigate();
 
   // 게시글 수정
-  function handleUpdate() {
+  function handleSubmit() {
     console.log(newTitle);
     console.log(newcontent);
-    navigate(0)
+    navigate('/articles/community')
   }
   
   // 모달 닫기
@@ -35,12 +35,17 @@ export default function CommunityUpdate({ title, content, setUpdateOpen }) {
 
   return (
     <div className="update-modal" onClick={handleCancel}>
-      <div className="update-form" onClick={e => e.stopPropagation()}>
+      <form
+        className="update-form"
+        onClick={e => e.stopPropagation()}
+        onSubmit={handleSubmit}
+      >
         <div className="update-label">제목</div>
         <input
           className="update-title"
           value={newTitle}
           onChange={(e) => {setNewTitle(e.target.value)}}
+          required
         />
         <div className="update-label">내용</div>
         <textarea
@@ -48,12 +53,13 @@ export default function CommunityUpdate({ title, content, setUpdateOpen }) {
           rows={20}
           value={newcontent}
           onChange={(e) => {setNewContent(e.target.value)}}
+          required
         />
         <div className="update-buttons">
-          <div className="update-button" onClick={handleUpdate}>수정</div>
-          <div className="update-cancel" onClick={handleCancel}>취소</div>
+          <button className="update-button">수정</button>
+          <button className="update-cancel" onClick={handleCancel}>취소</button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

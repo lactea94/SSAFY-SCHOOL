@@ -28,6 +28,12 @@
   text-align: start;
 }
 
+.admin-toggle {
+  margin: 0 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
 .create-title {
   font-size: 1.2rem;
   border: none;
@@ -57,6 +63,8 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background-color: #3396F4;
+  border: none;
+  outline: none;
 }
 
 .create-cancel {
@@ -65,6 +73,8 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background-color: yellow;
+  border: none;
+  outline: none;
 }
 
 @media screen and (min-width: 1280px) {

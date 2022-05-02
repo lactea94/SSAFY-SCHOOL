@@ -8,7 +8,7 @@ export default function CommunityCreate({ setCreateOpen }) {
   const navigate = useNavigate();
 
   // 게시글 생성
-  function handleCreate() {
+  function handleSubmit() {
     console.log(title);
     console.log(content);
     navigate('/articles/community')
@@ -35,23 +35,29 @@ export default function CommunityCreate({ setCreateOpen }) {
   
   return (
     <div className="create-modal" onClick={handleCancel}>
-      <div className="create-form" onClick={e => e.stopPropagation()}>
+      <form
+        className="create-form"
+        onClick={e => e.stopPropagation()}
+        onSubmit={handleSubmit}
+      >
         <div className="create-label">제목</div>
         <input
           className="create-title"
           onChange={(e) => {setTitle(e.target.value)}}
+          required
         />
         <div className="create-label">내용</div>
         <textarea
           className="create-content"
           rows={20}
           onChange={(e) => {setContent(e.target.value)}}
+          required
         />
         <div className="create-buttons">
-          <div className="create-button" onClick={handleCreate}>작성</div>
-          <div className="create-cancel" onClick={handleCancel}>취소</div>
+          <button className="create-button">작성</button>
+          <button className="create-cancel" onClick={handleCancel}>취소</button>
         </div>
-      </div>
+      </form>
     </div>
   )
 };
