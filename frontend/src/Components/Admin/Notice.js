@@ -78,12 +78,6 @@ export function Notice() {
             <Link
               to={`${notice.id}`}
               className="admin-update-button"
-              state={{
-                title: notice.title,
-                content: notice.content,
-                createdDate: notice.createdDate,
-                updatedDate: notice.updatedDate
-              }}
             >
               <FaEdit/>
             </Link>

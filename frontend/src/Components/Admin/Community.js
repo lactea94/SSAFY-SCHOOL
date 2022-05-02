@@ -64,13 +64,6 @@ export function Community() {
           <Link
             className="admin-update-button"
             to={`${notice.id}`}
-            state={{
-              userId: notice.uesrId,
-              title: notice.title,
-              content: notice.content,
-              createdDate: notice.createdDate,
-              updatedDate: notice.updatedDate
-            }}
           >
             <FaEdit/>
           </Link>
@@ -89,13 +82,6 @@ export function Community() {
           <Link
             className="admin-update-button"
             to={`${community.id}`}
-            state={{
-              userId: community.userId,
-              title: community.title,
-              content: community.content,
-              createdDate: community.createdDate,
-              updatedDate: community.updatedDate
-            }}
           >
             <FaEdit/>
           </Link>

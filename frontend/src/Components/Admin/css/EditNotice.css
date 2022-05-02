@@ -1,0 +1,46 @@
+.admin-notice-container {
+  margin: 5rem auto;
+  width: 90%;
+}
+
+.admin-notice-title {
+  font-size: 2rem;
+  border-top: 2px solid black;
+  text-align: start;
+  padding-top: 1rem;
+}
+
+.admin-notice-date {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid lightgray;
+  padding: 1rem 0;
+  color: gray;
+}
+
+.admin-notice-created {
+  text-align: start;
+}
+
+.admin-notice-updated {
+  text-align: end;
+}
+
+.admin-notice-content {
+  padding: 3rem 0;
+  text-align: start;
+  border-bottom: 1px solid lightgray;
+  white-space: pre-wrap;
+}
+
+@media screen and (min-width: 1280px) {
+  .admin-notice-container {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .admin-notice-container {
+    width: 33%;
+  }
+}
