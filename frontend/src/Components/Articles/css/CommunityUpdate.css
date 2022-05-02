@@ -34,6 +34,7 @@
   border-bottom: 1px solid lightgray;
   outline: none;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .update-content {
@@ -42,6 +43,7 @@
   outline: none;
   border: 1px solid lightgray;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .update-buttons {
