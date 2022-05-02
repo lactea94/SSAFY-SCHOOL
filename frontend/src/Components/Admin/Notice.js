@@ -5,12 +5,14 @@ import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
 import { FaEdit } from "react-icons/fa";
 import "./css/Admin.css";
+import NoticeCreate from "./NoticeCreate";
 
 export function Notice() {
   const [ searchCategory, setSearchCategory ] = useState('title');
   const [ searchText, setSearchText ] = useState('');
   const [ noticeList, setNoticeList ] = useState([]);
   const [ filteredNoticeList, setFilterdNoticeList ] = useState([]);
+  const [ createOpen, setCreateOpen ] = useState(false);
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
@@ -91,6 +93,7 @@ export function Notice() {
 
   return (
     <div>
+      {createOpen && <NoticeCreate setCreateOpen={setCreateOpen}/>}
       <Outlet/>
       <div className="admin-container">
         <div className="admin-index-row">
@@ -101,6 +104,17 @@ export function Notice() {
           <div>수정</div>
         </div>
         {Notices()}
+        <div className="community-row">
+          <div
+            className="community-create"
+            onClick={() => {
+              setCreateOpen(true);
+              window.scrollTo(0, 0);
+            }}
+          >
+            공지사항 작성
+          </div>
+        </div>
       </div>
       <Pagination
         total={filteredNoticeList.length}

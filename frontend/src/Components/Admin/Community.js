@@ -5,6 +5,7 @@ import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
 import { FaEdit } from 'react-icons/fa';
 import "./css/Admin.css";
+import CommunityCreate from "./CommunityCreate";
 
 export function Community() {
   const [ searchCategory, setSearchCategory ] = useState('title');
@@ -12,6 +13,7 @@ export function Community() {
   const [ noticeList, setNoticeList ] = useState([]);
   const [ communityList, setCommunityList ] = useState([]);
   const [ filteredCommunityList, setFilteredCommunityList ] = useState([]);
+  const [ createOpen, setCreateOpen ] = useState(false);
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
@@ -94,6 +96,7 @@ export function Community() {
 
   return (
     <div>
+      {createOpen && <CommunityCreate setCreateOpen={setCreateOpen}/>}
       <Outlet/>
       <div className="admin-container">
         <div className="admin-index-row">
@@ -105,6 +108,17 @@ export function Community() {
         </div>
         {Notices()}
         {Communities()}
+        <div className="community-row">
+          <div
+            className="community-create"
+            onClick={() => {
+              setCreateOpen(true);
+              window.scrollTo(0, 0);
+            }}
+          >
+            게시글 작성
+          </div>
+        </div>
       </div>
       <Pagination
         total={filteredCommunityList.length}
