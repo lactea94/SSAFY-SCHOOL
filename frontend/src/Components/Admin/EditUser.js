@@ -34,6 +34,8 @@ export default function EditUser() {
   const [ checkEmail, setCheckEmail ] = useState(true);
   const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
   const [ checkEmailText, setCheckEmailText ] = useState("이메일");
+  const [ originNickname, setOriginNickname ] = useState("");
+  const [ originEmail, setOriginEmail ] = useState("");
   const API = apiInstance();
   const userAPI = userInstance();
   const MySwal = withReactContent(Swal);
@@ -54,6 +56,8 @@ export default function EditUser() {
     async function saveUser() {
       const res = await apiInstance().get(`users/${userId}`);
       setUser(res.data);
+      setOriginNickname(res.data.nickname);
+      setOriginEmail(res.data.email);
     };
     saveUser();
   }, [userId]);
@@ -149,12 +153,20 @@ export default function EditUser() {
     return false
   };
 
-  // 유저 정보 변경
+  // 유저 정보 수정
   function handleChange({target: {id, value}}) {
     if (id === "nickname") {
-      setCheckNickname(false);
+      if (originNickname === value) {
+        setCheckNickname(true);
+      } else {
+        setCheckNickname(false);
+      }
     } else if (id === "email") {
-      setCheckEmail(false);
+      if (originEmail === value) {
+        setCheckEmail(true);
+      } else {
+        setCheckEmail(false);
+      }
     } else if (id === "admin") {
       value = parseInt(value)
     } else if (id === "gender") {
@@ -181,7 +193,7 @@ export default function EditUser() {
     }
   };
 
-  // 유저 정보 저장
+  // 유저 정보 수정
   async function handleSubmit() {
     if (validation()) {
       try {

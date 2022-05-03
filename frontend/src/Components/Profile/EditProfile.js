@@ -17,6 +17,8 @@ export default function EditProfile() {
   const [ checkEmail, setCheckEmail ] = useState(true);
   const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
   const [ checkEmailText, setCheckEmailText ] = useState("이메일");
+  const [ originNickname, setOriginNickname ] = useState("");
+  const [ originEmail, setOriginEmail ] = useState("");
   const navigate = useNavigate();
   const API = apiInstance();
   const userAPI = userInstance();
@@ -42,6 +44,8 @@ export default function EditProfile() {
         nickname: res.data.nickname,
         email: res.data.email,
       })
+      setOriginNickname(res.data.nickname);
+      setOriginEmail(res.data.email);
     };
     saveUser(); 
   }, [])
@@ -115,11 +119,20 @@ export default function EditProfile() {
     return false
   };
 
+  // 유저 정보 변경
   function handleChange({target: {id, value}}) {
     if (id === "nickname") {
-      setCheckNickname(false);
+      if (originNickname === value) {
+        setCheckNickname(true);
+      } else {
+        setCheckNickname(false);
+      }
     } else if (id === "email") {
-      setCheckEmail(false);
+      if (originEmail === value) {
+        setCheckEmail(true);
+      } else {
+        setCheckEmail(false);
+      }
     }
     const newUser = {
       ...user,
