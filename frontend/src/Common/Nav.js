@@ -63,9 +63,6 @@ function Nav() {
                 <Link
                   to="articles/notice"
                   style={linkStyle}
-                  state={{
-                    user: user
-                  }}
                 >
                   게시판
                 </Link>

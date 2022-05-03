@@ -18,7 +18,7 @@ export default function EditPassword() {
       return
     };
     try {
-      await apiInstance().put('/users/password-update', { password: password});
+      await apiInstance().put('/users/password', { password: password});
       navigate(-1);
     } catch (error) {
       console.log(error);

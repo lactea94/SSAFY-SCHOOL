@@ -11,12 +11,12 @@ export default function ProfileInfo() {
 
   useEffect(() => {
     async function saveCheckIn() {
-      const res = await apiInstance().get(`/users/check-indate`)
+      const res = await apiInstance().get(`/users/indate`)
       setCheckInList(res.data.map(data => data.checkIndate))
     };
   
     async function saveCheckOut() {
-      const res = await apiInstance().get(`/users/check-outdate`)
+      const res = await apiInstance().get(`/users/outdate`)
       setCheckOutList(res.data.map(data => data.checkOutDate))
     };
 
