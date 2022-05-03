@@ -175,6 +175,13 @@ public class GameController {
     public ResponseEntity terminateInventory(@ApiIgnore Authentication authentication, @RequestBody @ApiParam(value = "마지막 인벤토리 상태", required = true) GameLastInventoryListReq gameLastInventoryListReq) {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         User user = userDetails.getUser();
+        Long userId = user.getId();
+
+        for( GameLastInventoryReq gameLastInventoryReq : gameLastInventoryListReq.getInventoryList()) {
+            Inventory inventory = inventoryRepository.findByItemAndUserId(gameLastInventoryReq.getItem(), userId).orElse(null);
+            inventory.setWear(gameLastInventoryReq.getWear());
+            inventoryRepository.save(inventory);
+        }
         return new ResponseEntity(HttpStatus.OK);
     }
 }
