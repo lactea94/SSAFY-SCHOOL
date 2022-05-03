@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import "./css/CommunityCreate.css"
+import "./css/Create.css"
 
-export default function CommunityCreate({ setCreateOpen }) {
+export default function NoticeCreate({ setCreateOpen }) {
   const [ title, setTitle ] = useState();
   const [ content, setContent ] = useState();
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function CommunityCreate({ setCreateOpen }) {
   function handleSubmit() {
     console.log(title);
     console.log(content);
-    navigate('/articles/community')
+    navigate('/admin/notice')
   }
 
   // 모달 닫기
@@ -44,6 +44,7 @@ export default function CommunityCreate({ setCreateOpen }) {
         <input
           className="create-title"
           onChange={(e) => {setTitle(e.target.value)}}
+          type="text"
           required
         />
         <div className="create-label">내용</div>

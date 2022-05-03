@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
 import "./css/CommunityDetail.css"
@@ -7,17 +8,28 @@ import "./css/CommunityDetail.css"
 export default function CommunityDetail() {
   const { state } = useLocation();
   const [ updateOpen, setUpdateOpen ] = useState(false);
-  const user = {
-    id: 0,
+  const [ user, setUser ] = useState({});
+  const [ comments, setComments ] = useState([]);
+
+  // 내 유저 및 댓글정보 호출
+  async function saveUser() {
+    const res = await apiInstance().get('/users/me');
+    setUser(res.data);
+    if (res.data.admin !== 2) {
+      localStorage.setItem('admin', true);
+    }
   }
 
-  const comments = [
-    { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
-    { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
-    { id: 2, userId: 3, content: "댓글3", createdDate: "2022-04-17 15:30:00", updatedDate: "2022-04-18 15:30:30" },
-    { id: 3, userId: 2, content: "댓글4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
-    { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },
-  ]
+  useEffect(() => {
+    saveUser();
+    setComments([
+      { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
+      { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
+      { id: 2, userId: 3, content: "댓글3", createdDate: "2022-04-17 15:30:00", updatedDate: "2022-04-18 15:30:30" },
+      { id: 3, userId: 2, content: "댓글4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
+      { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },
+    ]);
+  }, [])
 
   return (
     <div className="community-container">

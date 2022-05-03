@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
-import { FaTrash } from "react-icons/fa";
 import Search from "../Search/Search";
 
 export function TestBug() {
@@ -13,11 +12,11 @@ export function TestBug() {
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
   const offset = (page - 1) * limit;
-
   const categories = [
     { value: 'content', name: '내용'},
   ];
 
+  // 버그 리포트 호출
   useEffect(() => {
     setLogs([
       { id: 0, userId: 1, content: "내용1", createdDate: "2022-04-19 15:30:30" },
@@ -36,6 +35,7 @@ export function TestBug() {
     ])
   }, []);
 
+  // 검색 필터링
   useEffect(() => {
     if (searchCategory === 'content') {
       setFilteredLogs(() => 
@@ -44,16 +44,16 @@ export function TestBug() {
     ))}
   }, [searchCategory, searchText, logs]);
 
+  // 버그 리포트
   function Log() {
     return (
       filteredLogs.slice(offset, offset + limit).map((log) => 
         (
-          <div className="admin-row" key={log.id}>
+          <div className="admin-bugs-row" key={log.id}>
             <div>{log.id}</div>
             <div>{log.content}</div>
             <div>{log.userId}</div>
             <div>{DateFormat(log.createdDate)}</div>
-            <div className="admin-delete-button"><FaTrash/></div>
           </div>
         )
       )
@@ -63,12 +63,11 @@ export function TestBug() {
   return (
     <div>
       <div className="article-container">
-        <div className="admin-index-row">
+        <div className="admin-bugs-index-row">
           <div>#</div>
           <div>제보</div>
           <div>작성자</div>
           <div>작성일자</div>
-          <div>삭제</div>
         </div>
         {Log()}
       </div>
