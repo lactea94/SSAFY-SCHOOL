@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import "./css/EditCommunity.css";
@@ -24,7 +24,6 @@ export default function EditCommunity() {
     async function saveCommunity() {
       const res = await apiInstance().get(`/community/${communityId}`);
       setCommunity(res.data)
-      console.log(res.data)
     };
     saveCommunity();
     setComments([

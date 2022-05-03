@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { apiInstance } from "../../api";
 import "./css/CommunityCreate.css"
 
 export default function CommunityCreate({ setCreateOpen }) {
   const [ title, setTitle ] = useState();
   const [ content, setContent ] = useState();
   const navigate = useNavigate();
+  const API = apiInstance();
 
   // 게시글 생성
-  function handleSubmit() {
-    console.log(title);
-    console.log(content);
-    navigate('/articles/community')
-  }
+  async function handleSubmit() {
+    try {
+      await API.post('/community', {
+        "title": title,
+        "content": content,
+        "isNotice": false,
+      });
+      navigate(0);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // 모달 닫기
   function handleCancel() {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
@@ -10,14 +10,16 @@ export default function CommunityDetail() {
   const [ updateOpen, setUpdateOpen ] = useState(false);
   const [ userId, setUserId ] = useState();
   const [ community, setCommunity ] = useState({
-    id: null,
-    userId: null,
+    id: "",
+    userId: "",
     title: "",
     content: "",
     createdDate: "",
     updatedDate: "",
+    isNotice: "",
   });
   const [ comments, setComments ] = useState([]);
+  const navigate = useNavigate();
 
   // 유저Id 호출 함수
   async function saveUser() {
@@ -34,15 +36,12 @@ export default function CommunityDetail() {
 
   // 유저Id, 게시글, 댓글정보 호출
   useEffect(() => {
+    async function saveCommunity() {
+      const res = await apiInstance().get(`/community/${communityId}`);
+      setCommunity(res.data)
+    };
     saveUser();
-    setCommunity({
-      id: `${communityId}`,
-      userId: 2,
-      title: `게시글${communityId}`,
-      content: `내용${communityId}`,
-      createdDate: "2022-04-19 16:10:00",
-      updatedDate: "2022-04-20 15:30:30",
-    });
+    saveCommunity();
     setComments([
       { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
       { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
@@ -51,6 +50,18 @@ export default function CommunityDetail() {
       { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },
     ]);
   }, [communityId]);
+
+  // 게시글 삭제
+  async function handleClick() {
+    await apiInstance().delete(`/community/${communityId}`);
+    navigate('/articles/community');
+    navigate(0);
+  };
+
+  // 댓글 삭제
+  function handleClickComment() {
+
+  };
 
   return (
     <div className="community-container">
@@ -71,8 +82,15 @@ export default function CommunityDetail() {
           <div
             className="community-update-button"
             onClick={() => setUpdateOpen(true)}
-          >수정</div>
-          <div className="community-delete-button">삭제</div>
+          >
+            수정
+          </div>
+          <div
+            className="community-delete-button"
+            onClick={handleClick}
+          >
+            삭제
+          </div>
         </div>
       }
       <div className="comments-container">
@@ -90,7 +108,12 @@ export default function CommunityDetail() {
               <div>{DateFormat(comment.createdDate)}</div>
               <div>{DateFormat(comment.updatedDate)}</div>
               { userId === comment.userId ? (
-                <div className="comment-button">삭제</div>
+                <div 
+                  className="comment-button"
+                  onClick={handleClickComment}
+                >
+                  삭제
+                </div>
               ) : (<div></div>)}
             </div>
           )

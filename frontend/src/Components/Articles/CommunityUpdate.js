@@ -1,18 +1,28 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { apiInstance } from "../../api";
 import "./css/CommunityUpdate.css"
 
 export default function CommunityUpdate({ title, content, setUpdateOpen }) {
+  const { communityId } = useParams();
   const [ newTitle, setNewTitle ] = useState(title);
-  const [ newcontent, setNewContent ] = useState(content);
+  const [ newContent, setNewContent ] = useState(content);
   const navigate = useNavigate();
 
   // 게시글 수정
-  function handleSubmit() {
-    console.log(newTitle);
-    console.log(newcontent);
-    navigate('/articles/community')
-  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await apiInstance().put(`/community/${communityId}`, {
+        title: newTitle,
+        content: newContent,
+        isNotice: false,
+      });
+      navigate(0);
+    } catch (error) {
+      console.log(error)
+    }
+  };
   
   // 모달 닫기
   function handleCancel() {
@@ -51,7 +61,7 @@ export default function CommunityUpdate({ title, content, setUpdateOpen }) {
         <textarea
           className="update-content"
           rows={20}
-          value={newcontent}
+          value={newContent}
           onChange={(e) => {setNewContent(e.target.value)}}
           required
         />
