@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { apiInstance, userInstance } from "../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
 import './css/EditProfile.css';
 import CheckEmailForm from "../../Utils/CheckEmailForm";
+import withReactContent from "sweetalert2-react-content";
 
 export default function EditProfile() {
   const { state } = useLocation();
@@ -12,9 +13,14 @@ export default function EditProfile() {
     nickname: "",
     email: "",
   });
-  const [ checkNickname, setCheckNickname ] = useState(false);
-  const [ checkEmail, setCheckEmail ] = useState(false);
+  const [ checkNickname, setCheckNickname ] = useState(true);
+  const [ checkEmail, setCheckEmail ] = useState(true);
+  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
+  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
+  const navigate = useNavigate();
+  const API = apiInstance();
   const userAPI = userInstance();
+  const MySwal = withReactContent(Swal)
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -27,21 +33,18 @@ export default function EditProfile() {
     }
   });
 
+  
   // 유저 정보 호출
   useEffect(() => {
-    setUser({
-      nickname: state.user.nickname,
-      email: state.user.email,
-    })
-  }, [state])
-
-  function handleChange({target: {id, value}}) {
-    const newUser = {
-      ...user,
-      [id]: value,
+    async function saveUser() {
+      const res = await apiInstance().get('/users/me')
+      setUser({
+        nickname: res.data.nickname,
+        email: res.data.email,
+      })
     };
-    setUser(newUser);
-  };
+    saveUser(); 
+  }, [])
 
   // 닉네임 중복 체크
   async function duplicateNickname() {
@@ -55,6 +58,7 @@ export default function EditProfile() {
     try {
       await userAPI.post('users/check/nickname', { nickname: user.nickname});
       setCheckNickname(true);
+      setCheckNicknameText("");
       Toast.fire({
         icon: "success",
         title: "사용 가능한 닉네임 입니다."
@@ -90,6 +94,7 @@ export default function EditProfile() {
     try {
       await userAPI.post('users/check/email', { email: user.email});
       setCheckEmail(true);
+      setCheckEmailText("");
       Toast.fire({
         icon: "success",
         title: "사용 가능한 이메일 입니다."
@@ -104,10 +109,52 @@ export default function EditProfile() {
     };
   };
 
+  // 유효성 검사
+  function validation() {
+    if ( checkEmail && checkNickname ) return true
+    return false
+  };
+
+  function handleChange({target: {id, value}}) {
+    if (id === "nickname") {
+      setCheckNickname(false);
+    } else if (id === "email") {
+      setCheckEmail(false);
+    }
+    const newUser = {
+      ...user,
+      [id]: value,
+    };
+    setUser(newUser);
+  };
+
+  // 유저 정보 수정
+  async function handleSubmit() {
+    if (validation()) {
+      try {
+        await API.put('/users/me', user);
+        await MySwal.fire({
+          icon: "success",
+          title: "정보 수정 성공!",
+        }).then(function() {navigate(-1)})
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      MySwal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: `${
+          [checkNicknameText, checkEmailText].filter(text => text.length > 0).join(', ')
+        }을(를) 확인하세요`,
+      });
+    }
+  };
+
   return (
     <div className="profile-edit">
       <div className="profile-edit-row">
-        <div>닉네임</div>
+        <div className="profile-edit-title">닉네임</div>
         <input
           className="profile-edit-input"
           id="nickname"
@@ -130,7 +177,7 @@ export default function EditProfile() {
         )}
       </div>
       <div className="profile-edit-row">
-        <div>이메일</div>
+        <div className="profile-edit-title">이메일</div>
         <input
           className="profile-edit-input"
           id="email"
@@ -174,6 +221,7 @@ export default function EditProfile() {
         </Link>
         <div
           className="profile-edit-button"
+          onClick={handleSubmit}
         >
           수정
         </div>

@@ -130,11 +130,13 @@ export default function Signup() {
     };
   };
 
+  // 유효성 검사
   function validation() {
     if ( signupInfo.password === passwordConfirm && checkId && checkEmail && checkNickname ) return true
     return false
   };
 
+  // Input 변경
   function signupInput({target: {id, value}}) {
     if (id === "id") {
       setCheckId(false);
@@ -156,6 +158,7 @@ export default function Signup() {
     setSignupInfo(newLoginInfo);
   };
 
+  // 회원 가입
   async function signupSubmit(e) {
     e.preventDefault();
     if (validation()) {

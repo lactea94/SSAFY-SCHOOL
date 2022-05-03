@@ -14,6 +14,8 @@
 
 .profile-edit-title {
   text-align: start;
+  margin: auto 0;
+  width: 4rem;
 }
 
 .profile-edit-input {
@@ -21,21 +23,18 @@
 }
 
 .profile-check-confirm {
-  margin: auto 1rem;
-  padding: auto;
-  width: 3rem;
+  padding: 0.2rem;
   color: rgb(7, 252, 19);
-  font-size: 2rem;
+  width: 4rem;
   text-align: center;
   line-height: 0;
 }
 
 .profile-check {
   cursor: pointer;
-  margin: auto 1rem;
   padding: 0.2rem;
-  width: 3rem;
-  font-size: 0.8rem;
+  width: 4rem;
+  font-size: 1rem;
   background-color: gray;
   color: white;
   text-align: center;
