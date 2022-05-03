@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { apiInstance, userInstance } from "../../api";
+import { apiInstance } from "../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
 import './css/EditProfile.css';
-import CheckEmailForm from "../../Utils/CheckEmailForm";
 import withReactContent from "sweetalert2-react-content";
+import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
 
 export default function EditProfile() {
   const { state } = useLocation();
@@ -15,13 +15,10 @@ export default function EditProfile() {
   });
   const [ checkNickname, setCheckNickname ] = useState(true);
   const [ checkEmail, setCheckEmail ] = useState(true);
-  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
-  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
   const [ originNickname, setOriginNickname ] = useState("");
   const [ originEmail, setOriginEmail ] = useState("");
   const navigate = useNavigate();
   const API = apiInstance();
-  const userAPI = userInstance();
   const MySwal = withReactContent(Swal);
   const Toast = Swal.mixin({
     toast: true,
@@ -49,69 +46,6 @@ export default function EditProfile() {
     };
     saveUser(); 
   }, [])
-
-  // 닉네임 중복 체크
-  async function duplicateNickname() {
-    if (!user.nickname) {
-      Toast.fire({
-        icon: "question",
-        title: "닉네임을 입력하세요."
-      });
-      return
-    };
-    try {
-      await userAPI.post('users/check/nickname', { nickname: user.nickname});
-      setCheckNickname(true);
-      setCheckNicknameText("");
-      Toast.fire({
-        icon: "success",
-        title: "사용 가능한 닉네임 입니다."
-      });
-    } catch (error) {
-      if (error.response.status === 409) {
-        Toast.fire({
-          icon: "error",
-          title: "이미 존재하는 닉네임 입니다."
-        });
-      }
-    };
-  };
-
-  // 이메일 중복 체크
-  async function duplicateEmail() {
-    if (!user.email) {
-      Toast.fire({
-        icon: "question",
-        title: "이메일을 입력하세요."
-      });
-      return
-    };
-
-    if (!CheckEmailForm(user.email)) {
-      Toast.fire({
-        icon: "error",
-        title: "올바른 이메일 형식을 입력하세요."
-      });
-      return
-    };
-
-    try {
-      await userAPI.post('users/check/email', { email: user.email});
-      setCheckEmail(true);
-      setCheckEmailText("");
-      Toast.fire({
-        icon: "success",
-        title: "사용 가능한 이메일 입니다."
-      });
-    } catch (error) {
-      if (error.response.status === 409) {
-        Toast.fire({
-          icon: "error",
-          title: "이미 존재하는 이메일 입니다."
-        });
-      }
-    };
-  };
 
   // 유효성 검사
   function validation() {
@@ -158,7 +92,7 @@ export default function EditProfile() {
         icon: "warning",
         title: "Oops...",
         text: `${
-          [checkNicknameText, checkEmailText].filter(text => text.length > 0).join(', ')
+          [!checkNickname && "닉네임", !checkEmail && "이메일"].filter(text => text.length > 0).join(', ')
         }을(를) 확인하세요`,
       });
     }
@@ -183,7 +117,12 @@ export default function EditProfile() {
         ) : (
           <div
             className="profile-check"
-            onClick={duplicateNickname}
+            onClick={() => {
+              duplicateNickname(
+                user.nickname,
+                Toast,
+                setCheckNickname
+            )}}
           >
             중복확인
           </div>
@@ -206,7 +145,12 @@ export default function EditProfile() {
         ) : (
           <div
             className="profile-check"
-            onClick={duplicateEmail}
+            onClick={() => {
+              duplicateEmail(
+                user.email,
+                Toast,
+                setCheckEmail
+            )}}
           >
             중복확인
           </div>
