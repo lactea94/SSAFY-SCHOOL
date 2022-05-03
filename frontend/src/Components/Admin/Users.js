@@ -3,7 +3,7 @@ import { apiInstance } from "../../api";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
 import { FaUserEdit } from 'react-icons/fa';
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 export function Users() {
   const [ userList, setUserList ] = useState([])
@@ -19,6 +19,12 @@ export function Users() {
     { value: 'name', name: '이름'},
     { value: 'nickname', name: '닉네임'},
   ]
+  const navigate = useNavigate();
+
+  if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin')) {
+    navigate('/');
+  };
+
   
   // 유저 리스트 호출
   async function saveUsers() {

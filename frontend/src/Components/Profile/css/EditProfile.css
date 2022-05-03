@@ -20,6 +20,27 @@
   font-size: 1rem;
 }
 
+.profile-check-confirm {
+  margin: auto 1rem;
+  padding: auto;
+  width: 3rem;
+  color: rgb(7, 252, 19);
+  font-size: 2rem;
+  text-align: center;
+  line-height: 0;
+}
+
+.profile-check {
+  cursor: pointer;
+  margin: auto 1rem;
+  padding: 0.2rem;
+  width: 3rem;
+  font-size: 0.8rem;
+  background-color: gray;
+  color: white;
+  text-align: center;
+}
+
 .profile-edit-buttons {
   display: flex;
   justify-content: space-between;

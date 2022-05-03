@@ -10,6 +10,7 @@ import CommunityDetail from "../Components/Articles/CommunityDetail";
 import TestBug from "../Components/Articles/TestBug";
 import Profile from "../Page/Profile";
 import ProfileInfo from "../Components/Profile/ProfileInfo";
+import EditProfile from "../Components/Profile/EditProfile";
 import EditPassword from "../Components/Profile/EditPassword";
 import Admin from "../Page/Admin";
 import { Users } from "../Components/Admin/Users";
@@ -44,7 +45,8 @@ function App() {
           <Route path="profile" element={<Profile />}>
             <Route index element={<ProfileInfo/>} />
             <Route path="" element={<ProfileInfo/>} />
-            <Route path="edit-password" element={<EditPassword/>} />
+            <Route path="edit" element={<EditProfile/>} />
+            <Route path="edit/password" element={<EditPassword/>} />
           </Route>
           <Route path="admin" element={<Admin />}>
             <Route path="users" element={<Users />}>

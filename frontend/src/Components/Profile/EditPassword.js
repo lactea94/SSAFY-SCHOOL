@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { apiInstance } from "../../api";
-import './css/EditPassword.css'
+import './css/EditProfile.css';
 
 export default function EditPassword() {
   const { state } = useLocation();
@@ -48,7 +48,7 @@ export default function EditPassword() {
       <div className="profile-edit-buttons">
         <Link
           className="profile-link-back"
-          to="/profile"
+          to="/profile/edit"
           state={{
             user: state.user
           }}

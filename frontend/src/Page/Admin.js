@@ -4,7 +4,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 export default function Admin() {
   const navigate = useNavigate();
 
-  if (!localStorage.getItem('accesstoken') | !localStorage.getItem('admin')) {
+  if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin')) {
     navigate('/');
   };
 
