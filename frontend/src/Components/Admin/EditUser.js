@@ -153,7 +153,7 @@ export default function EditUser() {
     return false
   };
 
-  // 유저 정보 수정
+  // 유저 정보 변경
   function handleChange({target: {id, value}}) {
     if (id === "nickname") {
       if (originNickname === value) {
