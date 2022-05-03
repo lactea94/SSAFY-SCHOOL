@@ -77,12 +77,6 @@ export default function Notice() {
               <Link
                 className="article-link"
                 to={`${notice.id}`}
-                state={{
-                  title: notice.title,
-                  content: notice.content,
-                  createdDate: notice.createdDate,
-                  updatedDate: notice.updatedDate
-                }}
               >
                 {notice.title}
               </Link>

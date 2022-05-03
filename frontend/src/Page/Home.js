@@ -17,9 +17,19 @@ import SwiperCore, { Navigation, Pagination } from "swiper";
 import "swiper/css"; //basic
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
+  const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   SwiperCore.use([Navigation, Pagination]);
+
+  useEffect(() => {
+    if (localStorage.getItem('accesstoken')) {
+      setIsAuthenticated(true)
+    }
+  }, [])
+
   return (
     <div>
       <header>
@@ -28,14 +38,24 @@ export default function Home() {
             SSAFY SCHOOL
           </h1>
           <p>싸피 스쿨에서 즐거운 캠퍼스 라이프를 시작해 보세요!</p>
-          <a
-            className="download"
-            href="/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            다운로드
-          </a>
+          {}
+          { isAuthenticated ? (
+            <a
+              className="download"
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              다운로드
+            </a>
+          ) : (
+            <Link
+              to="login"
+              className="download"
+            >
+              다운로드
+            </Link>
+          )}
         </div>
         {/* 캐러셀이나 동영상 */}
         <img

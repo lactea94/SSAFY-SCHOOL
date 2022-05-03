@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
@@ -21,6 +21,12 @@ export function Community() {
     { value: 'title', name: '제목'},
     { value: 'content', name: '내용'},
   ];
+  const navigate = useNavigate();
+  
+  if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin')) {
+    navigate('/');
+  };
+
 
   // 공지사항 및 게시글 정보 호출
   useEffect(() => {

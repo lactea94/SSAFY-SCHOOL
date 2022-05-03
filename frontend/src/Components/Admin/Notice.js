@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
@@ -15,11 +15,16 @@ export function Notice() {
   const [ createOpen, setCreateOpen ] = useState(false);
   const [ limit, setLimit ] = useState(10);
   const [ page, setPage ] = useState(1);
+  const navigate = useNavigate();
   const offset = (page - 1) * limit;
   const categories = [
     { value: 'title', name: '제목'},
     { value: 'content', name: '내용'},
   ]
+
+  if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin')) {
+    navigate('/');
+  };
 
   // 공시사항 목록 호출
   useEffect(() => {

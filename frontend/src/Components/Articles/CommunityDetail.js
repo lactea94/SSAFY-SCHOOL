@@ -1,27 +1,48 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
 import "./css/CommunityDetail.css"
 
 export default function CommunityDetail() {
-  const { state } = useLocation();
+  const { communityId } = useParams();
   const [ updateOpen, setUpdateOpen ] = useState(false);
-  const [ user, setUser ] = useState({});
+  const [ userId, setUserId ] = useState();
+  const [ community, setCommunity ] = useState({
+    id: null,
+    userId: null,
+    title: "",
+    content: "",
+    createdDate: "",
+    updatedDate: "",
+  });
   const [ comments, setComments ] = useState([]);
 
-  // 내 유저 및 댓글정보 호출
+  // 유저Id 호출 함수
   async function saveUser() {
-    const res = await apiInstance().get('/users/me');
-    setUser(res.data);
-    if (res.data.admin !== 2) {
-      localStorage.setItem('admin', true);
+    try {
+      const res = await apiInstance().get('/users/me');
+      setUserId(res.data.id);
+      if (res.data.admin !== 2) {
+        localStorage.setItem('admin', true);
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
+  // 유저Id, 게시글, 댓글정보 호출
   useEffect(() => {
     saveUser();
+    setCommunity({
+      id: `${communityId}`,
+      userId: 2,
+      title: `게시글${communityId}`,
+      content: `내용${communityId}`,
+      createdDate: "2022-04-19 16:10:00",
+      updatedDate: "2022-04-20 15:30:30",
+    });
     setComments([
       { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
       { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
@@ -29,23 +50,23 @@ export default function CommunityDetail() {
       { id: 3, userId: 2, content: "댓글4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
       { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },
     ]);
-  }, [])
+  }, [communityId]);
 
   return (
     <div className="community-container">
       {updateOpen &&
         <CommunityUpdate 
-          title={state.title}
-          content={state.content}
+          title={community.title}
+          content={community.content}
           setUpdateOpen={setUpdateOpen}
       />}
-      <div className="community-title">{state.title}</div>
+      <div className="community-title">{community.title}</div>
       <div className="community-date">
-        <div className="community-created">{DateFormat(state.createdDate)}</div>
-        <div className="community-updated">{DateFormat(state.updatedDate)}</div>
+        <div className="community-created">{DateFormat(community.createdDate)}</div>
+        <div className="community-updated">{DateFormat(community.updatedDate)}</div>
       </div>
-      <div className="community-content">{state.content}</div>
-      {user.id === state.userId &&
+      <div className="community-content">{community.content}</div>
+      {userId === community.userId &&
         <div className="community-update">
           <div
             className="community-update-button"
@@ -68,7 +89,7 @@ export default function CommunityDetail() {
               <div>{comment.content}</div>
               <div>{DateFormat(comment.createdDate)}</div>
               <div>{DateFormat(comment.updatedDate)}</div>
-              { user.id === comment.userId ? (
+              { userId === comment.userId ? (
                 <div className="comment-button">삭제</div>
               ) : (<div></div>)}
             </div>

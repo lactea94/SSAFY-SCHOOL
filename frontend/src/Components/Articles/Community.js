@@ -98,13 +98,6 @@ function Communities() {
           <Link
             className="article-link"
             to={`${community.id}`}
-            state={{
-              userId: community.userId,
-              title: community.title,
-              content: community.content,
-              createdDate: community.createdDate,
-              updatedDate: community.updatedDate
-            }}
           >
             {community.title}
           </Link>
