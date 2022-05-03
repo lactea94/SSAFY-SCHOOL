@@ -6,7 +6,6 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import useGet from "../../Hooks/useGet";
 
 export function Users() {
-  const userList = useGet('/users');
   const [ searchCategory, setSearchCategory ] = useState('userId');
   const [ searchText, setSearchText ] = useState('');
   const [ filteredUserList, setFilteredUserList ] = useState([]);
@@ -20,12 +19,14 @@ export function Users() {
     { value: 'nickname', name: '닉네임'},
   ]
   const navigate = useNavigate();
-
+  
   if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin')) {
     navigate('/');
   };
 
-
+  // 유저 정보 호출
+  const userList = useGet('/users');
+  
   // 유저 검색 필터링
   useEffect(() => {
     if (searchCategory === 'userId') {
