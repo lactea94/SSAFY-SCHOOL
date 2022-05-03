@@ -5,14 +5,12 @@ import Pagination from "../Pagination/Pagination";
 import CommunityCreate from "./CommunityCreate";
 import Search from "../Search/Search";
 import "./css/Articles.css";
-import { apiInstance } from "../../api";
+import useGet from "../../Hooks/useGet";
 
 export default function Community() {
   const [ isAuthenticated, setIsAuthenticated] = useState(false);
   const [ searchCategory, setSearchCategory ] = useState('title');
   const [ searchText, setSearchText ] = useState('');
-  const [ noticeList, setNoticeList ] = useState([]);
-  const [ communityList, setCommunityList ] = useState([]);
   const [ filteredCommunityList, setFilteredCommunityList ] = useState([]);
   const [ createOpen, setCreateOpen ] = useState(false);
   const [ limit, setLimit ] = useState(10);
@@ -29,23 +27,9 @@ export default function Community() {
       setIsAuthenticated(true)
   }, []);
 
-  // 공지사항 호출 함수
-  async function saveNotice() {
-    const res = await apiInstance().get('/community/notice')
-    setNoticeList(res.data)
-  };
-  
-  // 게시글 호출 함수
-  async function saveCommunity() {
-    const res = await apiInstance().get('/community')
-    setCommunityList(res.data)
-  };
-
-  // 공지사항 및 게시글 정보 호출
-  useEffect(() => {
-    saveNotice();
-    saveCommunity();
-  }, []);
+  // 게시글 목록 호출
+  const noticeList = useGet('/community/notice');
+  const communityList = useGet('/community');
 
   // 검색 필터링
   useEffect(() => {
