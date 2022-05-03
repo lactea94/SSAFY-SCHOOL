@@ -79,7 +79,7 @@ public class UserController {
 			@ApiResponse(code = 409, message = "중복된 아이디 존재"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	@PostMapping("/duplicate-check-id")
+	@PostMapping("/check/id")
 	public ResponseEntity duplicatedCheckId(@RequestBody @ApiParam(value = "체크할 아이디", required = true) Map<String, Object> body) {
 		String userId = body.get("id").toString();
 		User user = userRepository.findByUserId(userId).orElse(null);
@@ -97,7 +97,7 @@ public class UserController {
 			@ApiResponse(code = 409, message = "중복된 이메일 존재"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	@PostMapping("/duplicate-check-email")
+	@PostMapping("/check/email")
 	public ResponseEntity duplicateCheckEmail(@RequestBody @ApiParam(value = "체크할 이메일", required = true) Map<String, Object> body) {
 		String email = body.get("email").toString();
 		User user = userRepository.findByEmail(email).orElse(null);
@@ -115,7 +115,7 @@ public class UserController {
 			@ApiResponse(code = 409, message = "중복된 닉네임 존재"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	@PostMapping("/duplicate-check-nickname")
+	@PostMapping("/check/nickname")
 	public ResponseEntity duplicateCheckNickname(@RequestBody @ApiParam(value = "체크할 닉네임", required = true) Map<String, Object> body) {
 		String nickname = body.get("nickname").toString();
 		User user = userRepository.findByNickname(nickname).orElse(null);
@@ -155,7 +155,7 @@ public class UserController {
 			@ApiResponse(code = 403, message = "토큰 없음, 인가 불가"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	@PutMapping("/password-update")
+	@PutMapping("/password")
 	public ResponseEntity updatePassword(@ApiIgnore Authentication authentication, @RequestBody @ApiParam(value = "새로운 비밀번호", required = true)UserPasswordUpdatePostReq userPasswordUpdatePostReq) {
 		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
 		String userId = userDetails.getUsername();
@@ -172,7 +172,7 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	@GetMapping("/check-indate")
+	@GetMapping("/indate")
 	public ResponseEntity getInDate(@ApiIgnore Authentication authentication) {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		User user = userDetails.getUser();
@@ -197,7 +197,7 @@ public class UserController {
 			@ApiResponse(code = 404, message = "사용자 없음"),
 			@ApiResponse(code = 500, message = "서버 오류")
 	})
-	@GetMapping("/check-outdate")
+	@GetMapping("/outdate")
 	public ResponseEntity getOutDate(@ApiIgnore Authentication authentication) {
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		User user = userDetails.getUser();
