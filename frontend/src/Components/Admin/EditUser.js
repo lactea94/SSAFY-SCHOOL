@@ -5,6 +5,7 @@ import { apiInstance, userInstance } from "../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import './css/EditUser.css'
 import CheckEmailForm from "../../Utils/CheckEmailForm";
+import withReactContent from "sweetalert2-react-content";
 
 export default function EditUser() {
   const { userId } = useParams();
@@ -29,10 +30,13 @@ export default function EditUser() {
   const [ checkInList, setCheckInList ] = useState([]);
   const [ checkOutList, setCheckOutList ] = useState([]);
   const [ addMileage, setAddMileage ] = useState(0);
-  const [ checkNickname, setCheckNickname ] = useState(false);
-  const [ checkEmail, setCheckEmail ] = useState(false);
+  const [ checkNickname, setCheckNickname ] = useState(true);
+  const [ checkEmail, setCheckEmail ] = useState(true);
+  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
+  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
   const API = apiInstance();
   const userAPI = userInstance();
+  const MySwal = withReactContent(Swal);
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -88,6 +92,7 @@ export default function EditUser() {
     try {
       await userAPI.post('users/check/nickname', { nickname: user.nickname});
       setCheckNickname(true);
+      setCheckNicknameText("");
       Toast.fire({
         icon: "success",
         title: "사용 가능한 닉네임 입니다."
@@ -123,6 +128,7 @@ export default function EditUser() {
       try {
         await userAPI.post('users/check/email', { email: user.email});
         setCheckEmail(true);
+        setCheckEmailText("");
         Toast.fire({
           icon: "success",
           title: "사용 가능한 이메일 입니다."
@@ -137,12 +143,21 @@ export default function EditUser() {
       };
     };
 
+  // 유효성 검사
+  function validation() {
+    if ( checkEmail && checkNickname ) return true
+    return false
+  };
+
   // 유저 정보 변경
   function handleChange({target: {id, value}}) {
-    if (id === "admin") {
+    if (id === "nickname") {
+      setCheckNickname(false);
+    } else if (id === "email") {
+      setCheckEmail(false);
+    } else if (id === "admin") {
       value = parseInt(value)
-    }
-    if (id === "gender") {
+    } else if (id === "gender") {
       if (value === "true")
         value = true
       else {
@@ -168,22 +183,35 @@ export default function EditUser() {
 
   // 유저 정보 저장
   async function handleSubmit() {
-    try {
-      await API.put(`/users/${userId}`, {
-        nickname: user.nickname,
-        name : user.name,
-        gender : user.gender,
-        admin : user.admin,
-        totalMileage : totalMileage,
-        remainMileage : remainMileage,
-        studentId : user.studentId,
-        classNumber : user.classNumber,
-        teamCode : user.teamCode,
-        local : user.local
+    if (validation()) {
+      try {
+        await API.put(`/users/${userId}`, {
+          nickname: user.nickname,
+          name : user.name,
+          gender : user.gender,
+          admin : user.admin,
+          totalMileage : totalMileage,
+          remainMileage : remainMileage,
+          studentId : user.studentId,
+          classNumber : user.classNumber,
+          teamCode : user.teamCode,
+          local : user.local
+        });
+        await MySwal.fire({
+          icon: "success",
+          title: "정보 수정 성공!",
+        }).then(function() {navigate(0)})
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      MySwal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: `${
+          [checkNicknameText, checkEmailText].filter(text => text.length > 0).join(', ')
+        }을(를) 확인하세요`,
       });
-      navigate(0);
-    } catch (error) {
-      console.log(error)
     }
   }
 

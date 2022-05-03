@@ -20,7 +20,7 @@ export default function EditProfile() {
   const navigate = useNavigate();
   const API = apiInstance();
   const userAPI = userInstance();
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal);
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',

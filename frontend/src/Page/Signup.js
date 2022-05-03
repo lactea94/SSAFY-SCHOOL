@@ -26,7 +26,7 @@ export default function Signup() {
   const checkPasswordText = "비밀번호";
   const userAPI = userInstance();
   const navigate = useNavigate();
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal);
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
