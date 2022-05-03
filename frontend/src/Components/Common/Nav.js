@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { apiInstance } from "../api";
+import { apiInstance } from "../../api";
 
 function Nav() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false);
