@@ -49,6 +49,7 @@ function App() {
             <Route path="edit/password" element={<EditPassword/>} />
           </Route>
           <Route path="admin" element={<Admin />}>
+            <Route index element={<Users />} />
             <Route path="users" element={<Users />}>
               <Route path=":userId" element={<EditUser/>} />
             </Route>
