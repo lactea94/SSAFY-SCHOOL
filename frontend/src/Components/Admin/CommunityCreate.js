@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { apiInstance } from "../../api";
 import "./css/Create.css"
 
 export default function CommunityCreate({ setCreateOpen }) {
   const [ title, setTitle ] = useState("");
   const [ content, setContent ] = useState("");
-  const [ isAdmin, setIsAdmin ] = useState(false);
+  const [ isNotice, setIsNotice ] = useState(false);
   const navigate = useNavigate();
+  const API = apiInstance();
 
   // 게시글 생성
-  function handleSubmit() {
-    console.log(title);
-    console.log(content);
-    console.log(isAdmin);
-    navigate('/admin/community')
-  }
+  async function handleSubmit() {
+    try {
+      await API.post('/community', {
+        "title": title,
+        "content": content,
+        "isNotice": isNotice,
+      });
+      navigate(0);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // 모달 닫기
   function handleCancel() {
@@ -54,8 +62,8 @@ export default function CommunityCreate({ setCreateOpen }) {
             className="admin-toggle"
             type="checkbox"
             id="isAdmin"
-            checked={isAdmin}
-            onChange={e => setIsAdmin(e.target.checked)}
+            checked={isNotice}
+            onChange={e => setIsNotice(e.target.checked)}
           />
         </div>
         <div className="create-label">내용</div>
