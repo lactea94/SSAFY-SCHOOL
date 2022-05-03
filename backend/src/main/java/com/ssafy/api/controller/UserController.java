@@ -2,6 +2,7 @@ package com.ssafy.api.controller;
 
 import com.ssafy.api.request.user.UserInfoUpdatePostReq;
 import com.ssafy.api.request.user.UserPasswordUpdatePostReq;
+import com.ssafy.api.request.user.UserSmallInfoUpdatePostReq;
 import com.ssafy.api.response.user.CheckInDateListRes;
 import com.ssafy.api.response.user.CheckOutDateListRes;
 import com.ssafy.api.response.user.UserInfoListRes;
@@ -146,6 +147,23 @@ public class UserController {
 		Status status = userService.getStatusByUserId(user.getId());
 		StudentStatus studentStatus = userService.getStudentStatusByUserId(user.getId());
 		return ResponseEntity.status(200).body(UserRes.of(user, status, studentStatus));
+	}
+
+	@ApiOperation(value = "회원 본인 정보 수정", notes = "로그인한 회원 본인의 닉네임과 이메일을 수정한다")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "수정 성공"),
+			@ApiResponse(code = 401, message = "인증 실패"),
+			@ApiResponse(code = 500, message = "서버 오휴")
+	})
+	@PutMapping("/me")
+	public ResponseEntity updateUserInfo(@ApiIgnore Authentication authentication, @RequestBody @ApiParam(value = "수정 정보", required = true)UserSmallInfoUpdatePostReq userSmallInfoUpdatePostReq) {
+		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+		String userId = userDetails.getUsername();
+		User user = userService.getUserByUserId(userId);
+		user.setNickname(userSmallInfoUpdatePostReq.getNickname());
+		user.setEmail(userSmallInfoUpdatePostReq.getEmail());
+		userRepository.save(user);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "비밀번호 변경", notes = "현재 사용자의 비밀번호를 수정한다.")
