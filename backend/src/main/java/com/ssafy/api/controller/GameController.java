@@ -42,7 +42,7 @@ public class GameController {
             @ApiResponse(code = 409, message = "이미 소유중"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    @PutMapping("/get-item")
+    @PutMapping("/item")
     public ResponseEntity getItem(@ApiIgnore Authentication authentication, @RequestBody @ApiParam(value = "새로운 아이템의 정보", required = true)GameItemPostReq gameItemPostReq) {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         String userId = userDetails.getUsername();
@@ -68,22 +68,6 @@ public class GameController {
         }
     }
 
-    @ApiOperation(value = "위치 정보 수정", notes = "로그아웃하며 현재 위치를 저장한다.")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "수정 성공"),
-            @ApiResponse(code = 401, message = "인증 실패"),
-            @ApiResponse(code = 500, message = "서버 오류")
-    })
-    @PutMapping("/location")
-    public ResponseEntity updateLocation(@ApiIgnore Authentication authentication, @RequestBody @ApiParam(value = "마지막 위치", required = true) GameLocationUpdateReq gameLocationUpdatePostReq) {
-        SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
-        User user = userDetails.getUser();
-        Long userId = user.getId();
-        Status status = statusRepository.findByUserId(userId).orElse(null);
-        status.setLocation(gameLocationUpdatePostReq.getLocation());
-        statusRepository.save(status);
-        return new ResponseEntity(HttpStatus.OK);
-    }
 
     @ApiOperation(value = "마일리지 부여", notes = "사용자에게 마일리지를 부여한다")
     @ApiResponses({
@@ -119,7 +103,7 @@ public class GameController {
             @ApiResponse(code = 401, message = "인증 실패"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    @GetMapping("/initialize-inventory")
+    @GetMapping("/inventory")
     public ResponseEntity initializeInventory(@ApiIgnore Authentication authentication) {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         User user = userDetails.getUser();
@@ -139,7 +123,7 @@ public class GameController {
             @ApiResponse(code = 401, message = "인증 실패"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    @GetMapping("/initialize-location")
+    @GetMapping("/location")
     public ResponseEntity initializeLocation(@ApiIgnore Authentication authentication) {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         User user = userDetails.getUser();
@@ -155,7 +139,7 @@ public class GameController {
             @ApiResponse(code = 401, message = "인증 실패"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    @PutMapping("/terminate-location")
+    @PutMapping("/location")
     public ResponseEntity terminateLocation(@ApiIgnore Authentication authentication, @RequestBody @ApiParam(value = "마지막 위치", required = true) GameLastLocationReq gameLastLocationReq) {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         User user = userDetails.getUser();
@@ -171,7 +155,7 @@ public class GameController {
             @ApiResponse(code = 401, message = "인증 실패"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
-    @PutMapping("/terminate-inventory")
+    @PutMapping("/inventory")
     public ResponseEntity terminateInventory(@ApiIgnore Authentication authentication, @RequestBody @ApiParam(value = "마지막 인벤토리 상태", required = true) GameLastInventoryListReq gameLastInventoryListReq) {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         User user = userDetails.getUser();
