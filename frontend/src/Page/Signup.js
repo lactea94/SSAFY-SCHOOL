@@ -47,7 +47,7 @@ export default function Signup() {
       return
     };
     try {
-      await userAPI.post('users/duplicate-check-id', { id: signupInfo.id});
+      await userAPI.post('users/check/id', { id: signupInfo.id});
       setCheckId(true);
       setCheckIdText("");
       Toast.fire({
@@ -74,7 +74,7 @@ export default function Signup() {
       return
     };
     try {
-      await userAPI.post('users/duplicate-check-nickname', { nickname: signupInfo.nickname});
+      await userAPI.post('users/check/nickname', { nickname: signupInfo.nickname});
       setCheckNickname(true);
       setCheckNicknameText("");
       Toast.fire({
@@ -115,7 +115,7 @@ export default function Signup() {
     };
 
     try {
-      await userAPI.post('users/duplicate-check-email', { email: signupInfo.email});
+      await userAPI.post('users/check/email', { email: signupInfo.email});
       setCheckEmail(true);
       setCheckEmailText("");
       Toast.fire({

@@ -1,8 +1,7 @@
 import "./css/Articles.css";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 export default function Articles() {
-  const { state } = useLocation();
   const NavLinkStyle = ({ isActive }) => ({
     borderTop: isActive ? "1px solid gray" : "none",
     borderLeft: isActive ? "1px solid gray" : "none",
