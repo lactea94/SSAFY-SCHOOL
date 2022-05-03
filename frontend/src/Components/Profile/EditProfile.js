@@ -26,6 +26,7 @@ export default function EditProfile() {
     }
   });
 
+  // 유저 정보 호출
   useEffect(() => {
     setUser({
       nickname: state.user.nickname,
@@ -33,7 +34,7 @@ export default function EditProfile() {
     })
   }, [state])
 
-  function handleChnage({target: id, value}) {
+  function handleChange({target: {id, value}}) {
     const newUser = {
       ...user,
       [id]: value,
@@ -114,9 +115,9 @@ export default function EditProfile() {
         <div>닉네임</div>
         <input
           className="profile-edit-input"
-          type="nickname"
+          id="nickname"
           value={user.nickname}
-          onChange={handleChnage}
+          onChange={handleChange}
         />
         {checkNickname ? (
           <div
@@ -137,9 +138,9 @@ export default function EditProfile() {
         <div>이메일</div>
         <input
           className="profile-edit-input"
-          type="email"
+          id="email"
           value={user.email}
-          onChange={handleChnage}
+          onChange={handleChange}
         />
         {checkEmail ? (
           <div
