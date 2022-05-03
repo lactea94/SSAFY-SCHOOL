@@ -38,6 +38,7 @@ export default function Signup() {
     }
   })
   
+  // 아이디 중복 체크
   async function duplicateId() {
     if (!signupInfo.id) {
       Toast.fire({
@@ -65,6 +66,7 @@ export default function Signup() {
     };
   };
   
+  // 닉네임 중복 체크
   async function duplicateNickname() {
     if (!signupInfo.nickname) {
       Toast.fire({
@@ -97,6 +99,7 @@ export default function Signup() {
     return email.test(str)
   };
 
+  // 이메일 중복 체크
   async function duplicateEmail() {
     if (!signupInfo.email) {
       Toast.fire({
