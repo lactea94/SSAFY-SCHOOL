@@ -4,6 +4,7 @@ import { apiInstance, userInstance } from "../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
 import './css/EditProfile.css';
+import CheckEmailForm from "../../Utils/CheckEmailForm";
 
 export default function EditProfile() {
   const { state } = useLocation();
@@ -42,12 +43,6 @@ export default function EditProfile() {
     setUser(newUser);
   };
 
-  // 이메일 체크 함수
-  function checkEmailForm(str) {
-    var email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    return email.test(str)
-  };
-
   // 닉네임 중복 체크
   async function duplicateNickname() {
     if (!user.nickname) {
@@ -84,7 +79,7 @@ export default function EditProfile() {
       return
     };
 
-    if (!checkEmailForm(user.email)) {
+    if (!CheckEmailForm(user.email)) {
       Toast.fire({
         icon: "error",
         title: "올바른 이메일 형식을 입력하세요."
