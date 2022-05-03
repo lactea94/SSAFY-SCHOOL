@@ -70,18 +70,11 @@ export default function Community() {
             <Link
               className="article-link"
               to={`${notice.id}`}
-              state={{
-                userId: notice.uesrId,
-                title: notice.title,
-                content: notice.content,
-                createdDate: notice.createdDate,
-                updatedDate: notice.updatedDate
-              }}
             >
               {notice.title}
             </Link>
           </div>
-          <div>{DateFormat(notice.createdDate)}</div>
+          <div>{notice.name}</div>
           <div>{DateFormat(notice.updatedDate)}</div>
         </div>
     )))
@@ -91,7 +84,7 @@ function Communities() {
   return (
     filteredCommunityList.slice(offset, offset + limit).map((community) => (
       <div className="article-row" key={community.id}>
-        <div>{community.userId}</div>
+        <div>{community.nickname}</div>
         <div>
           <Link
             className="article-link"
@@ -100,7 +93,7 @@ function Communities() {
             {community.title}
           </Link>
         </div>
-        <div>{DateFormat(community.createdDate)}</div>
+        <div>{community.name}</div>
         <div>{DateFormat(community.updatedDate)}</div>
       </div>
     )))
@@ -112,9 +105,9 @@ function Communities() {
       <Outlet/>
       <div className="article-container">
         <div className="index-row">
-          <div>작성자</div>
+          <div>#</div>
           <div>제목</div>
-          <div>작성일자</div>
+          <div>작성자</div>
           <div>수정일자</div>
         </div>
         {Notices()}

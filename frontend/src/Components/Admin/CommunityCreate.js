@@ -44,19 +44,19 @@ export default function CommunityCreate({ setCreateOpen }) {
   }, []);
   
   return (
-    <div className="create-modal" onClick={handleCancel}>
+    <div className="admin-create-modal" onClick={handleCancel}>
       <form
-        className="create-form"
+        className="admin-create-form"
         onClick={e => e.stopPropagation()}
         onSubmit={handleSubmit}
       >
-        <div className="create-label">제목</div>
+        <div className="admin-create-label">제목</div>
         <input
-          className="create-title"
+          className="admin-create-title"
           onChange={e => setTitle(e.target.value)}
           required
         />
-        <div className="create-label">
+        <div className="admin-create-label">
           <label>공지</label>
           <input
             className="admin-toggle"
@@ -66,16 +66,16 @@ export default function CommunityCreate({ setCreateOpen }) {
             onChange={e => setIsNotice(e.target.checked)}
           />
         </div>
-        <div className="create-label">내용</div>
+        <div className="admin-create-label">내용</div>
         <textarea
-          className="create-content"
+          className="admin-create-content"
           rows={20}
           onChange={e => setContent(e.target.value)}
           required
         />
-        <div className="create-buttons">
-          <button className="create-button">작성</button>
-          <button className="create-cancel" onClick={handleCancel}>취소</button>
+        <div className="admin-create-buttons">
+          <button className="admin-create-button">작성</button>
+          <button className="admin-create-cancel" onClick={handleCancel}>취소</button>
         </div>
       </form>
     </div>

@@ -214,12 +214,13 @@ export default function EditProfile() {
       </div>
       <div className="profile-edit-row">
         <Link
+          className="to-password"
           to="password"
           state={{
             user: state.user
           }}
         >
-          비밀번호 수정
+          비밀번호를 수정하려면 여기를 클릭하세요.
         </Link>
       </div>
       <div className="profile-edit-buttons">
