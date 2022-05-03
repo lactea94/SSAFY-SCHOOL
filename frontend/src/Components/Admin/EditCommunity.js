@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import "./css/EditCommunity.css";
 
@@ -12,21 +13,20 @@ export default function EditCommunity() {
     content: "",
     createdDate: "",
     updatedDate: "",
-    isAdmin: "",
+    isNotice: "",
   });
   const [ comments, setComments ] = useState([]);
+  const navigate = useNavigate();
+  const API = apiInstance();
 
   // 게시글 및 댓글 호출
   useEffect(() => {
-    setCommunity({
-      id: communityId,
-      userId: 0,
-      title: `게시글${communityId}`,
-      content: `내용${communityId}`,
-      createdDate: "2022-04-19 16:10:00",
-      updatedDate: "2022-04-20 15:30:30",
-      isAdmin: true,
-    });
+    async function saveCommunity() {
+      const res = await apiInstance().get(`/community/${communityId}`);
+      setCommunity(res.data)
+      console.log(res.data)
+    };
+    saveCommunity();
     setComments([
       { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
       { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
@@ -34,7 +34,7 @@ export default function EditCommunity() {
       { id: 3, userId: 2, content: "댓글4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
       { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },  
     ]);
-  }, [communityId])
+  }, [communityId]);
 
   // 내용 변경
   function handleChange({target: {id, value}}) {
@@ -46,7 +46,7 @@ export default function EditCommunity() {
   };
 
   // 공지사항 변경
-  function hanldeChangeAdmin({target: {id, checked}}) {
+  function handleChangeNotice({target: {id, checked}}) {
     const newCommunity = {
       ...community,
       [id]: checked,
@@ -55,13 +55,19 @@ export default function EditCommunity() {
   };
 
   // 게시글 수정
-  function handleSubmit() {
-    console.log(community);
+  async function handleSubmit() {
+    await API.put(`/community/${communityId}`, {
+      title: community.title,
+      content: community.content,
+      isNotice: community.isNotice,
+    })
   };
 
   // 게시글 삭제
-  function handleClick() {
-
+  async function handleClick() {
+    await API.delete(`/community/${communityId}`);
+    navigate('/admin/community');
+    navigate(0);
   };
 
   // 댓글 삭제
@@ -86,9 +92,9 @@ export default function EditCommunity() {
         <input
           className="is-admin-toggle"
           type="checkbox"
-          id="isAdmin"
-          checked={community.isAdmin}
-          onChange={hanldeChangeAdmin}
+          id="isNotice"
+          checked={community.isNotice}
+          onChange={handleChangeNotice}
         />
       </div>
       <div className="admin-community-date">
