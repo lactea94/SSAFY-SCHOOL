@@ -1,7 +1,7 @@
 import './css/Profile.css';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { RiLockPasswordFill } from "react-icons/ri";
+import { FaUserCog } from "react-icons/fa";
 
 export default function Profile() {
   const { state } = useLocation();
@@ -33,12 +33,12 @@ export default function Profile() {
           <div>
             <Link
               className='profile-edit-link'
-              to="edit-password"
+              to="edit"
               state={{
                 user: state.user
               }}
             >
-              <RiLockPasswordFill />
+              <FaUserCog />
             </Link>
           </div>
         </div>

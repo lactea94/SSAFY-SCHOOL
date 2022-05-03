@@ -3,6 +3,7 @@ import "./css/Admin.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
+import { useNavigate } from "react-router-dom";
 
 export function TestBug() {
   const [ searchCategory, setSearchCategory ] = useState('content');
@@ -15,6 +16,12 @@ export function TestBug() {
   const categories = [
     { value: 'content', name: '내용'},
   ];
+  const navigate = useNavigate();
+
+  if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin')) {
+    navigate('/');
+  };
+
 
   // 버그 리포트 호출
   useEffect(() => {

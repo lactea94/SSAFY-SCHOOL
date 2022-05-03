@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
-import { apiInstance } from "../../api";
+import Swal from "sweetalert2";
+import { apiInstance, userInstance } from "../../api";
+import { AiFillCheckCircle } from "react-icons/ai";
 import './css/EditUser.css'
+import CheckEmailForm from "../../Utils/CheckEmailForm";
+import withReactContent from "sweetalert2-react-content";
 
 export default function EditUser() {
   const { userId } = useParams();
@@ -26,13 +30,34 @@ export default function EditUser() {
   const [ checkInList, setCheckInList ] = useState([]);
   const [ checkOutList, setCheckOutList ] = useState([]);
   const [ addMileage, setAddMileage ] = useState(0);
-  
+  const [ checkNickname, setCheckNickname ] = useState(true);
+  const [ checkEmail, setCheckEmail ] = useState(true);
+  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
+  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
+  const [ originNickname, setOriginNickname ] = useState("");
+  const [ originEmail, setOriginEmail ] = useState("");
+  const API = apiInstance();
+  const userAPI = userInstance();
+  const MySwal = withReactContent(Swal);
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
   
   // 유저 정보 호출
   useEffect(() => {
     async function saveUser() {
       const res = await apiInstance().get(`users/${userId}`);
       setUser(res.data);
+      setOriginNickname(res.data.nickname);
+      setOriginEmail(res.data.email);
     };
     saveUser();
   }, [userId]);
@@ -46,25 +71,105 @@ export default function EditUser() {
   // 출석 정보 호출
   useEffect(() => {
     async function saveCheckIn() {
-      const res = await apiInstance().get(`/check/in/${userId}`)
+      const res = await API.get(`/check/in/${userId}`)
       setCheckInList(res.data)
     };
   
     async function saveCheckOut() {
-      const res = await apiInstance().get(`/check/out/${userId}`)
+      const res = await API.get(`/check/out/${userId}`)
       setCheckOutList(res.data)
     };
 
     saveCheckIn();
     saveCheckOut();
-  }, [userId]);
+  }, [API, userId]);
+
+  // 닉네임 중복 체크
+  async function duplicateNickname() {
+    if (!user.nickname) {
+      Toast.fire({
+        icon: "question",
+        title: "닉네임을 입력하세요."
+      });
+      return
+    };
+    try {
+      await userAPI.post('users/check/nickname', { nickname: user.nickname});
+      setCheckNickname(true);
+      setCheckNicknameText("");
+      Toast.fire({
+        icon: "success",
+        title: "사용 가능한 닉네임 입니다."
+      });
+    } catch (error) {
+      if (error.response.status === 409) {
+        Toast.fire({
+          icon: "error",
+          title: "이미 존재하는 닉네임 입니다."
+        });
+      }
+    };
+  };
+  
+    // 이메일 중복 체크
+    async function duplicateEmail() {
+      if (!user.email) {
+        Toast.fire({
+          icon: "question",
+          title: "이메일을 입력하세요."
+        });
+        return
+      };
+  
+      if (!CheckEmailForm(user.email)) {
+        Toast.fire({
+          icon: "error",
+          title: "올바른 이메일 형식을 입력하세요."
+        });
+        return
+      };
+  
+      try {
+        await userAPI.post('users/check/email', { email: user.email});
+        setCheckEmail(true);
+        setCheckEmailText("");
+        Toast.fire({
+          icon: "success",
+          title: "사용 가능한 이메일 입니다."
+        });
+      } catch (error) {
+        if (error.response.status === 409) {
+          Toast.fire({
+            icon: "error",
+            title: "이미 존재하는 이메일 입니다."
+          });
+        }
+      };
+    };
+
+  // 유효성 검사
+  function validation() {
+    if ( checkEmail && checkNickname ) return true
+    return false
+  };
 
   // 유저 정보 변경
   function handleChange({target: {id, value}}) {
-    if (id === "admin") {
+    if (id === "nickname") {
+      if (originNickname === value) {
+        setCheckNickname(true);
+      } else {
+        setCheckNickname(false);
+      }
+    } else if (id === "email") {
+      if (originEmail === value) {
+        setCheckEmail(true);
+      } else {
+        setCheckEmail(false);
+      }
+    } else if (id === "admin") {
       value = parseInt(value)
-    }
-    if (id === "gender") {
+    } else if (id === "gender") {
       if (value === "true")
         value = true
       else {
@@ -88,24 +193,37 @@ export default function EditUser() {
     }
   };
 
-  // 유저 정보 저장
+  // 유저 정보 수정
   async function handleSubmit() {
-    try {
-      await apiInstance().put(`/users/${userId}`, {
-        nickname: user.nickname,
-        name : user.name,
-        gender : user.gender,
-        admin : user.admin,
-        totalMileage : totalMileage,
-        remainMileage : remainMileage,
-        studentId : user.studentId,
-        classNumber : user.classNumber,
-        teamCode : user.teamCode,
-        local : user.local
+    if (validation()) {
+      try {
+        await API.put(`/users/${userId}`, {
+          nickname: user.nickname,
+          name : user.name,
+          gender : user.gender,
+          admin : user.admin,
+          totalMileage : totalMileage,
+          remainMileage : remainMileage,
+          studentId : user.studentId,
+          classNumber : user.classNumber,
+          teamCode : user.teamCode,
+          local : user.local
+        });
+        await MySwal.fire({
+          icon: "success",
+          title: "정보 수정 성공!",
+        }).then(function() {navigate(0)})
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      MySwal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: `${
+          [checkNicknameText, checkEmailText].filter(text => text.length > 0).join(', ')
+        }을(를) 확인하세요`,
       });
-      navigate(0);
-    } catch (error) {
-      console.log(error)
     }
   }
 
@@ -142,10 +260,43 @@ export default function EditUser() {
           value={user.nickname}
           onChange={handleChange}
         />
+        {checkNickname ? (
+          <div
+            className="user-edit-check-confirm"
+          >
+            <AiFillCheckCircle/>
+          </div>
+        ) : (
+          <div
+            className="user-edit-check"
+            onClick={duplicateNickname}
+          >
+            중복확인
+          </div>
+        )}
       </div>
       <div className="edit-user-row">
         <div className="label">이메일</div>
-        <div className="edit-user-text">{user.email}</div>
+        <input 
+          className="edit-user-input"
+          id="email"
+          value={user.email}
+          onChange={handleChange}
+        />
+        {checkEmail ? (
+            <div
+              className="user-edit-check-confirm"
+            >
+              <AiFillCheckCircle/>
+            </div>
+          ) : (
+            <div
+              className="user-edit-check"
+              onClick={duplicateEmail}
+            >
+              중복확인
+            </div>
+        )}
       </div>
       <div className="edit-user-row">
         <div className="label">권한</div>

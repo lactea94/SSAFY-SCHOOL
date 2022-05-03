@@ -5,6 +5,7 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './css/Signup.css'
+import CheckEmailForm from "../Utils/CheckEmailForm";
 
 export default function Signup() {
   const [signupInfo, setSignupInfo] = useState({
@@ -25,7 +26,7 @@ export default function Signup() {
   const checkPasswordText = "비밀번호";
   const userAPI = userInstance();
   const navigate = useNavigate();
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal);
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -36,8 +37,9 @@ export default function Signup() {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  })
+  });
   
+  // 아이디 중복 체크
   async function duplicateId() {
     if (!signupInfo.id) {
       Toast.fire({
@@ -65,6 +67,7 @@ export default function Signup() {
     };
   };
   
+  // 닉네임 중복 체크
   async function duplicateNickname() {
     if (!signupInfo.nickname) {
       Toast.fire({
@@ -89,14 +92,9 @@ export default function Signup() {
         });
       }
     };
-  };
+  }
 
-  // 이메일 체크 함수
-  function checkEmailForm(str) {
-    var email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    return email.test(str)
-  };
-
+  // 이메일 중복 체크
   async function duplicateEmail() {
     if (!signupInfo.email) {
       Toast.fire({
@@ -106,7 +104,7 @@ export default function Signup() {
       return
     };
 
-    if (!checkEmailForm(signupInfo.email)) {
+    if (!CheckEmailForm(signupInfo.email)) {
       Toast.fire({
         icon: "error",
         title: "올바른 이메일 형식을 입력하세요."
@@ -132,11 +130,13 @@ export default function Signup() {
     };
   };
 
+  // 유효성 검사
   function validation() {
     if ( signupInfo.password === passwordConfirm && checkId && checkEmail && checkNickname ) return true
     return false
   };
 
+  // Input 변경
   function signupInput({target: {id, value}}) {
     if (id === "id") {
       setCheckId(false);
@@ -158,6 +158,7 @@ export default function Signup() {
     setSignupInfo(newLoginInfo);
   };
 
+  // 회원 가입
   async function signupSubmit(e) {
     e.preventDefault();
     if (validation()) {

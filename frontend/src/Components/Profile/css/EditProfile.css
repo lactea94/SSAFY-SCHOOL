@@ -14,10 +14,30 @@
 
 .profile-edit-title {
   text-align: start;
+  margin: auto 0;
+  width: 10rem;
 }
 
 .profile-edit-input {
   font-size: 1rem;
+}
+
+.profile-check-confirm {
+  padding: 0.2rem;
+  color: rgb(7, 252, 19);
+  width: 4rem;
+  text-align: center;
+  line-height: 0;
+}
+
+.profile-check {
+  cursor: pointer;
+  padding: 0.2rem;
+  width: 4rem;
+  font-size: 1rem;
+  background-color: gray;
+  color: white;
+  text-align: center;
 }
 
 .profile-edit-buttons {
