@@ -12,5 +12,5 @@ import java.util.List;
 @ApiModel("GameLastInventoryListRequest")
 public class GameLastInventoryListReq {
     @ApiModelProperty(name = "마지막 인벤토리 정보", example = "[{\"name\": \"HO01\", \"wear\" : \"True\"}]")
-    private List<GameLastInventoryReq> gameLastInventoryReqList;
+    private List<GameLastInventoryReq> inventoryList;
 }
