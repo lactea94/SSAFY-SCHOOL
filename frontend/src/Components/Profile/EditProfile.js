@@ -6,13 +6,11 @@ import Swal from "sweetalert2";
 import './css/EditProfile.css';
 import withReactContent from "sweetalert2-react-content";
 import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
+import useGet from "../../Hooks/useGet";
 
 export default function EditProfile() {
   const { state } = useLocation();
-  const [ user, setUser ] = useState({
-    nickname: "",
-    email: "",
-  });
+  const [ user, setUser ] = useState({});
   const [ checkNickname, setCheckNickname ] = useState(true);
   const [ checkEmail, setCheckEmail ] = useState(true);
   const [ originNickname, setOriginNickname ] = useState("");
@@ -32,20 +30,16 @@ export default function EditProfile() {
     }
   });
 
-  
   // 유저 정보 호출
+  const userInfo = useGet('/users/me');
   useEffect(() => {
-    async function saveUser() {
-      const res = await apiInstance().get('/users/me')
-      setUser({
-        nickname: res.data.nickname,
-        email: res.data.email,
-      })
-      setOriginNickname(res.data.nickname);
-      setOriginEmail(res.data.email);
-    };
-    saveUser(); 
-  }, [])
+    setUser({
+      nickname: userInfo.nickname,
+      email: userInfo.email
+    })
+    setOriginNickname(userInfo.nickname);
+    setOriginEmail(userInfo.email);
+  }, [userInfo])
 
   // 유효성 검사
   function validation() {
@@ -105,7 +99,7 @@ export default function EditProfile() {
         <input
           className="profile-edit-input"
           id="nickname"
-          value={user.nickname}
+          value={user.nickname || ''}
           onChange={handleChange}
         />
         {checkNickname ? (
@@ -133,7 +127,7 @@ export default function EditProfile() {
         <input
           className="profile-edit-input"
           id="email"
-          value={user.email}
+          value={user.email || ''}
           onChange={handleChange}
         />
         {checkEmail ? (
