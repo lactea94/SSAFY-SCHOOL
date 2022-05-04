@@ -30,8 +30,6 @@ export default function EditUser() {
   });
   const [ totalMileage, setTotalMileage ] = useState(0);
   const [ remainMileage, setRemainMileage ] = useState(0);
-  // const [ checkInList, setCheckInList ] = useState([]);
-  // const [ checkOutList, setCheckOutList ] = useState([]);
   const [ addMileage, setAddMileage ] = useState(0);
   const [ checkNickname, setCheckNickname ] = useState(true);
   const [ checkEmail, setCheckEmail ] = useState(true);
