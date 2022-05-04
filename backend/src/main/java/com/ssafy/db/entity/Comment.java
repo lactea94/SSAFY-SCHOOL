@@ -21,9 +21,6 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime createdDate;
 
-    @Column(nullable = false)
-    private LocalDateTime updatedDate;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -36,7 +33,6 @@ public class Comment extends BaseEntity {
     public Comment(String content, LocalDateTime createdDate, LocalDateTime updatedDate, User user, Community community) {
         this.content = content;
         this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
         this.user = user;
         this.community = community;
     }
