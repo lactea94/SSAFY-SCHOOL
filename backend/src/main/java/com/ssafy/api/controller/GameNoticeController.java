@@ -68,13 +68,13 @@ public class GameNoticeController {
     @GetMapping()
     public ResponseEntity getGameNoticeList() {
         List<GameNotice> list = gameNoticeRepository.findAll();
-        List<CommunityListRes> communityList = new ArrayList<>();
-
-        Collections.reverse(list);
-
-        for (Community entity : list) {
-            communityList.add(new CommunityListRes(entity));
-        }
-        return new ResponseEntity<>(communityList, HttpStatus.OK);
+//        List<CommunityListRes> communityList = new ArrayList<>();
+//
+//        Collections.reverse(list);
+//
+//        for (Community entity : list) {
+//            communityList.add(new CommunityListRes(entity));
+//        }
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
