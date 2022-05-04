@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
-import Swal from "sweetalert2";
 import { apiInstance } from "../../api";
-import { AiFillCheckCircle } from "react-icons/ai";
-import './css/EditUser.css'
-import withReactContent from "sweetalert2-react-content";
 import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
+import useGetObject from "../../Hooks/useGetObject";
+import useGetList from "../../Hooks/useGetList";
+import { AiFillCheckCircle } from "react-icons/ai";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 import Toast from "../../Utils/Toast";
+import './css/EditUser.css'
 
 export default function EditUser() {
   const { userId } = useParams();
@@ -28,8 +30,8 @@ export default function EditUser() {
   });
   const [ totalMileage, setTotalMileage ] = useState(0);
   const [ remainMileage, setRemainMileage ] = useState(0);
-  const [ checkInList, setCheckInList ] = useState([]);
-  const [ checkOutList, setCheckOutList ] = useState([]);
+  // const [ checkInList, setCheckInList ] = useState([]);
+  // const [ checkOutList, setCheckOutList ] = useState([]);
   const [ addMileage, setAddMileage ] = useState(0);
   const [ checkNickname, setCheckNickname ] = useState(true);
   const [ checkEmail, setCheckEmail ] = useState(true);
@@ -39,37 +41,18 @@ export default function EditUser() {
   const MySwal = withReactContent(Swal);
   
   // 유저 정보 호출
+  const userInfo = useGetObject(`users/${userId}`);
   useEffect(() => {
-    async function saveUser() {
-      const res = await apiInstance().get(`users/${userId}`);
-      setUser(res.data);
-      setOriginNickname(res.data.nickname);
-      setOriginEmail(res.data.email);
-    };
-    saveUser();
-  }, [userId]);
-
-  // 마일리지 정보 저장
-  useEffect(() => {
-    setTotalMileage(user.totalMileage);
-    setRemainMileage(user.remainMileage);
-  }, [user]);
+    setUser(userInfo);
+    setOriginNickname(userInfo.nickname);
+    setOriginEmail(userInfo.email);
+    setTotalMileage(userInfo.totalMileage);
+    setRemainMileage(userInfo.remainMileage);
+  }, [userInfo]);
 
   // 출석 정보 호출
-  useEffect(() => {
-    async function saveCheckIn() {
-      const res = await API.get(`/check/in/${userId}`)
-      setCheckInList(res.data)
-    };
-  
-    async function saveCheckOut() {
-      const res = await API.get(`/check/out/${userId}`)
-      setCheckOutList(res.data)
-    };
-
-    saveCheckIn();
-    saveCheckOut();
-  }, [API, userId]);
+  const checkInList = useGetList(`/check/in/${userId}`)
+  const checkOutList = useGetList(`/check/out/${userId}`)
 
   // 유효성 검사
   function validation() {
