@@ -8,23 +8,6 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
   const [ chartdata, setChartdata ] = useState(null);
   const [ attendance, setAttendance ] = useState(0);
   const [ tardy, setTardy ] = useState(0);
-  // const [ checkInList, setCheckInList ] = useState([]);
-  // const [ checkOutList, setCheckOutList ] = useState([]);
-
-  // useEffect(() => {
-  //   async function saveCheckIn() {
-  //     const res = await apiInstance().get(`/users/check-indate`)
-  //     setCheckInList(res.data.map(data => data.checkIndate))
-  //   };
-  
-  //   async function saveCheckOut() {
-  //     const res = await apiInstance().get(`/users/check-outdate`)
-  //     setCheckOutList(res.data.map(data => data.checkOutDate))
-  //   };
-
-  //   saveCheckIn();
-  //   saveCheckOut();
-  // }, [])
 
   // 이번달 일 수 계산
   useEffect(() => {

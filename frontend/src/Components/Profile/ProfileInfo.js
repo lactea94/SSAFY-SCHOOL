@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { apiInstance } from "../../api";
+import useGetList from "../../Hooks/useGetList";
 import Grass from "./Grass";
 import Maininfo from "./Maininfo";
 
@@ -9,20 +9,13 @@ export default function ProfileInfo() {
   const [ checkInList, setCheckInList ] = useState([]);
   const [ checkOutList, setCheckOutList ] = useState([]);
 
-  useEffect(() => {
-    async function saveCheckIn() {
-      const res = await apiInstance().get(`/users/indate`)
-      setCheckInList(res.data.map(data => data.checkIndate))
-    };
-  
-    async function saveCheckOut() {
-      const res = await apiInstance().get(`/users/outdate`)
-      setCheckOutList(res.data.map(data => data.checkOutDate))
-    };
+  const checkInObject = useGetList('/users/indate');
+  const checkOutObject = useGetList('/users/outdate');
 
-    saveCheckIn();
-    saveCheckOut();
-  }, [])
+  useEffect(() => {
+    setCheckInList(checkInObject.map(data => data.checkIndate))
+    setCheckOutList(checkOutObject.map(data => data.checkOutDate))
+  }, [checkInObject, checkOutObject])
 
   return (
     <div>

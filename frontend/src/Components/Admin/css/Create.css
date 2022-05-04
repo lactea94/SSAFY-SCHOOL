@@ -1,4 +1,4 @@
-.create-modal {
+.admin-create-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.create-form {
+.admin-create-form {
   align-items: center;
   position: absolute;
   top: 50%;
@@ -21,7 +21,7 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-.create-label {
+.admin-create-label {
   align-items: start;
   font-size: 1.5rem;
   margin: 1rem auto;
@@ -34,7 +34,7 @@
   height: 1rem;
 }
 
-.create-title {
+.admin-create-title {
   font-size: 1.2rem;
   border: none;
   border-bottom: 1px solid lightgray;
@@ -43,7 +43,7 @@
   box-sizing: border-box;
 }
 
-.create-content {
+.admin-create-content {
   font-size: 1rem;
   resize: none;
   outline: none;
@@ -52,12 +52,12 @@
   box-sizing: border-box;
 }
 
-.create-buttons {
+.admin-create-buttons {
   display: flex;
   justify-content: space-between;
 }
 
-.create-button {
+.admin-create-button {
   cursor: pointer;
   margin: 1rem;
   padding: 0.5rem 1rem;
@@ -67,24 +67,24 @@
   outline: none;
 }
 
-.create-cancel {
+.admin-create-cancel {
   cursor: pointer;
   margin: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  background-color: yellow;
+  background-color: #FFE651;
   border: none;
   outline: none;
 }
 
 @media screen and (min-width: 1280px) {
-  .create-form {
+  .admin-create-form {
     width: 50%;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  .create-form {
+  .admin-create-form {
     width: 33%;
   }
 }

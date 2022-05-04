@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { UpdateCommunity } from "../../api/ArticleAPI";
 import "./css/CommunityUpdate.css"
 
 export default function CommunityUpdate({ title, content, setUpdateOpen }) {
+  const { communityId } = useParams();
   const [ newTitle, setNewTitle ] = useState(title);
-  const [ newcontent, setNewContent ] = useState(content);
+  const [ newContent, setNewContent ] = useState(content);
   const navigate = useNavigate();
 
   // 게시글 수정
-  function handleSubmit() {
-    console.log(newTitle);
-    console.log(newcontent);
-    navigate('/articles/community')
-  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    UpdateCommunity(communityId, newTitle, newContent);
+    navigate(0);
+  };
   
   // 모달 닫기
   function handleCancel() {
     setUpdateOpen(false)
-  }
+  };
 
   // 모달 위치 제어
   useEffect(() => {
@@ -51,7 +53,7 @@ export default function CommunityUpdate({ title, content, setUpdateOpen }) {
         <textarea
           className="update-content"
           rows={20}
-          value={newcontent}
+          value={newContent}
           onChange={(e) => {setNewContent(e.target.value)}}
           required
         />

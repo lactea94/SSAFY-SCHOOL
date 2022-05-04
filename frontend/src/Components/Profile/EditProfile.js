@@ -1,117 +1,35 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { apiInstance, userInstance } from "../../api";
+import { apiInstance } from "../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
 import './css/EditProfile.css';
-import CheckEmailForm from "../../Utils/CheckEmailForm";
 import withReactContent from "sweetalert2-react-content";
+import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
+import useGetList from "../../Hooks/useGetList";
+import Toast from "../../Utils/Toast";
 
 export default function EditProfile() {
   const { state } = useLocation();
-  const [ user, setUser ] = useState({
-    nickname: "",
-    email: "",
-  });
+  const [ user, setUser ] = useState({});
   const [ checkNickname, setCheckNickname ] = useState(true);
   const [ checkEmail, setCheckEmail ] = useState(true);
-  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
-  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
   const [ originNickname, setOriginNickname ] = useState("");
   const [ originEmail, setOriginEmail ] = useState("");
   const navigate = useNavigate();
   const API = apiInstance();
-  const userAPI = userInstance();
   const MySwal = withReactContent(Swal);
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  });
 
-  
   // 유저 정보 호출
+  const userInfo = useGetList('/users/me');
   useEffect(() => {
-    async function saveUser() {
-      const res = await apiInstance().get('/users/me')
-      setUser({
-        nickname: res.data.nickname,
-        email: res.data.email,
-      })
-      setOriginNickname(res.data.nickname);
-      setOriginEmail(res.data.email);
-    };
-    saveUser(); 
-  }, [])
-
-  // 닉네임 중복 체크
-  async function duplicateNickname() {
-    if (!user.nickname) {
-      Toast.fire({
-        icon: "question",
-        title: "닉네임을 입력하세요."
-      });
-      return
-    };
-    try {
-      await userAPI.post('users/check/nickname', { nickname: user.nickname});
-      setCheckNickname(true);
-      setCheckNicknameText("");
-      Toast.fire({
-        icon: "success",
-        title: "사용 가능한 닉네임 입니다."
-      });
-    } catch (error) {
-      if (error.response.status === 409) {
-        Toast.fire({
-          icon: "error",
-          title: "이미 존재하는 닉네임 입니다."
-        });
-      }
-    };
-  };
-
-  // 이메일 중복 체크
-  async function duplicateEmail() {
-    if (!user.email) {
-      Toast.fire({
-        icon: "question",
-        title: "이메일을 입력하세요."
-      });
-      return
-    };
-
-    if (!CheckEmailForm(user.email)) {
-      Toast.fire({
-        icon: "error",
-        title: "올바른 이메일 형식을 입력하세요."
-      });
-      return
-    };
-
-    try {
-      await userAPI.post('users/check/email', { email: user.email});
-      setCheckEmail(true);
-      setCheckEmailText("");
-      Toast.fire({
-        icon: "success",
-        title: "사용 가능한 이메일 입니다."
-      });
-    } catch (error) {
-      if (error.response.status === 409) {
-        Toast.fire({
-          icon: "error",
-          title: "이미 존재하는 이메일 입니다."
-        });
-      }
-    };
-  };
+    setUser({
+      nickname: userInfo.nickname,
+      email: userInfo.email
+    })
+    setOriginNickname(userInfo.nickname);
+    setOriginEmail(userInfo.email);
+  }, [userInfo])
 
   // 유효성 검사
   function validation() {
@@ -158,7 +76,7 @@ export default function EditProfile() {
         icon: "warning",
         title: "Oops...",
         text: `${
-          [checkNicknameText, checkEmailText].filter(text => text.length > 0).join(', ')
+          [!checkNickname && "닉네임", !checkEmail && "이메일"].filter(text => text.length > 0).join(', ')
         }을(를) 확인하세요`,
       });
     }
@@ -171,7 +89,7 @@ export default function EditProfile() {
         <input
           className="profile-edit-input"
           id="nickname"
-          value={user.nickname}
+          value={user.nickname || ''}
           onChange={handleChange}
         />
         {checkNickname ? (
@@ -183,7 +101,12 @@ export default function EditProfile() {
         ) : (
           <div
             className="profile-check"
-            onClick={duplicateNickname}
+            onClick={() => {
+              duplicateNickname(
+                user.nickname,
+                Toast,
+                setCheckNickname
+            )}}
           >
             중복확인
           </div>
@@ -194,7 +117,7 @@ export default function EditProfile() {
         <input
           className="profile-edit-input"
           id="email"
-          value={user.email}
+          value={user.email || ''}
           onChange={handleChange}
         />
         {checkEmail ? (
@@ -206,7 +129,12 @@ export default function EditProfile() {
         ) : (
           <div
             className="profile-check"
-            onClick={duplicateEmail}
+            onClick={() => {
+              duplicateEmail(
+                user.email,
+                Toast,
+                setCheckEmail
+            )}}
           >
             중복확인
           </div>
@@ -214,12 +142,13 @@ export default function EditProfile() {
       </div>
       <div className="profile-edit-row">
         <Link
+          className="to-password"
           to="password"
           state={{
             user: state.user
           }}
         >
-          비밀번호 수정
+          비밀번호를 수정하려면 여기를 클릭하세요.
         </Link>
       </div>
       <div className="profile-edit-buttons">

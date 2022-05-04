@@ -1,37 +1,51 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { apiInstance } from "../../api";
+import Toast from "../../Utils/Toast";
 import './css/EditProfile.css';
 
 export default function EditPassword() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const [ password, setPassword ] = useState();
-  const [ confirmPassword, setConfirmPassword ] = useState();
+  const [ password, setPassword ] = useState("");
+  const [ confirmPassword, setConfirmPassword ] = useState("");
+  const MySwal = withReactContent(Swal);
 
   async function handleSubmit() {
     if (!password) {
-      alert("비밀번호를 입력하세요.");
+      Toast.fire({
+        icon: "question",
+        title:"비밀번호를 입력하세요."
+      });
       return
     } else if (password !== confirmPassword) {
-      alert("비밀번호를 확인하세요.");
+      Toast.fire({
+        icon: "error",
+        title:"비밀번호를 확인하세요."
+      });
       return
     };
     try {
       await apiInstance().put('/users/password', { password: password});
-      navigate(-1);
+      await MySwal.fire({
+        icon: "success",
+        title: "비밀번호 수정 성공!"
+      }).then(function() {navigate(-1)});
     } catch (error) {
       console.log(error);
     };
   };
 
   return (
-    <div className="profile-edit">
+    <form className="profile-edit">
       <div className="profile-edit-row">
         <div className="profile-edit-title">비밀번호</div>
         <input
           className="profile-edit-input"
           type="password"
+          autoComplete="new-password"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
@@ -41,6 +55,7 @@ export default function EditPassword() {
         <input
           className="profile-edit-input"
           type="password"
+          autoComplete="new-password"
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
         />
@@ -62,6 +77,6 @@ export default function EditPassword() {
           수정
         </div>
       </div>
-    </div>
+    </form>
   )
 }
