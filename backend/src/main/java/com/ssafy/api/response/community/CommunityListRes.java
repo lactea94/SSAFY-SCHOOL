@@ -28,6 +28,9 @@ public class CommunityListRes {
     @ApiModelProperty(name = "Community UpdatedDate", example = "2022-05-03 12:05:12 110005")
     private LocalDateTime updatedDate;
 
+    @ApiModelProperty(name = "Community IsNotice", example = "True")
+    private Boolean isNotice;
+
     @ApiModelProperty(name = "Community User seq", example = "1")
     private Long userId;
 
@@ -43,6 +46,7 @@ public class CommunityListRes {
         this.content = entity.getContent();
         this.createdDate = entity.getCreatedDate();
         this.updatedDate = entity.getUpdateDate();
+        this.isNotice = entity.getIsNotice();
         User user = entity.getUser();
         this.userId = user.getId();
         this.name = user.getName();
