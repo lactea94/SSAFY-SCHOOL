@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiInstance } from "../../api";
+import useGet from "../../Hooks/useGet";
 import DateFormat from "../../Utils/DateFormat";
 import "./css/EditCommunity.css";
 
@@ -13,13 +14,15 @@ export default function EditCommunity() {
     content: "",
     createdDate: "",
     updatedDate: "",
-    isNotice: "",
+    isNotice: true,
   });
   const [ comments, setComments ] = useState([]);
   const navigate = useNavigate();
   const API = apiInstance();
 
   // 게시글 및 댓글 호출
+
+  // const comments = useGet(`/community/${communityId}/comment`);
   useEffect(() => {
     async function saveCommunity() {
       const res = await apiInstance().get(`/community/${communityId}`);
@@ -70,8 +73,9 @@ export default function EditCommunity() {
   };
 
   // 댓글 삭제
-  function handleClickComment() {
-
+  function handleClickComment(commentId) {
+    // await API.delete(`/community/${communityId}/comment/${commentId}`);
+    // navigate(0);
   };
 
   return (
@@ -137,7 +141,7 @@ export default function EditCommunity() {
               <div>{DateFormat(comment.updatedDate)}</div>
               <div
                 className="admin-comment-button"
-                onClick={handleClickComment}
+                onClick={handleClickComment(comment.id)}
               >
                 삭제
               </div>
