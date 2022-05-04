@@ -3,9 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
+import { FaCommentMedical } from "react-icons/fa";
 import "./css/CommunityDetail.css"
 
 export default function CommunityDetail() {
+  const [ isAuthenticated, setIsAuthenticated] = useState(false);
   const { communityId } = useParams();
   const [ updateOpen, setUpdateOpen ] = useState(false);
   const [ userId, setUserId ] = useState();
@@ -20,6 +22,12 @@ export default function CommunityDetail() {
   });
   const [ comments, setComments ] = useState([]);
   const navigate = useNavigate();
+
+  // 로그인 사용자 확인
+  useEffect(() => {
+    if (localStorage.getItem('accesstoken'))
+      setIsAuthenticated(true)
+  }, []);
 
   // 유저Id 호출 함수
   async function saveUser() {
@@ -119,6 +127,19 @@ export default function CommunityDetail() {
           )
         })}
       </div>
+      { isAuthenticated && 
+        <div className="input-container">
+          <textarea
+            className="submit-textarea"
+            rows="2"
+          />
+          <div
+            className="submit-button"
+          >
+            <FaCommentMedical />
+          </div>
+        </div>
+      }
     </div>
   )
 };

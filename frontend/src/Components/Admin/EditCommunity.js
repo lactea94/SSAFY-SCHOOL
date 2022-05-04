@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { apiInstance } from "../../api";
 import useGet from "../../Hooks/useGet";
 import DateFormat from "../../Utils/DateFormat";
+import { FaCommentMedical } from "react-icons/fa";
 import "./css/EditCommunity.css";
 
 export default function EditCommunity() {
@@ -148,6 +149,17 @@ export default function EditCommunity() {
             </div>
           )
         })}
+      </div>
+      <div className="input-container">
+        <textarea
+          className="submit-textarea"
+          rows="2"
+        />
+        <div
+          className="submit-button"
+        >
+          <FaCommentMedical />
+        </div>
       </div>
     </div>
   )
