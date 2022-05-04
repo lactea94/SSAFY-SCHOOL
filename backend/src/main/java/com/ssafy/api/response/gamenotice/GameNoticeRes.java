@@ -43,7 +43,7 @@ public class GameNoticeRes {
         this.content = entity.getContent();
         this.createdDate = entity.getCreatedDate();
         this.updatedDate = entity.getUpdatedDate();
-        User user = entity.getUser()
+        User user = entity.getUser();
         this.userId = user.getId();
         this.username = user.getName();
         this.nickname = user.getNickname();
