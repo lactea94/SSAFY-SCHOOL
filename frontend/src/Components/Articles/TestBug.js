@@ -3,6 +3,7 @@ import "./css/Articles.css";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import { FaCommentMedical } from "react-icons/fa";
+import useGet from "../../Hooks/useGet";
 import Search from "../Search/Search";
 
 export default function TestBug() {
@@ -25,6 +26,7 @@ export default function TestBug() {
   }, []);
 
   // 버그 리포트 호출
+  // const logs = useGet('/report');
   useEffect(() => {
     setLogs([
       { id: 0, userId: 1, content: "내용1", createdDate: "2022-04-19 15:30:30" },

@@ -4,8 +4,8 @@ import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import CommunityCreate from "./CommunityCreate";
 import Search from "../Search/Search";
-import "./css/Articles.css";
 import useGet from "../../Hooks/useGet";
+import "./css/Articles.css";
 
 export default function Community() {
   const [ isAuthenticated, setIsAuthenticated] = useState(false);
