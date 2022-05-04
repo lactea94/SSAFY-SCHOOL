@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import { apiInstance } from "../../api";
+import { UpdateCommunity } from "../../api/ArticleAPI";
 import "./css/CommunityUpdate.css"
 
 export default function CommunityUpdate({ title, content, setUpdateOpen }) {
@@ -12,22 +12,14 @@ export default function CommunityUpdate({ title, content, setUpdateOpen }) {
   // 게시글 수정
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      await apiInstance().put(`/community/${communityId}`, {
-        title: newTitle,
-        content: newContent,
-        isNotice: false,
-      });
-      navigate(0);
-    } catch (error) {
-      console.log(error)
-    }
+    UpdateCommunity(communityId, newTitle, newContent);
+    navigate(0);
   };
   
   // 모달 닫기
   function handleCancel() {
     setUpdateOpen(false)
-  }
+  };
 
   // 모달 위치 제어
   useEffect(() => {

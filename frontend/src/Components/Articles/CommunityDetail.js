@@ -4,6 +4,7 @@ import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
 import { FaCommentMedical } from "react-icons/fa";
+import { DeleteCommunity } from "../../api/ArticleAPI";
 import "./css/CommunityDetail.css"
 
 export default function CommunityDetail() {
@@ -41,7 +42,7 @@ export default function CommunityDetail() {
     } catch (error) {
       console.log(error)
     }
-  }
+  };
 
   // 유저Id, 게시글, 댓글정보 호출
   useEffect(() => {
@@ -61,8 +62,9 @@ export default function CommunityDetail() {
   }, [communityId]);
 
   // 게시글 삭제
-  async function handleClick() {
-    await apiInstance().delete(`/community/${communityId}`);
+  async function handleClick(e) {
+    e.preventDefault();
+    DeleteCommunity(communityId);
     navigate('/articles/community');
     navigate(0);
   };
