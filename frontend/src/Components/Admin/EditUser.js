@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
-import Swal from "sweetalert2";
-import { apiInstance, userInstance } from "../../api";
+import { apiInstance } from "../../api";
+import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
+import useGetObject from "../../Hooks/useGetObject";
+import useGetList from "../../Hooks/useGetList";
 import { AiFillCheckCircle } from "react-icons/ai";
-import './css/EditUser.css'
-import CheckEmailForm from "../../Utils/CheckEmailForm";
 import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import Toast from "../../Utils/Toast";
+import './css/EditUser.css'
 
 export default function EditUser() {
   const { userId } = useParams();
@@ -27,125 +30,29 @@ export default function EditUser() {
   });
   const [ totalMileage, setTotalMileage ] = useState(0);
   const [ remainMileage, setRemainMileage ] = useState(0);
-  const [ checkInList, setCheckInList ] = useState([]);
-  const [ checkOutList, setCheckOutList ] = useState([]);
+  // const [ checkInList, setCheckInList ] = useState([]);
+  // const [ checkOutList, setCheckOutList ] = useState([]);
   const [ addMileage, setAddMileage ] = useState(0);
   const [ checkNickname, setCheckNickname ] = useState(true);
   const [ checkEmail, setCheckEmail ] = useState(true);
-  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
-  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
   const [ originNickname, setOriginNickname ] = useState("");
   const [ originEmail, setOriginEmail ] = useState("");
   const API = apiInstance();
-  const userAPI = userInstance();
   const MySwal = withReactContent(Swal);
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
   
   // 유저 정보 호출
+  const userInfo = useGetObject(`users/${userId}`);
   useEffect(() => {
-    async function saveUser() {
-      const res = await apiInstance().get(`users/${userId}`);
-      setUser(res.data);
-      setOriginNickname(res.data.nickname);
-      setOriginEmail(res.data.email);
-    };
-    saveUser();
-  }, [userId]);
-
-  // 마일리지 정보 저장
-  useEffect(() => {
-    setTotalMileage(user.totalMileage);
-    setRemainMileage(user.remainMileage);
-  }, [user]);
+    setUser(userInfo);
+    setOriginNickname(userInfo.nickname);
+    setOriginEmail(userInfo.email);
+    setTotalMileage(userInfo.totalMileage);
+    setRemainMileage(userInfo.remainMileage);
+  }, [userInfo]);
 
   // 출석 정보 호출
-  useEffect(() => {
-    async function saveCheckIn() {
-      const res = await API.get(`/check/in/${userId}`)
-      setCheckInList(res.data)
-    };
-  
-    async function saveCheckOut() {
-      const res = await API.get(`/check/out/${userId}`)
-      setCheckOutList(res.data)
-    };
-
-    saveCheckIn();
-    saveCheckOut();
-  }, [API, userId]);
-
-  // 닉네임 중복 체크
-  async function duplicateNickname() {
-    if (!user.nickname) {
-      Toast.fire({
-        icon: "question",
-        title: "닉네임을 입력하세요."
-      });
-      return
-    };
-    try {
-      await userAPI.post('users/check/nickname', { nickname: user.nickname});
-      setCheckNickname(true);
-      setCheckNicknameText("");
-      Toast.fire({
-        icon: "success",
-        title: "사용 가능한 닉네임 입니다."
-      });
-    } catch (error) {
-      if (error.response.status === 409) {
-        Toast.fire({
-          icon: "error",
-          title: "이미 존재하는 닉네임 입니다."
-        });
-      }
-    };
-  };
-  
-    // 이메일 중복 체크
-    async function duplicateEmail() {
-      if (!user.email) {
-        Toast.fire({
-          icon: "question",
-          title: "이메일을 입력하세요."
-        });
-        return
-      };
-  
-      if (!CheckEmailForm(user.email)) {
-        Toast.fire({
-          icon: "error",
-          title: "올바른 이메일 형식을 입력하세요."
-        });
-        return
-      };
-  
-      try {
-        await userAPI.post('users/check/email', { email: user.email});
-        setCheckEmail(true);
-        setCheckEmailText("");
-        Toast.fire({
-          icon: "success",
-          title: "사용 가능한 이메일 입니다."
-        });
-      } catch (error) {
-        if (error.response.status === 409) {
-          Toast.fire({
-            icon: "error",
-            title: "이미 존재하는 이메일 입니다."
-          });
-        }
-      };
-    };
+  const checkInList = useGetList(`/check/in/${userId}`)
+  const checkOutList = useGetList(`/check/out/${userId}`)
 
   // 유효성 검사
   function validation() {
@@ -221,7 +128,7 @@ export default function EditUser() {
         icon: "warning",
         title: "Oops...",
         text: `${
-          [checkNicknameText, checkEmailText].filter(text => text.length > 0).join(', ')
+          [!checkNickname && "닉네임", !checkEmail && "이메일"].filter(text => text.length > 0).join(', ')
         }을(를) 확인하세요`,
       });
     }
@@ -269,7 +176,12 @@ export default function EditUser() {
         ) : (
           <div
             className="user-edit-check"
-            onClick={duplicateNickname}
+            onClick={() => {
+              duplicateNickname(
+                user.nickname,
+                Toast,
+                setCheckNickname
+            )}}
           >
             중복확인
           </div>
@@ -292,7 +204,12 @@ export default function EditUser() {
           ) : (
             <div
               className="user-edit-check"
-              onClick={duplicateEmail}
+              onClick={() => {
+                duplicateEmail(
+                  user.email,
+                  Toast,
+                  setCheckEmail
+              )}}
             >
               중복확인
             </div>

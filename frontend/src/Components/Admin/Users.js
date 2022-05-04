@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { apiInstance } from "../../api";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
 import { FaUserEdit } from 'react-icons/fa';
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import useGetList from "../../Hooks/useGetList";
 
 export function Users() {
-  const [ userList, setUserList ] = useState([])
   const [ searchCategory, setSearchCategory ] = useState('userId');
   const [ searchText, setSearchText ] = useState('');
   const [ filteredUserList, setFilteredUserList ] = useState([]);
@@ -20,21 +19,14 @@ export function Users() {
     { value: 'nickname', name: '닉네임'},
   ]
   const navigate = useNavigate();
-
+  
   if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin')) {
     navigate('/');
   };
 
+  // 유저 정보 호출
+  const userList = useGetList('/users');
   
-  // 유저 리스트 호출
-  async function saveUsers() {
-    const res = await apiInstance().get('/users');
-    setUserList(res.data)
-  };
-  useEffect(() => {
-    saveUsers();
-  }, [])
-
   // 유저 검색 필터링
   useEffect(() => {
     if (searchCategory === 'userId') {

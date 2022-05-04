@@ -1,138 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userInstance } from "../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './css/Signup.css'
-import CheckEmailForm from "../Utils/CheckEmailForm";
+import { duplicateId, duplicateNickname, duplicateEmail } from "../api/UserAPI";
+import Toast from "../Utils/Toast";
 
 export default function Signup() {
-  const [signupInfo, setSignupInfo] = useState({
-    id: "", 
-    password: "",
-    nickname: "",
-    name: "",
-    gender: true,
-    email: "",
-  });
+  const [ signupInfo, setSignupInfo ] = useState({});
   const [ passwordConfirm, setPasswordConfirm ] = useState("");
   const [ checkId, setCheckId ] = useState(false);
   const [ checkNickname, setCheckNickname ] = useState(false);
   const [ checkEmail, setCheckEmail ] = useState(false);
-  const [ checkIdText, setCheckIdText ] = useState("아이디");
-  const [ checkNicknameText, setCheckNicknameText ] = useState("닉네임");
-  const [ checkEmailText, setCheckEmailText ] = useState("이메일");
-  const checkPasswordText = "비밀번호";
+  const [ checkPassword, setCheckPassword ] = useState(false);
   const userAPI = userInstance();
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
+
+  // 비밀번호 확인
+  useEffect(() => {
+    if (signupInfo.password === passwordConfirm) {
+      setCheckPassword(true)
+    } else {
+      setCheckPassword(false)
     }
-  });
-  
-  // 아이디 중복 체크
-  async function duplicateId() {
-    if (!signupInfo.id) {
-      Toast.fire({
-        icon: "question",
-        title: "아이디를 입력하세요."
-      });
-      return
-    };
-    try {
-      await userAPI.post('users/check/id', { id: signupInfo.id});
-      setCheckId(true);
-      setCheckIdText("");
-      Toast.fire({
-        icon: "success",
-        title: "사용 가능한 아이디 입니다."
-      });
-    } catch (error) {
-      if (error.response.status === 409) {
-        Toast.fire({
-          icon: "error",
-          title: "이미 존재하는 아이디 입니다."
-        });
-        return
-      }
-    };
-  };
-  
-  // 닉네임 중복 체크
-  async function duplicateNickname() {
-    if (!signupInfo.nickname) {
-      Toast.fire({
-        icon: "question",
-        title: "닉네임을 입력하세요."
-      });
-      return
-    };
-    try {
-      await userAPI.post('users/check/nickname', { nickname: signupInfo.nickname});
-      setCheckNickname(true);
-      setCheckNicknameText("");
-      Toast.fire({
-        icon: "success",
-        title: "사용 가능한 닉네임 입니다."
-      });
-    } catch (error) {
-      if (error.response.status === 409) {
-        Toast.fire({
-          icon: "error",
-          title: "이미 존재하는 닉네임 입니다."
-        });
-      }
-    };
-  }
-
-  // 이메일 중복 체크
-  async function duplicateEmail() {
-    if (!signupInfo.email) {
-      Toast.fire({
-        icon: "question",
-        title: "이메일을 입력하세요."
-      });
-      return
-    };
-
-    if (!CheckEmailForm(signupInfo.email)) {
-      Toast.fire({
-        icon: "error",
-        title: "올바른 이메일 형식을 입력하세요."
-      });
-      return
-    };
-
-    try {
-      await userAPI.post('users/check/email', { email: signupInfo.email});
-      setCheckEmail(true);
-      setCheckEmailText("");
-      Toast.fire({
-        icon: "success",
-        title: "사용 가능한 이메일 입니다."
-      });
-    } catch (error) {
-      if (error.response.status === 409) {
-        Toast.fire({
-          icon: "error",
-          title: "이미 존재하는 이메일 입니다."
-        });
-      }
-    };
-  };
+  }, [signupInfo, passwordConfirm])
 
   // 유효성 검사
   function validation() {
-    if ( signupInfo.password === passwordConfirm && checkId && checkEmail && checkNickname ) return true
+    if ( checkId && checkPassword && checkEmail && checkNickname ) return true
     return false
   };
 
@@ -179,9 +77,13 @@ export default function Signup() {
       MySwal.fire({
         icon: "warning",
         title: "Oops...",
-        text: `${
-          [checkIdText, checkPasswordText, checkEmailText, checkNicknameText].filter(text => text.length > 0).join(', ')
-        }을(를) 확인하세요`,
+        text: 
+          `${[
+              !checkId && "아이디",
+              !checkPassword && "비밀번호",
+              !checkNickname && "닉네임",
+              !checkEmail && "이메일"
+            ].filter(text => text.length > 0).join(', ')}을(를) 확인하세요`,
       });
     }
   };
@@ -210,7 +112,12 @@ export default function Signup() {
           ) : (
             <div
               className="signup-check"
-              onClick={duplicateId}
+              onClick={() => {
+                duplicateId(
+                  signupInfo.id,
+                  Toast,
+                  setCheckId
+              )}}
             >
               중복확인
             </div>
@@ -227,7 +134,9 @@ export default function Signup() {
         <div className="signup-row">
           <input className="signup-input" type="password" id="passwordConfirm" required 
             value={passwordConfirm}
-            onChange={(e) => setPasswordConfirm(e.target.value)}
+            onChange={(e) => {
+              setPasswordConfirm(e.target.value)
+            }}
           />
         </div>
         <label className="signup-input-label" htmlFor="nickname">닉네임</label>
@@ -245,7 +154,12 @@ export default function Signup() {
           ) : (
             <div
               className="signup-check"
-              onClick={duplicateNickname}
+              onClick={() => {
+                duplicateNickname(
+                  signupInfo.nickname,
+                  Toast,
+                  setCheckNickname
+              )}}
             >
               중복확인
             </div>
@@ -296,7 +210,12 @@ export default function Signup() {
           ) : (
             <div
               className="signup-check"
-              onClick={duplicateEmail}
+              onClick={() => {
+                duplicateEmail(
+                  signupInfo.email,
+                  Toast,
+                  setCheckEmail
+              )}}
             >
               중복확인
             </div>

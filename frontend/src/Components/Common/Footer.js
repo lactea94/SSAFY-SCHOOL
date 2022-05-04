@@ -1,4 +1,4 @@
-export function Footer() {
+export default function Footer() {
 
   const style = {
     width: "100%",
@@ -10,7 +10,7 @@ export function Footer() {
     textAlign: "center",
     position: "absolute",
     bottom: 0,
-  }
+  };
 
   return (
     <div style={style}>
@@ -28,8 +28,4 @@ export function Footer() {
       </p>
     </div>
   )
-}
-
-<style>
-
-</style>
+};

@@ -24,7 +24,7 @@
 
 .profile-check-confirm {
   padding: 0.2rem;
-  color: rgb(7, 252, 19);
+  color: #FFE651;
   width: 4rem;
   text-align: center;
   line-height: 0;
@@ -38,6 +38,12 @@
   background-color: gray;
   color: white;
   text-align: center;
+}
+
+.to-password {
+  text-decoration: none;
+  color: #3396F4;
+  font-size: 1rem;
 }
 
 .profile-edit-buttons {

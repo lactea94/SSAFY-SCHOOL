@@ -6,12 +6,11 @@ import Search from "../Search/Search";
 import { FaEdit } from 'react-icons/fa';
 import "./css/Admin.css";
 import CommunityCreate from "./CommunityCreate";
+import useGetList from "../../Hooks/useGetList";
 
 export function Community() {
   const [ searchCategory, setSearchCategory ] = useState('title');
   const [ searchText, setSearchText ] = useState('');
-  const [ noticeList, setNoticeList ] = useState([]);
-  const [ communityList, setCommunityList ] = useState([]);
   const [ filteredCommunityList, setFilteredCommunityList ] = useState([]);
   const [ createOpen, setCreateOpen ] = useState(false);
   const [ limit, setLimit ] = useState(10);
@@ -27,27 +26,9 @@ export function Community() {
     navigate('/');
   };
 
-
-  // 공지사항 및 게시글 정보 호출
-  useEffect(() => {
-    setNoticeList([
-      { id: 0, title: "공지게시글1", content: "내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
-      { id: 1, title: "공지게시글2", content: "내용2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
-      { id: 2, title: "공지게시글3", content: "내용3", createdDate: "2022-04-17 15:30:00", updatedDate: "2022-04-18 15:30:30" },
-    ]);
-    setCommunityList([
-      { id: 0, userId: 0, title: "게시글1", content: "내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
-      { id: 1, userId: 1, title: "게시글2", content: "내용2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
-      { id: 2, userId: 3, title: "게시글3", content: "내용3", createdDate: "2022-04-17 15:30:00", updatedDate: "2022-04-18 15:30:30" },
-      { id: 3, userId: 2, title: "게시글4", content: "내용4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
-      { id: 4, userId: 0, title: "게시글5", content: "내용5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },
-      { id: 5, userId: 1, title: "게시글6", content: "내용6", createdDate: "2022-04-14 15:30:00", updatedDate: "2022-04-15 15:30:30" },
-      { id: 6, userId: 4, title: "게시글7", content: "내용7", createdDate: "2022-04-13 15:30:00", updatedDate: "2022-04-14 15:30:30" },
-      { id: 7, userId: 5, title: "게시글8", content: "내용8", createdDate: "2022-04-12 15:30:00", updatedDate: "2022-04-13 15:30:30" },
-      { id: 8, userId: 1, title: "게시글9", content: "내용9", createdDate: "2022-04-11 15:30:00", updatedDate: "2022-04-12 15:30:30" },
-      { id: 9, userId: 3, title: "게시글10", content: "내용10", createdDate: "2022-04-10 15:30:00", updatedDate: "2022-04-11 15:30:30" },
-    ]);
-  }, []);
+  // 게시글 목록 호출
+  const noticeList = useGetList('/community/notice');
+  const communityList = useGetList('/community');
 
   // 검색 필터링
   useEffect(() => {

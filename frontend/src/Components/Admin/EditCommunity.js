@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
+import { FaCommentMedical } from "react-icons/fa";
 import "./css/EditCommunity.css";
+import useGetObject from "../../Hooks/useGetObject";
 
 export default function EditCommunity() {
   const { communityId } = useParams();
@@ -12,21 +15,18 @@ export default function EditCommunity() {
     content: "",
     createdDate: "",
     updatedDate: "",
-    isAdmin: "",
+    isNotice: true,
   });
   const [ comments, setComments ] = useState([]);
+  const [ comment, setComment ] = useState("");
+  const navigate = useNavigate();
+  const API = apiInstance();
 
   // 게시글 및 댓글 호출
+  const communityInfo = useGetObject(`/community/${communityId}`);
+  // const comments = useGetList(`/community/${communityId}/comment`);
   useEffect(() => {
-    setCommunity({
-      id: communityId,
-      userId: 0,
-      title: `게시글${communityId}`,
-      content: `내용${communityId}`,
-      createdDate: "2022-04-19 16:10:00",
-      updatedDate: "2022-04-20 15:30:30",
-      isAdmin: true,
-    });
+    if (Object.keys(communityInfo).length) { setCommunity(communityInfo) }
     setComments([
       { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
       { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
@@ -34,7 +34,7 @@ export default function EditCommunity() {
       { id: 3, userId: 2, content: "댓글4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
       { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },  
     ]);
-  }, [communityId])
+  }, [communityInfo]);
 
   // 내용 변경
   function handleChange({target: {id, value}}) {
@@ -46,7 +46,7 @@ export default function EditCommunity() {
   };
 
   // 공지사항 변경
-  function hanldeChangeAdmin({target: {id, checked}}) {
+  function handleChangeNotice({target: {id, checked}}) {
     const newCommunity = {
       ...community,
       [id]: checked,
@@ -55,18 +55,31 @@ export default function EditCommunity() {
   };
 
   // 게시글 수정
-  function handleSubmit() {
-    console.log(community);
+  async function handleSubmit() {
+    await API.put(`/community/${communityId}`, {
+      title: community.title,
+      content: community.content,
+      isNotice: community.isNotice,
+    })
   };
 
   // 게시글 삭제
-  function handleClick() {
+  async function handleClick() {
+    await API.delete(`/community/${communityId}`);
+    navigate('/admin/community');
+    navigate(0);
+  };
 
+  // 댓글 작성
+  function handleSubmitComment() {
+    console.log(comment);
+    setComment("");
   };
 
   // 댓글 삭제
-  function handleClickComment() {
-
+  function handleClickComment(commentId) {
+    // await API.delete(`/community/${communityId}/comment/${commentId}`);
+    // navigate(0);
   };
 
   return (
@@ -86,9 +99,9 @@ export default function EditCommunity() {
         <input
           className="is-admin-toggle"
           type="checkbox"
-          id="isAdmin"
-          checked={community.isAdmin}
-          onChange={hanldeChangeAdmin}
+          id="isNotice"
+          checked={community.isNotice}
+          onChange={handleChangeNotice}
         />
       </div>
       <div className="admin-community-date">
@@ -132,13 +145,27 @@ export default function EditCommunity() {
               <div>{DateFormat(comment.updatedDate)}</div>
               <div
                 className="admin-comment-button"
-                onClick={handleClickComment}
+                onClick={handleClickComment(comment.id)}
               >
                 삭제
               </div>
             </div>
           )
         })}
+      </div>
+      <div className="comment-input-container">
+        <textarea
+          className="comment-submit-textarea"
+          rows="2"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+        <div
+          className="comment-submit-button"
+          onClick={handleSubmitComment}
+        >
+          <FaCommentMedical />
+        </div>
       </div>
     </div>
   )

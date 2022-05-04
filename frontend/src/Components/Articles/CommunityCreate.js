@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { CreateCommunity } from "../../api/ArticleAPI";
 import "./css/CommunityCreate.css"
 
 export default function CommunityCreate({ setCreateOpen }) {
@@ -8,11 +9,11 @@ export default function CommunityCreate({ setCreateOpen }) {
   const navigate = useNavigate();
 
   // 게시글 생성
-  function handleSubmit() {
-    console.log(title);
-    console.log(content);
-    navigate('/articles/community')
-  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    CreateCommunity(title, content, false);
+    navigate(0);
+  };
 
   // 모달 닫기
   function handleCancel() {
