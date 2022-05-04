@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
 import { FaCommentMedical } from "react-icons/fa";
 import { DeleteCommunity } from "../../api/ArticleAPI";
+import useGetObject from "../../Hooks/useGetObject";
 import "./css/CommunityDetail.css"
 
 export default function CommunityDetail() {
@@ -31,27 +31,16 @@ export default function CommunityDetail() {
       setIsAuthenticated(true)
   }, []);
 
-  // 유저Id 호출 함수
-  async function saveUser() {
-    try {
-      const res = await apiInstance().get('/users/me');
-      setUserId(res.data.id);
-      if (res.data.admin !== 2) {
-        localStorage.setItem('admin', true);
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  };
+  // 유저 정보 호출
+  const user = useGetObject('/users/me');
+  
+  // 게시글 정보 호출
+  const communityInfo = useGetObject(`/community/${communityId}`);
 
-  // 유저Id, 게시글, 댓글정보 호출
+  // 유저Id, 게시글, 댓글정보 저장
   useEffect(() => {
-    async function saveCommunity() {
-      const res = await apiInstance().get(`/community/${communityId}`);
-      setCommunity(res.data)
-    };
-    saveUser();
-    saveCommunity();
+    if (user.id) { setUserId(user.id) }
+    if (Object.keys(communityInfo).length !== 0) { setCommunity(communityInfo) }
     setComments([
       { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
       { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
@@ -59,7 +48,7 @@ export default function CommunityDetail() {
       { id: 3, userId: 2, content: "댓글4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
       { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },
     ]);
-  }, [communityId]);
+  }, [user, communityId, communityInfo]);
 
   // 게시글 삭제
   async function handleClick(e) {
