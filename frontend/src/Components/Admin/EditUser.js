@@ -6,6 +6,7 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import './css/EditUser.css'
 import withReactContent from "sweetalert2-react-content";
 import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
+import Toast from "../../Utils/Toast";
 
 export default function EditUser() {
   const { userId } = useParams();
@@ -36,17 +37,6 @@ export default function EditUser() {
   const [ originEmail, setOriginEmail ] = useState("");
   const API = apiInstance();
   const MySwal = withReactContent(Swal);
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
   
   // 유저 정보 호출
   useEffect(() => {

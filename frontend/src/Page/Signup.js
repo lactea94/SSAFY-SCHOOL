@@ -6,16 +6,10 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import './css/Signup.css'
 import { duplicateId, duplicateNickname, duplicateEmail } from "../api/UserAPI";
+import Toast from "../Utils/Toast";
 
 export default function Signup() {
-  const [signupInfo, setSignupInfo] = useState({
-    id: "", 
-    password: "",
-    nickname: "",
-    name: "",
-    gender: true,
-    email: "",
-  });
+  const [ signupInfo, setSignupInfo ] = useState({});
   const [ passwordConfirm, setPasswordConfirm ] = useState("");
   const [ checkId, setCheckId ] = useState(false);
   const [ checkNickname, setCheckNickname ] = useState(false);
@@ -24,17 +18,6 @@ export default function Signup() {
   const userAPI = userInstance();
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  });
 
   // 비밀번호 확인
   useEffect(() => {
@@ -100,8 +83,7 @@ export default function Signup() {
               !checkPassword && "비밀번호",
               !checkNickname && "닉네임",
               !checkEmail && "이메일"
-            ].filter(text => text.length > 0).join(', ')}
-          을(를) 확인하세요`,
+            ].filter(text => text.length > 0).join(', ')}을(를) 확인하세요`,
       });
     }
   };
