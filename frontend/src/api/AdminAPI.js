@@ -23,3 +23,12 @@ export async function DeleteCommunity(communityId) {
     console.log(error);
   }
 };
+
+// 댓글 삭제
+export async function DeleteComment(communityId, commentId) {
+  try {
+    await API.delete(`/admin/community/${communityId}/comment/${commentId}`)
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import DateFormat from "../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
 import { FaCommentMedical } from "react-icons/fa";
-import { DeleteCommunity } from "../../api/ArticleAPI";
+import { CreateComment, DeleteComment, DeleteCommunity } from "../../api/ArticleAPI";
 import useGetObject from "../../Hooks/useGetObject";
+import useGetList from "../../Hooks/useGetList";
 import "./css/CommunityDetail.css"
 
 export default function CommunityDetail() {
@@ -21,7 +22,6 @@ export default function CommunityDetail() {
     updatedDate: "",
     isNotice: false,
   });
-  const [ comments, setComments ] = useState([]);
   const [ comment, setComment ] = useState("");
   const navigate = useNavigate();
 
@@ -36,37 +36,46 @@ export default function CommunityDetail() {
   
   // 게시글 정보 호출
   const communityInfo = useGetObject(`/community/${communityId}`);
+  const comments = useGetList(`/community/${communityId}/comment`);
 
   // 유저Id, 게시글, 댓글정보 저장
   useEffect(() => {
     if (user.id) { setUserId(user.id) }
     if (Object.keys(communityInfo).length) { setCommunity(communityInfo) }
-    setComments([
-      { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
-      { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
-      { id: 2, userId: 3, content: "댓글3", createdDate: "2022-04-17 15:30:00", updatedDate: "2022-04-18 15:30:30" },
-      { id: 3, userId: 2, content: "댓글4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
-      { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },
-    ]);
-  }, [user, communityId, communityInfo]);
+  }, [user, communityInfo]);
 
   // 게시글 삭제
   async function handleClick(e) {
     e.preventDefault();
     DeleteCommunity(communityId);
     navigate('/articles/community');
-    navigate(0);
+    setTimeout(() => {
+      navigate(0);
+    }, 100);
   };
 
   // 댓글 작성
   function handleSubmitComment() {
-    console.log(comment);
-    setComment("");
+    CreateComment(communityId, comment);
+    setTimeout(() => {
+      navigate(0);
+    }, 100);
+  };
+
+  // Enter시 댓글 작성
+  function handelEnterPress(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      handleSubmitComment();
+    }
   };
 
   // 댓글 삭제
-  function handleDeleteComment() {
-
+  async function handleDeleteComment(e) {
+    DeleteComment(communityId, e.target.value);
+    setTimeout(() => {
+      navigate(0);
+    }, 100)
   };
 
   return (
@@ -109,17 +118,17 @@ export default function CommunityDetail() {
               className="comment"
               key={comment.id}
             >
-              <div>{comment.userId}</div>
+              <div>{comment.username}</div>
               <div>{comment.content}</div>
               <div>{DateFormat(comment.createdDate)}</div>
-              <div>{DateFormat(comment.updatedDate)}</div>
               { userId === comment.userId ? (
-                <div 
+                <button 
                   className="comment-button"
+                  value={comment.id}
                   onClick={handleDeleteComment}
                 >
                   삭제
-                </div>
+                </button>
               ) : (<div></div>)}
             </div>
           )
@@ -129,9 +138,10 @@ export default function CommunityDetail() {
         <div className="comment-input-container">
           <textarea
             className="comment-submit-textarea"
-            rows="2"
+            rows={1}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
+            onKeyDown={handelEnterPress}
           />
           <div
             className="comment-submit-button"
