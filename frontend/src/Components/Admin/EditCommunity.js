@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import { FaCommentMedical } from "react-icons/fa";
 import "./css/EditCommunity.css";
 import useGetObject from "../../Hooks/useGetObject";
+import { DeleteCommunity, UpdateCommunity } from "../../api/AdminAPI";
 
 export default function EditCommunity() {
   const { communityId } = useParams();
@@ -20,7 +20,6 @@ export default function EditCommunity() {
   const [ comments, setComments ] = useState([]);
   const [ comment, setComment ] = useState("");
   const navigate = useNavigate();
-  const API = apiInstance();
 
   // 게시글 및 댓글 호출
   const communityInfo = useGetObject(`/community/${communityId}`);
@@ -55,19 +54,20 @@ export default function EditCommunity() {
   };
 
   // 게시글 수정
-  async function handleSubmit() {
-    await API.put(`/community/${communityId}`, {
-      title: community.title,
-      content: community.content,
-      isNotice: community.isNotice,
-    })
+  function handleSubmit(e) {
+    e.preventDefault();
+    UpdateCommunity(communityId, community.title, community.content, community.isNotice);
+    navigate('/admin/community');
   };
 
   // 게시글 삭제
-  async function handleClick() {
-    await API.delete(`/community/${communityId}`);
+  async function handleClick(e) {
+    e.preventDefault();
+    DeleteCommunity(communityId);
     navigate('/admin/community');
-    navigate(0);
+    setTimeout(() => {
+      navigate(0);
+    }, 100);
   };
 
   // 댓글 작성
