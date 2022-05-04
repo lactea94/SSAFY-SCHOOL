@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import useGet from "../../Hooks/useGet";
+import useGetList from "../../Hooks/useGetList";
 import Grass from "./Grass";
 import Maininfo from "./Maininfo";
 
@@ -9,8 +9,8 @@ export default function ProfileInfo() {
   const [ checkInList, setCheckInList ] = useState([]);
   const [ checkOutList, setCheckOutList ] = useState([]);
 
-  const checkInObject = useGet('/users/indate');
-  const checkOutObject = useGet('/users/outdate');
+  const checkInObject = useGetList('/users/indate');
+  const checkOutObject = useGetList('/users/outdate');
 
   useEffect(() => {
     setCheckInList(checkInObject.map(data => data.checkIndate))

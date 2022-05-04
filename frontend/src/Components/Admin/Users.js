@@ -3,7 +3,7 @@ import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
 import { FaUserEdit } from 'react-icons/fa';
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import useGet from "../../Hooks/useGet";
+import useGetList from "../../Hooks/useGetList";
 
 export function Users() {
   const [ searchCategory, setSearchCategory ] = useState('userId');
@@ -25,7 +25,7 @@ export function Users() {
   };
 
   // 유저 정보 호출
-  const userList = useGet('/users');
+  const userList = useGetList('/users');
   
   // 유저 검색 필터링
   useEffect(() => {

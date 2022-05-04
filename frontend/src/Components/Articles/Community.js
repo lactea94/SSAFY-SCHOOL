@@ -4,7 +4,7 @@ import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import CommunityCreate from "./CommunityCreate";
 import Search from "../Search/Search";
-import useGet from "../../Hooks/useGet";
+import useGetList from "../../Hooks/useGetList";
 import "./css/Articles.css";
 
 export default function Community() {
@@ -28,8 +28,8 @@ export default function Community() {
   }, []);
 
   // 게시글 목록 호출
-  const noticeList = useGet('/community/notice');
-  const communityList = useGet('/community');
+  const noticeList = useGetList('/community/notice');
+  const communityList = useGetList('/community');
 
   // 검색 필터링
   useEffect(() => {

@@ -6,7 +6,7 @@ import Search from "../Search/Search";
 import { FaEdit } from 'react-icons/fa';
 import "./css/Admin.css";
 import CommunityCreate from "./CommunityCreate";
-import useGet from "../../Hooks/useGet";
+import useGetList from "../../Hooks/useGetList";
 
 export function Community() {
   const [ searchCategory, setSearchCategory ] = useState('title');
@@ -27,8 +27,8 @@ export function Community() {
   };
 
   // 게시글 목록 호출
-  const noticeList = useGet('/community/notice');
-  const communityList = useGet('/community');
+  const noticeList = useGetList('/community/notice');
+  const communityList = useGetList('/community');
 
   // 검색 필터링
   useEffect(() => {

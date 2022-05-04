@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiInstance } from "../../api";
-import useGet from "../../Hooks/useGet";
 import DateFormat from "../../Utils/DateFormat";
 import { FaCommentMedical } from "react-icons/fa";
 import "./css/EditCommunity.css";
@@ -23,13 +22,17 @@ export default function EditCommunity() {
 
   // 게시글 및 댓글 호출
 
+  // const communityInfo = useGet(`/community/${communityId}`);
   // const comments = useGet(`/community/${communityId}/comment`);
   useEffect(() => {
     async function saveCommunity() {
       const res = await apiInstance().get(`/community/${communityId}`);
+      console.log(res.data)
       setCommunity(res.data)
     };
     saveCommunity();
+    // console.log(communityInfo)
+    // setCommunity(communityInfo)
     setComments([
       { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
       { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },

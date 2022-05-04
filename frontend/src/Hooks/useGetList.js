@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { apiInstance } from "../api";
 
-export default function useGet(url) {
+export default function useGetList(url) {
   const [ data, setData ] = useState([]);
   useEffect(() => {
     async function getData() {

@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
-import useGet from "../../Hooks/useGet";
+import useGetList from "../../Hooks/useGetList";
 import "./css/Articles.css";
 
 export default function Notice() {
@@ -20,7 +20,7 @@ export default function Notice() {
   ];
 
   // 공지사항 정보 호출
-  // const noticeList = useGet('/notice');
+  // const noticeList = useGetList('/notice');
   useEffect(() => {
     setNoticeList([
       { id: 0, title: "공지1", content: "공지내용1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },

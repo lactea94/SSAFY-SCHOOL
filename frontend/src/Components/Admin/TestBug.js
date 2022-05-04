@@ -4,7 +4,7 @@ import DateFormat from "../../Utils/DateFormat";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
 import { useNavigate } from "react-router-dom";
-import useGet from "../../Hooks/useGet";
+import useGetList from "../../Hooks/useGetList";
 
 export function TestBug() {
   const [ searchCategory, setSearchCategory ] = useState('content');
@@ -25,7 +25,7 @@ export function TestBug() {
 
 
   // 버그 리포트 호출
-  // const logs = useGet('/report');
+  // const logs = useGetList('/report');
   useEffect(() => {
     setLogs([
       { id: 0, userId: 1, content: "내용1", createdDate: "2022-04-19 15:30:30" },

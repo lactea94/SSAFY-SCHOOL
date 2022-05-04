@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import './css/EditProfile.css';
 import withReactContent from "sweetalert2-react-content";
 import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
-import useGet from "../../Hooks/useGet";
+import useGetList from "../../Hooks/useGetList";
 import Toast from "../../Utils/Toast";
 
 export default function EditProfile() {
@@ -21,7 +21,7 @@ export default function EditProfile() {
   const MySwal = withReactContent(Swal);
 
   // 유저 정보 호출
-  const userInfo = useGet('/users/me');
+  const userInfo = useGetList('/users/me');
   useEffect(() => {
     setUser({
       nickname: userInfo.nickname,
