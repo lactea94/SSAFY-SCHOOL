@@ -19,7 +19,7 @@ export function TestBug() {
   ];
   const navigate = useNavigate();
 
-  if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin')) {
+  if (!localStorage.getItem('accesstoken') || !localStorage.getItem('admin') ) {
     navigate('/');
   };
 

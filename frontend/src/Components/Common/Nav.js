@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { apiInstance } from "../../api";
+import useGetObject from "../../Hooks/useGetObject";
 
 export default function Nav() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   // 슈퍼 0, 프로 1, 학생 2
   const [ isAdmin, setIsAdmin ] = useState(2);
-  const [ user, setUser ] = useState();
+  // const [ user, setUser ] = useState();
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
@@ -14,25 +14,17 @@ export default function Nav() {
     }
   }, []);
 
-  async function saveUser() {
-    const res = await apiInstance().get('/users/me');
-    setUser(res.data);
-    if (res.data.admin !== 2) {
-      localStorage.setItem('admin', true);
-    }
-  }
+  const user = useGetObject('/users/me');
 
   useEffect(() => {
-    if (isAuthenticated) {
-      saveUser();
-    }
-  }, [isAuthenticated])
-
-  useEffect(() => {
-    if (user) {
+    if (isAuthenticated && Object.keys(user).length) {
       setIsAdmin(user.admin)
+      if (user.admin !== 2) {
+        console.log(user.admin)
+        localStorage.setItem('admin', true);
+      }
     }
-  }, [user])
+  }, [isAuthenticated, user])
 
   const linkStyle = {
     textDecoration: "none",
@@ -55,6 +47,9 @@ export default function Nav() {
               {isAdmin !== 2 ? 
                 <Link to="admin/users"
                   style={linkStyle}
+                  state={{
+                    isAdmin: isAdmin
+                  }}
                 >
                   관리
                 </Link>

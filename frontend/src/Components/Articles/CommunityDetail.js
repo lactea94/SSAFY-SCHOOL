@@ -40,7 +40,7 @@ export default function CommunityDetail() {
   // 유저Id, 게시글, 댓글정보 저장
   useEffect(() => {
     if (user.id) { setUserId(user.id) }
-    if (Object.keys(communityInfo).length !== 0) { setCommunity(communityInfo) }
+    if (Object.keys(communityInfo).length) { setCommunity(communityInfo) }
     setComments([
       { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
       { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },

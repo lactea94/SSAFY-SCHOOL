@@ -4,6 +4,7 @@ import { apiInstance } from "../../api";
 import DateFormat from "../../Utils/DateFormat";
 import { FaCommentMedical } from "react-icons/fa";
 import "./css/EditCommunity.css";
+import useGetObject from "../../Hooks/useGetObject";
 
 export default function EditCommunity() {
   const { communityId } = useParams();
@@ -22,13 +23,10 @@ export default function EditCommunity() {
   const API = apiInstance();
 
   // 게시글 및 댓글 호출
+  const communityInfo = useGetObject(`/community/${communityId}`);
   // const comments = useGetList(`/community/${communityId}/comment`);
   useEffect(() => {
-    async function saveCommunity() {
-      const res = await apiInstance().get(`/community/${communityId}`);
-      setCommunity(res.data)
-    };
-    saveCommunity();
+    if (Object.keys(communityInfo).length) { setCommunity(communityInfo) }
     setComments([
       { id: 0, userId: 0, content: "댓글1", createdDate: "2022-04-19 16:10:00", updatedDate: "2022-04-20 15:30:30" },
       { id: 1, userId: 1, content: "댓글2", createdDate: "2022-04-18 15:31:00", updatedDate: "2022-04-20 11:30:00" },
@@ -36,7 +34,7 @@ export default function EditCommunity() {
       { id: 3, userId: 2, content: "댓글4", createdDate: "2022-04-16 15:30:00", updatedDate: "2022-04-17 15:30:30" },
       { id: 4, userId: 1, content: "댓글5", createdDate: "2022-04-15 15:30:00", updatedDate: "2022-04-16 15:30:30" },  
     ]);
-  }, [communityId]);
+  }, [communityInfo]);
 
   // 내용 변경
   function handleChange({target: {id, value}}) {
