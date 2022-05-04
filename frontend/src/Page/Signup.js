@@ -9,7 +9,15 @@ import { duplicateId, duplicateNickname, duplicateEmail } from "../api/UserAPI";
 import Toast from "../Utils/Toast";
 
 export default function Signup() {
-  const [ signupInfo, setSignupInfo ] = useState({});
+  const [ signupInfo, setSignupInfo ] = useState({
+    admin: 2,
+    email: "",
+    gender: true,
+    id: "",
+    name: "",
+    nickname: "",
+    password: ""
+  });
   const [ passwordConfirm, setPasswordConfirm ] = useState("");
   const [ checkId, setCheckId ] = useState(false);
   const [ checkNickname, setCheckNickname ] = useState(false);
