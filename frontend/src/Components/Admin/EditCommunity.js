@@ -17,6 +17,7 @@ export default function EditCommunity() {
     isNotice: true,
   });
   const [ comments, setComments ] = useState([]);
+  const [ comment, setComment ] = useState("");
   const navigate = useNavigate();
   const API = apiInstance();
 
@@ -69,6 +70,12 @@ export default function EditCommunity() {
     await API.delete(`/community/${communityId}`);
     navigate('/admin/community');
     navigate(0);
+  };
+
+  // 댓글 작성
+  function handleSubmitComment() {
+    console.log(comment);
+    setComment("");
   };
 
   // 댓글 삭제
@@ -148,13 +155,16 @@ export default function EditCommunity() {
           )
         })}
       </div>
-      <div className="input-container">
+      <div className="comment-input-container">
         <textarea
-          className="submit-textarea"
+          className="comment-submit-textarea"
           rows="2"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
         />
         <div
-          className="submit-button"
+          className="comment-submit-button"
+          onClick={handleSubmitComment}
         >
           <FaCommentMedical />
         </div>

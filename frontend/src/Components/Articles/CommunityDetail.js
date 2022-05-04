@@ -18,9 +18,10 @@ export default function CommunityDetail() {
     content: "",
     createdDate: "",
     updatedDate: "",
-    isNotice: "",
+    isNotice: false,
   });
   const [ comments, setComments ] = useState([]);
+  const [ comment, setComment ] = useState("");
   const navigate = useNavigate();
 
   // 로그인 사용자 확인
@@ -66,8 +67,14 @@ export default function CommunityDetail() {
     navigate(0);
   };
 
+  // 댓글 작성
+  function handleSubmitComment() {
+    console.log(comment);
+    setComment("");
+  };
+
   // 댓글 삭제
-  function handleClickComment() {
+  function handleDeleteComment() {
 
   };
 
@@ -118,7 +125,7 @@ export default function CommunityDetail() {
               { userId === comment.userId ? (
                 <div 
                   className="comment-button"
-                  onClick={handleClickComment}
+                  onClick={handleDeleteComment}
                 >
                   삭제
                 </div>
@@ -128,13 +135,16 @@ export default function CommunityDetail() {
         })}
       </div>
       { isAuthenticated && 
-        <div className="input-container">
+        <div className="comment-input-container">
           <textarea
-            className="submit-textarea"
+            className="comment-submit-textarea"
             rows="2"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           />
           <div
-            className="submit-button"
+            className="comment-submit-button"
+            onClick={handleSubmitComment}
           >
             <FaCommentMedical />
           </div>
