@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
-import CheckInOut from "./CheckInOut";
+import CheckIn from "./CheckIn";
+import CheckOut from "./CheckOut";
 import { apiInstance } from "../../api";
 import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
 import useGetObject from "../../Hooks/useGetObject";
@@ -296,7 +297,8 @@ export default function EditUser() {
       <div className="edit-user-confirm">
         <button className="edit-user-button" onClick={handleSubmit}>수정</button>
       </div>
-      <CheckInOut />
+      <CheckIn />
+      <CheckOut />
     </div>
   )
 }
