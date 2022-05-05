@@ -52,8 +52,9 @@ export default function EditCommunity() {
   function handleSubmit(e) {
     e.preventDefault();
     UpdateCommunity(communityId, community.title, community.content, community.isNotice);
+    navigate('/admin/community');
     setTimeout(() => {
-      navigate('/admin/community');
+      navigate(0);
     }, 100);
   };
 
