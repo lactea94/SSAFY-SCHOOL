@@ -52,7 +52,9 @@ export default function EditCommunity() {
   function handleSubmit(e) {
     e.preventDefault();
     UpdateCommunity(communityId, community.title, community.content, community.isNotice);
-    navigate('/admin/community');
+    setTimeout(() => {
+      navigate('/admin/community');
+    }, 100);
   };
 
   // 게시글 삭제
