@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
+import CheckInOut from "./CheckInOut";
 import { apiInstance } from "../../api";
 import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
 import useGetObject from "../../Hooks/useGetObject";
-import useGetList from "../../Hooks/useGetList";
 import { AiFillCheckCircle } from "react-icons/ai";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
@@ -47,10 +47,6 @@ export default function EditUser() {
     setTotalMileage(userInfo.totalMileage);
     setRemainMileage(userInfo.remainMileage);
   }, [userInfo]);
-
-  // 출석 정보 호출
-  const checkInList = useGetList(`/check/in/${userId}`)
-  const checkOutList = useGetList(`/check/out/${userId}`)
 
   // 유효성 검사
   function validation() {
@@ -162,7 +158,7 @@ export default function EditUser() {
         <input
           className="edit-user-input"
           id="nickname"
-          value={user.nickname}
+          value={user.nickname || ""}
           onChange={handleChange}
         />
         {checkNickname ? (
@@ -190,7 +186,7 @@ export default function EditUser() {
         <input 
           className="edit-user-input"
           id="email"
-          value={user.email}
+          value={user.email || ""}
           onChange={handleChange}
         />
         {checkEmail ? (
@@ -228,7 +224,7 @@ export default function EditUser() {
         <input
           className="edit-user-input"
           id="name"
-          value={user.name}
+          value={user.name || ""}
           onChange={handleChange}
         />
       </div>
@@ -258,7 +254,7 @@ export default function EditUser() {
         <input
           className="edit-user-input"
           id="classNumber"
-          value={user.classNumber}
+          value={user.classNumber || ""}
           onChange={handleChange}
         />
       </div>
@@ -267,7 +263,7 @@ export default function EditUser() {
         <input
           className="edit-user-input"
           id="studentId"
-          value={user.studentId}
+          value={user.studentId || ""}
           onChange={handleChange}/>
       </div>
       <div className="edit-user-row">
@@ -275,7 +271,7 @@ export default function EditUser() {
         <input
           className="edit-user-input"
           id="teamCode"
-          value={user.teamCode}
+          value={user.teamCode || ""}
           onChange={handleChange}
         />
       </div>
@@ -300,34 +296,7 @@ export default function EditUser() {
       <div className="edit-user-confirm">
         <button className="edit-user-button" onClick={handleSubmit}>수정</button>
       </div>
-      <div className="check-in-out">
-        <div className="check-list">
-          <div className="check-title">입실 기록</div>
-          <div className="check-index-row">
-            <div>날짜</div>
-            <div>시간</div>
-          </div>
-          {checkInList.map((checkIn) => (
-            <div className="check-row" key={checkIn.id}>
-              <div>{checkIn.createdDate}</div>
-              <div>{checkIn.createdTime}</div>
-            </div>
-          ))}
-        </div>
-        <div className="check-list">
-          <div className="check-title">퇴실 기록</div>
-          <div className="check-index-row">
-            <div>날짜</div>
-            <div>시간</div>
-          </div>
-        {checkOutList.map((checkOut) => (
-          <div className="check-row" key={checkOut.id}>
-            <div>{checkOut.createdDate}</div>
-            <div>{checkOut.createdTime}</div>
-          </div>
-        ))}
-        </div>
-      </div>
+      <CheckInOut />
     </div>
   )
 }
