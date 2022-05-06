@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import Pagination from "../../Pagination/Pagination";
 import Search from "../../Search/Search";
 import { FaUserEdit } from 'react-icons/fa';
-import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuthGetList from "../../../Hooks/useAuthGetList";
 
 export function Users() {

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import CheckIn from "./CheckIn";
 import CheckOut from "./CheckOut";
-import { apiInstance } from "../../../api";
-import { duplicateEmail, duplicateNickname } from "../../../api/UserAPI";
 import useAuthGetObject from "../../../Hooks/useAuthGetObject";
+import { duplicateEmail, duplicateNickname } from "../../../api/UserAPI";
+import { apiInstance } from "../../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";

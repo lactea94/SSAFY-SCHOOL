@@ -3,9 +3,9 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import DateFormat from "../../../Utils/DateFormat";
 import Pagination from "../../Pagination/Pagination";
 import Search from "../../Search/Search";
-import { FaEdit } from "react-icons/fa";
 import NoticeCreate from "./NoticeCreate";
 import useGetList from "../../../Hooks/useGetList";
+import { FaEdit } from "react-icons/fa";
 import "./css/Notice.css";
 
 export function Notice() {
