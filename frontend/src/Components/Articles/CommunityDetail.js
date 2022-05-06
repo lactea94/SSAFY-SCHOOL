@@ -4,7 +4,7 @@ import DateFormat from "../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
 import { FaCommentMedical } from "react-icons/fa";
 import { CreateComment, DeleteComment, DeleteCommunity } from "../../api/ArticleAPI";
-import useGetObject from "../../Hooks/useGetObject";
+import useAuthGetObject from "../../Hooks/useAuthGetObject";
 import useGetList from "../../Hooks/useGetList";
 import "./css/CommunityDetail.css"
 
@@ -32,10 +32,10 @@ export default function CommunityDetail() {
   }, []);
 
   // 유저 정보 호출
-  const user = useGetObject('/users/me');
+  const user = useAuthGetObject('/users/me');
   
   // 게시글 정보 호출
-  const communityInfo = useGetObject(`/community/${communityId}`);
+  const communityInfo = useAuthGetObject(`/community/${communityId}`);
   const comments = useGetList(`/community/${communityId}/comment`);
 
   // 유저Id, 게시글, 댓글정보 저장

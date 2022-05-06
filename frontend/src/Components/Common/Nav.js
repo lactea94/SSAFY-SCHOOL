@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import useGetObject from "../../Hooks/useGetObject";
+import useAuthGetObject from "../../Hooks/useAuthGetObject";
 
 export default function Nav() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false);
@@ -14,7 +14,7 @@ export default function Nav() {
   }, []);
 
   // 유저 정보 호출
-  const user = useGetObject('/users/me');
+  const user = useAuthGetObject('/users/me');
   useEffect(() => {
     if (isAuthenticated && Object.keys(user).length) {
       setIsAdmin(user.admin)

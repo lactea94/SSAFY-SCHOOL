@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { userInstance } from "../api";
+import { apiInstance } from "../api";
 import './css/Login.css'
 
 export default function Login() {
   const [loginInfo, setLoginInfo] = useState({id: "", password: ""});
-  const api = userInstance();
+  const api = apiInstance();
   const navigate = useNavigate();
 
   function loginInput({target: {id, value}}) {

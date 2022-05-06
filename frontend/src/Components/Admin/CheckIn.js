@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useGetList from "../../Hooks/useGetList"
+import useAuthGetList from "../../Hooks/useAuthGetList"
 import Pagination from "../Pagination/Pagination";
 import "./css/CheckInOut.css"
 
@@ -13,11 +13,10 @@ export default function CheckIn() {
   const offset = (page - 1) * limit;
   
   // 입실 기록 호출
-  const checkInList = useGetList(`/check/in/${userId}`)
+  const checkInList = useAuthGetList(`/check/in/${userId}`)
   
   // 월 선택
   useEffect(() => {
-    console.log(selectMonth)
     if (selectMonth) {
       setFilteredList(() => 
         checkInList.filter((checkIn) => ( 
@@ -64,7 +63,7 @@ export default function CheckIn() {
           setPage(1)
         }}
       >
-        <option value={0} selected>전체</option>
+        <option value={0}>전체</option>
         {Options()}
       </select>
       <div className="check-index-row">

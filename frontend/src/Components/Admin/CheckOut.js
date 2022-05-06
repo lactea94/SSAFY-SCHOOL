@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useGetList from "../../Hooks/useGetList"
+import useAuthGetList from "../../Hooks/useAuthGetList"
 import Pagination from "../Pagination/Pagination";
 import "./css/CheckInOut.css"
 
@@ -13,7 +13,7 @@ export default function CheckOut() {
   const offset = (page - 1) * limit;
 
   // 퇴실 기록 호출
-  const checkOutList = useGetList(`/check/out/${userId}`)
+  const checkOutList = useAuthGetList(`/check/out/${userId}`)
   
     // 월 선택
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function CheckOut() {
           setPage(1)
         }}
       >
-        <option value={0} selected>전체</option>
+        <option value={0}>전체</option>
         {Options()}
       </select>
       <div className="check-index-row">

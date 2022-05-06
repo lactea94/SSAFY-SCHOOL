@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { apiInstance } from "../api";
+import { authInstance } from "../api";
 
-export default function useGetList(url) {
+export default function useAuthGetList(url) {
   const [ data, setData ] = useState([]);
   useEffect(() => {
     async function getData() {
-      const res = await apiInstance().get(url);
+      const res = await authInstance().get(url);
       setData(res.data)
     }
     getData();

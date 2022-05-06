@@ -1,6 +1,6 @@
-import { apiInstance } from ".";
+import { authInstance } from ".";
 
-const API = apiInstance();
+const API = authInstance();
 
 // 게시글 수정
 export async function UpdateCommunity(communityId, title, content, isNotice) {
