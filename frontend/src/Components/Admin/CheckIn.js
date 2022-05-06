@@ -17,6 +17,7 @@ export default function CheckIn() {
   
   // 월 선택
   useEffect(() => {
+    console.log(selectMonth)
     if (selectMonth) {
       setFilteredList(() => 
         checkInList.filter((checkIn) => ( 
@@ -59,11 +60,11 @@ export default function CheckIn() {
         className="month-select"
         value={selectMonth}
         onChange={({ target: { value }}) => {
-          setSelectMont(value)
+          setSelectMont(parseInt(value))
           setPage(1)
         }}
       >
-        <option value={0}>전체</option>
+        <option value={0} selected>전체</option>
         {Options()}
       </select>
       <div className="check-index-row">

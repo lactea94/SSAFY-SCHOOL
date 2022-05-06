@@ -297,8 +297,10 @@ export default function EditUser() {
       <div className="edit-user-confirm">
         <button className="edit-user-button" onClick={handleSubmit}>수정</button>
       </div>
-      <CheckIn />
-      <CheckOut />
+      <div className="check-in-out">
+        <CheckIn />
+        <CheckOut />
+      </div>
     </div>
   )
 }

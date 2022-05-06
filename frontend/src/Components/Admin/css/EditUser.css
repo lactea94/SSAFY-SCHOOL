@@ -1,5 +1,6 @@
 .edit-user {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   margin: 5rem auto;
   padding: 3rem 0;
   width: 90%;
@@ -11,7 +12,7 @@
 
 .edit-user-row {
   display: flex;
-  margin: 1rem 0;
+  margin: 1rem;
 }
 
 .edit-user .label{
@@ -23,7 +24,7 @@
 .edit-user-input {
   margin: 0 1rem;
   padding: 0.5rem;
-  width: 30%;
+  width: 10rem;
   font-size: 1rem;
   border: 1px solid gray;
   outline: none;
@@ -91,12 +92,17 @@
 
 .edit-user-button {
   margin: 0 0.5rem;
-  background-color: gray;
+  background-color: #3396F4;
   color: white;
   padding: 0.5rem 1rem;
   cursor: pointer;
   outline: none;
   border: none;
+}
+
+.check-in-out {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media screen and (min-width: 1280px) {

@@ -21,8 +21,7 @@ export default function CheckOut() {
         setFilteredList(() => 
           checkOutList.filter((checkIn) => ( 
             new Date(checkIn.createdDate).getMonth() === selectMonth - 1 
-            )
-          )
+          ))
         )
       } else {
         setFilteredList(checkOutList)
@@ -46,7 +45,7 @@ export default function CheckOut() {
     let array = []
     for(let i = 1; i < 13; i ++) {
       array.push(
-        <option key={i} value={i}>{i}월</option>
+        <option typeof="number" key={i} value={i}>{i}월</option>
       )
     }
     return array
@@ -59,11 +58,11 @@ export default function CheckOut() {
         className="month-select"
         value={selectMonth}
         onChange={({ target: { value }}) => {
-          setSelectMont(value)
+          setSelectMont(parseInt(value))
           setPage(1)
         }}
       >
-        <option value={0}>전체</option>
+        <option value={0} selected>전체</option>
         {Options()}
       </select>
       <div className="check-index-row">
