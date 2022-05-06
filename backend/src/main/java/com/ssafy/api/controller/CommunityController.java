@@ -115,11 +115,12 @@ public class CommunityController {
         community.setTitle(communityPostReq.getTitle());
         community.setContent(communityPostReq.getContent());
         community.setIsNotice(communityPostReq.getIsNotice());
+        community.setUpdateDate(LocalDateTime.now());
         communityRepository.save(community);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @ApiOperation(value = "게시글 삭제", notes = "게시글 삭저한다.")
+    @ApiOperation(value = "게시글 삭제", notes = "게시글 삭제한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "삭제 성공"),
             @ApiResponse(code = 401, message = "인증 실패"),
