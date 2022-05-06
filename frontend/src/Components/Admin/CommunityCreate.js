@@ -21,7 +21,7 @@ export default function CommunityCreate({ setCreateOpen }) {
   // 모달 닫기
   function handleCancel() {
     setCreateOpen(false)
-  }
+  };
 
   // 모달 위치 제어
   useEffect(() => {

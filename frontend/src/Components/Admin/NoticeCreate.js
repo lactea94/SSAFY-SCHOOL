@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { CreateNotice } from "../../api/NoticeAPI";
 import "./css/Create.css"
 
 export default function NoticeCreate({ setCreateOpen }) {
@@ -8,16 +9,18 @@ export default function NoticeCreate({ setCreateOpen }) {
   const navigate = useNavigate();
 
   // 게시글 생성
-  function handleSubmit() {
-    console.log(title);
-    console.log(content);
-    navigate('/admin/notice')
-  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    CreateNotice(title, content);
+    setTimeout(() => {
+      navigate(0);
+    }, 100);
+  };
 
   // 모달 닫기
   function handleCancel() {
     setCreateOpen(false)
-  }
+  };
 
   // 모달 위치 제어
   useEffect(() => {

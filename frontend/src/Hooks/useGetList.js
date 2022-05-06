@@ -3,10 +3,11 @@ import { apiInstance } from "../api";
 
 export default function useGetList(url) {
   const [ data, setData ] = useState([]);
+
   useEffect(() => {
     async function getData() {
       const res = await apiInstance().get(url);
-      setData(res.data)
+      setData(res.data || [])
     }
     getData();
   }, [url])
