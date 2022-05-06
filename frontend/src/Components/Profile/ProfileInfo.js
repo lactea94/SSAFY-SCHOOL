@@ -18,7 +18,9 @@ export default function ProfileInfo() {
   }, [checkInObject, checkOutObject])
 
   return (
-    <div>
+    <div
+      className="profile-container"
+    >
       <Maininfo
         user={state.user}
         checkInList={checkInList}
