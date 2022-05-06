@@ -47,19 +47,20 @@
   cursor: pointer;
 }
 
-.admin-bugs-index-row {
-  display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
-  border-bottom: 2px solid black;
-  padding: 1rem;
+.community-row {
+  display: flex;
+  padding: 1rem 0;
+  justify-content: flex-end;
 }
 
-.admin-bugs-row {
-  display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
-  border-bottom: 1px solid gray;
-  padding: 1rem;
-  font-size: 0.8rem;
+.community-create {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  background-color: #3396F4;
+  border-radius: 0.5rem;
+  color: white;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 1280px) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import DateFormat from "../../Utils/DateFormat";
+import DateFormat from "../../../Utils/DateFormat";
 import "./css/EditNotice.css";
 
 export default function EditNotice() {

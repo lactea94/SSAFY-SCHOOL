@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../Pagination/Pagination";
-import Search from "../Search/Search";
+import DateFormat from "../../../Utils/DateFormat";
+import Pagination from "../../Pagination/Pagination";
+import Search from "../../Search/Search";
 import { FaEdit } from 'react-icons/fa';
-import "./css/Admin.css";
 import CommunityCreate from "./CommunityCreate";
-import useGetList from "../../Hooks/useGetList";
+import useGetList from "../../../Hooks/useGetList";
+import "./css/Community.css";
 
 export function Community() {
   const [ searchCategory, setSearchCategory ] = useState('title');

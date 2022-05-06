@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "./css/Admin.css";
-import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../Pagination/Pagination";
-import Search from "../Search/Search";
+import DateFormat from "../../../Utils/DateFormat";
+import Pagination from "../../Pagination/Pagination";
+import Search from "../../Search/Search";
 import { useNavigate } from "react-router-dom";
+import "./css/TestBug.css";
 
 export function TestBug() {
   const [ searchCategory, setSearchCategory ] = useState('content');
@@ -69,7 +69,7 @@ export function TestBug() {
 
   return (
     <div>
-      <div className="article-container">
+      <div className="admin-container">
         <div className="admin-bugs-index-row">
           <div>#</div>
           <div>제보</div>

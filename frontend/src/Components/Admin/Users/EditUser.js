@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import CheckIn from "./CheckIn";
 import CheckOut from "./CheckOut";
-import { apiInstance } from "../../api";
-import { duplicateEmail, duplicateNickname } from "../../api/UserAPI";
-import useAuthGetObject from "../../Hooks/useAuthGetObject";
+import { apiInstance } from "../../../api";
+import { duplicateEmail, duplicateNickname } from "../../../api/UserAPI";
+import useAuthGetObject from "../../../Hooks/useAuthGetObject";
 import { AiFillCheckCircle } from "react-icons/ai";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-import Toast from "../../Utils/Toast";
+import Toast from "../../../Utils/Toast";
 import './css/EditUser.css'
 
 export default function EditUser() {

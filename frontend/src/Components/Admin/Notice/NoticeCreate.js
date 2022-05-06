@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { CreateNotice } from "../../api/NoticeAPI";
-import "./css/Create.css"
+import { CreateNotice } from "../../../api/NoticeAPI";
+import "./css/NoticeCreate.css"
 
 export default function NoticeCreate({ setCreateOpen }) {
   const [ title, setTitle ] = useState();
