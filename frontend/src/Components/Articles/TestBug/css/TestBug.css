@@ -25,6 +25,14 @@
   font-size: 0.8rem;
 }
 
+.bug-row div {
+  margin: auto;
+}
+
+.log-content {
+  white-space: pre-wrap;
+}
+
 .bug-row:hover {
   background-color: #FAFBFC;
 }

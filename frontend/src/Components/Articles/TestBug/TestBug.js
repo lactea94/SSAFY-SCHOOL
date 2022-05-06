@@ -6,9 +6,11 @@ import useGetList from "../../../Hooks/useGetList";
 import { FaCommentMedical } from "react-icons/fa";
 import "./css/TestBug.css";
 import { CreateTestBug } from "../../../api/TestBugAPI";
+import { useNavigate } from "react-router-dom";
 
 export default function TestBug() {
   const [ isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
   const [ text, setText ] = useState("");
   const [ searchCategory, setSearchCategory ] = useState("content");
   const [ searchText, setSearchText ] = useState("");
@@ -41,6 +43,7 @@ export default function TestBug() {
   // 버그 리포트 작성
   function handleClick() {
     CreateTestBug(text);
+    navigate(0);
     setText("");
   }
 
@@ -50,7 +53,7 @@ export default function TestBug() {
         (
           <div className="bug-row" key={log.id}>
             <div>{log.id}</div>
-            <div>{log.content}</div>
+            <div className="log-content">{log.content}</div>
             <div>{log.userId}</div>
             <div>{DateFormat(log.createdDate)}</div>
           </div>

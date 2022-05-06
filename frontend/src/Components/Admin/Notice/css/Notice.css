@@ -4,7 +4,7 @@
   margin: auto;
 }
 
-.notice-index-row {
+.admin-notice-index-row {
   display: grid;
   grid-template-columns: 1fr 10fr 1fr 1fr;
   column-gap: 2rem;

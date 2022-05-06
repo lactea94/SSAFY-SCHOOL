@@ -6,7 +6,7 @@
 
 .notice-index-row {
   display: grid;
-  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-columns: 1fr 9fr 1fr;
   column-gap: 2rem;
   background-color: #FAFBFC;
   border-top: 1px solid black;
@@ -18,7 +18,7 @@
 
 .notice-row {
   display: grid;
-  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-columns: 1fr 9fr 1fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;

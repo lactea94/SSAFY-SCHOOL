@@ -68,7 +68,7 @@ export function Notice() {
       {createOpen && <NoticeCreate setCreateOpen={setCreateOpen}/>}
       <Outlet/>
       <div className="admin-container">
-        <div className="notice-index-row">
+        <div className="admin-notice-index-row">
           <div>#</div>
           <div>제목</div>
           <div>수정일</div>
