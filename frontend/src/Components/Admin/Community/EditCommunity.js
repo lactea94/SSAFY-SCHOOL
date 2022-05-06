@@ -19,7 +19,6 @@ export default function EditCommunity() {
     updatedDate: "",
     isNotice: true,
   });
-  // const [ comments, setComments ] = useState([]);
   const [ comment, setComment ] = useState("");
   const navigate = useNavigate();
 

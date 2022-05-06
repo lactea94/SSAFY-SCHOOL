@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { DeleteNotice, UpdateNotice } from "../../../api/NoticeAPI";
 import useGetObject from "../../../Hooks/useGetObject";
 import DateFormat from "../../../Utils/DateFormat";
 import "./css/EditNotice.css";
@@ -14,6 +15,7 @@ export default function EditNotice() {
     createdDate: "",
     updatedDate: "",
   }); 
+  const navigate = useNavigate();
 
   // 공시사항 호출
   // const noticeInfo = useGetObject(`/notice/${noticeId}`)
@@ -40,14 +42,24 @@ export default function EditNotice() {
   };
 
   // 공지사항 수정
-  function handleSubmit() {
-    console.log(notice)
-  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    UpdateNotice(noticeId, notice.title, notice.content);
+    navigate('/admin/notice');
+    setTimeout(() => {
+      navigate(0);
+    }, 100);
+  };
 
   // 공지사항 삭제
-  function handleClick() {
-
-  }
+  function handleClick(e) {
+    e.preventDefault();
+    DeleteNotice(noticeId);
+    navigate('/admin/notice');
+    setTimeout(() => {
+      navigate(0);
+    }, 100);
+  };
 
   return (
     <div className="admin-notice-container">
