@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useGetObject from "../../../Hooks/useGetObject";
 import DateFormat from "../../../Utils/DateFormat";
 import "./css/EditNotice.css";
 
@@ -15,7 +16,10 @@ export default function EditNotice() {
   }); 
 
   // 공시사항 호출
+  // const noticeInfo = useGetObject(`/notice/${noticeId}`)
+
   useEffect(() => {
+    // setNotice(noticeInfo)
     setNotice({
       id: noticeId,
       userId: 0,

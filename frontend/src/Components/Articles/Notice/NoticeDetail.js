@@ -13,6 +13,8 @@ export default function NoticeDetail () {
   });
 
   // 공지사항 정보 호출
+  // const notice = useGetObject(`/notice/${noticeId}`)
+
   useEffect(() => {
     setNotice({
       title: `공지${noticeId}`,
