@@ -62,6 +62,12 @@ export default function TestBug() {
   return (
     <div>
       <div className="article-container">
+        <div className="admin-bugs-index-row">
+          <div>#</div>
+          <div>제보</div>
+          <div>작성자</div>
+          <div>작성일자</div>
+        </div>
         {Log()}
       </div>
       { isAuthenticated && 
