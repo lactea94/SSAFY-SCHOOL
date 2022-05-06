@@ -1,125 +1,36 @@
-.article-container {
+.notice-container {
   display: grid;
   width: 90%;
   margin: auto;
+  border-top: 1px solid black;
 }
 
-.index-row {
-  display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
-  border-bottom: 2px solid black;
-  padding: 1rem;
-}
-
-.article-row {
-  display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+.notice-row {
+  display: flex;
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
 }
 
-.article-row:hover {
+.notice-row:hover {
   background: rgb(236, 236, 236);
 }
 
-.article-link {
+.notice-link {
   color: black;
   text-decoration: none;
   font-weight: bold;
 }
 
-.notice-row {
-  display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
-  border-bottom: 1px solid gray;
-  padding: 1rem;
-  font-size: 0.8rem;
-  background: #3396F4;
-}
-
-.notice-row:hover {
-  background: #354ACA;
-}
-
-.community-row {
-  display: flex;
-  padding: 1rem 0;
-  justify-content: flex-end;
-}
-
-.community-create {
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  background-color: #3396F4;
-  border-radius: 0.5rem;
-  color: white;
-  text-decoration: none;
-}
-
-.input-container {
-  display: grid;
-  grid-template-columns: 8fr 1fr;
-  align-items: center;
-  width: 90%;
-  margin: 2rem auto;
-  background: lightgray;
-  padding: 1rem;
-}
-
-.submit-textarea {
-  padding: 1rem;
-  background: none;
-  border: none;
-  border-bottom: 1px solid gray;
-  resize: none;
-}
-
-.submit-textarea:focus {
-  outline: none;
-}
-
-.submit-button {
-  cursor: pointer;
-  margin: auto;
-  color: gray;
-  border-radius: 0.5rem;
-  font-size: 2rem;
-}
-
-.submit-button:hover {
-  color: white;
-}
 
 @media screen and (min-width: 1280px) {
-  .article-container {
-    width: 50%;
-  }
-  
-  .notice-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
-  }
-
-  .index-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
-  }
-
-  .article-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
-  }
-
-  .input-container {
+  .notice-container {
     width: 50%;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  .article-container {
-    width: 33%;
-  }
-  
-  .input-container {
+  .notice-container {
     width: 33%;
   }
 }

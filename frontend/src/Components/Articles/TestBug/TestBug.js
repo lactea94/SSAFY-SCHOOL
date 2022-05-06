@@ -57,7 +57,7 @@ export default function TestBug() {
     return (
       filteredLogs.slice(offset, offset + limit).map((log) => 
         (
-          <div className="article-row" key={log.id}>
+          <div className="bug-row" key={log.id}>
             <div>{log.id}</div>
             <div>{log.content}</div>
             <div>{log.userId}</div>
@@ -71,12 +71,6 @@ export default function TestBug() {
   return (
     <div>
       <div className="article-container">
-        <div className="index-row">
-          <div>#</div>
-          <div>제보</div>
-          <div>작성자</div>
-          <div>작성일자</div>
-        </div>
         {Log()}
       </div>
       { isAuthenticated && 

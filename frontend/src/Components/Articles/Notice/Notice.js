@@ -4,7 +4,6 @@ import DateFormat from "../../../Utils/DateFormat";
 import Pagination from "../../Pagination/Pagination";
 import Search from "../../Search/Search";
 import useGetList from "../../../Hooks/useGetList";
-import { apiInstance } from "../../../api";
 import "./css/Notice.css";
 
 export default function Notice() {
@@ -22,23 +21,15 @@ export default function Notice() {
   // 공지사항 정보 호출
   const noticeList = useGetList('/notice');
 
-  useEffect(() => {
-    async function test() {
-      const res = await apiInstance().get('/notice');
-      console.log(res.data);
-    }
-    test();
-  }, [])
-
   // 검색 필터링
   useEffect(() => {
     if (searchCategory === 'title') {
-      setFilterdNoticeList(() => 
-        noticeList.filter((notice) => 
+      setFilterdNoticeList(() =>
+        noticeList.filter((notice) =>
           notice.title.toLowerCase().includes(searchText.toLowerCase())
     ))} else if (searchCategory === 'content') {
-      setFilterdNoticeList(() => 
-        noticeList.filter((notice) => 
+      setFilterdNoticeList(() =>
+        noticeList.filter((notice) =>
           notice.content.toLowerCase().includes(searchText.toLowerCase())
     ))}
   }, [searchCategory, searchText, noticeList]);
@@ -46,19 +37,19 @@ export default function Notice() {
   // 공지사항
   function Notices() {
     return (
-      filteredNoticeList.slice(offset, offset + limit).map((notice) => 
+      filteredNoticeList.slice(offset, offset + limit).map((notice) =>
         (
-          <div className="article-row" key={notice.id}>
+          <div className="notice-row" key={notice.id}>
             <div>{notice.id}</div>
             <div>
               <Link
-                className="article-link"
+                className="notice-link"
                 to={`${notice.id}`}
               >
                 {notice.title}
               </Link>
             </div>
-            <div>{DateFormat(notice.createdDate)}</div>
+            <div>{notice.username}</div>
             <div>{DateFormat(notice.updatedDate)}</div>
           </div>
         )
@@ -69,13 +60,7 @@ export default function Notice() {
   return (
     <div>
       <Outlet/>
-      <div className="article-container">
-        <div className="index-row">
-          <div>#</div>
-          <div>제목</div>
-          <div>작성일자</div>
-          <div>수정일자</div>
-        </div>
+      <div className="notice-container">
         {Notices()}
       </div>
       <Pagination

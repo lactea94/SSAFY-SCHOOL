@@ -18,19 +18,19 @@ export default function EditNotice() {
   const navigate = useNavigate();
 
   // 공시사항 호출
-  // const noticeInfo = useGetObject(`/notice/${noticeId}`)
+  const noticeInfo = useGetObject(`/notice/${noticeId}`)
 
   useEffect(() => {
-    // setNotice(noticeInfo)
-    setNotice({
-      id: noticeId,
-      userId: 0,
-      title: `제목${noticeId}`,
-      content: `내용${noticeId}`,
-      createdDate: "2022-04-19 16:10:00",
-      updatedDate: "2022-04-20 15:30:30",
-    });
-  }, [noticeId]);
+    setNotice(noticeInfo)
+    // setNotice({
+    //   id: noticeId,
+    //   userId: 0,
+    //   title: `제목${noticeId}`,
+    //   content: `내용${noticeId}`,
+    //   createdDate: "2022-04-19 16:10:00",
+    //   updatedDate: "2022-04-20 15:30:30",
+    // });
+  }, [noticeInfo]);
 
   // 내용 변경
   function handleChange({target: {id, value}}) {

@@ -27,7 +27,7 @@ export default function Login() {
       console.log(error);
     }
   };
-
+  // 잘못된 아이디 로그인 확인
   return (
     <div className="login-container">
       <h1>
