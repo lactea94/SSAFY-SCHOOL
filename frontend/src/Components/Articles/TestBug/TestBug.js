@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import DateFormat from "../../../Utils/DateFormat";
 import Pagination from "../../Pagination/Pagination";
 import Search from "../../Search/Search";
-import useAuthGetList from "../../../Hooks/useAuthGetList";
 import useGetList from "../../../Hooks/useGetList";
 import { FaCommentMedical } from "react-icons/fa";
 import "./css/TestBug.css";
