@@ -73,7 +73,8 @@ export default function Signup() {
         await MySwal.fire({
           icon: "success",
           title: "회원가입 성공!",
-        }).then(function() {navigate('/')})
+        })
+        await new Promise(() => {navigate('/')})
       } catch (error) {
         MySwal.fire({
           icon: "error",

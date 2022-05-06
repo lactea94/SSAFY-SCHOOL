@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { apiInstance } from "../api";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import Toast from "../Utils/Toast";
 import './css/Login.css'
 
@@ -8,6 +10,7 @@ export default function Login() {
   const [loginInfo, setLoginInfo] = useState({id: "", password: ""});
   const api = apiInstance();
   const navigate = useNavigate();
+  const MySwal = withReactContent(Swal);
 
   function loginInput({target: {id, value}}) {
     const newLoginInfo = {
@@ -17,13 +20,19 @@ export default function Login() {
     setLoginInfo(newLoginInfo);
   };
 
-  const loginSubmit = async (e) => {
+  async function loginSubmit(e) {
     e.preventDefault();
     try {
       const res = await api.post('/auth/login', loginInfo);
       localStorage.setItem('accesstoken', res.data.accessToken);
-      navigate('/');
-      navigate(0);
+      await MySwal.fire({
+        icon: "success",
+        title: "로그인 성공!"
+      })
+      await new Promise(() => {
+        navigate('/');
+        navigate(0);
+      })
     } catch (error) {
       if (error.response.status === 401) {
         Toast.fire({
