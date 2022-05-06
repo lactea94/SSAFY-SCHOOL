@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userInstance } from "../api";
+import { apiInstance } from "../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -9,13 +9,21 @@ import { duplicateId, duplicateNickname, duplicateEmail } from "../api/UserAPI";
 import Toast from "../Utils/Toast";
 
 export default function Signup() {
-  const [ signupInfo, setSignupInfo ] = useState({});
+  const [ signupInfo, setSignupInfo ] = useState({
+    admin: 2,
+    email: "",
+    gender: true,
+    id: "",
+    name: "",
+    nickname: "",
+    password: ""
+  });
   const [ passwordConfirm, setPasswordConfirm ] = useState("");
   const [ checkId, setCheckId ] = useState(false);
   const [ checkNickname, setCheckNickname ] = useState(false);
   const [ checkEmail, setCheckEmail ] = useState(false);
   const [ checkPassword, setCheckPassword ] = useState(false);
-  const userAPI = userInstance();
+  const userAPI = apiInstance();
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
 

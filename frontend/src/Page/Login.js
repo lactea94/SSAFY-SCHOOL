@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { userInstance } from "../api";
+import { apiInstance } from "../api";
 import './css/Login.css'
 
 export default function Login() {
   const [loginInfo, setLoginInfo] = useState({id: "", password: ""});
-  const api = userInstance();
+  const api = apiInstance();
   const navigate = useNavigate();
 
   function loginInput({target: {id, value}}) {
@@ -59,10 +59,11 @@ export default function Login() {
         <button className="login-button">로그인</button>
       </form>
       <div>
-        <h3 style={{display: "inline-block", cursor: "not-allowed"}}>ID/PW 찾기</h3>
-        <h3 style={{display: "inline-block", margin: "0 10px"}}> | </h3>
-        <Link to="/signup">
-          <h3 style={{display: "inline-block", cursor: "pointer", color: "black"}}>회원가입</h3>
+        <Link
+          className="login-link"
+          to="/signup"
+        >
+          회원가입
         </Link>
       </div>
     </div>

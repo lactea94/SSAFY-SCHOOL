@@ -1,6 +1,6 @@
-import { apiInstance } from ".";
+import { authInstance } from ".";
 
-const API = apiInstance();
+const API = authInstance();
 
 // 게시글 작성
 export async function CreateCommunity(title, content, isNotice) {
@@ -24,11 +24,33 @@ export async function UpdateCommunity(communityId, title, content) {
       isNotice: false,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
 // 게시글 삭제
 export async function DeleteCommunity(communityId) {
-  await API.delete(`/community/${communityId}`);
+  try {
+    await API.delete(`/community/${communityId}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 댓글 작성
+export async function CreateComment(communityId, content) {
+  try {
+    await API.post(`/community/${communityId}/comment`, { content: content });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 댓글 삭제
+export async function DeleteComment(communityId, commentId) {
+  try {
+    await API.delete(`/community/${communityId}/comment/${commentId}`)
+  } catch (error) {
+    console.log(error);
+  }
 };

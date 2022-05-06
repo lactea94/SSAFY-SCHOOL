@@ -1,7 +1,7 @@
-import { userInstance } from ".";
+import { apiInstance } from ".";
 import CheckEmailForm from "../Utils/CheckEmailForm";
 
-const userAPI = userInstance();
+const userAPI = apiInstance();
 
 // 아이디 중복 체크
 export async function duplicateId(userId, Toast, setCheckId) {

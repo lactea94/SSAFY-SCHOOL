@@ -2,6 +2,8 @@ package com.ssafy.api.controller;
 
 import com.ssafy.api.request.gamenotice.GameNoticePostReq;
 import com.ssafy.api.response.community.CommunityListRes;
+import com.ssafy.api.response.gamenotice.GameNoticeListRes;
+import com.ssafy.api.response.gamenotice.GameNoticeRes;
 import com.ssafy.api.service.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.db.entity.Community;
@@ -68,13 +70,85 @@ public class GameNoticeController {
     @GetMapping()
     public ResponseEntity getGameNoticeList() {
         List<GameNotice> list = gameNoticeRepository.findAll();
-//        List<CommunityListRes> communityList = new ArrayList<>();
-//
-//        Collections.reverse(list);
-//
-//        for (Community entity : list) {
-//            communityList.add(new CommunityListRes(entity));
-//        }
+        List<GameNoticeListRes> gameNoticeList = new ArrayList<>();
+
+        Collections.reverse(list);
+
+        for (GameNotice entity : list) {
+            gameNoticeList.add(new GameNoticeListRes(entity));
+        }
+        return new ResponseEntity<>(gameNoticeList, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "게임 공지사항 조회", notes = "게임 공지사항 세부내용을 조회한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "조회 성공"),
+            @ApiResponse(code = 404, message = "게시글 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    @ApiImplicitParam(name = "noticeId", value = "게임공지사항 seq", required = true, dataType = "Long")
+    @GetMapping("/{noticeId}")
+    public ResponseEntity getGameNotice(@PathVariable Long noticeId) {
+        GameNotice gameNotice = gameNoticeRepository.findById(noticeId).orElse(null);
+        if (gameNotice == null) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        GameNoticeRes gameNoticeRes = new GameNoticeRes(gameNotice);
+        return new ResponseEntity<>(gameNoticeRes, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "게임 공지사항 수정", notes = "게임 공지사항을 수정한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "수정 성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 403, message = "권한 없음"),
+            @ApiResponse(code = 404, message = "게시글 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    @ApiImplicitParam(name = "noticeId", value = "게임공지사항 seq", required = true, dataType = "Long")
+    @PutMapping("/{noticeId}")
+    public ResponseEntity editGameNotice(@ApiIgnore Authentication authentication, @PathVariable Long noticeId, @RequestBody @ApiParam(value = "게시글 수정 내용", required = true)GameNoticePostReq gameNoticePostReq) {
+        SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+        String userId = userDetails.getUsername();
+        User user = userService.getUserByUserId(userId);
+        GameNotice gameNotice = gameNoticeRepository.findById(noticeId).orElse(null);
+        if (gameNotice == null) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        if (user.getAdmin() == 2) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        gameNotice.setTitle(gameNoticePostReq.getTitle());
+        gameNotice.setContent(gameNoticePostReq.getContent());
+        gameNotice.setUpdatedDate(LocalDateTime.now());
+        gameNoticeRepository.save(gameNotice);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @ApiOperation(value = "게임 공지사항 삭제", notes = "게임 공지사항을 삭제한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "삭제 성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 403, message = "권한 없음"),
+            @ApiResponse(code = 404, message = "게시글 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    @ApiImplicitParam(name = "noticeId", value = "게임 공지사항 seq", required = true, dataType = "Long")
+    @DeleteMapping("/{noticeId}")
+    public ResponseEntity deleteGameNotice(@ApiIgnore Authentication authentication, @PathVariable Long noticeId) {
+        SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+        String userId = userDetails.getUsername();
+        User user = userService.getUserByUserId(userId);
+        GameNotice gameNotice = gameNoticeRepository.findById(noticeId).orElse(null);
+        if (gameNotice == null) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        if (user.getAdmin() == 2) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        gameNoticeRepository.deleteById(noticeId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
 }

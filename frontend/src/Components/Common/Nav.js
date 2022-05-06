@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import useGetObject from "../../Hooks/useGetObject";
+import useAuthGetObject from "../../Hooks/useAuthGetObject";
 
 export default function Nav() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   // 슈퍼 0, 프로 1, 학생 2
   const [ isAdmin, setIsAdmin ] = useState(2);
-  // const [ user, setUser ] = useState();
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
@@ -14,13 +13,12 @@ export default function Nav() {
     }
   }, []);
 
-  const user = useGetObject('/users/me');
-
+  // 유저 정보 호출
+  const user = useAuthGetObject('/users/me');
   useEffect(() => {
     if (isAuthenticated && Object.keys(user).length) {
       setIsAdmin(user.admin)
       if (user.admin !== 2) {
-        console.log(user.admin)
         localStorage.setItem('admin', true);
       }
     }

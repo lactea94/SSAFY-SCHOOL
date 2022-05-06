@@ -1,10 +1,8 @@
 .main {
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-top: 50px;
-  margin-bottom: 30px;
+  width: 90%;
+  margin: 5rem auto;
 }
 
 .profile-info {
@@ -26,4 +24,16 @@
 
 .profile-edit-link {
   color: #3396F4;
+}
+
+@media screen and (min-width: 1280px) {
+  .main {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .main {
+    width: 33%;
+  }
 }
