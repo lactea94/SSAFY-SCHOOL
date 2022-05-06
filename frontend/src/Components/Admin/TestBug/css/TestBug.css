@@ -6,14 +6,20 @@
 
 .admin-bugs-index-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
-  border-bottom: 2px solid black;
-  padding: 1rem;
+  grid-template-columns: 1fr 8fr 2fr 2fr;
+  column-gap: 2rem;
+  background-color: #FAFBFC;
+  border-top: 1px solid black;
+  border-bottom: 1px solid gray;
+  padding: 1.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .admin-bugs-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+  grid-template-columns: 1fr 8fr 2fr 2fr;
+  column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
@@ -23,18 +29,26 @@
   .admin-container {
     width: 50%;
   }
-  
+
   .admin-bugs-index-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+    grid-template-columns: 1fr 7fr 2fr 2fr;
   }
 
   .admin-bugs-row {
-    grid-template-columns: 1fr 6fr 2fr 2fr;
+    grid-template-columns: 1fr 7fr 2fr 2fr;
   }
 }
 
 @media screen and (min-width: 1920px) {
   .admin-container {
     width: 33%;
+  }
+
+  .admin-bugs-index-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
+  }
+
+  .admin-bugs-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
   }
 }

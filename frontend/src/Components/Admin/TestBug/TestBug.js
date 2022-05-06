@@ -58,7 +58,7 @@ export function TestBug() {
         (
           <div className="admin-bugs-row" key={log.id}>
             <div>{log.id}</div>
-            <div>{log.content}</div>
+            <div style={{ textAlign: "start"}}>{log.content}</div>
             <div>{log.userId}</div>
             <div>{DateFormat(log.createdDate)}</div>
           </div>
