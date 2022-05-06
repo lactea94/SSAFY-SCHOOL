@@ -4,7 +4,7 @@ import CheckIn from "./CheckIn";
 import CheckOut from "./CheckOut";
 import useAuthGetObject from "../../../Hooks/useAuthGetObject";
 import { duplicateEmail, duplicateNickname } from "../../../api/UserAPI";
-import { apiInstance, authInstance } from "../../../api";
+import { authInstance } from "../../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
