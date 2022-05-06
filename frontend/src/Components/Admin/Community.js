@@ -50,7 +50,7 @@ export function Community() {
         <div className="admin-notice-row" key={notice.id}>
           <div>공지</div>
           <div>{notice.title}</div>
-          <div>{DateFormat(notice.createdDate)}</div>
+          <div>{notice.name}</div>
           <div>{DateFormat(notice.updatedDate)}</div>
           <Link
             className="admin-update-button"
@@ -67,9 +67,9 @@ export function Community() {
     return (
       filteredCommunityList.slice(offset, offset + limit).map((community) => (
         <div className="admin-row" key={community.id}>
-          <div>{community.userId}</div>
+          <div>{community.nickname}</div>
           <div>{community.title}</div>
-          <div>{DateFormat(community.createdDate)}</div>
+          <div>{community.name}</div>
           <div>{DateFormat(community.updatedDate)}</div>
           <Link
             className="admin-update-button"
@@ -87,9 +87,9 @@ export function Community() {
       <Outlet/>
       <div className="admin-container">
         <div className="admin-index-row">
-          <div>작성자</div>
+          <div>#</div>
           <div>제목</div>
-          <div>작성일자</div>
+          <div>작성자</div>
           <div>수정일자</div>
           <div>수정</div>
         </div>

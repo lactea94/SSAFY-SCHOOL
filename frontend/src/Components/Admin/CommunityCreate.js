@@ -13,7 +13,9 @@ export default function CommunityCreate({ setCreateOpen }) {
   function handleSubmit(e) {
     e.preventDefault();
     CreateCommunity(title, content, isNotice);
-    navigate(0);
+    setTimeout(() => {
+      navigate(0);
+    }, 100);
   };
 
   // 모달 닫기
