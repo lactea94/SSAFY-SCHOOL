@@ -7,13 +7,18 @@
 .admin-index-row {
   display: grid;
   grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
-  border-bottom: 2px solid black;
-  padding: 1rem;
+  column-gap: 2rem;
+  background-color: #FAFBFC;
+  border-top: 1px solid black;
+  border-bottom: 1px solid gray;
+  padding: 1.5rem 1rem;
+  font-weight: bold;
 }
 
 .admin-row {
   display: grid;
   grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
+  column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
@@ -26,14 +31,16 @@
 .admin-community-notice-row {
   display: grid;
   grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
+  column-gap: 2rem;
   border-bottom: 1px solid gray;
+  color: #3396F4;
   padding: 1rem;
   font-size: 0.8rem;
-  background: #3396F4;
+  font-weight: bold;
 }
 
 .admin-community-notice-row:hover {
-  background: #354ACA;
+  background: #FAFBFC;
 }
 
 .admin-update-button {
