@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import {PieChart} from 'react-minimal-pie-chart'
-import holidays from './holidays';
+import { useEffect, useState } from "react";
+import holidays from "./holidays";
+import { PieChart } from "react-minimal-pie-chart"
+import "./css/EachMonthAttendance.css";
 
 export default function EachMonthAttendance({ checkInList, checkOutList }) {
   const [ today, setToday ] = useState({year: 0, month:0, date: 0})
@@ -54,32 +55,26 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
     setChartdata([{title:'',value: presents,color:'#F6CB44'}])
   }, [checkInList, checkOutList, today])
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      height: "400px",
-      width: "300px",
-      margin: "auto",
-    }}>
-      <h1 style={{
-        display: "inline-block",
-        margin: "1rem auto 0 1rem"}}
-      >
+    <div className="attendance-container">
+      <div className="attendance-title">
         {today.month}월 출석
-      </h1>
-      {chartdata&&<PieChart
-        data={chartdata}
-        reveal={parseInt((attendance * 100) / weekdays)}
-        lineWidth={10}
-        label={() => `${Math.round(attendance / weekdays * 100)}%`}
-        background='#f3f3f3'
-        rounded
-        animate
-        labelPosition={0}
-      />}
-      <h2 style={{display: "inline-block", marginTop: "0.5rem"}}>싸피 지원금 {parseInt(1000000 * attendance / weekdays).toLocaleString("ko-KR")}원</h2>
-      <p>지각/조퇴/외출 : {tardy}</p>
+      </div>
+      <div className="pie-chart-container">
+        {chartdata && <PieChart
+          data={chartdata}
+          reveal={parseInt((attendance * 100) / weekdays)}
+          lineWidth={10}
+          label={() => `${Math.round(attendance / weekdays * 100)}%`}
+          background='#f3f3f3'
+          rounded
+          animate
+          labelPosition={0}
+        />}
+      </div>
+      <div className="attendance-money">
+        누적 금액 {parseInt(1000000 * attendance / weekdays).toLocaleString("ko-KR")}원
+      </div>
+      <div className="attendance-content">지각/조퇴/외출 : {tardy}</div>
     </div>
   );
 }

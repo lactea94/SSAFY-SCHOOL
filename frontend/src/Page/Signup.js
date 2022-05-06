@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userInstance } from "../api";
+import { apiInstance } from "../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -23,7 +23,7 @@ export default function Signup() {
   const [ checkNickname, setCheckNickname ] = useState(false);
   const [ checkEmail, setCheckEmail ] = useState(false);
   const [ checkPassword, setCheckPassword ] = useState(false);
-  const userAPI = userInstance();
+  const userAPI = apiInstance();
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
 

@@ -30,3 +30,11 @@
   cursor: pointer;
   margin: 1rem 0;
 }
+
+.login-link {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 1rem;
+}

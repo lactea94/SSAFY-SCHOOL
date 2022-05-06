@@ -1,0 +1,118 @@
+.edit-user {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem auto;
+  padding: 3rem 0;
+  width: 90%;
+  text-align: start;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  justify-content: center;
+}
+
+.edit-user-row {
+  display: flex;
+  margin: 1rem;
+}
+
+.edit-user .label{
+  font-size: 1.2rem;
+  width: 10rem;
+  margin: auto 0;
+}
+
+.edit-user-input {
+  margin: 0 1rem;
+  padding: 0.5rem;
+  width: 10rem;
+  font-size: 1rem;
+  border: 1px solid gray;
+  outline: none;
+}
+
+.user-edit-check-confirm {
+  margin: auto 1rem;
+  padding: auto;
+  width: 5rem;
+  color: #FFE651;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 0;
+}
+
+.user-edit-check {
+  cursor: pointer;
+  margin: auto 1rem;
+  padding: 0.5rem;
+  width: 5rem;
+  background-color: gray;
+  color: white;
+  text-align: center;
+}
+
+.radio-container{
+  display: flex;
+}
+
+.edit-user-text {
+  width: 10rem;
+  margin: 0 1rem;
+}
+
+.radio-label {
+  display: flex;
+}
+
+.edit-user-radio {
+  margin: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.label-name {
+  margin: auto;
+}
+
+.add-mileage-button {
+  margin: 0 0.5rem;
+  background-color: gray;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.edit-user-confirm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.edit-user-button {
+  margin: 0 0.5rem;
+  background-color: #3396F4;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.check-in-out {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 1280px) {
+  .edit-user {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .edit-user {
+    width: 33%;
+  }
+}

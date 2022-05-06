@@ -1,6 +1,6 @@
-import { apiInstance } from ".";
+import { authInstance } from ".";
 
-const API = apiInstance();
+const API = authInstance();
 
 // 게시글 작성
 export async function CreateCommunity(title, content, isNotice) {

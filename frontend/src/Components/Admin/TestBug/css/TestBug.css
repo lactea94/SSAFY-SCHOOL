@@ -1,0 +1,40 @@
+.admin-container {
+  display: grid;
+  width: 90%;
+  margin: auto;
+}
+
+.admin-bugs-index-row {
+  display: grid;
+  grid-template-columns: 1fr 9fr 2fr 2fr;
+  border-bottom: 2px solid black;
+  padding: 1rem;
+}
+
+.admin-bugs-row {
+  display: grid;
+  grid-template-columns: 1fr 9fr 2fr 2fr;
+  border-bottom: 1px solid gray;
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+
+@media screen and (min-width: 1280px) {
+  .admin-container {
+    width: 50%;
+  }
+  
+  .admin-bugs-index-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
+  }
+
+  .admin-bugs-row {
+    grid-template-columns: 1fr 6fr 2fr 2fr;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .admin-container {
+    width: 33%;
+  }
+}
