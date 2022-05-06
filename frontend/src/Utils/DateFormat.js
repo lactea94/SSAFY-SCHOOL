@@ -1,6 +1,7 @@
 export default function DateFormat(date) {
   const nowTime = new Date();
   const time = new Date(date);
+  time.setHours(time.getHours() + 9)
   const diff = (nowTime - time) / 1000;
   if (diff < 60) {
     return (
