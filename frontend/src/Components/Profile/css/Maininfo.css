@@ -1,54 +1,61 @@
 .main-info {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin: 3rem 0;
 }
 
 .mileage-info {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 42.5%;
+  height: 20rem;
   background-color: #FAFBFC;
-  padding: 2rem;
+  padding: 1rem;
   border: 1px solid lightgray;
+  font-weight: bold;
+}
+
+.mileage-title {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.mileage-content {
+  margin: auto 0;
 }
 
 .mileage-number {
   text-align: end;
 }
 
-.mileage-title {
-  font-weight: bold;
-  font-size: 25px;
-}
-
 .available-mileage {
   background-color: #3396F4;
   padding: 1rem;
   color: white;
-
 }
 
 .available-mileage-title {
   font-size: 1.3rem;
-  font-weight: bold;
 }
 
 .accumulated-mileage {
   border-bottom: 1px solid lightgray;
   padding: 1rem;
+  color: #3396F4;  
 }
 
 .accumulated-mileage-title {
   font-size: 1rem;
-  font-weight: bold;
+  color: black;
 }
 
 .used-mileage {
   padding: 1rem;
+  color: #3396F4;
 }
 
 .used-mileage-title {
   font-size: 1rem;
-  font-weight: bold;
+  color: black;
 }
