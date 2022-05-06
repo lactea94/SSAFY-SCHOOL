@@ -47,9 +47,9 @@ export function Community() {
   function Notices() {
     return (
       noticeList.map((notice) => (
-        <div className="admin-notice-row" key={notice.id}>
+        <div className="admin-community-notice-row" key={notice.id}>
           <div>공지</div>
-          <div>{notice.title}</div>
+          <div style={{textAlign: "start"}}>{notice.title}</div>
           <div>{notice.name}</div>
           <div>{DateFormat(notice.updatedDate)}</div>
           <Link
@@ -68,7 +68,7 @@ export function Community() {
       filteredCommunityList.slice(offset, offset + limit).map((community) => (
         <div className="admin-row" key={community.id}>
           <div>{community.nickname}</div>
-          <div>{community.title}</div>
+          <div style={{textAlign: "start"}}>{community.title}</div>
           <div>{community.name}</div>
           <div>{DateFormat(community.updatedDate)}</div>
           <Link

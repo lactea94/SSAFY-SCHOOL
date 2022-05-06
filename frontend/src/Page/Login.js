@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { apiInstance } from "../api";
+import Toast from "../Utils/Toast";
 import './css/Login.css'
 
 export default function Login() {
@@ -24,7 +25,19 @@ export default function Login() {
       navigate('/');
       navigate(0);
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 401) {
+        Toast.fire({
+          icon: "error",
+          title: "비밀번호 오류",
+          text: "비밀번호가 올바르지 않습니다."
+        })
+      } else if (error.response.status === 500) {
+        Toast.fire({
+          icon: "question",
+          title: "잘못된 ID",
+          text: "입력한 아이디를 사용하는 계정을 찾을 수 없습니다."
+        })
+      }
     }
   };
 

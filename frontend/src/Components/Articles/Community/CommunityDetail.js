@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DateFormat from "../../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
 import useAuthGetObject from "../../../Hooks/useAuthGetObject";
+import useGetObject from "../../../Hooks/useGetObject";
 import useGetList from "../../../Hooks/useGetList";
 import { CreateComment, DeleteComment, DeleteCommunity } from "../../../api/ArticleAPI";
 import { FaCommentMedical } from "react-icons/fa";
@@ -35,7 +36,7 @@ export default function CommunityDetail() {
   const user = useAuthGetObject('/users/me');
   
   // 게시글 정보 호출
-  const communityInfo = useAuthGetObject(`/community/${communityId}`);
+  const communityInfo = useGetObject(`/community/${communityId}`);
   const comments = useGetList(`/community/${communityId}/comment`);
 
   // 유저Id, 게시글, 댓글정보 저장
@@ -119,7 +120,7 @@ export default function CommunityDetail() {
               key={comment.id}
             >
               <div>{comment.username}</div>
-              <div>{comment.content}</div>
+              <div style={{ textAlign: "start" }}>{comment.content}</div>
               <div>{DateFormat(comment.createdDate)}</div>
               { userId === comment.userId ? (
                 <button 

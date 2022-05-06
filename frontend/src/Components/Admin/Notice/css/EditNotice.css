@@ -1,13 +1,13 @@
 .admin-notice-container {
-  margin: 5rem auto;
+  margin: 2rem auto;
   width: 90%;
 }
 
 .admin-notice-title {
   font-size: 2rem;
   border: none;
-  border-top: 2px solid black;
-  border-bottom: 1px solid lightgray;
+  border-top: 1px solid black;
+  border-bottom: 1px solid gray;
   outline: none;
   width: 100%;
   text-align: start;
@@ -16,12 +16,12 @@
 }
 
 .admin-notice-title:focus {
-  background-color: lightgray;
+  background-color: #FAFBFC;
 }
 
 .admin-notice-date {
   display: flex;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid gray;
   justify-content: space-between;
   padding: 1rem 0;
   color: gray;
@@ -39,7 +39,7 @@
   text-align: start;
   width: 100%;
   border: none;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid gray;
   outline: none;
   resize: none;
   font-size: 1rem;
@@ -48,14 +48,14 @@
 }
 
 .admin-notice-content:focus {
-  background-color: lightgray;
+  background-color: #FAFBFC;
 }
 
 .admin-notice-update {
   padding: 1rem 0;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid gray;
 }
 
 .admin-notice-update-button {
