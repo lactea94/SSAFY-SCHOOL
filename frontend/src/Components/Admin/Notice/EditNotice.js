@@ -22,14 +22,6 @@ export default function EditNotice() {
 
   useEffect(() => {
     setNotice(noticeInfo)
-    // setNotice({
-    //   id: noticeId,
-    //   userId: 0,
-    //   title: `제목${noticeId}`,
-    //   content: `내용${noticeId}`,
-    //   createdDate: "2022-04-19 16:10:00",
-    //   updatedDate: "2022-04-20 15:30:30",
-    // });
   }, [noticeInfo]);
 
   // 내용 변경
@@ -66,17 +58,17 @@ export default function EditNotice() {
       <input
         className="admin-notice-title"
         id="title"
-        value={notice.title}
+        value={notice.title || ""}
         onChange={handleChange}
       />
       <div className="admin-notice-date">
-        <div className="admin-notice-created">{DateFormat(notice.createdDate)}</div>
-        <div className="admin-notice-updated">{DateFormat(notice.updatedDate)}</div>
+        <div className="admin-notice-created">{DateFormat(notice.createdDate || "")}</div>
+        <div className="admin-notice-updated">{DateFormat(notice.updatedDate || "")}</div>
       </div>
       <textarea
         className="admin-notice-content"
         id="content"
-        value={notice.content}
+        value={notice.content || ""}
         onChange={handleChange}
         rows={20}
       />

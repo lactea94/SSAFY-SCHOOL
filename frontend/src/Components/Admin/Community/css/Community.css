@@ -23,7 +23,7 @@
   background: rgb(236, 236, 236);
 }
 
-.admin-notice-row {
+.admin-community-notice-row {
   display: grid;
   grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
   border-bottom: 1px solid gray;
@@ -32,7 +32,7 @@
   background: #3396F4;
 }
 
-.admin-notice-row:hover {
+.admin-community-notice-row:hover {
   background: #354ACA;
 }
 
@@ -62,7 +62,7 @@
     width: 50%;
   }
   
-  .admin-notice-row {
+  .admin-community-notice-row {
     grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 

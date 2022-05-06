@@ -47,7 +47,7 @@ export function Community() {
   function Notices() {
     return (
       noticeList.map((notice) => (
-        <div className="admin-notice-row" key={notice.id}>
+        <div className="admin-community-notice-row" key={notice.id}>
           <div>공지</div>
           <div>{notice.title}</div>
           <div>{notice.name}</div>
