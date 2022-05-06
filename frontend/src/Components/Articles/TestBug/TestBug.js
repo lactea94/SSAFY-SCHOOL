@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import "./css/Articles.css";
-import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../Pagination/Pagination";
+import DateFormat from "../../../Utils/DateFormat";
+import Pagination from "../../Pagination/Pagination";
+import Search from "../../Search/Search";
+import useGetList from "../../../Hooks/useGetList";
 import { FaCommentMedical } from "react-icons/fa";
-import useGetList from "../../Hooks/useGetList";
-import Search from "../Search/Search";
+import "./css/TestBug.css";
 
 export default function TestBug() {
   const [ isAuthenticated, setIsAuthenticated] = useState(false);

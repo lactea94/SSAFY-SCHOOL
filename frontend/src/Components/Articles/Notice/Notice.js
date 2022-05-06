@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../Pagination/Pagination";
-import Search from "../Search/Search";
-import useGetList from "../../Hooks/useGetList";
-import "./css/Articles.css";
-import { apiInstance } from "../../api";
+import DateFormat from "../../../Utils/DateFormat";
+import Pagination from "../../Pagination/Pagination";
+import Search from "../../Search/Search";
+import useGetList from "../../../Hooks/useGetList";
+import { apiInstance } from "../../../api";
+import "./css/Notice.css";
 
 export default function Notice() {
   const [ searchCategory, setSearchCategory ] = useState('title');

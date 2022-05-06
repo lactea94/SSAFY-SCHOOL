@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { CreateCommunity } from "../../api/ArticleAPI";
+import { CreateCommunity } from "../../../api/ArticleAPI";
 import "./css/CommunityCreate.css"
 
 export default function CommunityCreate({ setCreateOpen }) {

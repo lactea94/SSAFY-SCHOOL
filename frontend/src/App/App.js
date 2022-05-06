@@ -2,17 +2,22 @@ import { Route, Routes } from "react-router-dom";
 import Nav from "../Components/Common/Nav";
 import Footer from "../Components/Common/Footer";
 import Home from "../Page/Home";
+
+// Articles
 import Articles from "../Page/Articles";
-import Notice from "../Components/Articles/Notice";
-import NoticeDetail from "../Components/Articles/NoticeDetail";
-import Community from "../Components/Articles/Community";
-import CommunityDetail from "../Components/Articles/CommunityDetail";
-import TestBug from "../Components/Articles/TestBug";
+import Notice from "../Components/Articles/Notice/Notice";
+import NoticeDetail from "../Components/Articles/Notice/NoticeDetail";
+import Community from "../Components/Articles/Community/Community";
+import CommunityDetail from "../Components/Articles/Community/CommunityDetail";
+import TestBug from "../Components/Articles/TestBug/TestBug";
+
+// Profile
 import Profile from "../Page/Profile";
 import ProfileInfo from "../Components/Profile/ProfileInfo";
 import EditProfile from "../Components/Profile/EditProfile";
 import EditPassword from "../Components/Profile/EditPassword";
-// 관리자
+
+// Admin
 import Admin from "../Page/Admin";
 import { Users } from "../Components/Admin/Users/Users";
 import EditUser from "../Components/Admin/Users/EditUser";
@@ -21,6 +26,7 @@ import EditNotice from "../Components/Admin/Notice/EditNotice";
 import { Community as AdminCommunity } from "../Components/Admin/Community/Community";
 import EditCommunity from "../Components/Admin/Community/EditCommunity";
 import { TestBug as AdminTestBug } from "../Components/Admin/TestBug/TestBug";
+
 import Login from "../Page/Login";
 import Logout from "../Page/Logout";
 import Signup from "../Page/Signup";

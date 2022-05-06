@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DateFormat from "../../Utils/DateFormat";
+import DateFormat from "../../../Utils/DateFormat";
 import CommunityUpdate from "./CommunityUpdate";
+import useAuthGetObject from "../../../Hooks/useAuthGetObject";
+import useGetList from "../../../Hooks/useGetList";
+import { CreateComment, DeleteComment, DeleteCommunity } from "../../../api/ArticleAPI";
 import { FaCommentMedical } from "react-icons/fa";
-import { CreateComment, DeleteComment, DeleteCommunity } from "../../api/ArticleAPI";
-import useAuthGetObject from "../../Hooks/useAuthGetObject";
-import useGetList from "../../Hooks/useGetList";
 import "./css/CommunityDetail.css"
 
 export default function CommunityDetail() {

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import DateFormat from "../../Utils/DateFormat";
-import Pagination from "../Pagination/Pagination";
+import DateFormat from "../../../Utils/DateFormat";
+import Pagination from "../../Pagination/Pagination";
 import CommunityCreate from "./CommunityCreate";
-import Search from "../Search/Search";
-import useGetList from "../../Hooks/useGetList";
-import "./css/Articles.css";
+import Search from "../../Search/Search";
+import useGetList from "../../../Hooks/useGetList";
+import "./css/Community.css";
 
 export default function Community() {
   const [ isAuthenticated, setIsAuthenticated] = useState(false);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import DateFormat from "../../Utils/DateFormat";
+import DateFormat from "../../../Utils/DateFormat";
 import "./css/NoticeDetail.css";
 
 export default function NoticeDetail () {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import { UpdateCommunity } from "../../api/ArticleAPI";
+import { UpdateCommunity } from "../../../api/ArticleAPI";
 import "./css/CommunityUpdate.css"
 
 export default function CommunityUpdate({ title, content, setUpdateOpen }) {
