@@ -30,6 +30,7 @@ import { TestBug as AdminTestBug } from "../Components/Admin/TestBug/TestBug";
 import Login from "../Page/Login";
 import Logout from "../Page/Logout";
 import Signup from "../Page/Signup";
+import SearchId from "../Page/SearchId";
 import PageNotFound from "../Page/404";
 import "./App.css";
 
@@ -71,6 +72,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="searchid" element={<SearchId />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
