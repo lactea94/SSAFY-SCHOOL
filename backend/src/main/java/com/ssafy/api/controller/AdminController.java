@@ -17,6 +17,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.time.LocalDateTime;
+
 @Api(value = "관리자 API", tags = {"Admin"})
 @RestController
 @AllArgsConstructor
@@ -56,6 +58,7 @@ public class AdminController {
         community.setTitle(communityPostReq.getTitle());
         community.setContent(communityPostReq.getContent());
         community.setIsNotice(communityPostReq.getIsNotice());
+        community.setUpdateDate(LocalDateTime.now());
         communityRepository.save(community);
         return new ResponseEntity(HttpStatus.OK);
     }
