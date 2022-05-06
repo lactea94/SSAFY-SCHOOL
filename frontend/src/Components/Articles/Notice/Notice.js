@@ -41,7 +41,7 @@ export default function Notice() {
         (
           <div className="notice-row" key={notice.id}>
             <div>{notice.id}</div>
-            <div>
+            <div className="notice-row-title">
               <Link
                 className="notice-link"
                 to={`${notice.id}`}
@@ -49,7 +49,6 @@ export default function Notice() {
                 {notice.title}
               </Link>
             </div>
-            <div>{notice.username}</div>
             <div>{DateFormat(notice.updatedDate)}</div>
           </div>
         )
@@ -61,6 +60,11 @@ export default function Notice() {
     <div>
       <Outlet/>
       <div className="notice-container">
+        <div className="notice-index-row">
+          <div>#</div>
+          <div>제목</div>
+          <div>수정일</div>
+        </div>
         {Notices()}
       </div>
       <Pagination
