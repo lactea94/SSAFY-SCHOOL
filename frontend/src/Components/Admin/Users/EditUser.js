@@ -4,7 +4,7 @@ import CheckIn from "./CheckIn";
 import CheckOut from "./CheckOut";
 import useAuthGetObject from "../../../Hooks/useAuthGetObject";
 import { duplicateEmail, duplicateNickname } from "../../../api/UserAPI";
-import { apiInstance } from "../../../api";
+import { apiInstance, authInstance } from "../../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
@@ -36,7 +36,7 @@ export default function EditUser() {
   const [ checkEmail, setCheckEmail ] = useState(true);
   const [ originNickname, setOriginNickname ] = useState("");
   const [ originEmail, setOriginEmail ] = useState("");
-  const API = apiInstance();
+  const API = authInstance();
   const MySwal = withReactContent(Swal);
   
   // 유저 정보 호출
