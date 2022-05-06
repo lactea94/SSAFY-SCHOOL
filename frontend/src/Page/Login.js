@@ -59,12 +59,6 @@ export default function Login() {
         <button className="login-button">로그인</button>
       </form>
       <div>
-        <Link 
-          className="login-link"
-          to='/searchid'
-        >
-          ID 찾기
-        </Link>
         <Link
           className="login-link"
           to="/signup"
