@@ -150,7 +150,7 @@ export default function EditCommunity() {
               key={comment.id}
             >
               <div>{comment.username}</div>
-              <div>{comment.content}</div>
+              <div style={{ textAlign: "start" }}>{comment.content}</div>
               <div>{DateFormat(comment.createdDate)}</div>
               <button
                 className="admin-comment-button"
