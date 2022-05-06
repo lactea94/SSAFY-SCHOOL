@@ -7,7 +7,7 @@ export default function useAuthGetList(url) {
   useEffect(() => {
     async function getData() {
       const res = await authInstance().get(url);
-      setData(res.data || [])
+      setData(res.data)
     }
     getData();
   }, [url])

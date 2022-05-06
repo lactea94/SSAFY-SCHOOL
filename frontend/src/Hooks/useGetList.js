@@ -8,7 +8,7 @@ export default function useGetList(url) {
     async function getData() {
       try {
         const res = await apiInstance().get(url);
-        setData(res.data || [])
+        setData(res.data)
       } catch (error) {
         console.log(error)
       }
