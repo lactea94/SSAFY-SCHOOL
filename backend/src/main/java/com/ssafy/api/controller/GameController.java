@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Api(value = "게임 API", tags = {"Game"})
@@ -48,24 +49,85 @@ public class GameController {
         String userId = userDetails.getUsername();
         User user = userService.getUserByUserId(userId);
         Status status = statusRepository.findByUserId(user.getId()).orElse(null);
-        Inventory inventory = inventoryRepository.findByItemAndUserId(gameItemPostReq.getItem(), user.getId()).orElse(null);
+        HashMap<String, Long> priceMap = new HashMap<>();
+        priceMap.put("Accessory_00", 10000L);
+        priceMap.put("Accessory_01", 12000L);
+        priceMap.put("Accessory_02", 10000L);
+        priceMap.put("Costume_01", 20000L);
+        priceMap.put("Costume_02", 15000L);
+        priceMap.put("Costume_05", 15000L);
+        priceMap.put("Costume_06", 20000L);
 
-        if (status.getRemainMileage() < gameItemPostReq.getPrice()) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-
-        if (inventory == null) {
+        String itemName = gameItemPostReq.getItem();
+        String[] info = itemName.split("\\$");
+        List<Inventory> inventoryList = inventoryRepository.findAllByUserIdAndWearTrue(user.getId());
+        if (inventoryList.isEmpty()) {
             inventoryRepository.save(Inventory.builder()
                     .item(gameItemPostReq.getItem())
                     .wear(false)
                     .user(user)
                     .build());
-            status.setRemainMileage(status.getRemainMileage() - gameItemPostReq.getPrice());
-            statusRepository.save(status);
             return new ResponseEntity(HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity(HttpStatus.CONFLICT);
         }
+        if (info[1].equals("Accessory") || info[1].equals("Costume")) {
+            Inventory inventory = inventoryRepository.findByItemAndUserId(gameItemPostReq.getItem(), user.getId()).orElse(null);
+            if (inventory == null) {
+                if (!priceMap.containsKey(info[2])) {
+                    System.out.println("keyError");
+                    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                }
+
+                Long price = priceMap.get(info[2]);
+                if (status.getRemainMileage() < price) {
+                    System.out.println("Not enough mileage");
+                    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                }
+                inventoryRepository.save(Inventory.builder()
+                        .item(gameItemPostReq.getItem())
+                        .wear(false)
+                        .user(user)
+                        .build());
+                status.setRemainMileage(status.getRemainMileage() - price);
+                statusRepository.save(status);
+                return new ResponseEntity(HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity(HttpStatus.CONFLICT);
+            }
+        } else if (info[1].equals("Hair") || info[1].equals("Face")) {
+            for (Inventory item : inventoryList) {
+                String[] information = item.getItem().split("\\$");
+                if (item.getItem().equals(itemName)) {
+                    return new ResponseEntity(HttpStatus.CONFLICT);
+                }
+                if (information[1].equals(info[1])) {
+                    Long price = 0L;
+                    if (!info[2].equals(information[2])) {
+                        price += 15000L;
+                    }
+                    if (!info[3].equals(information[3])) {
+                        price += 5000L;
+                    }
+                    if (status.getRemainMileage() < price) {
+                        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                    }
+                    status.setRemainMileage(status.getRemainMileage() - price);
+                    item.setItem(gameItemPostReq.getItem());
+                    item.setWear(true);
+                    inventoryRepository.save(item);
+                    break;
+                } else if (information[1].equals(info[1])) {
+                    if (status.getRemainMileage() < 20000L) {
+                        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                    }
+                    status.setRemainMileage(status.getRemainMileage() - 20000L);
+                    item.setItem(gameItemPostReq.getItem());
+                    item.setWear(true);
+                    inventoryRepository.save(item);
+                    break;
+                }
+            }
+        }
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 
@@ -153,6 +215,7 @@ public class GameController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "수정 성공"),
             @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "아이템 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
     @PutMapping("/inventory")
@@ -160,6 +223,14 @@ public class GameController {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         User user = userDetails.getUser();
         Long userId = user.getId();
+
+        for( GameLastInventoryReq gameLastInventoryReq : gameLastInventoryListReq.getInventoryList()) {
+            Inventory inventory = inventoryRepository.findByItemAndUserId(gameLastInventoryReq.getItem(), userId).orElse(null);
+            if (inventory == null) {
+                System.out.println("gameLastInventoryReq = " + gameLastInventoryReq.getItem());
+                return new ResponseEntity(HttpStatus.NO_CONTENT);
+            }
+        }
 
         for( GameLastInventoryReq gameLastInventoryReq : gameLastInventoryListReq.getInventoryList()) {
             Inventory inventory = inventoryRepository.findByItemAndUserId(gameLastInventoryReq.getItem(), userId).orElse(null);
