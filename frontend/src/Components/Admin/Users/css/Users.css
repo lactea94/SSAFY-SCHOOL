@@ -1,13 +1,13 @@
-.admin-container {
+.user-container {
   display: grid;
   width: 90%;
   margin: auto;
 }
 
-.admin-bugs-index-row {
+.user-index-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
-  column-gap: 2rem;
+  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
+  column-gap: 1rem;
   background-color: #FAFBFC;
   border-top: 1px solid black;
   border-bottom: 1px solid gray;
@@ -16,35 +16,40 @@
   font-weight: bold;
 }
 
-.admin-bugs-row {
+.user-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
-  column-gap: 2rem;
+  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
+  column-gap: 1rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
 }
 
-.admin-bugs-row:hover {
+.user-row:hover {
   background-color: #FAFBFC;
 }
 
+.user-update-button {
+  color: #FFE651;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1280px) {
-  .admin-container {
+  .user-container {
     width: 50%;
   }
 
-  .admin-bugs-index-row {
-    grid-template-columns: 1fr 7fr 2fr 2fr;
+  .user-index-row {
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 
-  .admin-bugs-row {
-    grid-template-columns: 1fr 7fr 2fr 2fr;
+  .user-row {
+    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 }
 
 @media screen and (min-width: 1920px) {
-  .admin-container {
+  .user-container {
     width: 33%;
   }
 }

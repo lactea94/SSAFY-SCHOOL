@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Pagination from "../../Pagination/Pagination";
 import Search from "../../Search/Search";
-import { FaUserEdit } from 'react-icons/fa';
+import { FaUserEdit } from "react-icons/fa";
 import useAuthGetList from "../../../Hooks/useAuthGetList";
+import "./css/Users.css";
 
 export function Users() {
   const [ searchCategory, setSearchCategory ] = useState('userId');
@@ -52,14 +53,14 @@ export function Users() {
   function UserList() {
     return (
       filteredUserList.slice(offset, offset + limit).map((user) => (
-          <div className="admin-row" key={user.id}>
+          <div className="user-row" key={user.id}>
             <div>{user.userId}</div>
             <div>{user.email}</div>
             <div>{user.name}</div>
             <div>{user.nickname}</div>
             <Link
               to={`${user.id}`}
-              className="admin-update-button"
+              className="user-update-button"
             >
               <FaUserEdit/>
             </Link>
@@ -72,8 +73,8 @@ export function Users() {
   return (
     <div>
       <Outlet/>
-      <div className="admin-container">
-        <div className="admin-index-row">
+      <div className="user-container">
+        <div className="user-index-row">
           <div>아이디</div>
           <div>이메일</div>
           <div>이름</div>

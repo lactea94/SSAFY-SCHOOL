@@ -47,10 +47,9 @@ export function Notice() {
     return (
       filteredNoticeList.slice(offset, offset + limit).map((notice) => 
         (
-          <div className="admin-row" key={notice.id}>
+          <div className="admin-notice-row" key={notice.id}>
             <div>{notice.id}</div>
-            <div>{notice.title}</div>
-            <div>{DateFormat(notice.createdDate)}</div>
+            <div style={{textAlign: "start"}}>{notice.title}</div>
             <div>{DateFormat(notice.updatedDate)}</div>
             <Link
               to={`${notice.id}`}
@@ -69,11 +68,10 @@ export function Notice() {
       {createOpen && <NoticeCreate setCreateOpen={setCreateOpen}/>}
       <Outlet/>
       <div className="admin-container">
-        <div className="admin-index-row">
+        <div className="notice-index-row">
           <div>#</div>
           <div>제목</div>
-          <div>작성일자</div>
-          <div>수정일자</div>
+          <div>수정일</div>
           <div>수정</div>
         </div>
         {Notices()}
