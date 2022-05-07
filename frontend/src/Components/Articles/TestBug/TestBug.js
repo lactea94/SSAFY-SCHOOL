@@ -4,11 +4,13 @@ import Pagination from "../../Pagination/Pagination";
 import Search from "../../Search/Search";
 import useGetList from "../../../Hooks/useGetList";
 import { FaCommentMedical } from "react-icons/fa";
-import "./css/TestBug.css";
-import { CreateTestBug } from "../../../api/TestBugAPI";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../Loading/Loading";
+import { CreateTestBug } from "../../../api/TestBugAPI";
+import "./css/TestBug.css";
 
 export default function TestBug() {
+  const [ loading, setLoading ] = useState(true);
   const [ isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
   const [ text, setText ] = useState("");
@@ -30,6 +32,13 @@ export default function TestBug() {
 
   // 버그 리포트 호출
   const logs = useGetList('/report');
+
+  // 로딩
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+  }, [])
 
   // 필터링
   useEffect(() => {
@@ -64,44 +73,50 @@ export default function TestBug() {
 
   return (
     <div>
-      <div className="article-container">
-        <div className="admin-bugs-index-row">
-          <div>#</div>
-          <div>제보</div>
-          <div>작성자</div>
-          <div>작성일자</div>
-        </div>
-        {Log()}
-      </div>
-      { isAuthenticated && 
-        <div className="input-container">
-          <textarea
-            className="submit-textarea"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            rows={4}
-          />
-          <div
-            className="submit-button"
-            onClick={handleClick}
-          >
-            <FaCommentMedical />
+      { loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="article-container">
+            <div className="admin-bugs-index-row">
+              <div>#</div>
+              <div>제보</div>
+              <div>작성자</div>
+              <div>작성일자</div>
+            </div>
+            {Log()}
           </div>
-        </div>
-      }
-      <Pagination
-        total={filteredLogs.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-        setLimit={setLimit}
-      />
-      <Search
-        setSearchText={setSearchText}
-        setSearchCategory={setSearchCategory}
-        setPage={setPage}
-        categories={categories}
-      />
+          { isAuthenticated && 
+            <div className="input-container">
+              <textarea
+                className="submit-textarea"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                rows={4}
+              />
+              <div
+                className="submit-button"
+                onClick={handleClick}
+              >
+                <FaCommentMedical />
+              </div>
+            </div>
+          }
+          <Pagination
+            total={filteredLogs.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+            setLimit={setLimit}
+          />
+          <Search
+            setSearchText={setSearchText}
+            setSearchCategory={setSearchCategory}
+            setPage={setPage}
+            categories={categories}
+          />
+        </>
+      )}
     </div>
   )
 };

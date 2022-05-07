@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import DateFormat from "../../../Utils/DateFormat";
 import Pagination from "../../Pagination/Pagination";
+import Loading from "../../Loading/Loading";
 import Search from "../../Search/Search";
 import useGetList from "../../../Hooks/useGetList";
 import "./css/Notice.css";
 
 export default function Notice() {
+  const [ loading, setLoading ] = useState(true);
   const [ searchCategory, setSearchCategory ] = useState('title');
   const [ searchText, setSearchText ] = useState('');
   const [ filteredNoticeList, setFilterdNoticeList ] = useState([]);
@@ -21,6 +23,13 @@ export default function Notice() {
   // 공지사항 정보 호출
   const noticeList = useGetList('/notice');
 
+  // 로딩
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+  }, [])
+
   // 검색 필터링
   useEffect(() => {
     if (searchCategory === 'title') {
@@ -33,6 +42,7 @@ export default function Notice() {
           notice.content.toLowerCase().includes(searchText.toLowerCase())
     ))}
   }, [searchCategory, searchText, noticeList]);
+
 
   // 공지사항
   function Notices() {
@@ -58,28 +68,34 @@ export default function Notice() {
 
   return (
     <div>
-      <Outlet/>
-      <div className="notice-container">
-        <div className="notice-index-row">
-          <div>#</div>
-          <div>제목</div>
-          <div>수정일</div>
-        </div>
-        {Notices()}
-      </div>
-      <Pagination
-        total={filteredNoticeList.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-        setLimit={setLimit}
-      />
-      <Search
-        setSearchText={setSearchText}
-        setSearchCategory={setSearchCategory}
-        setPage={setPage}
-        categories={categories}
-      />
+      { loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Outlet/>
+          <div className="notice-container">
+            <div className="notice-index-row">
+              <div>#</div>
+              <div>제목</div>
+              <div>수정일</div>
+            </div>
+            {Notices()}
+          </div>
+          <Pagination
+            total={filteredNoticeList.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+            setLimit={setLimit}
+          />
+          <Search
+            setSearchText={setSearchText}
+            setSearchCategory={setSearchCategory}
+            setPage={setPage}
+            categories={categories}
+          />
+        </>
+      )}
     </div>
   )
 };
