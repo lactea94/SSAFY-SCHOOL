@@ -8,5 +8,5 @@ export async function CreateTestBug(content) {
     await API.post('/report', { content: content });
   } catch (error) {
     console.log(error);
-  }
+  } 
 };

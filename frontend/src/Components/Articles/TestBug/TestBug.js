@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import DateFormat from "../../../Utils/DateFormat";
 import Pagination from "../../Pagination/Pagination";
 import Search from "../../Search/Search";
-import useGetList from "../../../Hooks/useGetList";
 import { FaCommentMedical } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Loading from "../../Loading/Loading";
 import { CreateTestBug } from "../../../api/TestBugAPI";
+import Toast from "../../../Utils/Toast";
+import Loading from "../../Loading/Loading";
+import useGetList from "../../../Hooks/useGetList";
 import "./css/TestBug.css";
 
 export default function TestBug() {
@@ -61,9 +62,17 @@ export default function TestBug() {
 
   // 버그 리포트 작성
   function handleClick() {
-    CreateTestBug(text);
-    navigate(0);
-    setText("");
+    // 정규표현식
+    if (text.replace(/(\n|\r\n)/g, '')) {
+      CreateTestBug(text);
+      navigate(0);
+      setText("");
+    } else {
+      Toast.fire({
+        icon: "question",
+        title: "내용을 작성해 주세요"
+      })
+    }
   };
   
   function Log() {
