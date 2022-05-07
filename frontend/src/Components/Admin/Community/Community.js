@@ -34,7 +34,6 @@ export function Community() {
   const noticeList = useGetList('/community/notice');
   const communityList = useGetList('/community');
 
-  console.log(noticeList)
   // 로딩
   useEffect(() => {
     setTimeout(() => {
