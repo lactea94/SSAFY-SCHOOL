@@ -22,6 +22,8 @@ export default function TestBug() {
   const offset = (page - 1) * limit;
   const categories = [
     { value: 'content', name: '내용'},
+    { value: 'username', name: '작성자'},
+    { value: 'nickname', name: '닉네임'},
   ];
 
   // 로그인 사용자 확인
@@ -36,9 +38,9 @@ export default function TestBug() {
   // 로딩
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }, [])
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   // 필터링
   useEffect(() => {
@@ -46,6 +48,14 @@ export default function TestBug() {
       setFilteredLogs(() => 
         logs.filter((log) => 
           log.content.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'username') {
+      setFilteredLogs(() => 
+        logs.filter((log) => 
+          log.username.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'nickname') {
+      setFilteredLogs(() => 
+        logs.filter((log) => 
+          log.nickname.toLowerCase().includes(searchText.toLowerCase())
     ))}
   }, [searchCategory, searchText, logs]);
 
@@ -54,16 +64,17 @@ export default function TestBug() {
     CreateTestBug(text);
     navigate(0);
     setText("");
-  }
+  };
+  console.log(logs)
 
   function Log() {
     return (
       filteredLogs.slice(offset, offset + limit).map((log) => 
         (
           <div className="bug-row" key={log.id}>
-            <div>{log.id}</div>
+            <div>{log.nickname}</div>
             <div className="log-content">{log.content}</div>
-            <div>{log.userId}</div>
+            <div>{log.username}</div>
             <div>{DateFormat(log.createdDate)}</div>
           </div>
         )
@@ -78,8 +89,8 @@ export default function TestBug() {
       ) : (
         <>
           <div className="article-container">
-            <div className="admin-bugs-index-row">
-              <div>#</div>
+            <div className="bug-index-row">
+              <div>닉네임</div>
               <div>제보</div>
               <div>작성자</div>
               <div>작성일자</div>

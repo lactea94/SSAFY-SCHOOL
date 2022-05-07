@@ -21,6 +21,8 @@ export default function Community() {
   const categories = [
     { value: 'title', name: '제목'},
     { value: 'content', name: '내용'},
+    { value: 'name', name: '작성자'},
+    { value: 'nickname', name: '닉네임'},
   ];
   
   // 로그인 사용자 확인
@@ -33,12 +35,12 @@ export default function Community() {
   const noticeList = useGetList('/community/notice');
   const communityList = useGetList('/community');
 
-    // 로딩
-    useEffect(() => {
-      setTimeout(() => {
-        setLoading(false)
-      }, 1000)
-    }, [])
+  // 로딩
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   // 검색 필터링
   useEffect(() => {
@@ -50,6 +52,14 @@ export default function Community() {
       setFilteredCommunityList(() => 
         communityList.filter((community) => 
           community.content.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'name') {
+      setFilteredCommunityList(() => 
+        communityList.filter((community) => 
+          community.name.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'nickname') {
+      setFilteredCommunityList(() => 
+        communityList.filter((community) => 
+          community.nickname.toLowerCase().includes(searchText.toLowerCase())
     ))}
   }, [searchCategory, searchText, communityList]);
 

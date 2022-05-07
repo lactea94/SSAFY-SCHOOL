@@ -26,9 +26,9 @@ export default function Notice() {
   // 로딩
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }, [])
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   // 검색 필터링
   useEffect(() => {
