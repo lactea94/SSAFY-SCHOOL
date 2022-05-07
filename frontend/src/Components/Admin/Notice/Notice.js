@@ -7,8 +7,10 @@ import NoticeCreate from "./NoticeCreate";
 import useGetList from "../../../Hooks/useGetList";
 import { FaEdit } from "react-icons/fa";
 import "./css/Notice.css";
+import Loading from "../../Loading/Loading";
 
 export function Notice() {
+  const [ loading, setLoading ] = useState(true);
   const [ searchCategory, setSearchCategory ] = useState('title');
   const [ searchText, setSearchText ] = useState('');
   const [ filteredNoticeList, setFilterdNoticeList ] = useState([]);
@@ -28,6 +30,13 @@ export function Notice() {
 
   // 공시사항 목록 호출
   const noticeList = useGetList('/notice');
+
+  // 로딩
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   // 검색 필터링
   useEffect(() => {
@@ -65,41 +74,47 @@ export function Notice() {
 
   return (
     <div>
-      {createOpen && <NoticeCreate setCreateOpen={setCreateOpen}/>}
-      <Outlet/>
-      <div className="admin-container">
-        <div className="admin-notice-index-row">
-          <div>#</div>
-          <div>제목</div>
-          <div>수정일</div>
-          <div>수정</div>
-        </div>
-        {Notices()}
-        <div className="community-row">
-          <div
-            className="community-create"
-            onClick={() => {
-              setCreateOpen(true);
-              window.scrollTo(0, 0);
-            }}
-          >
-            공지사항 작성
+      { loading ? (
+        <Loading />
+      ) : (
+        <>
+          {createOpen && <NoticeCreate setCreateOpen={setCreateOpen}/>}
+          <Outlet/>
+          <div className="admin-container">
+            <div className="admin-notice-index-row">
+              <div>#</div>
+              <div>제목</div>
+              <div>수정일</div>
+              <div>수정</div>
+            </div>
+            {Notices()}
+            <div className="community-row">
+              <div
+                className="community-create"
+                onClick={() => {
+                  setCreateOpen(true);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                공지사항 작성
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <Pagination
-        total={filteredNoticeList.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-        setLimit={setLimit}
-      />
-      <Search
-        setSearchText={setSearchText}
-        setSearchCategory={setSearchCategory}
-        setPage={setPage}
-        categories={categories}
-      />
+          <Pagination
+            total={filteredNoticeList.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+            setLimit={setLimit}
+          />
+          <Search
+            setSearchText={setSearchText}
+            setSearchCategory={setSearchCategory}
+            setPage={setPage}
+            categories={categories}
+          />
+        </>
+      )}
     </div>
   )
 };

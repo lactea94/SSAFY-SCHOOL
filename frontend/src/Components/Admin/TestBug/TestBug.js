@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useGetList from "../../../Hooks/useGetList";
 import DateFormat from "../../../Utils/DateFormat";
+import Loading from "../../Loading/Loading";
 import Pagination from "../../Pagination/Pagination";
 import Search from "../../Search/Search";
 import "./css/TestBug.css";
 
 export function TestBug() {
+  const [ loading, setLoading ] = useState(true);
   const [ searchCategory, setSearchCategory ] = useState('content');
   const [ searchText, setSearchText ] = useState('');
   const [ filteredLogs, setFilteredLogs ] = useState([]);
@@ -25,6 +27,13 @@ export function TestBug() {
 
   // 버그 리포트 호출
   const logs = useGetList('/report');
+
+  // 로딩
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   // 검색 필터링
   useEffect(() => {
@@ -53,28 +62,34 @@ export function TestBug() {
 
   return (
     <div>
-      <div className="admin-container">
-        <div className="admin-bugs-index-row">
-          <div>#</div>
-          <div>제보</div>
-          <div>작성자</div>
-          <div>작성일자</div>
+      { loading ? (
+        <Loading />
+      ) : (
+       <>
+        <div className="admin-container">
+          <div className="admin-bugs-index-row">
+            <div>#</div>
+            <div>제보</div>
+            <div>작성자</div>
+            <div>작성일자</div>
+          </div>
+          {Log()}
         </div>
-        {Log()}
-      </div>
-      <Pagination
-        total={filteredLogs.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-        setLimit={setLimit}
-      />
-      <Search
-        setSearchText={setSearchText}
-        setSearchCategory={setSearchCategory}
-        setPage={setPage}
-        categories={categories}
-      />
+        <Pagination
+          total={filteredLogs.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+          setLimit={setLimit}
+        />
+        <Search
+          setSearchText={setSearchText}
+          setSearchCategory={setSearchCategory}
+          setPage={setPage}
+          categories={categories}
+        />
+       </> 
+      )}
     </div>
   )
 };

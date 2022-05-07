@@ -7,8 +7,10 @@ import { FaEdit } from 'react-icons/fa';
 import CommunityCreate from "./CommunityCreate";
 import useGetList from "../../../Hooks/useGetList";
 import "./css/Community.css";
+import Loading from "../../Loading/Loading";
 
 export function Community() {
+  const [ loading, setLoading ] = useState(true);
   const [ searchCategory, setSearchCategory ] = useState('title');
   const [ searchText, setSearchText ] = useState('');
   const [ filteredCommunityList, setFilteredCommunityList ] = useState([]);
@@ -29,6 +31,13 @@ export function Community() {
   // 게시글 목록 호출
   const noticeList = useGetList('/community/notice');
   const communityList = useGetList('/community');
+
+  // 로딩
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   // 검색 필터링
   useEffect(() => {
@@ -83,43 +92,49 @@ export function Community() {
 
   return (
     <div>
-      {createOpen && <CommunityCreate setCreateOpen={setCreateOpen}/>}
-      <Outlet/>
-      <div className="admin-container">
-        <div className="admin-index-row">
-          <div>#</div>
-          <div>제목</div>
-          <div>작성자</div>
-          <div>수정일자</div>
-          <div>수정</div>
-        </div>
-        {Notices()}
-        {Communities()}
-        <div className="community-row">
-          <div
-            className="community-create"
-            onClick={() => {
-              setCreateOpen(true);
-              window.scrollTo(0, 0);
-            }}
-          >
-            게시글 작성
+      { loading ? (
+        <Loading />
+      ) : (
+        <>
+          {createOpen && <CommunityCreate setCreateOpen={setCreateOpen}/>}
+          <Outlet/>
+          <div className="admin-container">
+            <div className="admin-index-row">
+              <div>#</div>
+              <div>제목</div>
+              <div>작성자</div>
+              <div>수정일자</div>
+              <div>수정</div>
+            </div>
+            {Notices()}
+            {Communities()}
+            <div className="community-row">
+              <div
+                className="community-create"
+                onClick={() => {
+                  setCreateOpen(true);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                게시글 작성
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <Pagination
-        total={filteredCommunityList.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-        setLimit={setLimit}
-      />
-      <Search
-        setSearchText={setSearchText}
-        setSearchCategory={setSearchCategory}
-        setPage={setPage}
-        categories={categories}
-      />
+          <Pagination
+            total={filteredCommunityList.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+            setLimit={setLimit}
+          />
+          <Search
+            setSearchText={setSearchText}
+            setSearchCategory={setSearchCategory}
+            setPage={setPage}
+            categories={categories}
+          />
+        </>
+      )}
     </div>
   )
 };
