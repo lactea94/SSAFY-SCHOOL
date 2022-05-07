@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { apiInstance } from "../../api";
+import { authInstance } from "../../api";
 import Toast from "../../Utils/Toast";
 import './css/EditProfile.css';
 
@@ -12,6 +12,7 @@ export default function EditPassword() {
   const [ password, setPassword ] = useState("");
   const [ confirmPassword, setConfirmPassword ] = useState("");
   const MySwal = withReactContent(Swal);
+  const API = authInstance();
 
   async function handleSubmit() {
     if (!password) {
@@ -28,11 +29,12 @@ export default function EditPassword() {
       return
     };
     try {
-      await apiInstance().put('/users/password', { password: password});
+      await API.put('/users/password', { password: password});
       await MySwal.fire({
         icon: "success",
         title: "비밀번호 수정 성공!"
-      }).then(function() {navigate(-1)});
+      })
+      await new Promise(() => { navigate(0) })
     } catch (error) {
       console.log(error);
     };
