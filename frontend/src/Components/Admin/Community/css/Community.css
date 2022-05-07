@@ -6,7 +6,7 @@
 
 .admin-index-row {
   display: grid;
-  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
   column-gap: 2rem;
   background-color: #FAFBFC;
   border-top: 1px solid black;
@@ -17,7 +17,7 @@
 
 .admin-row {
   display: grid;
-  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
@@ -30,7 +30,7 @@
 
 .admin-community-notice-row {
   display: grid;
-  grid-template-columns: 1fr 8fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   color: #3396F4;

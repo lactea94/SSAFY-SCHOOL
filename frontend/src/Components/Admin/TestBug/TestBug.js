@@ -17,6 +17,8 @@ export function TestBug() {
   const offset = (page - 1) * limit;
   const categories = [
     { value: 'content', name: '내용'},
+    { value: 'username', name: '작성자'},
+    { value: 'nickname', name: '닉네임'},
   ];
   const navigate = useNavigate();
 
@@ -41,6 +43,14 @@ export function TestBug() {
       setFilteredLogs(() => 
         logs.filter((log) => 
           log.content.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'username') {
+      setFilteredLogs(() => 
+        logs.filter((log) => 
+          log.username.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'nickname') {
+      setFilteredLogs(() => 
+        logs.filter((log) => 
+          log.nickname.toLowerCase().includes(searchText.toLowerCase())
     ))}
   }, [searchCategory, searchText, logs]);
 
@@ -49,10 +59,10 @@ export function TestBug() {
     return (
       filteredLogs.slice(offset, offset + limit).map((log) => 
         (
-          <div className="admin-bugs-row" key={log.id}>
-            <div>{log.id}</div>
-            <div style={{ textAlign: "start"}}>{log.content}</div>
-            <div>{log.userId}</div>
+          <div className="admin-bug-row" key={log.id}>
+            <div>{log.nickname}</div>
+            <div className="admin-log-content">{log.content}</div>
+            <div>{log.username}</div>
             <div>{DateFormat(log.createdDate)}</div>
           </div>
         )
@@ -67,8 +77,8 @@ export function TestBug() {
       ) : (
        <>
         <div className="admin-container">
-          <div className="admin-bugs-index-row">
-            <div>#</div>
+          <div className="admin-bug-index-row">
+            <div>닉네임</div>
             <div>제보</div>
             <div>작성자</div>
             <div>작성일자</div>

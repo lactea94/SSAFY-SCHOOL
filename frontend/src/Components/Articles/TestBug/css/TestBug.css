@@ -25,12 +25,9 @@
   font-size: 0.8rem;
 }
 
-.bug-row div {
-  margin: auto;
-}
-
 .log-content {
   white-space: pre-wrap;
+  text-align: start;
 }
 
 .bug-row:hover {
@@ -41,9 +38,9 @@
   display: grid;
   grid-template-columns: 8fr 1fr;
   align-items: center;
-  width: 90%;
-  margin: 2rem auto;
-  background: lightgray;
+  width: 80%;
+  margin: 1rem auto;
+  background: #FAFBFC;
   padding: 1rem;
 }
 
@@ -62,13 +59,13 @@
 .submit-button {
   cursor: pointer;
   margin: auto;
-  color: gray;
+  color: lightgray;
   border-radius: 0.5rem;
   font-size: 2rem;
 }
 
 .submit-button:hover {
-  color: white;
+  color: gray;
 }
 
 @media screen and (min-width: 1280px) {

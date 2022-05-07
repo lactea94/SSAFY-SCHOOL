@@ -65,8 +65,7 @@ export default function TestBug() {
     navigate(0);
     setText("");
   };
-  console.log(logs)
-
+  
   function Log() {
     return (
       filteredLogs.slice(offset, offset + limit).map((log) => 
@@ -103,7 +102,7 @@ export default function TestBug() {
                 className="submit-textarea"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                rows={4}
+                rows={3}
               />
               <div
                 className="submit-button"

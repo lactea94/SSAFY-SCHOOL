@@ -58,7 +58,7 @@ export function Notice() {
         (
           <div className="admin-notice-row" key={notice.id}>
             <div>{notice.id}</div>
-            <div style={{textAlign: "start"}}>{notice.title}</div>
+            <div style={{textAlign: "start", fontWeight: "bold"}}>{notice.title}</div>
             <div>{DateFormat(notice.updatedDate)}</div>
             <Link
               to={`${notice.id}`}

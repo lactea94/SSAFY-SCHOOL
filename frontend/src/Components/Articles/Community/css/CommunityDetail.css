@@ -105,9 +105,13 @@
 .comment-submit-button {
   cursor: pointer;
   margin: auto;
-  color: gray;
+  color: lightgray;
   border-radius: 0.5rem;
   font-size: 2rem;
+}
+
+.comment-submit-button:hover {
+  color: gray;
 }
 
 @media screen and (min-width: 1280px) {

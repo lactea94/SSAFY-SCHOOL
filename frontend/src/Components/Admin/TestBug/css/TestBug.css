@@ -4,9 +4,9 @@
   margin: auto;
 }
 
-.admin-bugs-index-row {
+.admin-bug-index-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+  grid-template-columns: 2fr 8fr 2fr 2fr;
   column-gap: 2rem;
   background-color: #FAFBFC;
   border-top: 1px solid black;
@@ -16,13 +16,18 @@
   font-weight: bold;
 }
 
-.admin-bugs-row {
+.admin-bug-row {
   display: grid;
-  grid-template-columns: 1fr 9fr 2fr 2fr;
+  grid-template-columns: 2fr 8fr 2fr 2fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
   font-size: 0.8rem;
+}
+
+.admin-log-content {
+  white-space: pre-wrap;
+  text-align: start;
 }
 
 .admin-bugs-row:hover {
@@ -32,14 +37,6 @@
 @media screen and (min-width: 1280px) {
   .admin-container {
     width: 50%;
-  }
-
-  .admin-bugs-index-row {
-    grid-template-columns: 1fr 7fr 2fr 2fr;
-  }
-
-  .admin-bugs-row {
-    grid-template-columns: 1fr 7fr 2fr 2fr;
   }
 }
 

@@ -21,6 +21,8 @@ export function Community() {
   const categories = [
     { value: 'title', name: '제목'},
     { value: 'content', name: '내용'},
+    { value: 'name', name: '작성자'},
+    { value: 'nickname', name: '닉네임'},
   ];
   const navigate = useNavigate();
   
@@ -32,6 +34,7 @@ export function Community() {
   const noticeList = useGetList('/community/notice');
   const communityList = useGetList('/community');
 
+  console.log(noticeList)
   // 로딩
   useEffect(() => {
     setTimeout(() => {
@@ -49,6 +52,14 @@ export function Community() {
       setFilteredCommunityList(() => 
         communityList.filter((community) => 
           community.content.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'name') {
+      setFilteredCommunityList(() => 
+        communityList.filter((community) => 
+          community.name.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'nickname') {
+      setFilteredCommunityList(() => 
+        communityList.filter((community) => 
+          community.nickname.toLowerCase().includes(searchText.toLowerCase())
     ))}
   }, [searchCategory, searchText, communityList]);
 
@@ -77,7 +88,7 @@ export function Community() {
       filteredCommunityList.slice(offset, offset + limit).map((community) => (
         <div className="admin-row" key={community.id}>
           <div>{community.nickname}</div>
-          <div style={{textAlign: "start"}}>{community.title}</div>
+          <div style={{textAlign: "start", fontWeight: "bold"}}>{community.title}</div>
           <div>{community.name}</div>
           <div>{DateFormat(community.updatedDate)}</div>
           <Link
