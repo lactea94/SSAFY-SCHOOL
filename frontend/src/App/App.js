@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Nav from "../Components/Common/Nav";
+import Nav from "../Components/Common/Nav/Nav";
 import Footer from "../Components/Common/Footer";
 import Home from "../Page/Home";
 
@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <Nav/>
-      <div style={{paddingBottom: "8rem"}}>
+      <main className="app-main">
         <Routes >
           <Route path="/" element={<Home />} />
           <Route path="articles" element={<Articles />}>
@@ -73,7 +73,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </div>
+      </main>
       <Footer/>
     </div>
   );
