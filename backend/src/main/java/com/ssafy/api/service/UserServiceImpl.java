@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 		user.setAdmin(2L);
 		Status status = new Status();
 		status.setUser(user);
-		status.setLocation("(0.0,0.0,-2600)");
+		status.setLocation("(0.0,0.0,-260)");
 		status.setRemainMileage(0L);
 		status.setTotalMileage(0L);
 		statusRepository.save(status);
