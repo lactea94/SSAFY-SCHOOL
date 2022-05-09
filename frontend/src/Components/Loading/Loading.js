@@ -6,7 +6,7 @@ export default function Loading() {
     <div className="loading-container">
       <LoadingImg />
       <div className="loading-title">
-        SSAFY SCHOOL is Loading
+        SSAFY SCHOOL is Loading...
       </div>
     </div>
   )
