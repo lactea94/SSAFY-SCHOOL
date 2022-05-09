@@ -20,7 +20,7 @@ public class Status extends BaseEntity {
     @Column(nullable = false)
     private Long remainMileage;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }
