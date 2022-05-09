@@ -1,5 +1,5 @@
 header {
-  margin: 3rem 0;
+  margin: 5rem 0;
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -123,3 +123,8 @@ main {
   color: white;
 }
 
+@media screen and (max-width: 600px) {
+  header {
+    margin-top: 15rem;
+  }
+}

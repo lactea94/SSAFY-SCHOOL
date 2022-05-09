@@ -38,3 +38,9 @@
   font-weight: bold;
   margin: 0 1rem;
 }
+
+@media screen and (max-width: 600px) {
+  .login-container {
+    margin-top: 12rem;
+  }
+}

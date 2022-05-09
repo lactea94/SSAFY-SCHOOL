@@ -68,3 +68,9 @@
   cursor: pointer;
   margin: 1rem 0;
 }
+
+@media screen and (max-width: 600px) {
+  .signup-container {
+    margin-top: 12rem;
+  }
+}

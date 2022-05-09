@@ -26,6 +26,12 @@
   color: #3396F4;
 }
 
+@media screen and (max-width: 600px) {
+  .main {
+    margin-top: 15rem;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .main {
     width: 50%;

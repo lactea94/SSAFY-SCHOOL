@@ -29,6 +29,12 @@
   color: black;
 }
 
+@media screen and (max-width: 600px) {
+  .admin {
+    margin-top: 12rem;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .admin-nav {
     width: 50%;
