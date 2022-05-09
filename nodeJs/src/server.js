@@ -15,14 +15,29 @@ var io = require('socket.io')(http, {
 });
 
 io.on("connection", (socket) => {
-  socket.on("join", ({room, nickname}) => { 
+  socket.on("join", ({room, seat, nickname}) => { 
     socket.join(room); 
-    socket["nickname"] = nickname;
+    if(nickname != "") socket["nickname"] = nickname;
+    if(seat != "") 
+    {
+      socket["seat"] = seat;
+      socket.to(room).emit("join", {room, seat, nickname});
+    }
+    // console.log("입장 ", nickname, " ", room, " ", seat)
   });
-  socket.on("leave", ({room}) => { socket.leave(room); });
-  socket.on("msg", ({msg, nickname, room}) => { socket.to(room).emit("msg", {msg, nickname}) });
-  socket.on("video", ({room, byteData}) => { socket.to(room).emit("video", {nickname: socket.nickname, byteData}); });
-  socket.on("mic", ({room, byteData}) => { socket.to(room).emit("mic", {nickname: socket.nickname, byteData}); console.log("hi")});
+  socket.on("exist", ({room, seat, nickname}) => { socket.to(room).emit("exist", {seat, nickname}); }); // nickname은 new joiner꺼
+  socket.on("leave", ({room, seat, nickname}) => {
+    if(seat != "") 
+    {
+      socket["seat"] = seat;
+      socket.to(room).emit("leave", {room, seat, nickname});
+    }
+    socket.leave(room);
+    // console.log("퇴장 ", nickname, " ", room, " ", seat)
+  });
+  socket.on("msg", ({msg, nickname, room}) => { socket.to(room).emit("msg", {msg, nickname}); });
+  socket.on("video", ({room, byteData}) => { socket.to(room).emit("video", {seat: socket.seat, byteData}); });
+  socket.on("mic", ({room, byteData}) => { socket.to(room).emit("mic", {seat: socket.seat, byteData}); });
 
   socket.on("putLocation", ({stringData}) => { // stringData = {url, token, vector}
     fetch(stringData[0], {
@@ -33,7 +48,7 @@ io.on("connection", (socket) => {
         "Authorization": "Bearer "+ stringData[1],
       },
       body: JSON.stringify({ location : stringData[2] }),
-    });
+    });//.then((res) =>console.log(res));
   });
 });
 
