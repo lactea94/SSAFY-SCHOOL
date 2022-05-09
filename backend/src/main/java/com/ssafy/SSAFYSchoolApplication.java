@@ -2,6 +2,7 @@ package com.ssafy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -12,7 +13,10 @@ import java.nio.charset.StandardCharsets;
 @SpringBootApplication
 public class SSAFYSchoolApplication {
 	public static void main(String[] args) {
-        SpringApplication.run(SSAFYSchoolApplication.class, args);
+//        SpringApplication.run(SSAFYSchoolApplication.class, args);
+        SpringApplication app = new SpringApplication(SSAFYSchoolApplication.class);
+        app.addListeners(new ApplicationPidFileWriter());
+        app.run(args);
     }
 
     @Bean
