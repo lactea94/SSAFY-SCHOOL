@@ -22,7 +22,7 @@ public class StudentStatus extends BaseEntity {
     @Column(nullable = false, length = 50)
     private String local;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }

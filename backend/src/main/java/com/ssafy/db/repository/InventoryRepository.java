@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     List<Inventory> findAllByUserId(Long userId);
-    Optional<Inventory> findByItem(String item);
+    List<Inventory> findAllByUserIdAndWearTrue(Long userId);
     Optional<Inventory> findByItemAndUserId(String item, Long userId);
 }
