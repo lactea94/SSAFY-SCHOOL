@@ -32,7 +32,7 @@ export default function Home() {
     }
     setTimeout(() => {
       setLoading(false)
-    }, 3000)
+    }, 2000)
   }, [])
 
   return (
