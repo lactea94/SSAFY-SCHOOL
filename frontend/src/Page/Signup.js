@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiInstance } from "../api";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { duplicateId, duplicateNickname, duplicateEmail } from "../api/UserAPI";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import './css/Signup.css'
-import { duplicateId, duplicateNickname, duplicateEmail } from "../api/UserAPI";
 import Toast from "../Utils/Toast";
+import './css/Signup.css'
 
 export default function Signup() {
   const [ signupInfo, setSignupInfo ] = useState({
@@ -73,7 +73,8 @@ export default function Signup() {
         await MySwal.fire({
           icon: "success",
           title: "회원가입 성공!",
-        }).then(function() {navigate('/')})
+        })
+        await new Promise(() => {navigate('/')})
       } catch (error) {
         MySwal.fire({
           icon: "error",

@@ -1,18 +1,13 @@
+import { ReactComponent as LoadingImg } from '../../asset/image/loading.svg';
+import "./css/Loading.css";
+
 export default function Loading() {
   return (
-    <div
-      style={{
-        display: "flex",
-      }}
-    >
-      <img
-        src="/image/loading.gif"
-        alt="loading"
-        style={{
-          width: "80%",
-          margin: " 5rem auto",
-        }}
-      />
+    <div className="loading-container">
+      <LoadingImg />
+      <div className="loading-title">
+        SSAFY SCHOOL is Loading
+      </div>
     </div>
   )
 }

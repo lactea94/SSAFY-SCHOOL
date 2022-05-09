@@ -115,7 +115,7 @@
   border: none;
 }
 
-.comment-input-container {
+.admin-comment-input-container {
   display: grid;
   grid-template-columns: 8fr 1fr;
   align-items: center;
@@ -124,7 +124,7 @@
   padding: 1rem;
 }
 
-.comment-submit-textarea {
+.admin-comment-submit-textarea {
   padding: 1rem;
   background: none;
   border: none;
@@ -132,20 +132,20 @@
   resize: none;
 }
 
-.comment-submit-textarea:focus {
+.admin-comment-submit-textarea:focus {
   outline: none;
 }
 
-.comment-submit-button {
+.admin-comment-submit-button {
   cursor: pointer;
   margin: auto;
-  color: gray;
+  color: lightgray;
   border-radius: 0.5rem;
   font-size: 2rem;
 }
 
-.comment-submit-button:hover {
-  color: white;
+.admin-comment-submit-button:hover {
+  color: gray;
 }
 
 @media screen and (min-width: 1280px) {

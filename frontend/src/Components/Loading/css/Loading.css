@@ -1,0 +1,12 @@
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+.loading-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

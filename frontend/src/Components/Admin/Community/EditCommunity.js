@@ -124,7 +124,7 @@ export default function EditCommunity() {
         onChange={handleChange}
         rows={20}
       />
-      <div className="community-update">
+      <div className="admin-community-update">
         <div
           className="admin-community-update-button"
           onClick={handleSubmit}
@@ -163,16 +163,16 @@ export default function EditCommunity() {
           )
         })}
       </div>
-      <div className="comment-input-container">
+      <div className="admin-comment-input-container">
         <textarea
-          className="comment-submit-textarea"
+          className="admin-comment-submit-textarea"
           rows={1}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           onKeyDown={handelEnterPress}
         />
         <div
-          className="comment-submit-button"
+          className="admin-comment-submit-button"
           onClick={handleSubmitComment}
         >
           <FaCommentMedical />

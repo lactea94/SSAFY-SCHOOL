@@ -13,7 +13,9 @@ export default function CommunityUpdate({ title, content, setUpdateOpen }) {
   async function handleSubmit(e) {
     e.preventDefault();
     UpdateCommunity(communityId, newTitle, newContent);
-    navigate(0);
+    setTimeout(() => {
+      navigate(0);
+    }, 100)
   };
   
   // 모달 닫기

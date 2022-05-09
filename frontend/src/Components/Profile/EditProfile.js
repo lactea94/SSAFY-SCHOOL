@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { apiInstance } from "../../api";
+import { authInstance } from "../../api";
 import { AiFillCheckCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
 import './css/EditProfile.css';
@@ -17,7 +17,7 @@ export default function EditProfile() {
   const [ originNickname, setOriginNickname ] = useState("");
   const [ originEmail, setOriginEmail ] = useState("");
   const navigate = useNavigate();
-  const API = apiInstance();
+  const API = authInstance();
   const MySwal = withReactContent(Swal);
 
   // 유저 정보 호출
@@ -67,7 +67,8 @@ export default function EditProfile() {
         await MySwal.fire({
           icon: "success",
           title: "정보 수정 성공!",
-        }).then(function() {navigate(-1)})
+        })
+        await new Promise(() => { navigate(0) })
       } catch (error) {
         console.log(error)
       }
