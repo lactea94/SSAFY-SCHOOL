@@ -4,9 +4,9 @@
   margin: auto;
 }
 
-.notice-index-row {
+.admin-notice-index-row {
   display: grid;
-  grid-template-columns: 1fr 10fr 1fr 1fr;
+  grid-template-columns: 1fr 8fr 2fr 1fr;
   column-gap: 2rem;
   background-color: #FAFBFC;
   border-top: 1px solid black;
@@ -18,7 +18,7 @@
 
 .admin-notice-row {
   display: grid;
-  grid-template-columns: 1fr 10fr 1fr 1fr;
+  grid-template-columns: 1fr 8fr 2fr 1fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
@@ -53,14 +53,6 @@
 @media screen and (min-width: 1280px) {
   .admin-container {
     width: 50%;
-  }
-  
-  .notice-index-row {
-    grid-template-columns: 1fr 8fr 1fr 1fr;
-  }
-
-  .admin-notice-row {
-    grid-template-columns: 1fr 8fr 1fr 1fr;
   }
 }
 

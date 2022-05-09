@@ -6,8 +6,10 @@ import CommunityCreate from "./CommunityCreate";
 import Search from "../../Search/Search";
 import useGetList from "../../../Hooks/useGetList";
 import "./css/Community.css";
+import Loading from "../../Loading/Loading";
 
 export default function Community() {
+  const [ loading, setLoading ] = useState(true);
   const [ isAuthenticated, setIsAuthenticated] = useState(false);
   const [ searchCategory, setSearchCategory ] = useState('title');
   const [ searchText, setSearchText ] = useState('');
@@ -19,6 +21,8 @@ export default function Community() {
   const categories = [
     { value: 'title', name: '제목'},
     { value: 'content', name: '내용'},
+    { value: 'name', name: '작성자'},
+    { value: 'nickname', name: '닉네임'},
   ];
   
   // 로그인 사용자 확인
@@ -31,6 +35,13 @@ export default function Community() {
   const noticeList = useGetList('/community/notice');
   const communityList = useGetList('/community');
 
+  // 로딩
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   // 검색 필터링
   useEffect(() => {
     if (searchCategory === 'title') {
@@ -41,6 +52,14 @@ export default function Community() {
       setFilteredCommunityList(() => 
         communityList.filter((community) => 
           community.content.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'name') {
+      setFilteredCommunityList(() => 
+        communityList.filter((community) => 
+          community.name.toLowerCase().includes(searchText.toLowerCase())
+    ))} else if (searchCategory === 'nickname') {
+      setFilteredCommunityList(() => 
+        communityList.filter((community) => 
+          community.nickname.toLowerCase().includes(searchText.toLowerCase())
     ))}
   }, [searchCategory, searchText, communityList]);
 
@@ -85,44 +104,50 @@ function Communities() {
 
   return (
     <div>
-      {createOpen && <CommunityCreate setCreateOpen={setCreateOpen}/>}
-      <Outlet/>
-      <div className="article-container">
-        <div className="index-row">
-          <div>#</div>
-          <div>제목</div>
-          <div>작성자</div>
-          <div>수정일자</div>
-        </div>
-        {Notices()}
-        {Communities()}
-        { isAuthenticated && 
-          <div className="community-row">
-            <div
-              className="community-create"
-              onClick={() => {
-                setCreateOpen(true);
-                window.scrollTo(0, 0);
-              }}
-            >
-              새 글 작성
+      { loading ? (
+        <Loading />
+      ) : (
+        <>
+          {createOpen && <CommunityCreate setCreateOpen={setCreateOpen}/>}
+          <Outlet/>
+          <div className="article-container">
+            <div className="index-row">
+              <div>#</div>
+              <div>제목</div>
+              <div>작성자</div>
+              <div>수정일자</div>
             </div>
+            {Notices()}
+            {Communities()}
+            { isAuthenticated && 
+              <div className="community-row">
+                <div
+                  className="community-create"
+                  onClick={() => {
+                    setCreateOpen(true);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  새 글 작성
+                </div>
+              </div>
+            }
           </div>
-        }
-      </div>
-      <Pagination
-        total={filteredCommunityList.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-        setLimit={setLimit}
-      />
-      <Search
-        setSearchText={setSearchText}
-        setSearchCategory={setSearchCategory}
-        setPage={setPage}
-        categories={categories}
-      />
+          <Pagination
+            total={filteredCommunityList.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+            setLimit={setLimit}
+          />
+          <Search
+            setSearchText={setSearchText}
+            setSearchCategory={setSearchCategory}
+            setPage={setPage}
+            categories={categories}
+          />
+        </>
+      )}
     </div>
   )
 };

@@ -5,8 +5,10 @@ import Search from "../../Search/Search";
 import { FaUserEdit } from "react-icons/fa";
 import useAuthGetList from "../../../Hooks/useAuthGetList";
 import "./css/Users.css";
+import Loading from "../../Loading/Loading";
 
 export function Users() {
+  const [ loading, setLoading ] = useState(true);
   const [ searchCategory, setSearchCategory ] = useState('userId');
   const [ searchText, setSearchText ] = useState('');
   const [ filteredUserList, setFilteredUserList ] = useState([]);
@@ -27,6 +29,13 @@ export function Users() {
 
   // 유저 정보 호출
   const userList = useAuthGetList('/users');
+  
+  // 로딩
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
   
   // 유저 검색 필터링
   useEffect(() => {
@@ -72,30 +81,36 @@ export function Users() {
 
   return (
     <div>
-      <Outlet/>
-      <div className="user-container">
-        <div className="user-index-row">
-          <div>아이디</div>
-          <div>이메일</div>
-          <div>이름</div>
-          <div>닉네임</div>
-          <div>수정</div>
-        </div>
-        {UserList()}
-      </div>
-      <Pagination
-        total={userList.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-        setLimit={setLimit}
-      />
-      <Search
-        setSearchText={setSearchText}
-        setSearchCategory={setSearchCategory}
-        setPage={setPage}
-        categories={categories}
-      />
+      { loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Outlet/>
+          <div className="user-container">
+            <div className="user-index-row">
+              <div>아이디</div>
+              <div>이메일</div>
+              <div>이름</div>
+              <div>닉네임</div>
+              <div>수정</div>
+            </div>
+            {UserList()}
+          </div>
+          <Pagination
+            total={userList.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+            setLimit={setLimit}
+          />
+          <Search
+            setSearchText={setSearchText}
+            setSearchCategory={setSearchCategory}
+            setPage={setPage}
+            categories={categories}
+          />
+        </>
+      )}
     </div>
   )
 }
