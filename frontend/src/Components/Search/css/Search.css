@@ -15,7 +15,7 @@
 .search-input {
   margin: 0 0.5rem;
   padding: 0.5rem;
-  width: 30%;
+  width: 20rem;
   border: 1px solid gray;
   outline: none;
 }
@@ -33,4 +33,10 @@
   cursor: pointer;
   outline: none;
   border: none;
+}
+
+@media screen and (max-width: 600px) {
+  .search-input {
+    width: 15rem;
+  }
 }
