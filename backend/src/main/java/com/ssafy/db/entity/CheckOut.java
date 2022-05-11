@@ -24,7 +24,7 @@ public class CheckOut extends BaseEntity {
     @Column(nullable = false)
     private LocalTime createdTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
