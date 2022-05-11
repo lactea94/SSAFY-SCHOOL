@@ -23,7 +23,7 @@ export default function Signup() {
   const [ checkNickname, setCheckNickname ] = useState(false);
   const [ checkEmail, setCheckEmail ] = useState(false);
   const [ checkPassword, setCheckPassword ] = useState(false);
-  const userAPI = apiInstance();
+  const API = apiInstance();
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
 
@@ -69,7 +69,7 @@ export default function Signup() {
     e.preventDefault();
     if (validation()) {
       try {
-        await userAPI.post('/users/signup', signupInfo);
+        await API.post('/users/signup', signupInfo);
         await MySwal.fire({
           icon: "success",
           title: "회원가입 성공!",
