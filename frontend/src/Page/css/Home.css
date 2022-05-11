@@ -40,11 +40,12 @@ header img {
   background-color: #354ACA;
 }
 
-main {
+.home-main {
   text-align: center;
   display: flex;
   flex-direction: column;
   padding: 0;
+  align-items: center;
 }
 
 .intro {
