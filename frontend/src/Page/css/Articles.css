@@ -1,6 +1,5 @@
 .article {
   text-align: center;
-  margin-top: 5rem;
 }
 
 .article-nav {
@@ -27,12 +26,6 @@
 
 .nav-link:hover {
   color: black;
-}
-
-@media screen and (max-width: 600px) {
-  .article {
-    margin-top: 12rem;
-  }
 }
 
 @media screen and (min-width: 1280px) {

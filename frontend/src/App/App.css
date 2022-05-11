@@ -9,3 +9,9 @@
 .app-main {
   padding-bottom: 8rem;
 }
+
+@media screen and (max-width: 600px) {
+  .App {
+    padding-top: 12rem;
+  }
+}

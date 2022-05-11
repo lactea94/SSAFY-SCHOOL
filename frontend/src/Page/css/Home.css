@@ -122,9 +122,3 @@ header img {
   background:  #3396F4;
   color: white;
 }
-
-@media screen and (max-width: 600px) {
-  header {
-    margin-top: 15rem;
-  }
-}
