@@ -21,11 +21,11 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime createdDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "community_id", nullable = false)
     private Community community;
 
