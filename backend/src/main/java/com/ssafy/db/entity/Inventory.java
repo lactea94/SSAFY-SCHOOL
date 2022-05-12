@@ -19,7 +19,7 @@ public class Inventory extends BaseEntity {
     @Column(nullable = false)
     private Boolean wear;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

@@ -26,7 +26,7 @@ public class GameNotice extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime updatedDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
