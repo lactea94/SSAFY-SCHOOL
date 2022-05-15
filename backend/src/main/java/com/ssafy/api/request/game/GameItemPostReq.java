@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @ApiModel("GameItemPostRequest")
 public class GameItemPostReq {
-    @ApiModelProperty(name = "Item name", example = "Male$Hair$Hair_00$00")
+    @ApiModelProperty(name = "Item name", example = "Male$Hair$Hair_00$_00")
     private String item;
 }
