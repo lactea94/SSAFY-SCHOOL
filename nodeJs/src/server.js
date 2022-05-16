@@ -43,7 +43,8 @@ io.on("connection", (socket) => {
     socket.on("mic", ({room, seat, byteData}) => { socket.to(room).emit("mic", {seat, byteData}); });
     socket.on("msg", ({msg, room, nickname}) => { socket.to(room).emit("msg", {msg, nickname}); });
 
-    socket.on("putLocation", ({stringData}) => { // stringData = {url, token, vector}
+    socket.on("quit", ({stringData, nickname}) => { // stringData = {url, token, vector}
+        socket.broadcast.emit("quit", {nickname});
         fetch(stringData[0], {
             method: "PUT",
             headers: {
