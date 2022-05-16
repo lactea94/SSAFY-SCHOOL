@@ -15,7 +15,7 @@ import mileage_2 from "../asset/image/mileage_2.png";
 import mileage_3 from "../asset/image/mileage_3.png";
 import Loading from "../Components/Loading/Loading";
 import { Swiper, SwiperSlide } from "swiper/react"; // basic
-import SwiperCore, { Navigation, Pagination } from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/css"; //basic
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -25,7 +25,6 @@ import { Link } from "react-router-dom";
 export default function Home() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   const [ loading, setLoading ] = useState(true);
-  SwiperCore.use([Navigation, Pagination]);
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
@@ -94,8 +93,13 @@ export default function Home() {
               <Swiper
                 spaceBetween={50}
                 scrollbar={{ draggable: true }}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
                 navigation
                 pagination={{ clickable: true }}
+                modules={[Autoplay, Pagination, Navigation]}
                 className="feature-carousel"
               >
                 <SwiperSlide>
@@ -113,8 +117,13 @@ export default function Home() {
               <Swiper
                 spaceBetween={50}
                 scrollbar={{ draggable: true }}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
                 navigation
                 pagination={{ clickable: true }}
+                modules={[Autoplay, Pagination, Navigation]}
                 className="feature-carousel"
               >
                 <SwiperSlide>
@@ -148,8 +157,13 @@ export default function Home() {
               <Swiper
                 spaceBetween={50}
                 scrollbar={{ draggable: true }}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
                 navigation
                 pagination={{ clickable: true }}
+                modules={[Autoplay, Pagination, Navigation]}
                 className="feature-carousel"
               >
                 <SwiperSlide>
