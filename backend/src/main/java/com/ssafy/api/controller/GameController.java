@@ -73,13 +73,11 @@ public class GameController {
             Inventory inventory = inventoryRepository.findByItemAndUserId(gameItemPostReq.getItem(), user.getId()).orElse(null);
             if (inventory == null) {
                 if (!priceMap.containsKey(info[2])) {
-                    System.out.println("keyError");
                     return new ResponseEntity(HttpStatus.BAD_REQUEST);
                 }
 
                 Long price = priceMap.get(info[2]);
                 if (status.getRemainMileage() < price) {
-                    System.out.println("Not enough mileage");
                     return new ResponseEntity(HttpStatus.BAD_REQUEST);
                 }
                 inventoryRepository.save(Inventory.builder()
@@ -227,7 +225,6 @@ public class GameController {
         for( GameLastInventoryReq gameLastInventoryReq : gameLastInventoryListReq.getInventoryList()) {
             Inventory inventory = inventoryRepository.findByItemAndUserId(gameLastInventoryReq.getItem(), userId).orElse(null);
             if (inventory == null) {
-                System.out.println("gameLastInventoryReq = " + gameLastInventoryReq.getItem());
                 return new ResponseEntity(HttpStatus.NO_CONTENT);
             }
         }
