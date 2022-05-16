@@ -1,3 +1,4 @@
+import pigeon from "../asset/image/pigeon.gif";
 import './css/404.css'
 
 export default function PageNotFound() {
@@ -5,7 +6,7 @@ export default function PageNotFound() {
     <div className="not-found-container ">
       <img
         className="not-found-image"
-        src="/image/pigeon.gif"
+        src={pigeon}
         alt="notfound"
       />
       <h1>Page Not Found</h1>

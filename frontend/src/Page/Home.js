@@ -1,4 +1,5 @@
 import "./css/Home.css";
+import banner from "../asset/image/banner.png";
 import ssafyImg from "../asset/image/ssafy.jpg";
 import metaverse_logo from "../asset/image/metaverse_logo.png";
 import remote_logo from "../asset/image/remote_logo.png";
@@ -66,21 +67,20 @@ export default function Home() {
                 </Link>
               )}
             </div>
-            {/* 캐러셀이나 동영상 */}
             <img
-              src="/image/banner.jpg"
+              src={banner}
               alt="banner"
-              />
+            />
           </header>
           <main className="home-main">
             <div className="intro">
+              <img src={ssafyImg} alt="ssafy"/>
               <div>
                 <h2>우리는 싸피에서 "함께" 성장합니다.</h2>
                 <p>하지만, 대면수업을 하지 못해 아쉬움만 커져가고 있습니다.</p>
                 <p>SSAFY SCHOOL의 실제 캠퍼스와 유사한 가상환경 속에서</p>
                 <p>캠퍼스를 체험하고 자유롭게 소통해 보세요.</p> 
               </div>
-              <img src={ssafyImg} alt="ssafy"/>
             </div>
             <div className="left-feature">
               <div className="feature-card">

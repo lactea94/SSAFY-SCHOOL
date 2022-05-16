@@ -1,8 +1,7 @@
 header {
   margin: 5rem 0;
   text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   color: black;
 }
 
@@ -20,8 +19,7 @@ header p {
 }
 
 header img {
-  width: 80%;
-  margin: auto;
+  width: 50%;
 }
 
 .download {
@@ -49,9 +47,8 @@ header img {
 }
 
 .intro {
-  display: grid;
+  display: flex;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
   column-gap: 1rem;
   text-align: start;
   background: #3396F4;
@@ -68,7 +65,7 @@ header img {
 }
 
 .intro img {
-  width: 100%;
+  width: 50%;
 }
 
 .left-feature {
