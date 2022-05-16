@@ -12,7 +12,8 @@ var io = require('socket.io')(http, {
   allowEIO3: true,
   allowEIO4: true,
   serveClient: true,
-  cors: { origin: '*'}
+  cors: { origin: '*'},
+  path: "/socket.io",
 });
 
 const meetingRooms = "meetingRooms"
@@ -55,7 +56,6 @@ io.on("connection", (socket) => {
             body: JSON.stringify({ location : stringData[2] }),
         });//.then((res) =>console.log(res));
     });
-    // socket.on("disconnect", (reason)=>{console.log(reason);})
 });
 
 http.listen(8000, function(){ console.log('listening on *:8000');});
