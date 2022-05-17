@@ -40,6 +40,18 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
     let presents = 0
     let tardys = 0
     
+    // 지각
+    for (let i = 0; i < checkInList.length; i ++) {
+      if (parseInt(checkInList[i].slice(5, 7)) === today.month){
+        if (checkOutList.includes(checkInList[i])) {
+          presents++
+        } else {
+          tardys++
+        }
+      }
+    }
+
+    // 조퇴
     for (let i = 0; i < checkOutList.length; i ++) {
       if (parseInt(checkOutList[i].slice(5, 7)) === today.month){
         if (checkInList.includes(checkOutList[i])) {
@@ -49,6 +61,7 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
         }
       }
     }
+
     presents -= Math.floor(tardys / 3)
     setAttendance(presents);
     setTardy(tardys);
@@ -62,7 +75,7 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
       <div className="pie-chart-container">
         {chartdata && <PieChart
           data={chartdata}
-          reveal={parseInt((attendance * 100) / weekdays)}
+          reveal={parseInt(attendance / weekdays * 100)}
           lineWidth={10}
           label={() => `${Math.round(attendance / weekdays * 100)}%`}
           background='#f3f3f3'
