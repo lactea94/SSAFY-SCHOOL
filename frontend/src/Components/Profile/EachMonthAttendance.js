@@ -39,29 +39,31 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
   useEffect(() => {
     let presents = 0
     let tardys = 0
-    
+    const checkInSet = new Set(checkInList);
+    const checkOutSet = new Set(checkOutList);
+    const newCheckInList = [...checkInSet];
+    const newCheckOutList = [...checkOutSet];
+
     // 지각
-    for (let i = 0; i < checkInList.length; i ++) {
-      if (parseInt(checkInList[i].slice(5, 7)) === today.month){
-        if (checkOutList.includes(checkInList[i])) {
+    for (let i = 0; i < newCheckInList.length; i ++) {
+      if (parseInt(newCheckInList[i].slice(5, 7)) === today.month){
+        if (newCheckOutList.includes(newCheckInList[i])) {
           presents++
         } else {
           tardys++
         }
       }
     }
-
     // 조퇴
-    for (let i = 0; i < checkOutList.length; i ++) {
-      if (parseInt(checkOutList[i].slice(5, 7)) === today.month){
-        if (checkInList.includes(checkOutList[i])) {
+    for (let i = 0; i < newCheckOutList.length; i ++) {
+      if (parseInt(newCheckOutList[i].slice(5, 7)) === today.month){
+        if (newCheckInList.includes(newCheckOutList[i])) {
           presents++
         } else {
           tardys++
         }
       }
     }
-
     presents -= Math.floor(tardys / 3)
     setAttendance(presents);
     setTardy(tardys);
