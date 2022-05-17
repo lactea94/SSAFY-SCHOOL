@@ -39,10 +39,25 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
   useEffect(() => {
     let presents = 0
     let tardys = 0
-    
-    for (let i = 0; i < checkOutList.length; i ++) {
-      if (parseInt(checkOutList[i].slice(5, 7)) === today.month){
-        if (checkInList.includes(checkOutList[i])) {
+    const checkInSet = new Set(checkInList);
+    const checkOutSet = new Set(checkOutList);
+    const newCheckInList = [...checkInSet];
+    const newCheckOutList = [...checkOutSet];
+
+    // 지각
+    for (let i = 0; i < newCheckInList.length; i ++) {
+      if (parseInt(newCheckInList[i].slice(5, 7)) === today.month){
+        if (newCheckOutList.includes(newCheckInList[i])) {
+          presents++
+        } else {
+          tardys++
+        }
+      }
+    }
+    // 조퇴
+    for (let i = 0; i < newCheckOutList.length; i ++) {
+      if (parseInt(newCheckOutList[i].slice(5, 7)) === today.month){
+        if (newCheckInList.includes(newCheckOutList[i])) {
           presents++
         } else {
           tardys++
@@ -62,7 +77,7 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
       <div className="pie-chart-container">
         {chartdata && <PieChart
           data={chartdata}
-          reveal={parseInt((attendance * 100) / weekdays)}
+          reveal={parseInt(attendance / weekdays * 100)}
           lineWidth={10}
           label={() => `${Math.round(attendance / weekdays * 100)}%`}
           background='#f3f3f3'

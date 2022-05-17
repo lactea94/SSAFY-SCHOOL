@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuthGetObject from "../../../Hooks/useAuthGetObject";
+import logo from "../../../asset/image/logo.png"
 import "./css/Nav.css";
 
 export default function Nav() {
@@ -30,7 +31,7 @@ export default function Nav() {
       <Link to="/">
         <img
           className="logo-image"
-          src="/image/logo.png"
+          src={logo}
           alt="logo"
         />
       </Link>
