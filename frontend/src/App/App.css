@@ -1,4 +1,5 @@
 .App {
+  box-sizing: border-box;
   min-height: 100vh;
   font-family: 'NanumBarunGothic';
   margin: 0;
