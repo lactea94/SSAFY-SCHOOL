@@ -52,32 +52,31 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <h1>
-        Login
-      </h1>
       <form
         className="login-form"
         method="post"
         onSubmit={loginSubmit}
       >
+        <label className="login-input-label">아이디</label>
         <input
           className="login-input"
           type="text"
           id="id"
-          placeholder="아이디"
+          placeholder="ID"
           value={loginInfo.id}
           onChange={loginInput}
           required 
         />
+        <label className="login-input-label">비밀번호</label>
         <input
           className="login-input"
           type="password"
           id="password"
-          placeholder="비밀번호"
+          placeholder="PASSWORD"
           value={loginInfo.password}
           onChange={loginInput}
           required 
-        /> <br/>
+        />
         <button className="login-button">로그인</button>
       </form>
       <div>

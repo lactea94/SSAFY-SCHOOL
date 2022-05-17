@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 90%;
   margin: auto;
-  padding: 5rem 0;
+  padding-top: 1rem;
 }
 
 .profile-info {
@@ -27,20 +27,14 @@
   color: #3396F4;
 }
 
-@media screen and (max-width: 600px) {
-  .main {
-    margin-top: 15rem;
-  }
-}
-
 @media screen and (min-width: 1280px) {
   .main {
-    width: 50%;
+    width: 70%;
   }
 }
 
 @media screen and (min-width: 1920px) {
   .main {
-    width: 33%;
+    width: 50%;
   }
 }

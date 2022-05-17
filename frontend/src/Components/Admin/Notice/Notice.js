@@ -90,7 +90,7 @@ export function Notice() {
             {Notices()}
             <div className="community-row">
               <div
-                className="community-create"
+                className="admin-notice-create "
                 onClick={() => {
                   setCreateOpen(true);
                   window.scrollTo(0, 0);
