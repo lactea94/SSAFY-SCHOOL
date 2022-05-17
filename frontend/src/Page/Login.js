@@ -57,7 +57,7 @@ export default function Login() {
         method="post"
         onSubmit={loginSubmit}
       >
-        <label className="login-title">아이디</label>
+        <label className="login-input-label">아이디</label>
         <input
           className="login-input"
           type="text"
@@ -67,7 +67,7 @@ export default function Login() {
           onChange={loginInput}
           required 
         />
-        <label className="login-title">비밀번호</label>
+        <label className="login-input-label">비밀번호</label>
         <input
           className="login-input"
           type="password"
