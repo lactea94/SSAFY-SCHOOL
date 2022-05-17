@@ -1,4 +1,5 @@
 import "./css/Home.css";
+import banner from "../asset/image/banner.png";
 import ssafyImg from "../asset/image/ssafy.jpg";
 import metaverse_logo from "../asset/image/metaverse_logo.png";
 import remote_logo from "../asset/image/remote_logo.png";
@@ -14,7 +15,7 @@ import mileage_2 from "../asset/image/mileage_2.png";
 import mileage_3 from "../asset/image/mileage_3.png";
 import Loading from "../Components/Loading/Loading";
 import { Swiper, SwiperSlide } from "swiper/react"; // basic
-import SwiperCore, { Navigation, Pagination } from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/css"; //basic
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -24,7 +25,6 @@ import { Link } from "react-router-dom";
 export default function Home() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false);
   const [ loading, setLoading ] = useState(true);
-  SwiperCore.use([Navigation, Pagination]);
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
@@ -66,21 +66,20 @@ export default function Home() {
                 </Link>
               )}
             </div>
-            {/* 캐러셀이나 동영상 */}
             <img
-              src="/image/banner.jpg"
+              src={banner}
               alt="banner"
-              />
+            />
           </header>
           <main className="home-main">
             <div className="intro">
+              <img src={ssafyImg} alt="ssafy"/>
               <div>
                 <h2>우리는 싸피에서 "함께" 성장합니다.</h2>
                 <p>하지만, 대면수업을 하지 못해 아쉬움만 커져가고 있습니다.</p>
                 <p>SSAFY SCHOOL의 실제 캠퍼스와 유사한 가상환경 속에서</p>
                 <p>캠퍼스를 체험하고 자유롭게 소통해 보세요.</p> 
               </div>
-              <img src={ssafyImg} alt="ssafy"/>
             </div>
             <div className="left-feature">
               <div className="feature-card">
@@ -94,8 +93,13 @@ export default function Home() {
               <Swiper
                 spaceBetween={50}
                 scrollbar={{ draggable: true }}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
                 navigation
                 pagination={{ clickable: true }}
+                modules={[Autoplay, Pagination, Navigation]}
                 className="feature-carousel"
               >
                 <SwiperSlide>
@@ -113,8 +117,13 @@ export default function Home() {
               <Swiper
                 spaceBetween={50}
                 scrollbar={{ draggable: true }}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
                 navigation
                 pagination={{ clickable: true }}
+                modules={[Autoplay, Pagination, Navigation]}
                 className="feature-carousel"
               >
                 <SwiperSlide>
@@ -148,8 +157,13 @@ export default function Home() {
               <Swiper
                 spaceBetween={50}
                 scrollbar={{ draggable: true }}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
                 navigation
                 pagination={{ clickable: true }}
+                modules={[Autoplay, Pagination, Navigation]}
                 className="feature-carousel"
               >
                 <SwiperSlide>
