@@ -51,7 +51,7 @@ export default function Home() {
               { isAuthenticated ? (
                 <a
                   className="download"
-                  href="/"
+                  href="https://drive.google.com/file/d/1Tred4Ts8IqPuBbxbBqq78QFcp-mnK6eA/view"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
