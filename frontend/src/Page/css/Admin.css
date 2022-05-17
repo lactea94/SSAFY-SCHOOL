@@ -20,13 +20,19 @@
 
 .admin-nav-link {
   padding: 0.5rem 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-decoration: none;
   color: gray;
 }
 
 .admin-nav-link:hover {
   color: black;
+}
+
+@media screen and (max-width: 691px) {
+  .admin-nav-link {
+    font-size: 0.7rem;
+  }
 }
 
 @media screen and (min-width: 1280px) {
