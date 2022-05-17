@@ -24,9 +24,17 @@
 }
 
 .signup-input {
+  box-sizing: border-box;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  font-weight: bold;
+  border: 1px solid lightgray;
   width: 100%;
-  font-size: 1.5rem;
-  margin: 1rem 0;
+}
+
+.signup-input:focus {
+  outline: 1px solid black;
+  border: 1px solid black;
 }
 
 .signup-check-confirm {
@@ -58,9 +66,10 @@
 }
 
 .signup-button {
+  width: 100%;
   padding: 0.5rem 2rem;
-  font-size: 1.5rem;
-  border-radius: 0.8rem;
+  font-size: 1rem;
+  color: white;
   border: none;
   font-weight: bold;
   background-color: dodgerblue;
