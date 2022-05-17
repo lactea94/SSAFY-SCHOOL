@@ -99,16 +99,18 @@ export default function Signup() {
   
   return (
     <div className="signup-container">
-      <h1>
-        Sign Up
-      </h1>
       <form className="signup-form"
         method="post"
         onSubmit={signupSubmit}
       >
         <label className="signup-input-label" htmlFor="id">아이디</label>
         <div className="signup-row">
-          <input className="signup-input" type="text" id="id" required 
+          <input
+            className="signup-input"
+            type="text"
+            id="id"
+            placeholder="ID"
+            required 
             value={signupInfo.id}
             onChange={signupInput}
           />
@@ -134,14 +136,24 @@ export default function Signup() {
         </div>
         <label className="signup-input-label" htmlFor="password">비밀번호</label>
         <div className="signup-row">
-          <input className="signup-input" type="password" id="password" required 
+          <input
+            className="signup-input"
+            type="password"
+            id="password"
+            placeholder="PASSWORD"
+            required 
             value={signupInfo.password}
             onChange={signupInput}
           />
         </div>
         <label className="signup-input-label" htmlFor="passwordConfirm">비밀번호확인</label>
         <div className="signup-row">
-          <input className="signup-input" type="password" id="passwordConfirm" required 
+          <input
+            className="signup-input"
+            type="password"
+            id="passwordConfirm"
+            placeholder="PASSWORD"
+            required 
             value={passwordConfirm}
             onChange={(e) => {
               setPasswordConfirm(e.target.value)
@@ -150,7 +162,12 @@ export default function Signup() {
         </div>
         <label className="signup-input-label" htmlFor="nickname">닉네임</label>
         <div className="signup-row">
-          <input className="signup-input" type="text" id="nickname" required 
+          <input
+            className="signup-input"
+            type="text"
+            id="nickname"
+            placeholder="NICKNAME"
+            required 
             value={signupInfo.nickname}
             onChange={signupInput}
           />
@@ -176,7 +193,12 @@ export default function Signup() {
         </div>
         <label className="signup-input-label" htmlFor="name">이름</label>
         <div className="signup-row">
-          <input className="signup-input" type="text" id="name" required 
+          <input
+            className="signup-input"
+            type="text"
+            id="name"
+            placeholder="NAME"
+            required 
             value={signupInfo.name}
             onChange={signupInput}
           />
@@ -206,7 +228,12 @@ export default function Signup() {
         </div>
         <label className="signup-input-label" htmlFor="email">이메일</label>
         <div className="signup-row">
-          <input className="signup-input" type="email" id="email" required 
+          <input
+            className="signup-input"
+            type="email"
+            id="email"
+            placeholder="E-MAIL"
+            required 
             value={signupInfo.email}
             onChange={signupInput}
           />
