@@ -120,7 +120,7 @@ export function Community() {
             {Communities()}
             <div className="community-row">
               <div
-                className="community-create"
+                className="admin-community-create"
                 onClick={() => {
                   setCreateOpen(true);
                   window.scrollTo(0, 0);
