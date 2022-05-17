@@ -5,7 +5,7 @@
 
 .article-nav {
   display: grid;
-  grid-template-columns: 5fr 1fr 1fr 1fr;
+  grid-template-columns: 5fr repeat(3, 1fr);
   margin: 3rem auto 2rem;
   width: 90%;
 }
@@ -20,13 +20,19 @@
 
 .article-nav-link {
   padding: 0.5rem 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-decoration: none;
   color: gray;
 }
 
 .nav-link:hover {
   color: black;
+}
+
+@media screen and (max-width: 691px) {
+  .article-nav-link {
+    font-size: 0.7rem;
+  }
 }
 
 @media screen and (min-width: 1280px) {

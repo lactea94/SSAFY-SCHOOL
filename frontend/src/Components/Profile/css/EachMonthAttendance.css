@@ -11,10 +11,17 @@
 
 .attendance-title {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
   text-align: start;
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0.5rem 0;
+}
+
+.attendance-sub-title {
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 .pie-chart-container {
@@ -28,6 +35,28 @@
 }
 
 .attendance-content {
+  display: flex;
+  column-gap: 1rem;
   font-size: 1rem;
-  margin: 0.3rem;
+}
+
+.attendance-count {
+  background-color: #3396F4;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+  color: white;
+  text-align: center;
+}
+
+.absence-count {
+  background-color: red;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+  color: white;
+  text-align: center;
+}
+
+.attendance-content-text {
+  margin: auto;
+  font-size: 0.8rem;
 }
