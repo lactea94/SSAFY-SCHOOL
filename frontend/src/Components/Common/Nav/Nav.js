@@ -28,7 +28,7 @@ export default function Nav() {
 
   return (
     <nav className="navigation">
-      <Link to="/">
+      <Link className="home-link" to="/">
         <img
           className="logo-image"
           src={logo}
