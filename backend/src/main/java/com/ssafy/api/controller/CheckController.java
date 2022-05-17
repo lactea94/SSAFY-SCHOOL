@@ -40,7 +40,6 @@ public class CheckController {
     @Autowired
     CheckInRepository checkInRepository;
 
-    @GetMapping("/in")
     @ApiOperation(value = "입실체크 전체 조회", notes = "권한 있는 사용자가 입실체크 한 전체 기록을 조회한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "조회 성공"),
@@ -48,6 +47,7 @@ public class CheckController {
             @ApiResponse(code = 403, message = "권한 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @GetMapping("/in")
     public ResponseEntity getCheckInList(@ApiIgnore Authentication authentication) {
         SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
         User user = userDetails.getUser();
@@ -64,25 +64,31 @@ public class CheckController {
         return new ResponseEntity<>(checkInList, HttpStatus.OK);
     }
 
-    @PostMapping("/in")
     @ApiOperation(value = "입실체크", notes = "사용자가 입실체크한다.")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "작성 성공"),
+            @ApiResponse(code = 200, message = "수정 성공"),
+            @ApiResponse(code = 201, message = "입실 기록 생성"),
             @ApiResponse(code = 401, message = "인증 실패"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @PutMapping("/in")
     public ResponseEntity postCheckIn(@ApiIgnore Authentication authentication) {
         SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
         User user = userDetails.getUser();
-        checkInRepository.save(CheckIn.builder()
-                .createdDate(LocalDate.now())
-                .createdTime(LocalTime.now())
-                .user(user)
-                .build());
+        CheckIn checkIn = checkInRepository.findByCreatedDateAndUserId(LocalDate.now(), user.getId()).orElse(null);
+        if (checkIn == null) {
+            checkInRepository.save(CheckIn.builder()
+                    .createdDate(LocalDate.now())
+                    .createdTime(LocalTime.now())
+                    .user(user)
+                    .build());
+            return new ResponseEntity(HttpStatus.CREATED);
+        }
+        checkIn.setCreatedTime(LocalTime.now());
+        checkInRepository.save(checkIn);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/in/{userId}")
     @ApiOperation(value = "사용자별 입실체크 기록 확인", notes = "권한 있는 사용자가 사용자별 입실체크 기록을 조회한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "조회 성공"),
@@ -90,6 +96,7 @@ public class CheckController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @GetMapping("/in/{userId}")
     public ResponseEntity getCheckInByUser(@ApiIgnore Authentication authentication, @PathVariable Long userId) {
         SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
         User user = userDetails.getUser();
@@ -108,7 +115,6 @@ public class CheckController {
         return new ResponseEntity<>(checkInList, HttpStatus.OK);
     }
 
-    @GetMapping("/out")
     @ApiOperation(value = "퇴실체크 전체 조회", notes = "권한 있는 사용자가 퇴실체크 한 전체 기록을 조회한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "조회 성공"),
@@ -116,6 +122,7 @@ public class CheckController {
             @ApiResponse(code = 403, message = "권한 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @GetMapping("/out")
     public ResponseEntity getCheckOutList(@ApiIgnore Authentication authentication) {
         SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
         User user = userDetails.getUser();
@@ -131,25 +138,31 @@ public class CheckController {
         return new ResponseEntity<>(checkOutList, HttpStatus.OK);
     }
 
-    @PostMapping("/out")
     @ApiOperation(value = "퇴실체크", notes = "사용자가 퇴실체크한다.")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "작성 성공"),
+            @ApiResponse(code = 200, message = "수정 성공"),
+            @ApiResponse(code = 201, message = "퇴실 기록 생성"),
             @ApiResponse(code = 401, message = "인증 실패"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @PutMapping("/out")
     public ResponseEntity postCheckOut(@ApiIgnore Authentication authentication) {
         SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
         User user = userDetails.getUser();
-        checkOutRepository.save(CheckOut.builder()
-                .createdDate(LocalDate.now())
-                .createdTime(LocalTime.now())
-                .user(user)
-                .build());
+        CheckOut checkOut = checkOutRepository.findByCreatedDateAndUserId(LocalDate.now(), user.getId()).orElse(null);
+        if (checkOut == null) {
+            checkOutRepository.save(CheckOut.builder()
+                    .createdDate(LocalDate.now())
+                    .createdTime(LocalTime.now())
+                    .user(user)
+                    .build());
+            return new ResponseEntity(HttpStatus.CREATED);
+        }
+        checkOut.setCreatedTime(LocalTime.now());
+        checkOutRepository.save(checkOut);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/out/{userId}")
     @ApiOperation(value = "사용자별 퇴실체크 기록 확인", notes = "권한 있는 사용자가 사용자별 퇴실체크 기록을 조회한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "조회 성공"),
@@ -157,6 +170,7 @@ public class CheckController {
             @ApiResponse(code = 404, message = "사용자 없음"),
             @ApiResponse(code = 500, message = "서버 오류")
     })
+    @GetMapping("/out/{userId}")
     public ResponseEntity getCheckOutByUser(@ApiIgnore Authentication authentication, @PathVariable Long userId) {
         SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
         User user = userDetails.getUser();
