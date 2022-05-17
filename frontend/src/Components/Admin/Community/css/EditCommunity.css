@@ -77,14 +77,12 @@
 .admin-community-update-button {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
   background-color: #3396F4;
 }
 
 .admin-community-delete-button {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
   background-color: rgb(236, 55, 55);
 }
 

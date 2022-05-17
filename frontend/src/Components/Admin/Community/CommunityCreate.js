@@ -68,8 +68,8 @@ export default function CommunityCreate({ setCreateOpen }) {
           required
         />
         <div className="admin-create-buttons">
-          <button className="admin-create-button">작성</button>
-          <button className="admin-create-cancel" onClick={handleCancel}>취소</button>
+          <button className="admin-community-create-button">작성</button>
+          <button className="admin-community-create-cancel" onClick={handleCancel}>취소</button>
         </div>
       </form>
     </div>
