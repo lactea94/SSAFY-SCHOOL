@@ -224,7 +224,7 @@ export default function Grass({ checkInList, checkOutList }) {
 
   return (
     <div
-      style={{ margin: "auto 0" }}
+      style={{ margin: "auto 0 3rem" }}
     >
       <div 
         className='grass-container'
