@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
 		Status status = new Status();
 		status.setUser(user);
 		status.setLocation("(0.0,0.0,-260)");
-		status.setRemainMileage(0L);
-		status.setTotalMileage(0L);
+		status.setRemainMileage(50000L);
+		status.setTotalMileage(50000L);
 		statusRepository.save(status);
 		StudentStatus studentStatus = new StudentStatus();
 		studentStatus.setStudentId("0610000");
