@@ -4,9 +4,9 @@ import ssafyImg from "../asset/image/ssafy.jpg";
 import metaverse_logo from "../asset/image/metaverse_logo.png";
 import remote_logo from "../asset/image/remote_logo.png";
 import mileage_logo from "../asset/image/mileage_logo.png";
-import metaverse_1 from "../asset/image/metaverse_1.png";
-import metaverse_2 from "../asset/image/metaverse_2.png";
-import metaverse_3 from "../asset/image/metaverse_3.png";
+import metaverse1 from "../asset/image/metaverse1.png";
+import metaverse2 from "../asset/image/metaverse2.png";
+import metaverse3 from "../asset/image/metaverse3.png";
 import remote_1 from "../asset/image/remote_1.png";
 import remote_2 from "../asset/image/remote_2.png";
 import remote_3 from "../asset/image/remote_3.png";
@@ -103,13 +103,13 @@ export default function Home() {
                 className="feature-carousel"
               >
                 <SwiperSlide>
-                  <img className="feature-img" src={metaverse_1} alt="metaverse"></img>
+                  <img className="feature-img" src={metaverse1} alt="metaverse"></img>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img className="feature-img" src={metaverse_2} alt="metaverse"></img>
+                  <img className="feature-img" src={metaverse2} alt="metaverse"></img>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img className="feature-img" src={metaverse_3} alt="metaverse"></img>
+                  <img className="feature-img" src={metaverse3} alt="metaverse"></img>
                 </SwiperSlide>
               </Swiper>
             </div>
