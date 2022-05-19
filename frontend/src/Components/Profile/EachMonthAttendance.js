@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import holidays from "./holidays";
 import { PieChart } from "react-minimal-pie-chart"
+import holidays from "./holidays";
 import "./css/EachMonthAttendance.css";
 
 export default function EachMonthAttendance({ checkInList, checkOutList }) {
@@ -11,6 +11,7 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
   const [ attendance, setAttendance ] = useState(0);
   const [ realAttendance, setRealAttendance ] = useState(0);
   const [ tardy, setTardy ] = useState(0);
+  const [ early, setEarly ] = useState(0);
 
   // 이번달 일 수 계산
   useMemo(() => {
@@ -55,26 +56,36 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
   // 출석수 계산
   useMemo(() => {
     let presents = 0
-    let tardys = 0
+    let tardy = 0
+    let early = 0
     const checkInSet = new Set(checkInList);
     const checkOutSet = new Set(checkOutList);
-    const newCheckInList = [...checkInSet];
-    const newCheckOutList = [...checkOutSet];
+    const union = new Set([...checkInSet, ...checkOutSet])
 
     // 출석
-    if (newCheckInList.length > newCheckOutList.length) {
-      presents = newCheckInList.length
-      tardys = newCheckInList.length - newCheckOutList.length
-    } else {
-      presents = newCheckOutList.length
-      tardys = newCheckOutList.length - newCheckInList.length
-    };
+    presents = union.size;
+
+    // 지각
+    for (let value of checkOutSet) {
+      if (!checkInSet.has(value)) {
+        tardy += 1
+      }
+    }
+
+    // 조퇴
+    for (let value of checkInSet) {
+      if (!checkOutSet.has(value)) {
+        early += 1
+      }
+    }
+
     setAttendance(presents);
-    setTardy(tardys);
+    setTardy(tardy);
+    setEarly(early);
 
     // 실제 출석
-    if (presents - parseInt(tardys / 3) > 0) {
-      setRealAttendance(presents - parseInt(tardys / 3));
+    if (presents - parseInt((tardy + early) / 3) > 0) {
+      setRealAttendance(presents - parseInt((tardy + early) / 3));
     };
     setChartdata([{title:'',value: presents,color:'#F6CB44'}])
   }, [checkInList, checkOutList]);
@@ -102,8 +113,9 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
       </div>
       <div className="attendance-content">
         <div className="attendance-count">출석 : {attendance}</div>
-        <div className="attendance-content-text">정상출석 : {attendance - tardy}</div>
-        <div className="attendance-content-text">지각/조퇴/외출 : {tardy}</div>
+        <div className="attendance-content-text">정상출석 : {attendance - tardy - early}</div>
+        <div className="attendance-content-text">지각 : {tardy}</div>
+        <div className="attendance-content-text">조퇴 : {early}</div>
         <div className="absence-count">결석 : {nowWeekdays - attendance}</div>
       </div>
     </div>
