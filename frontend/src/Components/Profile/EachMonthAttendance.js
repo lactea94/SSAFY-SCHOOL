@@ -64,11 +64,24 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
     // 출석
     if (newCheckInList.length > newCheckOutList.length) {
       presents = newCheckInList.length
-      tardys = newCheckInList.length - newCheckOutList.length
     } else {
       presents = newCheckOutList.length
-      tardys = newCheckOutList.length - newCheckInList.length
     };
+
+    // 조퇴
+    for (let i = 0; i < newCheckInList.length; i++) {
+      if (!newCheckOutList.includes(newCheckInList[i])) {
+        tardys += 1
+      }
+    }
+
+    // 지각
+    for (let i = 0; i < newCheckOutList.length; i++) {
+      if (!newCheckInList.includes(newCheckOutList[i])) {
+        tardys += 1
+      }
+    }
+
     setAttendance(presents);
     setTardy(tardys);
 
