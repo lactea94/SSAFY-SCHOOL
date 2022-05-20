@@ -1,5 +1,15 @@
 # SSAFY SCHOOL
 
+## 목차
+
+- [프로젝트 소개](#프로젝트-소개)
+- [주요 기능](#주요-기능)
+- [서비스 아키텍쳐](#서비스-아키텍쳐)
+- [개발 환경](#개발-환경)
+- [협업 툴](#협업-툴)
+- [배포 환경 및 포트 정리](#배포-환경-및-포트-정리)
+- [팀 소개](#팀-소개)
+
 
 
 ## ✅ 프로젝트 소개
@@ -98,6 +108,8 @@
 
 ![mileage_3](README.assets/mileage_3.png)
 
+
+
 ## ✅ 서비스 아키텍쳐
 
 ![image-20220520010136304](README.assets/image-20220520010136304.png)
@@ -112,14 +124,14 @@
 
 ## ✅ 개발 환경
 
-| Backend         | Frontend               | Game         | CI/CD   |
-| --------------- | ---------------------- | ------------ | ------- |
-| IntelliJ        | VS code                | Unity Hub    | AWS EC2 |
-| spring boot     | React 17.0.2           | Unity Editor | Docker  |
-| Spring Security | React Bootstrap 2.2.1  | Django       | nginx   |
-| Java 11         | React-Router-Dom 6.2.2 |              | Jenkins |
-| MySQL           |                        |              |         |
-| Swagger         |                        |              |         |
+| Backend         | Frontend                      | Game         | CI/CD   |
+| --------------- | ----------------------------- | ------------ | ------- |
+| IntelliJ        | VS code                       | Unity Hub    | AWS EC2 |
+| spring boot     | React 18.0.0                  | Unity Editor | Docker  |
+| Spring Security | React-Router-Dom 6.2.2        | Django       | nginx   |
+| Java 11         | React-minimal-pie-chart 8.3.0 |              | Jenkins |
+| MySQL           | sweetalert2 11.4.10           |              |         |
+| Swagger         |                               |              |         |
 
 ### Backend
 
