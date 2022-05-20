@@ -36,7 +36,7 @@
 
 - #### Gradle 
 
-  - version: 6.4.1
+  - version: 6.8.3
 
 - #### MySQL
 
