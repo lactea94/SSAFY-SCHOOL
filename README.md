@@ -68,6 +68,14 @@
 
 ### SSAFY SCHOOL
 
+#### UI
+
+![metaverse_4](frontend/src/asset/image/metaverse_4.png)
+
+#### Check-IN & OUT
+
+![metaverse_5](README.assets/metaverse_5.png)
+
 #### ClassRoom
 
 ![remote_1](README.assets/remote_1.png)
