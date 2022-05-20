@@ -270,7 +270,7 @@ public static String getToken(String userId) {
 ### Swagger
 
 - Swagger를 통해서 API 문서 자동화
-- Swagger URL : [https://j6c201.p.ssafy.io/api/swagger-ui/index.html](https://j6c201.p.ssafy.io/api/swagger-ui/index.html)
+- Swagger URL : [https://k6c202.p.ssafy.io/api/swagger-ui/index.html](https://k6c202.p.ssafy.io/api/swagger-ui/index.html)
 
 
 
