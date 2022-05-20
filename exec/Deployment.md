@@ -1,8 +1,10 @@
 # Deployment
 
-
-
 ## Nginx
+
+```bash
+$ sudo vim /etc/nginx/sites-enabled/default
+```
 
 ```bash
 ##
@@ -203,8 +205,22 @@ server {
                                                        
 ```
 
-
-
 ## Jenkins
+
+- restart_backend.sh 생성
+
+```bash
+kill $(cat deploy/app.pid)
+nohup java -jar deploy/*.jar --server.servlet.context-path=/api --server.address=127.0.0.1 --server.port=8080 \\
+--spring.pid.file=deploy/app.pid >> deploy/app.log 2>&1 &
+```
+
+- chmod 변경
+
+```bash
+$ chmod +x ~/deploy/restart_backend1.sh
+```
+
+- jenkins 설정
 
 ![image-20220520013638002](Deployment.assets/image-20220520013638002.png)
