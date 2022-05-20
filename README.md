@@ -66,11 +66,29 @@
 
 - 유저 정보 수정
 
-
-
 ### SSAFY SCHOOL
 
+#### ClassRoom
 
+![remote_1](README.assets/remote_1.png)
+
+![remote_2](README.assets/remote_2.png)
+
+![remote_3](README.assets/remote_3.png)
+
+#### Web View
+
+![remote_4](README.assets/remote_4.png)
+
+![remote_5](README.assets/remote_5.png)
+
+#### Mileage Shop
+
+![mileage_1](README.assets/mileage_1.png)
+
+![mileage_2](README.assets/mileage_2.png)
+
+![mileage_3](README.assets/mileage_3.png)
 
 ## ✅ 서비스 아키텍쳐
 
@@ -86,14 +104,14 @@
 
 ## ✅ 개발 환경
 
-| Backend         | Frontend                | Game         | CI/CD   |
-| --------------- | ----------------------- | ------------ | ------- |
-| IntelliJ        | VS code                 | Unity Hub    | AWS EC2 |
-| spring boot     | React 17.0.2            | Unity Editor | Docker  |
-| Spring Security | React Bootstrap 2.2.1   | Django       | nginx   |
-| Java 11         | React-Router-Dom 6.2.2  |              | Jenkins |
-| MySQL           | ApexCharts 3.35.0       |              |         |
-| Swagger         | Styled-Components 5.3.3 |              |         |
+| Backend         | Frontend               | Game         | CI/CD   |
+| --------------- | ---------------------- | ------------ | ------- |
+| IntelliJ        | VS code                | Unity Hub    | AWS EC2 |
+| spring boot     | React 17.0.2           | Unity Editor | Docker  |
+| Spring Security | React Bootstrap 2.2.1  | Django       | nginx   |
+| Java 11         | React-Router-Dom 6.2.2 |              | Jenkins |
+| MySQL           |                        |              |         |
+| Swagger         |                        |              |         |
 
 ### Backend
 
