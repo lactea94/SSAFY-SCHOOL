@@ -1,5 +1,15 @@
 # SSAFY SCHOOL
 
+## 목차
+
+- [프로젝트 소개](#프로젝트-소개)
+- [주요 기능](#주요-기능)
+- [서비스 아키텍쳐](#서비스-아키텍쳐)
+- [개발 환경](#개발-환경)
+- [협업 툴](#협업-툴)
+- [배포 환경 및 포트 정리](#배포-환경-및-포트-정리)
+- [팀 소개](#팀-소개)
+
 
 
 ## ✅ 프로젝트 소개
@@ -66,9 +76,37 @@
 
 - 유저 정보 수정
 
-
-
 ### SSAFY SCHOOL
+
+#### UI
+
+![metaverse_4](frontend/src/asset/image/metaverse_4.png)
+
+#### Check-IN & OUT
+
+![metaverse_5](README.assets/metaverse_5.png)
+
+#### ClassRoom
+
+![remote_1](README.assets/remote_1.png)
+
+![remote_2](README.assets/remote_2.png)
+
+![remote_3](README.assets/remote_3.png)
+
+#### Web View
+
+![remote_4](README.assets/remote_4.png)
+
+![remote_5](README.assets/remote_5.png)
+
+#### Mileage Shop
+
+![mileage_1](README.assets/mileage_1.png)
+
+![mileage_2](README.assets/mileage_2.png)
+
+![mileage_3](README.assets/mileage_3.png)
 
 
 
@@ -86,14 +124,14 @@
 
 ## ✅ 개발 환경
 
-| Backend         | Frontend                | Game         | CI/CD   |
-| --------------- | ----------------------- | ------------ | ------- |
-| IntelliJ        | VS code                 | Unity Hub    | AWS EC2 |
-| spring boot     | React 17.0.2            | Unity Editor | Docker  |
-| Spring Security | React Bootstrap 2.2.1   | Django       | nginx   |
-| Java 11         | React-Router-Dom 6.2.2  |              | Jenkins |
-| MySQL           | ApexCharts 3.35.0       |              |         |
-| Swagger         | Styled-Components 5.3.3 |              |         |
+| Backend         | Frontend                      | Game         | CI/CD   |
+| --------------- | ----------------------------- | ------------ | ------- |
+| IntelliJ        | VS code                       | Unity Hub    | AWS EC2 |
+| spring boot     | React 18.0.0                  | Unity Editor | Docker  |
+| Spring Security | React-Router-Dom 6.2.2        | Django       | nginx   |
+| Java 11         | React-minimal-pie-chart 8.3.0 |              | Jenkins |
+| MySQL           | sweetalert2 11.4.10           |              |         |
+| Swagger         |                               |              |         |
 
 ### Backend
 
@@ -232,7 +270,7 @@ public static String getToken(String userId) {
 ### Swagger
 
 - Swagger를 통해서 API 문서 자동화
-- Swagger URL : [https://j6c201.p.ssafy.io/api/swagger-ui/index.html](https://j6c201.p.ssafy.io/api/swagger-ui/index.html)
+- Swagger URL : [https://k6c202.p.ssafy.io/api/swagger-ui/index.html](https://k6c202.p.ssafy.io/api/swagger-ui/index.html)
 
 
 
