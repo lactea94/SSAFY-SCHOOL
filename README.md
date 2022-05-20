@@ -178,7 +178,6 @@ public static String getToken(String userId) {
 
 - axios로 DB와 데이터 통신
   - api instance를 따로 관리하여 주소가 변하더라도 전체 적용될 수 있도록 제작
-  - 이미지와 음성파일을 보낼 때는 multipart/form-data를 활용하여 파일 전송
 - react hook 사용하여 동기적 작업 수행
   - useState를 사용하여 컴포넌트 내에서 상태 관리, 컴포넌트 간 상태 관리는 props를 활용
   - useEffect를 통해 컴포넌트가 렌더링 돼었을 때 최초 한 번만 DB로 부터 정보를 받아오고, 두 번째 인자를 활용하여 해당 상태가 변경되었을 때 함수 호출
