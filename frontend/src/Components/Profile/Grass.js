@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import { useState, useEffect } from 'react';
 import holidays from './holidays';
 
 export default function Grass({ checkInList, checkOutList }) {
@@ -7,6 +7,7 @@ export default function Grass({ checkInList, checkOutList }) {
   const [ start, setStart ] = useState(null);
   const [ indata, setIndata ] = useState(null);
   const [ outdata, setOutdata ] = useState(null);
+  const [ scroll, setScroll ] = useState(false);
 
   useEffect(()=>{
     //입퇴실 정보 받아오기
@@ -97,8 +98,6 @@ export default function Grass({ checkInList, checkOutList }) {
       setGrassdata(newGrassdata)
     }
   },[indata, outdata, start])
-
-
 
   useEffect(()=>{
     //grassdata길이가 0이 아닐때 즉 있을때
@@ -218,15 +217,24 @@ export default function Grass({ checkInList, checkOutList }) {
         container.appendChild(grass)
         cnt += 1
       }
-
+      setScroll(true);
     }
   },[grassdata, start])
+
+  useEffect(() => {
+    if (scroll) {
+      var objDiv = document.getElementById("grass-container");
+      objDiv.scrollLeft = objDiv.scrollWidth;
+      setScroll(false);
+    }
+  }, [scroll])
 
   return (
     <div
       style={{ margin: "auto 0 3rem" }}
     >
-      <div 
+      <div
+        id='grass-container'
         className='grass-container'
         style={{
           width:"100%",
@@ -235,8 +243,7 @@ export default function Grass({ checkInList, checkOutList }) {
           overflow:"auto",
           position:'relative'
         }}
-      >
-      </div>
+      />
     </div>
   )
 }
