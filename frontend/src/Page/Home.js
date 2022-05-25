@@ -5,15 +5,19 @@ import ucc from "../asset/video/ucc.mp4"
 import metaverse_logo from "../asset/image/metaverse_logo.png";
 import remote_logo from "../asset/image/remote_logo.png";
 import mileage_logo from "../asset/image/mileage_logo.png";
-import metaverse_1 from "../asset/image/metaverse_1.png";
-import metaverse_2 from "../asset/image/metaverse_2.png";
-import metaverse_3 from "../asset/image/metaverse_3.png";
-import remote_1 from "../asset/image/remote_1.png";
-import remote_2 from "../asset/image/remote_2.png";
-import remote_3 from "../asset/image/remote_3.png";
-import mileage_1 from "../asset/image/mileage_1.png";
-import mileage_2 from "../asset/image/mileage_2.png";
-import mileage_3 from "../asset/image/mileage_3.png";
+import metaverse1 from "../asset/image/metaverse_1.png";
+import metaverse2 from "../asset/image/metaverse_2.png";
+import metaverse3 from "../asset/image/metaverse_3.png";
+import metaverse4 from "../asset/image/metaverse_4.png";
+import metaverse5 from "../asset/image/metaverse_5.png";
+import remote1 from "../asset/image/remote_1.png";
+import remote2 from "../asset/image/remote_2.png";
+import remote3 from "../asset/image/remote_3.png";
+import remote4 from "../asset/image/remote_4.png";
+import remote5 from "../asset/image/remote_5.png";
+import mileage1 from "../asset/image/mileage_1.png";
+import mileage2 from "../asset/image/mileage_2.png";
+import mileage3 from "../asset/image/mileage_3.png";
 import Loading from "../Components/Loading/Loading";
 import { Swiper, SwiperSlide } from "swiper/react"; // basic
 import { Autoplay, Navigation, Pagination } from "swiper";
@@ -105,13 +109,19 @@ export default function Home() {
                 className="feature-carousel"
               >
                 <SwiperSlide>
-                  <img className="feature-img" src={metaverse_1} alt="metaverse"></img>
+                  <img className="feature-img" src={metaverse1} alt="metaverse"></img>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img className="feature-img" src={metaverse_2} alt="metaverse"></img>
+                  <img className="feature-img" src={metaverse2} alt="metaverse"></img>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img className="feature-img" src={metaverse_3} alt="metaverse"></img>
+                  <img className="feature-img" src={metaverse3} alt="metaverse"></img>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img className="feature-img" src={metaverse4} alt="metaverse"></img>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img className="feature-img" src={metaverse5} alt="metaverse"></img>
                 </SwiperSlide>
               </Swiper>
             </div>
@@ -129,13 +139,19 @@ export default function Home() {
                 className="feature-carousel"
               >
                 <SwiperSlide>
-                  <img className="feature-img" src={remote_1} alt="remote_1"></img>
+                  <img className="feature-img" src={remote1} alt="remote_1"></img>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img className="feature-img" src={remote_2} alt="remote_2"></img>
+                  <img className="feature-img" src={remote2} alt="remote_2"></img>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img className="feature-img" src={remote_3} alt="remote_3"></img>
+                  <img className="feature-img" src={remote3} alt="remote_3"></img>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img className="feature-img" src={remote4} alt="remote_3"></img>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img className="feature-img" src={remote5} alt="remote_3"></img>
                 </SwiperSlide>
               </Swiper>
               <div className="feature-card">
@@ -169,13 +185,13 @@ export default function Home() {
                 className="feature-carousel"
               >
                 <SwiperSlide>
-                  <img className="feature-img" src={mileage_1} alt="mileage_1"></img>
+                  <img className="feature-img" src={mileage1} alt="mileage_1"></img>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img className="feature-img" src={mileage_2} alt="mileage_2"></img>
+                  <img className="feature-img" src={mileage2} alt="mileage_2"></img>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img className="feature-img" src={mileage_3} alt="mileage_3"></img>
+                  <img className="feature-img" src={mileage3} alt="mileage_3"></img>
                 </SwiperSlide>
               </Swiper>
             </div>

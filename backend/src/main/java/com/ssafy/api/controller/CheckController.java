@@ -1,7 +1,9 @@
 package com.ssafy.api.controller;
 
 import com.ssafy.api.response.check.CheckInListRes;
+import com.ssafy.api.response.check.CheckInRes;
 import com.ssafy.api.response.check.CheckOutListRes;
+import com.ssafy.api.response.check.CheckOutRes;
 import com.ssafy.api.service.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.db.entity.CheckIn;
@@ -89,6 +91,26 @@ public class CheckController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @ApiOperation(value = "당일 입실체크 기록 확인", notes = "사용자 본인의 당일 입실 기록을 확인한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "조회 성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    @GetMapping("/in/me")
+    public ResponseEntity getCheckIn(@ApiIgnore Authentication authentication) {
+        SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+        String userId = userDetails.getUsername();
+        User user = userService.getUserByUserId(userId);
+        CheckIn checkIn = checkInRepository.findByCreatedDateAndUserId(LocalDate.now(), user.getId()).orElse(null);
+        if (checkIn == null) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        CheckInRes checkInRes = new CheckInRes(checkIn);
+        return new ResponseEntity<>(checkInRes, HttpStatus.OK);
+    }
+
     @ApiOperation(value = "사용자별 입실체크 기록 확인", notes = "권한 있는 사용자가 사용자별 입실체크 기록을 조회한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "조회 성공"),
@@ -161,6 +183,26 @@ public class CheckController {
         checkOut.setCreatedTime(LocalTime.now());
         checkOutRepository.save(checkOut);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "당일 퇴실체크 기록 확인", notes = "사용자 본인의 당일 퇴실 기록을 확인한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "조회 성공"),
+            @ApiResponse(code = 401, message = "인증 실패"),
+            @ApiResponse(code = 404, message = "사용자 없음"),
+            @ApiResponse(code = 500, message = "서버 오류")
+    })
+    @GetMapping("/out/me")
+    public ResponseEntity getCheckOut(@ApiIgnore Authentication authentication) {
+        SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
+        String userId = userDetails.getUsername();
+        User user = userService.getUserByUserId(userId);
+        CheckOut checkOut = checkOutRepository.findByCreatedDateAndUserId(LocalDate.now(), user.getId()).orElse(null);
+        if (checkOut == null) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        CheckOutRes checkOutRes = new CheckOutRes(checkOut);
+        return new ResponseEntity<>(checkOutRes, HttpStatus.OK);
     }
 
     @ApiOperation(value = "사용자별 퇴실체크 기록 확인", notes = "권한 있는 사용자가 사용자별 퇴실체크 기록을 조회한다.")
