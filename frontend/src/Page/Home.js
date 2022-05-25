@@ -1,6 +1,7 @@
 import "./css/Home.css";
 import banner from "../asset/image/banner.png";
 import ssafyImg from "../asset/image/ssafy.jpg";
+import ucc from "../asset/video/ucc.mp4"
 import metaverse_logo from "../asset/image/metaverse_logo.png";
 import remote_logo from "../asset/image/remote_logo.png";
 import mileage_logo from "../asset/image/mileage_logo.png";
@@ -73,7 +74,8 @@ export default function Home() {
           </header>
           <main className="home-main">
             <div className="intro">
-              <img src={ssafyImg} alt="ssafy"/>
+              {/* <img src={ssafyImg} alt="ssafy"/> */}
+              <video src={ucc} alt="ucc" autoPlay muted loop />
               <div>
                 <h2>우리는 싸피에서 "함께" 성장합니다.</h2>
                 <p>하지만, 대면수업을 하지 못해 아쉬움만 커져가고 있습니다.</p>
