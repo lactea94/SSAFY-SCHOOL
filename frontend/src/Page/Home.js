@@ -1,6 +1,6 @@
 import "./css/Home.css";
-import banner from "../asset/image/banner.png";
-import ssafyImg from "../asset/image/ssafy.jpg";
+import banner from "../asset/image/banner.jpg";
+// import ssafyImg from "../asset/image/ssafy.jpg";
 import ucc from "../asset/video/ucc.mp4"
 import metaverse_logo from "../asset/image/metaverse_logo.png";
 import remote_logo from "../asset/image/remote_logo.png";
