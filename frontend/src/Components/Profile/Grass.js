@@ -234,25 +234,25 @@ export default function Grass({ checkInList, checkOutList }) {
     <div className='grass'>
       <div className='grass-content'>
         <div className='grass-item'>
-          출석 : 
           <div
             className='grass-box'
             style={{background: '#78cb94'}}
           />
+          출석
         </div>
         <div className='grass-item'>
-          지각/조퇴 : 
           <div
             className='grass-box'
             style={{background: '#febb6c'}}
           />
+          지각/조퇴
         </div>
         <div className='grass-item'>
-          주말/휴일 : 
           <div
             className='grass-box'
             style={{background: '#80caff'}}
           />
+          주말/휴일
         </div>
       </div>
       <div
