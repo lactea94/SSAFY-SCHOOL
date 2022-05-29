@@ -58,8 +58,8 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
     let presents = 0
     let tardy = 0
     let early = 0
-    const checkInSet = new Set(checkInList);
-    const checkOutSet = new Set(checkOutList);
+    const checkInSet = new Set(checkInList.filter(date => parseInt(date.slice(5, 7)) === today.month));
+    const checkOutSet = new Set(checkOutList.filter(date => parseInt(date.slice(5, 7)) === today.month));
     const union = new Set([...checkInSet, ...checkOutSet])
 
     // 출석
@@ -78,7 +78,6 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
         early += 1
       }
     }
-
     setAttendance(presents);
     setTardy(tardy);
     setEarly(early);
@@ -88,7 +87,7 @@ export default function EachMonthAttendance({ checkInList, checkOutList }) {
       setRealAttendance(presents - parseInt((tardy + early) / 3));
     };
     setChartdata([{title:'',value: presents,color:'#F6CB44'}])
-  }, [checkInList, checkOutList]);
+  }, [checkInList, checkOutList, today]);
 
   return (
     <div className="attendance-container">
