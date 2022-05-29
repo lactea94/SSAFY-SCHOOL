@@ -6,7 +6,7 @@
 
 .index-row {
   display: grid;
-  grid-template-columns: 2fr 8fr 2fr 2fr;
+  grid-template-columns: 3fr 8fr 2fr 2fr;
   column-gap: 2rem;
   border-top: 1px solid black;
   border-bottom: 1px solid gray;
@@ -17,7 +17,7 @@
 
 .article-row {
   display: grid;
-  grid-template-columns: 2fr 8fr 2fr 2fr;
+  grid-template-columns: 3fr 8fr 2fr 2fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
@@ -36,7 +36,7 @@
 
 .article-notice-row {
   display: grid;
-  grid-template-columns: 2fr 8fr 2fr 2fr;
+  grid-template-columns: 3fr 8fr 2fr 2fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
