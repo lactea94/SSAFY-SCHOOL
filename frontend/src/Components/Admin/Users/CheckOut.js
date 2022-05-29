@@ -71,7 +71,7 @@ export default function CheckOut() {
       </div>
       {CheckOut()}
       <Pagination
-        total={checkOutList.length}
+        total={fiteredList.length}
         limit={limit}
         page={page}
         setPage={setPage}

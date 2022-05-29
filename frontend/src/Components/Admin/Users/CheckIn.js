@@ -72,11 +72,11 @@ export default function CheckIn() {
       </div>
       {CheckIn()}
       <Pagination 
-        total={checkInList.length}
+        total={fiteredList.length}
         limit={limit}
         page={page}
         setPage={setPage}
-        setLimit={setLimit}      
+        setLimit={setLimit}
       />
     </div>
   )
