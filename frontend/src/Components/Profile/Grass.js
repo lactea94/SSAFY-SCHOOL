@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import holidays from './holidays';
+import './css/Grass.css'
 
 export default function Grass({ checkInList, checkOutList }) {
   const [ th, setTh ] = useState(null);
@@ -230,9 +231,30 @@ export default function Grass({ checkInList, checkOutList }) {
   }, [scroll])
 
   return (
-    <div
-      style={{ margin: "auto 0 3rem" }}
-    >
+    <div className='grass'>
+      <div className='grass-content'>
+        <div className='grass-item'>
+          출석 : 
+          <div
+            className='grass-box'
+            style={{background: '#78cb94'}}
+          />
+        </div>
+        <div className='grass-item'>
+          지각/조퇴 : 
+          <div
+            className='grass-box'
+            style={{background: '#febb6c'}}
+          />
+        </div>
+        <div className='grass-item'>
+          주말/휴일 : 
+          <div
+            className='grass-box'
+            style={{background: '#80caff'}}
+          />
+        </div>
+      </div>
       <div
         id='grass-container'
         className='grass-container'

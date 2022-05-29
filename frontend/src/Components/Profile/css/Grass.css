@@ -1,0 +1,25 @@
+.grass {
+  margin: auto 0 3rem;
+  border: 1px solid lightgray;
+  background-color: #FAFBFC;
+  padding: 2rem;
+}
+
+.grass-content {
+  display: flex;
+  column-gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.grass-item {
+ display: flex;
+ line-height: 22px;
+ font-size: 0.8rem;
+}
+
+.grass-box {
+  width: 19px; 
+  height: 19px;
+  border-radius: 30%;
+  margin: 1px;
+}
