@@ -6,7 +6,7 @@
 
 .admin-index-row {
   display: grid;
-  grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
+  grid-template-columns: 3fr 8fr 2fr 2fr 1fr;
   column-gap: 2rem;
   background-color: #FAFBFC;
   border-top: 1px solid black;
@@ -17,7 +17,7 @@
 
 .admin-row {
   display: grid;
-  grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
+  grid-template-columns: 3fr 8fr 2fr 2fr 1fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   padding: 1rem;
@@ -30,7 +30,7 @@
 
 .admin-community-notice-row {
   display: grid;
-  grid-template-columns: 2fr 8fr 2fr 2fr 1fr;
+  grid-template-columns: 3fr 8fr 2fr 2fr 1fr;
   column-gap: 2rem;
   border-bottom: 1px solid gray;
   color: #3396F4;
@@ -66,18 +66,6 @@
 @media screen and (min-width: 1280px) {
   .admin-container {
     width: 50%;
-  }
-  
-  .admin-community-notice-row {
-    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
-  }
-
-  .admin-index-row {
-    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
-  }
-
-  .admin-row {
-    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
   }
 }
 
